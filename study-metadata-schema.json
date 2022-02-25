@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://healdata.org/schemas/study-metadata-schema-1.0beta.json",
+  "title": "HEAL Study",
+  "description": "A study funded by NIH's HEAL Initiative",
+  "type": "object",
+  "properties": {
+    "minimalInfo": {
+      "type": "object",
+      "properties": {
+        "studyName": {
+          "description": "Generally equivalent to the NIH application ID title",
+          "type": "string"
+        },
+        "studyDescription": {
+          "description": "Generally equivalent to the NIH application ID abstract text",
+          "type": "string"
+        },
+        "studyNickname": {
+          "description": "Study nickname or alternative title",
+          "type": "string"
+        }
+      },
+      "required": [ "studyName", "studyDescription" ]
+    }
+  },
+  "required": [ "minimalInfo" ]
+}
