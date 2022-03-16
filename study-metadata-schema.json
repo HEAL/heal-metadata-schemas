@@ -5,24 +5,25 @@
   "description": "A study funded by NIH's HEAL Initiative",
   "type": "object",
   "properties": {
-    "minimalInfo": {
+    "minimal_info": {
       "type": "object",
       "properties": {
-        "studyName": {
+        "study_name": {
           "description": "Generally equivalent to the NIH application ID title",
           "type": "string"
         },
-        "studyDescription": {
+        "study_description": {
           "description": "Generally equivalent to the NIH application ID abstract text",
           "type": "string"
         },
-        "studyNickname": {
+        "study_nickname": {
           "description": "Study nickname or alternative title",
           "type": "string"
         }
       },
-      "required": [ "studyName", "studyDescription" ]
-    }
+      "required": [ "study_name", "study_description" ]
+    },
+    ""
   },
-  "required": [ "minimalInfo" ]
+  "required": [ "minimal_info" ]
 }
