@@ -38,7 +38,7 @@
     },
     "metadata_location": {
       "type": "object",
-      "required": [ ],
+      "required": [],
       "properties": {
         "nih_application_id": {
           "description": "NIH application ID; only applicable if study is funded by NIH",
@@ -70,7 +70,7 @@
           "type": "string"
         },
         "other_study_websites": {
-          "description": "enter any other websites officially associated with this study that provide additional information about the study",
+          "description": "any other websites officially associated with this study that provide additional information about the study",
           "type":"array",
           "items": {
             "type": "string",
@@ -78,6 +78,141 @@
           }
         }
       }  
+    },
+    "citation": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "heal_funded_status": {
+          "description": "Whether or not the study is funded by the NIH HEAL initiative",
+          "type": "boolean"
+        },
+        "study_collection_status": {
+          "description": "Whether or not the study is related to other studies by some administrative mechanism",
+          "type": "boolean"
+        },
+        "study_collection": {
+          "description": "Name or Identifier of the study group or collection this study is related to by some administrative mechanism",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "funding":{
+          "description": "Describe the grants and other funding supporting the study; one item in this array per grant/award or funding source",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "funder_name": {
+                "description": "Name of a the granting agency or organization funding the study; include sub-agency administrative entity as second element in array if applicable (e.g. National Institute of Health, National Institute on Drug Abuse)", 
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "funder_abbreviation": {
+                "description": "Abbreviation for the name of the granting agency or organization funding the study; include abbreviation for sub-agency administrative entity as second element in array if applicable (e.g. NIH, NIDA)", 
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "funder_type": {
+                "description": "Type of granting agency or organization funding the study", 
+                "type": "string",
+                "enum": [
+                  "governmental",
+                  "non-governmental, non-profit, not corporate affiliated",
+                  "non-governmental, non-profit, corporate affiliated",
+                  "non-governmental, for-profit"
+                ]
+              },
+              "funder_geographic_reach":{
+                "description": "The geographic reach of the granting agency or organization funding the study", 
+                "type": "string",
+                "enum": [
+                  "international",
+                  "national - non-US",
+                  "national - US",
+                  "state - US",
+                  "local - US"
+                ]
+              },
+              "funding_award_ID":{"description": "The grant award ID or number", "type": "string"},
+              "funding_award_name":{"description": "The grant award name", "type": "string"}
+            }
+          }
+        },
+        "investigators":{
+          "description": "Describe the primary and co-investigators of the study; one item in this array per investigator",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "investigator_first_name": {
+                "description": "First name of study primary or co-investigator", 
+                "type": "string"
+              },
+              "investigator_middle_initial": {
+                "description": "Middle initial of study primary or co-investigator", 
+                "type": "string"
+              },
+              "investigator_last_name": {
+                "description": "Last name of study primary or co-investigator", 
+                "type": "string"
+              },
+              "investigator_ID": {
+                "description": "Add a structured identifier(s) for the investigator; one item in this array per structured identifier; e.g. one item for providing ORCID, another for providing RAS passport", 
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["ID_type","ID_value"],
+                  "properties": {
+                    "ID_type": {
+                      "description": "Type of identifier that will be provided",
+                      "type": "string",
+                      "enum": [
+                        "internal NIH RePORTER ID",
+                        "doi",
+                        "ORCID",
+                        "eRA Commons ID",
+                        "RAS Passport"
+                      ],
+                      
+                    }
+                  }
+                }
+              },
+              "funder_type": {
+                "description": "Type of granting agency or organization funding the study", 
+                "type": "string",
+                "enum": [
+                  "governmental",
+                  "non-governmental, non-profit, not corporate affiliated",
+                  "non-governmental, non-profit, corporate affiliated",
+                  "non-governmental, for-profit"
+                ]
+              },
+              "funder_geographic_reach":{
+                "description": "The geographic reach of the granting agency or organization funding the study", 
+                "type": "string",
+                "enum": [
+                  "international",
+                  "national - non-US",
+                  "national - US",
+                  "state - US",
+                  "local - US"
+                ]
+              },
+              "funding_award_ID":{"description": "The grant award ID or number", "type": "string"},
+              "funding_award_name":{"description": "The grant award name", "type": "string"}
+            }
+          }
+        }
+      }
     }   
   },
   "definitions": {
