@@ -59,9 +59,22 @@
             "type": "object",
             "required": ["repository_name, repository_study_ID"],
             "properties": {
-              "repository_name": {"description": "Name of a repository in which data or other shareable research products are submitted for storage by study author", "type": "string"},
-              "repository_study_ID": {"description": "Study unique identifier at that repository", "type": "string"},
-              "repository_doi":{"description": "Study unique persistent identifier at that repository; usually a doi", "type": "string"}
+              "repository_name": {
+                "description": "Name of a repository in which data or other shareable research products are submitted for storage by study author", 
+                "type": "string"
+              },
+              "repository_study_ID": {
+                "description": "Study unique identifier at that repository", 
+                "type": "string"
+              },
+              "repository_persistent_ID":{
+                "description": "Study unique persistent identifier at that repository; usually a doi",
+                "type": "string"
+              },
+              "repository_citation": {
+                "description": "The official citation the repository requests be used to cite the study/data when the study/data is discovered/accessed via the repository; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be the repository name)",
+                "type": "string"
+              }
             }
           }
         },
@@ -91,8 +104,8 @@
           "description": "Whether or not the study is related to other studies by some administrative mechanism",
           "type": "boolean"
         },
-        "study_collection": {
-          "description": "Name or Identifier of the study group or collection this study is related to by some administrative mechanism",
+        "study_collections": {
+          "description": "Name or Identifier of the study group or collection(s) this study is related to by some administrative mechanism",
           "type": "array",
           "items": {
             "type": "string"
@@ -180,37 +193,25 @@
                         "ORCID",
                         "eRA Commons ID",
                         "RAS Passport"
-                      ],
-                      
+                      ]
+                    },
+                    "ID_value": {
+                      "description": "Value of the identifier of the type specified by ID_type",
+                      "type": "string"
                     }
-                  }
+                  }    
                 }
-              },
-              "funder_type": {
-                "description": "Type of granting agency or organization funding the study", 
-                "type": "string",
-                "enum": [
-                  "governmental",
-                  "non-governmental, non-profit, not corporate affiliated",
-                  "non-governmental, non-profit, corporate affiliated",
-                  "non-governmental, for-profit"
-                ]
-              },
-              "funder_geographic_reach":{
-                "description": "The geographic reach of the granting agency or organization funding the study", 
-                "type": "string",
-                "enum": [
-                  "international",
-                  "national - non-US",
-                  "national - US",
-                  "state - US",
-                  "local - US"
-                ]
-              },
-              "funding_award_ID":{"description": "The grant award ID or number", "type": "string"},
-              "funding_award_name":{"description": "The grant award name", "type": "string"}
+              }
             }
           }
+        },
+        "heal_platform_persistent_ID": {
+          "description": "Persistent identifier assigned to the study on the HEAL Platform; probably a HEAL Platform-branded doi",
+          "type": "string"
+        },
+        "heal_platform_citation": {
+          "description": "The official citation the HEAL Platform will request be used to cite the study/data when the study/data is discovered/accessed via the Platform; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be: Platform via [Repository Name])",
+          "type": "string"
         }
       }
     }   
