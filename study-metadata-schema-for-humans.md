@@ -16,10 +16,37 @@
     - **Items** *(object)*
       - **`repository_name`** *(string)*: Name of a repository in which data or other shareable research products are submitted for storage by study author.
       - **`repository_study_ID`** *(string)*: Study unique identifier at that repository.
-      - **`repository_doi`** *(string)*: Study unique persistent identifier at that repository; usually a doi.
+      - **`repository_persistent_ID`** *(string)*: Study unique persistent identifier at that repository; usually a doi.
+      - **`repository_citation`** *(string)*: The official citation the repository requests be used to cite the study/data when the study/data is discovered/accessed via the repository; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be the repository name).
   - **`cedar_study_level_metadata_template_instance_ID`** *(string)*: ID of the CEDAR HEAL Study-level Core Metadata Template instance created for this study.
-  - **`other_study_websites`** *(array)*: enter any other websites officially associated with this study that provide additional information about the study.
+  - **`other_study_websites`** *(array)*: any other websites officially associated with this study that provide additional information about the study.
     - **Items** *(string)*: Refer to *#/definitions/saneUrl*.
+- **`citation`** *(object)*
+  - **`heal_funded_status`** *(boolean)*: Whether or not the study is funded by the NIH HEAL initiative.
+  - **`study_collection_status`** *(boolean)*: Whether or not the study is related to other studies by some administrative mechanism.
+  - **`study_collections`** *(array)*: Name or Identifier of the study group or collection(s) this study is related to by some administrative mechanism.
+    - **Items** *(string)*
+  - **`funding`** *(array)*: Describe the grants and other funding supporting the study; one item in this array per grant/award or funding source.
+    - **Items** *(object)*
+      - **`funder_name`** *(array)*: Name of a the granting agency or organization funding the study; include sub-agency administrative entity as second element in array if applicable (e.g. National Institute of Health, National Institute on Drug Abuse).
+        - **Items** *(string)*
+      - **`funder_abbreviation`** *(array)*: Abbreviation for the name of the granting agency or organization funding the study; include abbreviation for sub-agency administrative entity as second element in array if applicable (e.g. NIH, NIDA).
+        - **Items** *(string)*
+      - **`funder_type`** *(string)*: Type of granting agency or organization funding the study. Must be one of: `['governmental', 'non-governmental, non-profit, not corporate affiliated', 'non-governmental, non-profit, corporate affiliated', 'non-governmental, for-profit']`.
+      - **`funder_geographic_reach`** *(string)*: The geographic reach of the granting agency or organization funding the study. Must be one of: `['international', 'national - non-US', 'national - US', 'state - US', 'local - US']`.
+      - **`funding_award_ID`** *(string)*: The grant award ID or number.
+      - **`funding_award_name`** *(string)*: The grant award name.
+  - **`investigators`** *(array)*: Describe the primary and co-investigators of the study; one item in this array per investigator.
+    - **Items** *(object)*
+      - **`investigator_first_name`** *(string)*: First name of study primary or co-investigator.
+      - **`investigator_middle_initial`** *(string)*: Middle initial of study primary or co-investigator.
+      - **`investigator_last_name`** *(string)*: Last name of study primary or co-investigator.
+      - **`investigator_ID`** *(array)*: Add a structured identifier(s) for the investigator; one item in this array per structured identifier; e.g. one item for providing ORCID, another for providing RAS passport.
+        - **Items** *(object)*
+          - **`ID_type`** *(string)*: Type of identifier that will be provided. Must be one of: `['internal NIH RePORTER ID', 'doi', 'ORCID', 'eRA Commons ID', 'RAS Passport']`.
+          - **`ID_value`** *(string)*: Value of the identifier of the type specified by ID_type.
+  - **`heal_platform_persistent_ID`** *(string)*: Persistent identifier assigned to the study on the HEAL Platform; probably a HEAL Platform-branded doi.
+  - **`heal_platform_citation`** *(string)*: The official citation the HEAL Platform will request be used to cite the study/data when the study/data is discovered/accessed via the Platform; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be: Platform via [Repository Name]).
 ## Definitions
 
 - **`saneUrl`**
