@@ -214,6 +214,76 @@
           "type": "string"
         }
       }
+    },
+    "contact": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "contacts":{
+          "description": "Describe the contact person(s) for the study. This is the person(s) who should be contacted for questions about the study; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per contact person",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "contact_first_name": {
+                "description": "First name of study contact", 
+                "type": "string"
+              },
+              "contact_middle_initial": {
+                "description": "Middle initial of study contact", 
+                "type": "string"
+              },
+              "contact_last_name": {
+                "description": "Last name of study contact", 
+                "type": "string"
+              },
+              "contact_affiliation": {
+                "description": "Institutional affiliation of study contact",
+                "type": "string"
+              },
+              "contact_email": {
+                "description": "Institutional email of study contact",
+                "type": "string",
+                "format": "email"
+              }
+            }
+          }
+        },
+        "registrants":{
+          "description": "Describe the person(s) who will register the study on the HEAL Platform. This person(s) must be authorized to access the study registration page/process on the HEAL Platform; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per registrant",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "registrant_first_name": {
+                "description": "First name of study registrant", 
+                "type": "string"
+              },
+              "registrant_middle_initial": {
+                "description": "Middle initial of study registrant", 
+                "type": "string"
+              },
+              "registrant_last_name": {
+                "description": "Last name of study registrant", 
+                "type": "string"
+              },
+              "registrant_affiliation": {
+                "description": "Institutional affiliation of study registrant",
+                "type": "string"
+              },
+              "registrant_email": {
+                "description": "Institutional email of study registrant",
+                "type": "string",
+                "format": "email"
+              }
+            }
+          }
+        }
+
+        
+
     }   
   },
   "definitions": {
