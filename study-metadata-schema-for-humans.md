@@ -47,6 +47,29 @@
           - **`ID_value`** *(string)*: Value of the identifier of the type specified by ID_type.
   - **`heal_platform_persistent_ID`** *(string)*: Persistent identifier assigned to the study on the HEAL Platform; probably a HEAL Platform-branded doi.
   - **`heal_platform_citation`** *(string)*: The official citation the HEAL Platform will request be used to cite the study/data when the study/data is discovered/accessed via the Platform; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be: Platform via [Repository Name]).
+- **`contacts_and_registrants`** *(object)*
+  - **`contacts`** *(array)*: Describe the contact person(s) for the study. This is the person(s) who should be contacted for questions about the study; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per contact person.
+    - **Items** *(object)*
+      - **`contact_first_name`** *(string)*: First name of study contact.
+      - **`contact_middle_initial`** *(string)*: Middle initial of study contact.
+      - **`contact_last_name`** *(string)*: Last name of study contact.
+      - **`contact_affiliation`** *(string)*: Institutional affiliation of study contact.
+      - **`contact_email`** *(string)*: Institutional email of study contact.
+  - **`registrants`** *(array)*: Describe the person(s) who will register the study on the HEAL Platform. This person(s) must be authorized to access the study registration page/process on the HEAL Platform; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per registrant.
+    - **Items** *(object)*
+      - **`registrant_first_name`** *(string)*: First name of study registrant.
+      - **`registrant_middle_initial`** *(string)*: Middle initial of study registrant.
+      - **`registrant_last_name`** *(string)*: Last name of study registrant.
+      - **`registrant_affiliation`** *(string)*: Institutional affiliation of study registrant.
+      - **`registrant_email`** *(string)*: Institutional email of study registrant.
+- **`data_availability`** *(object)*
+  - **`produce_data`** *(boolean)*: Indicate whether or not the study will produce (primary or secondary) data.
+  - **`data_available`** *(string)*: If study will produce data, indicate whether all, some, or none of the data will be made available. Must be one of: `['all', 'none', 'some']`.
+  - **`data_restricted`** *(string)*: If study will produce data, and make at least some of that data available, indicate whether all, some, or none of the data will have restriction(s) on access beyond acknowledgement and signing of a minimal DSA. Must be one of: `['all', 'none', 'some']`.
+  - **`data_collection_status`** *(string)*: If study will produce data, indicate whether the study has not started, has started, or has finished data collection activities. Must be one of: `['not started', 'started', 'finished']`.
+  - **`data_release_status`** *(string)*: If study will produce data and make at least some of the data available, indicate whether the study has not started, has started, or has finished data release activities. Must be one of: `['not started', 'started', 'finished']`.
+  - **`data_release_start_date`** *(string)*: If study will produce data and make at least some of the data available, indicate the anticipated date when first data will be released. Must be one of: `['not started', 'started', 'finished']`.
+  - **`produce_other`** *(boolean)*: Indicate whether or not the study will produce shareable products other than data.
 ## Definitions
 
 - **`saneUrl`**
