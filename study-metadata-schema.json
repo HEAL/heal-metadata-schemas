@@ -215,7 +215,7 @@
         }
       }
     },
-    "contact": {
+    "contacts_and_registrants": {
       "type": "object",
       "required": [],
       "properties": {
@@ -281,9 +281,46 @@
             }
           }
         }
-
-        
-
+      }  
+    },
+    "data_availability": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "produce_data": {
+          "description": "Indicate whether or not the study will produce (primary or secondary) data",
+          "type": "boolean"
+        },
+        "data_available": {
+          "description": "If study will produce data, indicate whether all, some, or none of the data will be made available",
+          "type": "string",
+          "enum": ["all","none","some"]
+        },
+        "data_restricted": {
+          "description": "If study will produce data, and make at least some of that data available, indicate whether all, some, or none of the data will have restriction(s) on access beyond acknowledgement and signing of a minimal DSA",
+          "type": "string",
+          "enum": ["all","none","some"]
+        },
+        "data_collection_status": {
+          "description": "If study will produce data, indicate whether the study has not started, has started, or has finished data collection activities",
+          "type": "string",
+          "enum": ["not started","started","finished"]
+        },
+        "data_release_status": {
+          "description": "If study will produce data and make at least some of the data available, indicate whether the study has not started, has started, or has finished data release activities",
+          "type": "string",
+          "enum": ["not started","started","finished"]
+        },
+        "data_release_start_date": {
+          "description": "If study will produce data and make at least some of the data available, indicate the anticipated date when first data will be released",
+          "type": "string",
+          "enum": ["not started","started","finished"]
+        },
+        "produce_other": {
+          "description": "Indicate whether or not the study will produce shareable products other than data",
+          "type": "boolean"
+        }
+      }
     }   
   },
   "definitions": {
