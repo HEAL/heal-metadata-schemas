@@ -8,7 +8,7 @@
     "minimal_info",
     "metadata_location",
     "citation",
-    "contact",
+    "contacts_and_registrants",
     "data_availability",
     "findings",
     "study_translational_focus",
@@ -23,16 +23,19 @@
       "required": [ "study_name", "study_description" ],
       "properties": {
         "study_name": {
-          "description": "Generally equivalent to the NIH application ID title",
-          "type": "string"
+          "description": "The title or name of the study. For NIH-funded studies, this will generally be equivalent to the NIH application ID title",
+          "type": "string",
+          "label": "Study Title or Name"
         },
         "study_description": {
-          "description": "Generally equivalent to the NIH application ID abstract text",
-          "type": "string"
+          "description": "A description of or abstract for the study. For NIH-funded studies , this will generally be equivalent to the NIH application ID abstract text",
+          "type": "string",
+          "label": "Study Description or Abstract"
         },
         "study_nickname": {
-          "description": "Study nickname or alternative title",
-          "type": "string"
+          "description": "Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD)",
+          "type": "string",
+          "label": "Study Nickname or Alternative Title"
         }
       }
     },
@@ -42,49 +45,60 @@
       "properties": {
         "nih_application_id": {
           "description": "NIH application ID; only applicable if study is funded by NIH",
-          "type": "string"
+          "type": "string",
+          "label": "NIH Application ID"
         },
         "nih_reporter_link": {
           "description": "URL link to the NIH application ID NIH RePORTER webpage; only applicable if study is funded by NIH",
           "type": "string",
+          "label": "NIH RePORTER Link",
           "$ref": "#/definitions/saneUrl"
         },
         "clinical_trials_study_ID": {
           "description": "ClinicalTrials.gov study ID; only applicable if study is a reportable clinical trial and registered on ClinicalTrials.gov",
-          "type": "string"
+          "type": "string",
+          "label": "ClinicalTrials.gov Study ID"
         },
         "data_repositories":{
+          "description": "Describe the data repositories to which data or other shareable products produced by the study will be submitted by the study authors and stored for long-term access; one item in this array per repository",
           "type": "array",
+          "label": "Data Repositories",
           "items": {
             "type": "object",
             "required": ["repository_name, repository_study_ID"],
             "properties": {
               "repository_name": {
                 "description": "Name of a repository in which data or other shareable research products are submitted for storage by study author", 
-                "type": "string"
+                "type": "string",
+                "label": "Name of Repository"
               },
               "repository_study_ID": {
-                "description": "Study unique identifier at that repository", 
-                "type": "string"
+                "description": "Unique identifier assigned to the study at that repository; usually a number or combination of standard letters and numbers (e.g. study identifiers on ClinicalTrials.gov are generally in the format: NCT12345678)", 
+                "type": "string",
+                "label": "Study ID assigned by Repository"
               },
               "repository_persistent_ID":{
-                "description": "Study unique persistent identifier at that repository; usually a doi",
-                "type": "string"
+                "description": "Unique persistent identifier assigned to the study at that repository; usually a doi",
+                "type": "string",
+                "label": "Repository-branded Study Persistent Identifier"
               },
               "repository_citation": {
                 "description": "The official citation the repository requests be used to cite the study/data when the study/data is discovered/accessed via the repository; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be the repository name)",
-                "type": "string"
+                "type": "string",
+                "label": "Study citation at Repository"
               }
             }
           }
         },
         "cedar_study_level_metadata_template_instance_ID": {
           "description": "ID of the CEDAR HEAL Study-level Core Metadata Template instance created for this study",
-          "type": "string"
+          "type": "string",
+          "label": "CEDAR Study-level Metadata Template Instance ID"
         },
         "other_study_websites": {
           "description": "any other websites officially associated with this study that provide additional information about the study",
-          "type":"array",
+          "type": "array",
+          "label": "Other Study Websites",
           "items": {
             "type": "string",
             "$ref": "#/definitions/saneUrl"
@@ -98,15 +112,18 @@
       "properties": {
         "heal_funded_status": {
           "description": "Whether or not the study is funded by the NIH HEAL initiative",
-          "type": "boolean"
+          "type": "boolean",
+          "label": "Is this study HEAL-funded?"
         },
         "study_collection_status": {
-          "description": "Whether or not the study is related to other studies by some administrative mechanism",
-          "type": "boolean"
+          "description": "Whether or not the study is related to a study group or collection(s) by some administrative mechanism, or belongs to a group or collection of studies (e.g. SAMHSA performs a survey called the National Survey of Substance Abuse Treatment Services (N-SSATS) every year; each annual survey may be registered as a separate study that belongs to a collection called the N-SSATS collection)",
+          "type": "boolean",
+          "label": "Does this study belong to a study group or collection?"
         },
         "study_collections": {
-          "description": "Name or Identifier of the study group or collection(s) this study is related to by some administrative mechanism",
+          "description": "If this study belongs to a study group or collection(s), this is the name or identifier of the study group or collection(s) (e.g. SAMHSA performs a survey called the National Survey of Substance Abuse Treatment Services (N-SSATS) every year; each annual survey may be registered as a separate study that belongs to a collection called the N-SSATS collection)",
           "type": "array",
+          "label": "Name of the study group or collection(s) to which this study belongs",
           "items": {
             "type": "string"
           }
@@ -121,6 +138,7 @@
               "funder_name": {
                 "description": "Name of a the granting agency or organization funding the study; include sub-agency administrative entity as second element in array if applicable (e.g. National Institute of Health, National Institute on Drug Abuse)", 
                 "type": "array",
+                "label": "Funder or Grant Agency Name",
                 "items": {
                   "type": "string"
                 }
@@ -128,6 +146,7 @@
               "funder_abbreviation": {
                 "description": "Abbreviation for the name of the granting agency or organization funding the study; include abbreviation for sub-agency administrative entity as second element in array if applicable (e.g. NIH, NIDA)", 
                 "type": "array",
+                "label": "Funder or Grant Agency Abbreviation or Acronym",
                 "items": {
                   "type": "string"
                 }
@@ -135,6 +154,7 @@
               "funder_type": {
                 "description": "Type of granting agency or organization funding the study", 
                 "type": "string",
+                "label": "Funder or Grant Agency Type",
                 "enum": [
                   "governmental",
                   "non-governmental, non-profit, not corporate affiliated",
@@ -145,6 +165,7 @@
               "funder_geographic_reach":{
                 "description": "The geographic reach of the granting agency or organization funding the study", 
                 "type": "string",
+                "label": "Funder or Grant Agency Geographic Reach",
                 "enum": [
                   "international",
                   "national - non-US",
@@ -153,8 +174,17 @@
                   "local - US"
                 ]
               },
-              "funding_award_ID":{"description": "The grant award ID or number", "type": "string"},
-              "funding_award_name":{"description": "The grant award name", "type": "string"}
+              "funding_award_ID":{
+                "description": "The grant award ID or number. For NIH-funded studies this will be the project or award number and is distinct from the NIH application ID", 
+                "type": "string",
+                "label": "Funding or Grant Award ID"
+              }
+                ,
+              "funding_award_name":{
+                "description": "The grant award name. For NIH-funded studies this will be the project or award name and is distinct from the name or title associated with the NIH application ID", 
+                "type": "string",
+                "label": "Funding or Grant Award Name"
+              }
             }
           }
         },
@@ -167,26 +197,36 @@
             "properties": {
               "investigator_first_name": {
                 "description": "First name of study primary or co-investigator", 
-                "type": "string"
+                "type": "string",
+                "label": "Investigator First Name"
               },
               "investigator_middle_initial": {
                 "description": "Middle initial of study primary or co-investigator", 
-                "type": "string"
+                "type": "string",
+                "label": "Investigator Middle Initial"
               },
               "investigator_last_name": {
                 "description": "Last name of study primary or co-investigator", 
-                "type": "string"
+                "type": "string",
+                "label": "Investigator Last Name"
+              },
+              "investigator_affiliation": {
+                "description": "Institutional affiliation of study primary or co-investigator",
+                "type": "string",
+                "label": "Investigator Institutional Affiliation"
               },
               "investigator_ID": {
                 "description": "Add a structured identifier(s) for the investigator; one item in this array per structured identifier; e.g. one item for providing ORCID, another for providing RAS passport", 
                 "type": "array",
+                "label": "Investigator Identifiers",
                 "items": {
                   "type": "object",
-                  "required": ["ID_type","ID_value"],
+                  "required": ["investigator_ID_type","investigator_ID_value"],
                   "properties": {
-                    "ID_type": {
+                    "investigator_ID_type": {
                       "description": "Type of identifier that will be provided",
                       "type": "string",
+                      "label": "Identifier Type",
                       "enum": [
                         "internal NIH RePORTER ID",
                         "doi",
@@ -195,9 +235,10 @@
                         "RAS Passport"
                       ]
                     },
-                    "ID_value": {
+                    "investigator_ID_value": {
                       "description": "Value of the identifier of the type specified by ID_type",
-                      "type": "string"
+                      "type": "string",
+                      "label": "Identifier Value"
                     }
                   }    
                 }
@@ -207,11 +248,13 @@
         },
         "heal_platform_persistent_ID": {
           "description": "Persistent identifier assigned to the study on the HEAL Platform; probably a HEAL Platform-branded doi",
-          "type": "string"
+          "type": "string",
+          "label": "HEAL-branded Study Persistent Identifier"
         },
         "heal_platform_citation": {
           "description": "The official citation the HEAL Platform will request be used to cite the study/data when the study/data is discovered/accessed via the Platform; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be: Platform via [Repository Name])",
-          "type": "string"
+          "type": "string",
+          "label": "Study citation on HEAL Platform"
         }
       }
     },
@@ -288,33 +331,57 @@
       "required": [],
       "properties": {
         "produce_data": {
-          "description": "Indicate whether or not the study will produce (primary or secondary) data",
-          "type": "boolean"
+          "description": "Indicate whether or not the study will collect/produce (primary or secondary) data",
+          "type": "boolean",
+          "label": "Will the study collect or produce data?"
         },
         "data_available": {
-          "description": "If study will produce data, indicate whether all, some, or none of the data will be made available",
+          "description": "If study will collect/produce data, indicate whether all, some, or none of the data will be made available",
           "type": "string",
-          "enum": ["all","none","some"]
+          "label": "Will the study make data available?",
+          "enum": ["all","some","none"]
         },
         "data_restricted": {
-          "description": "If study will produce data, and make at least some of that data available, indicate whether all, some, or none of the data will have restriction(s) on access beyond acknowledgement and signing of a minimal DSA",
+          "description": "If study will collect/produce data, and make at least some of that data available, indicate whether all, some, or none of the data will have restriction(s) on access beyond acknowledgement and signing of a minimal DSA",
           "type": "string",
-          "enum": ["all","none","some"]
+          "label": "Will available data have restrictions on access?",
+          "enum": ["all","some","none"]
         },
         "data_collection_status": {
-          "description": "If study will produce data, indicate whether the study has not started, has started, or has finished data collection activities",
+          "description": "If study will collect/produce data, indicate whether the study has not started, has started, or has finished data collection/production activities",
           "type": "string",
+          "label": "Has data collection/production started?",
           "enum": ["not started","started","finished"]
         },
         "data_release_status": {
-          "description": "If study will produce data and make at least some of the data available, indicate whether the study has not started, has started, or has finished data release activities",
+          "description": "If the study will collect/produce data and make at least some of the data available, indicate whether the study has not started, has started, or has finished data release activities",
           "type": "string",
+          "label": "Has data release started?",
           "enum": ["not started","started","finished"]
         },
-        "data_release_start_date": {
-          "description": "If study will produce data and make at least some of the data available, indicate the anticipated date when first data will be released",
+        "data_collection_start_date": {
+          "description": "If the study will collect/produce data, indicate the anticipated date when data collection/production will begin",
           "type": "string",
-          "enum": ["not started","started","finished"]
+          "format": "date",
+          "label": "Date when first data will be collected/produced (Anticipated)"
+        },
+        "data_collection_finish_date": {
+          "description": "If the study will collect/produce data, indicate the anticipated date when data collection/production will end (data collection/production is complete)",
+          "type": "string",
+          "format": "date",
+          "label": "Date when last data will be collected/produced (Anticipated)"
+        },
+        "data_release_start_date": {
+          "description": "If study will collect/produce data and make at least some of the data available, indicate the anticipated date when first data will be released",
+          "type": "string",
+          "format": "date",
+          "label": "Date when first data will be released (Anticipated)"
+        },
+        "data_release_finish_date": {
+          "description": "If study will produce data and make at least some of the data available, indicate the anticipated date when last data will be released (data release is complete)",
+          "type": "string",
+          "format": "date",
+          "label": "Date when last data will be released (Anticipated)"
         },
         "produce_other": {
           "description": "Indicate whether or not the study will produce shareable products other than data",
