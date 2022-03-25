@@ -447,6 +447,122 @@
           }
         }
       }
+    },
+    "study_type": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "study_stage": {
+          "description": "The high-level category or type/stage of research being conducted",
+          "type": "array",
+          "label": "Category or Type/Stage of Study Research",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pre-Research/Protocol Development",
+              "Basic Research",
+              "Pre-Clinical Research",
+              "Clinical Research",
+              "Implementation Research",
+              "Post-market Research",
+              "Business Development",
+              "Epidemiologic Research"
+            ]
+          }
+        },
+        "study_primary_or_secondary": {
+          "description": "Is the study collecting data itself to analyze and draw conclusions or is it leveraging data collected by other entities to analyze and draw conclusions",
+          "type": "string",
+          "label": "Is the study conducting primary or secondary research?",
+          "enum": [
+              "Primary Research",
+              "Secondary Research"
+            ]
+        },
+        "study_observational_or_experimental": {
+          "description": "Whether the study is observational (no explicit intervention) or experimental (some explicit intervention)",
+          "type": "string",
+          "label": "Is the study conducting observational or experimental research?",
+          "enum": [
+              "Observational Research",
+              "Experimental Research"
+            ]
+        },
+        "study_subject_type": {
+          "description": "What is the actual species or entity that is experimentally or observationally studied in the research; each HEAL study will have translational relevance to humans, but not all HEAL studies directly study humans",
+          "type": "array",
+          "label": "Study Subject Type",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Human",
+              "Animal",
+              "Human cell/tissue/tissue model",
+              "Animal cell/tissue/tissue model",
+              "Molecule (e.g. chemical/protein engineering, protein crystallization)"
+            ]
+          }
+        },
+        "study_type_design": {
+          "description": "The overarching study type and more granular study design. Choose as many as apply",
+          "type": "array",
+          "label": "Study Type/Design",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Basic Research - Theory/Modeling",
+              "Basic Research - Applied",
+              "Basic Research - Method/Protocol development",
+              "Basic Research - Animal study",
+              "Basic Research - Cell study",
+              "Basic Research - Genetic study",
+              "Basic Research - Biochemistry study",
+              "Basic Research - Biophysical study",
+              "Basic Research - Gene sequencing",
+              "Basic Research - Genetic Engineering",
+              "Basic Research - Material Development",
+              "Basic Research - Device Development",
+              "Basic Research - Small molecule screen",
+              "Basic Research - High throughput screen",
+              "Basic Research - Screen, other",
+              "Clinical Research - Phase I",
+              "Clinical Research - Phase II",
+              "Clinical Research - Phase III",
+              "Clinical Research - Phase IV",
+              "Clinical Research - Therapy/drug study without intervention",
+              "Clinical Research - Case Report or Series",
+              "Preclinical Research",
+              "Randomized Control Trial",
+              "Pre/Post",
+              "Stepped Wedge",
+              "Regression Discontinuity",
+              "Difference in Differences",
+              "Cross-over",
+              "Natural Experiment",
+              "Cohort, prospective",
+              "Cohort, retrospective",
+              "Cohort - panel, longitudinal",
+              "Cohort - cross-sectional, longitudinal",
+              "Cohort - cross-sectional, single time-point",
+              "Case control",
+              "Ecological",
+              "Monitoring/surveillance",
+              "Inventory",
+              "Curation",
+              "Meta-analysis",
+              "Review",
+              "Review, Systematic",
+              "Review, Simple (narrative)"
+            ]
+          }
+        } 
+      }
+    },
+    "human_treatment_applicability": {
+      "type": "object",
+      "required": [],
+      "properties": {}
+
     }         
   },
   "definitions": {
