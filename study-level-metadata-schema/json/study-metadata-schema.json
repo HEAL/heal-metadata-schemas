@@ -418,7 +418,36 @@
           }
         }
       }    
-    }   
+    },
+    "study_translation_focus": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "study_translational_focus": {
+          "description": "Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Choose one.",
+          "type": "string",
+          "label": "Study Translational Focus",
+          "enum": [
+            "Condition",
+            "Treatment"
+          ]
+        },
+        "study_translational_topic_grouping": {
+          "description": "What types of determinants and/or mechanisms related to human opioid use or pain conditions is the study investigating and/or measuring (e.g. A study investigating differential pain/nociception signaling in persons living in neighborhoods with high versus low social cohesion might choose both 'Biology and Health' and 'Social Determinants'). Choose as many as apply.",
+          "type": "array",
+          "label": "Types of determinants/mechanisms the study is investigating",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Biology and Health",
+              "Mental Health",
+              "Social Determinants",
+              "Public Attitudes or Stigma"
+            ]
+          }
+        }
+      }
+    }         
   },
   "definitions": {
     "saneUrl": {"format": "uri", "pattern": "^https?://"}
