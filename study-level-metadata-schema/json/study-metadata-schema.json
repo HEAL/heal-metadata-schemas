@@ -419,7 +419,7 @@
         }
       }    
     },
-    "study_translation_focus": {
+    "study_translational_focus": {
       "type": "object",
       "required": [],
       "properties": {
@@ -561,8 +561,101 @@
     "human_treatment_applicability": {
       "type": "object",
       "required": [],
-      "properties": {}
-
+      "properties": {
+        "treatment_investigation_stage_or_type": {
+          "description": "If the study is investigating a treatment, intervention, or solution to a human opioid or pain condition, what type of investigation is the study undertaking?",
+          "type": "array",
+          "label": "Treatment Investigation Stage or Type",
+          "items": {
+            "type": "string",
+            "enum": [
+              "target discovery",
+              "target mechanism",
+              "treatment discovery",
+              "treatment mechanism",
+              "treatment efficacy",
+              "differential treatment efficacy",
+              "treatment implementation",
+              "treatment availability or accessibility"
+            ]
+          }
+        },
+        "treatment_mode": {
+          "description": "Is the treatment, intervention, or solution that my study is relevant to meant to prevent the occurrance of a condition (e.g. development of a non-opioid drug for pain to prevent opioid exposure and addiction, case management and MAT for pregnant women to prevent in utero exposure to opioids, safe needle exchange center to prevent spread of blood borne diseases among people using heroin), treat an occurrance of a condition (e.g. naloxone to treat opioid overdose, physical therapy to treat existing pain from a back injury) , and/or is it a harm reduction mechanism (e.g. safe needle exchange reduces harm associated with heroin addiction/use, decriminalization of heroin possession or use reduces the harm associated with heroin addiction/use)",
+          "type": "array",
+          "label": "Treatment Mode - Preventive, Therapeutic, Harm Reduction",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Preventive (prevention of an occurrence)",
+              "Therapeutic (treating an occurrence)",
+              "Harm Reduction (preventing more of an occurrence, or preventing harm from an occurrence)"
+            ]
+          }
+        },
+        "treatment_novelty": {
+          "description": "Is the treatment, intervention, or solution that my study is relevant to totally novel, is it totally established, does it have some element of novelty added to an established intervention (novel added to established, established used in a novel population, setting, or combination)? ",
+          "type": "array",
+          "label": "Treatment Novelty",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Novel",
+              "Novel, added to established",
+              "Established",
+              "Established, used in novel population, setting, or combination"
+            ]
+          }
+        },
+        "treatment_application_level": {
+          "description": "Is the treatment, intervention, or solution that my study is relevant to applied at the individual level (e.g. a doctor prescribes a drug or physical therapy regimen to a patient) or at the population/community/group level (e.g. a city changes good samaritan naloxone laws, or implements a safe needle exchange center, or adds park maintenance resources to the budget to provide more access to outside places to exercise)?",
+          "type": "array",
+          "label": "Is the Treatment given/applied to individuals or populations?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Individual",
+              "Population"
+            ]
+          }
+        },
+        "treatment_type": {
+          "description": "Classify the treatment, intervention, or solution the study is relevant to by broad type of intervention. Choose as many as apply",
+          "type": "array",
+          "label": "Treatment Type",
+          "items": {
+            "type": "string",
+            "enum": [
+              "drug",
+              "non-opioid drug",
+              "opioid drug",
+              "non-biologic drug",
+              "biologic drug",
+              "non-drug",
+              "device",
+              "behavioral",
+              "psychotherapy",
+              "group therapy",
+              "physical therapy",
+              "exercise",
+              "education", 
+              "community resources/supports",
+              "economic supports",
+              "housing supports",
+              "case management", 
+              "environmental (indoors)",
+              "environmental (outdoors)",
+              "law/policy",
+              "surgical procedure",
+              "nutritional",
+              "nutritional supplement",
+              "gene therapy",
+              "immunotherapy",
+              "electrotherapy"
+            ]
+          }
+        }
+      }
     }         
   },
   "definitions": {
