@@ -388,6 +388,36 @@
           "type": "boolean"
         }
       }
+    },
+    "findings": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "primary_publications": {
+          "description": "List of the doi for any/all primary study publications that use the study data; include any papers, books, articles, blog posts, etc. authored by the investigators or team responsible for the study; one item in this array per publication/doi",
+          "type": "array",
+          "label": "Primary Publications DOI",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary_study_findings": {
+          "description": "Simple, one-sentence take-away conclusion(s) from study author publications; one item in this array per single-sentence conclusion (e.g. item #1: Provision of MAT rx to men with documented OUD leaving jail reduces overdose risk by 9%; item #2: Provision of MAT rx plus case management support to men with documented OUD leaving jail reduces overdose risk by 30%; item 3: Provision of MAT rx plus case management support to men with documented OUD leaving jail is more effective than provision of MAT rx alone at reducing risk of OUD overdose)",
+          "type": "array",
+          "label": "Primary Study Findings",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secondary_publications": {
+          "description": "List of the doi for any/all secondary study publications that use the study data; include any papers, books, articles, blog posts, etc. authored by persons OTHER THAN the investigators or team responsible for the study; one item in this array per publication/doi",
+          "type": "array",
+          "label": "Secondary Publications DOI",
+          "items": {
+            "type": "string"
+          }
+        }
+      }    
     }   
   },
   "definitions": {
