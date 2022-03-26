@@ -657,6 +657,123 @@
         }
       }
     },
+    "human_condition_applicability": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        
+      }
+    },
+    "human_subject_applicability": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "gender_applicability": {
+          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to",
+          "type": "array",
+          "label": "To humans of which gender identity(ies) do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Cis Male",
+              "Cis Female",
+              "Trans Male",
+              "Trans Female",
+              "Agender, Non-binary, gender non-conforming",
+              "Gender Queer",
+              "Intersex",
+              "Not applicable" 
+            ]
+          }
+        },
+        "sexual_identity_applicability": {
+          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to",
+          "type": "array",
+          "label": "To humans of which sexual identity(ies) do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Heterosexual",
+              "Homosexual",
+              "Bisexual",
+              "Pansexual",
+              "Queer",
+              "Asexual",
+              "Not applicable"
+              ]
+          }
+        },
+        "age_applicability": {
+          "description": "Considering the study in a translational context, to humans of which age or developmental stage are the study results intended to apply and/or likely to generalize to",
+          "type": "array",
+          "label": "To humans of which age/developmental stage do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Fetus",
+              "Infant, newborn (Birth to 1 month)",
+              "Infant (1 to 23 months)",
+              "Child, preschool (2 to 5 years)",
+              "Child (6 to 12 years)",
+              "Adolescent (13 to 18 years)",
+              "Adult (19 to 44 years)",
+              "Middle aged adult (45 to 64 years)",
+              "Aged adult (65 to 79 years)",
+              "Aged, 80 and over (80 years and over)"
+              ]
+          }
+        },
+        "irb_vulnerability_conditions_applicability": {
+          "description": "Considering the study in a translational context, which special IRB human vulnerability conditions are the study results intended to address or apply to?",
+          "type": "array",
+          "label": "To humans in which special vulnerability categories do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pregnant women",
+              "Human fetuses",
+              "Neonates",
+              "Prisoners",
+              "Children",
+              "Individuals with physical disabilities",
+              "Individuals with mental disabilities or cognitive impairments",
+              "Economically disadvantaged",
+              "Socially disadvantaged",
+              "Terminally ill or very sick",
+              "Racial or ethnic minorities",
+              "Institutionalized persons (for example, persons in correctional facilities, nursing homes or mental health facilities)"
+              ]
+          }
+        },
+        "geographic_applicability": {
+          "description": "For studies with human subjects, from which geographic location(s) are subjects recruited. If subjects are recruited in the US nationally, choose only US - national. If subject are recruited in the US only in specific state(s), choose US - Specific States, then please also select the abbreviation of each of the specific states from which subjects are recruited. If subjects are recruited in the US from specific county(ies) within specific state(s), please choose US - Specific States and US - Specific Counties, and choose the abbreviation of each specific state from which subjects are recruited",
+          "type": "array",
+          "label": "To humans of which age/developmental stage do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Non US",
+              "US - National",
+              "US - Specific States",
+              "US - Specific Counties",
+              "AK","AL","AR","AZ",
+              "CA","CO","CT","DE",
+              "FL","GA","HI","IA",
+              "ID","IL","IN","KS",
+              "KY","LA","MA","MD",
+              "ME","MI","MN","MO",
+              "MS","MT","NC","ND",
+              "NE","NH","NJ","NM",
+              "NV","NY","OH","OK",
+              "OR","PA","RI","SC",
+              "SD","TN","TX","UT",
+              "VA","VT","WA","WI",
+              "WV","WY"
+              ]
+          }
+        }
+      }
+    },  
     "data": {
       "type": "object",
       "required": [],
