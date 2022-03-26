@@ -656,6 +656,157 @@
           }
         }
       }
+    },
+    "data": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "data_orientation": {
+          "description": "Does the study produce/collect quantitative data?, qualitative data? Choose as many as apply",
+          "type": "array",
+          "label": "Is data quantitative or qualitative?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Quantitative",
+              "Qualitative"
+            ]
+          }
+        },
+        "data_source": {
+          "description": "What is the source of the data the study will produce/collect. Choose as many as apply",
+          "type": "array",
+          "label": "Source of Data",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Administrative",
+              "Government Collected/Measured",
+              "Clinical/EHR",
+              "Laboratory",
+              "Researcher Collected/Measured",
+              "Patient-Reported"
+            ]
+          }
+        },
+        "data_type": {
+          "description": "What is the type of the data the study will produce/collect. Choose as many as apply",
+          "type": "array",
+          "label": "Type of Data",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Genomic",
+              "Proteomic",
+              "Biochemical",
+              "Biophysical",
+              "Imaging",
+              "Interview/Focus Group",
+              "Interview/Focus Group - structured",
+              "Interview/Focus Group - semi-structured",
+              "Interview/Focus Group - unstructured",
+              "Questionnaire/Survey/Assessment",
+              "Questionnaire/Survey/Assessment - validated instrument",
+              "Questionnaire/Survey/Assessment - unvalidated instrument"
+            ]
+          }
+        },
+        "subject_data_unit_of_collection": {
+          "description": "For studies with human subjects, is the data collected at the individual or population level?",
+          "type": "array",
+          "label": "Human Subject Data - Unit of Collection",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Individual",
+              "Community, Group, Cluster, Population"
+            ]
+          }
+        },
+        "subject_data_unit_of_collection_expected_number": {
+          "description": "For studies with human subjects, what is the expected number of subjects for which data will be collected? If unit of data collection is individuals this is the expected number of individuals, and if the unit of data collection is populations/clusters this is the expected number of populations/clusters",
+          "type": "integer",
+          "label": "Human Subject Data - Expected Number of the Unit of Collection"
+        },
+        "subject_data_unit_of_analysis": {
+          "description": "For studies with human subjects, is the data analyzed at the individual or population level?",
+          "type": "array",
+          "label": "Human Subject Data - Unit of Analysis",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Individual",
+              "Community, Group, Cluster, Population"
+            ]
+          }
+        },
+        "subject_data_unit_of_analysis_expected_number": {
+          "description": "For studies with human subjects, what is the expected number of subjects at the level at which data will be analyzed? If unit of data analysis is individuals this is the expected number of individuals, and if the unit of data analysis is populations/clusters this is the expected number of populations/clusters",
+          "type": "integer",
+          "label": "Human Subject Data - Expected Number of the Unit of Analysis"
+        },
+        "subject_data_level_available": {
+          "description": "For studies with human subjects that will make at least some data available, will data be made available at the individual subject level or some level of aggregation?",
+          "type": "array",
+          "label": "Human Subject Data - Individual or Aggregated Data made available?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Individual - Unaggregated",
+              "Individual - Aggregated",
+              "Community, Group, Cluster, Population - Unaggregated",
+              "Community, Group, Cluster, Population - Aggregated",	
+              "Unaggregated",
+              "Aggregated",
+              "Aggregated, across all (population summary statistics)",
+              "Aggregated, by treatment/exposure group",
+              "Aggregated, by demographic variable(s)",
+              "Aggregated, by geographic variable(s)"
+            ]
+          }
+        },
+        "subject_geographic_data_level_collected": {
+          "description": "For studies with human subjects, will geographic data be collected? if so, what level of geographic detail will be collected?",
+          "type": "array",
+          "label": "Human Subject Geographic Data - Collected at what level of detail?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Exact location",
+              "Census block",
+              "Census tract",
+              "Zip code",
+              "County",
+              "Sub-state region",
+              "State",
+              "Multi-state region",
+              "Nation",
+              "No geographic data will be collected"
+            ]
+          }
+        },
+        "subject_geographic_data_level_available": {
+          "description": "For studies with human subjects that collect geographic data and will make at least some data available, will geographic data be made available? if so, what level of geographic detail will be made available?",
+          "type": "array",
+          "label": "Human Subject Geographic Data - Available at what level of detail?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Exact location",
+              "Census block",
+              "Census tract",
+              "Zip code",
+              "County",
+              "Sub-state region",
+              "State",
+              "Multi-state region",
+              "Nation",
+              "No geographic data will be made available"
+            ]
+          }
+        }
+      }  
+
     }         
   },
   "definitions": {
