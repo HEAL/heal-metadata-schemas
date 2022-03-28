@@ -563,7 +563,7 @@
       "required": [],
       "properties": {
         "treatment_investigation_stage_or_type": {
-          "description": "If the study is investigating a treatment, intervention, or solution to a human opioid or pain condition, what type of investigation is the study undertaking?",
+          "description": "If the study is investigating a treatment, intervention, or solution to a human opioid or pain condition, what type of investigation is the study undertaking? at what stage in the treatment investigation process does this study lie?",
           "type": "array",
           "label": "Treatment Investigation Stage or Type",
           "items": {
@@ -661,6 +661,95 @@
       "type": "object",
       "required": [],
       "properties": {
+        "condition_category": {
+          "description": "Considering the study in a translational context, to humans with which broad category(ies) of opioid use or pain conditions are the study results intended to apply. Choose as many as apply",
+          "type": "array",
+          "label": "Relevant Opioid use and/or Pain condition - Category(ies)",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Opioid use and opioid use disorder",
+              "Opioid use and opioid use disorder, primary occurrence",
+              "Opioid use and opioid use disorder, relapse",
+              "Opioid use and opioid use disorder, chronic",
+              "Opioid overdose",
+              "Opioid exposure",
+              "(Non-opioid) Substance use",
+              "Co-occurring (Opioid or Non-opioid) Substance use and Mental Health disorder",
+              "Pain",
+              "Pain, acute",
+              "Pain, chronic",
+              "Pain, acute to chronic transition",
+              "Pain, resulting from injury",
+              "Pain, resulting from surgery",
+              "Pain, resulting from chronic illness",
+              "Pain, idiopathic (unknown origin)"
+            ]
+          }
+        },
+        "condition_investigation_stage_or_type": {
+          "description": "Each HEAL study will be doing work that is relevant to a human opioid and/or pain condition. What does this study intend to learn about the condition? If the study is investigating a treatment, intervention, or solution, please choose 'Treatment of Condition'. Choose as many as apply",
+          "type": "array",
+          "label": "Opioid use and/or Pain condition - Investigation Stage or Type",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Incidence of condition",
+              "Risk for condition",
+              "Differential risk for condition",
+              "Mechanism of condition",
+              "Impact of condition",
+              "Public attitudes towards or perception of condition",
+              "Treatment of condition"
+            ]
+          }
+        },
+        "pain_causal_condition": {
+          "description": "If the study will be doing work that is relevant to a human PAIN condition category, is the study focusing on pain caused by a specific condition? e.g. Cancer, fibromyalgia, arthritis, occupational injury, sports injury, car accident, surgical procedure. If yes, please indicate the causal condition(s) here - Values will be restricted to NLM MeSH Diseases - see Branch 'C' here: https://meshb-prev.nlm.nih.gov/treeView",
+          "type": "array",
+          "label": "Pain - Causal condition",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pain_treatment_or_study_target_condition": {
+          "description": "If the study will be doing work that is relevant to a human PAIN condition category, and the pain condition has a causal condition (specified above), is the study focusing its investigation on the causal condition, or on the pain resulting from the causal condition? e.g. In a study of effective treatments for fibromyalgia/fibromyalgia pain, is the study focused on fibromyalgia disease-modifying treatments, or on treatments that address the symptomology of pain? Choose as many as apply",
+          "type": "array",
+          "label": "Pain - Study treatment or target condition is causal condition or pain?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Causal Condition",
+              "Pain",
+              "Pain, acute",
+              "Pain, chronic"
+            ]
+          }
+        },
+        "all_treatment_or_study_target_condition": {
+          "description": "Considering the study in a translational context, to humans with which detailed type of opioid use or pain conditions are the study results intended to apply? Each HEAL study will be doing work that is relevant to a human opioid and/or pain condition; You indicated the broad category of condition(s) the study is focusing on or relevant to above. Here, please indicate the study focus condition(s) in detail. Choose as many as apply - Values will be restricted to NLM MeSH Diseases - see Branch 'C' here: https://meshb-prev.nlm.nih.gov/treeView",
+          "type": "array",
+          "label": "Study treatment or target condition - Detail",
+          "items": {
+            "type": "string"
+          }
+        },
+        "all_outcome_condition": {
+          "description": "If the outcome condition(s) the study hopes to impact or measure is different than the treatment or study target condition (e.g. testing a disease-modifying fibromyaligia treatment but measuring depression, physical and social function, and neurologic pain such as headaches as the main outcomes). Please indicate the study outcome condition(s) here. Choose as many as apply - Values will be restricted to NLM MeSH Diseases - see Branch 'C' here: https://meshb-prev.nlm.nih.gov/treeView",
+          "type": "array",
+          "label": "Study outcome condition - Detail",
+          "items": {
+            "type": "string"
+          }
+        },
+        "all_other_condition": {
+          "description": "If the study is measuring or tracking other human health conditions besides the treatment or study target condition and outcome condition, please indicate the other tracked/measured condition(s) here. Choose as many as apply - Values will be restricted to NLM MeSH Diseases - see Branch 'C' here: https://meshb-prev.nlm.nih.gov/treeView",
+          "type": "array",
+          "label": "Other measured or tracked conditions - Detail",
+          "items": {
+            "type": "string"
+          }
+        }
         
       }
     },
