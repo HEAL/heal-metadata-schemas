@@ -1,0 +1,578 @@
+{
+    "@context": {
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "pav": "http://purl.org/pav/",
+      "schema": "http://schema.org/",
+      "oslc": "http://open-services.net/ns/core#",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "rdfs:label": {
+        "@type": "xsd:string"
+      },
+      "schema:isBasedOn": {
+        "@type": "@id"
+      },
+      "schema:name": {
+        "@type": "xsd:string"
+      },
+      "schema:description": {
+        "@type": "xsd:string"
+      },
+      "pav:derivedFrom": {
+        "@type": "@id"
+      },
+      "pav:createdOn": {
+        "@type": "xsd:dateTime"
+      },
+      "pav:createdBy": {
+        "@type": "@id"
+      },
+      "pav:lastUpdatedOn": {
+        "@type": "xsd:dateTime"
+      },
+      "oslc:modifiedBy": {
+        "@type": "@id"
+      },
+      "skos:notation": {
+        "@type": "xsd:string"
+      },
+      "Minimal Info": "https://schema.metadatacenter.org/properties/4fa04f5c-c3fc-4093-ab50-fcb5330e3d26",
+      "Metadata Location": "https://schema.metadatacenter.org/properties/959a97a9-82a3-44d3-958d-34a2b7a68864",
+      "Citation": "https://schema.metadatacenter.org/properties/83fa43ce-8ec0-46ee-a032-660392da7b52",
+      "Contacts and Registrants": "https://schema.metadatacenter.org/properties/194c0cd7-6d2b-434b-9bd6-e8116ebeb333",
+      "Data Availability": "https://schema.metadatacenter.org/properties/8ac21357-0eb6-4111-b8f8-bae453e23184",
+      "Findings": "https://schema.metadatacenter.org/properties/5f776f79-e579-4e17-bf6f-188d67656f64",
+      "Study Translation Focus": "https://schema.metadatacenter.org/properties/316b81ef-7562-4b0f-80a1-3bed06f725d5",
+      "Study Type": "https://schema.metadatacenter.org/properties/c462ad8a-9916-4bcf-92ea-415500f588b3",
+      "Human Treatment Apply": "https://schema.metadatacenter.org/properties/e22e41a0-cde3-456d-9a71-45a1a0097479",
+      "Human Condition Apply": "https://schema.metadatacenter.org/properties/26bf24d9-f8aa-4db1-adf7-0e873cbd5e6f",
+      "Human Subjects Apply": "https://schema.metadatacenter.org/properties/123266fd-f24b-42a9-a26a-93036c6ce8a6",
+      "Data": "https://schema.metadatacenter.org/properties/a8f0984e-1358-454b-b2a9-43405efb5c14"
+    },
+    "Minimal Info": {
+      "@context": {
+        "study_name": "https://schema.metadatacenter.org/properties/e5f0a1a1-8232-43e1-b89d-d178efe5cc71",
+        "study_description": "https://schema.metadatacenter.org/properties/4511545c-3a17-4a41-ae33-67be643faf4b",
+        "study_nickname": "https://schema.metadatacenter.org/properties/ac7ee813-4406-4c77-b30a-b88e13d0fb15"
+      },
+      "study_name": {
+        "@value": null
+      },
+      "study_description": {
+        "@value": null
+      },
+      "study_nickname": {
+        "@value": null
+      },
+      "@id": "https://repo.metadatacenter.org/template-element-instances/78426a71-f8a9-4820-a524-09b15ed120b6"
+    },
+    "Metadata Location": {
+      "@context": {
+        "cedar_study_level_metadata_template_instance_ID": "https://schema.metadatacenter.org/properties/c559e744-f706-4d38-af73-e4c9c3b5eceb",
+        "other_study_websites": "https://schema.metadatacenter.org/properties/b823702e-2e9e-4b3a-ad0d-c375bc65846e",
+        "Data Repositories": "https://schema.metadatacenter.org/properties/71d2d39b-7358-4a55-8e85-96dd2156491d",
+        "Metadata Location - Details": "https://schema.metadatacenter.org/properties/a350aa4a-08f9-4144-925b-b3321fb8de1c"
+      },
+      "cedar_study_level_metadata_template_instance_ID": {
+        "@value": null
+      },
+      "other_study_websites": [
+        {}
+      ],
+      "Data Repositories": [
+        {
+          "@context": {
+            "repository_name": "https://schema.metadatacenter.org/properties/a06614f4-8b0f-40cd-9e7d-49dc4a48ebb9",
+            "repository_study_ID": "https://schema.metadatacenter.org/properties/bf7e501e-e1c9-4a5f-9342-693028f77c3f",
+            "repository_persistent_ID": "https://schema.metadatacenter.org/properties/e9463789-0382-4876-9b85-7107b5d019b6",
+            "repository_citation": "https://schema.metadatacenter.org/properties/80cc4714-8583-4d67-8b1d-fbe014c291ce"
+          },
+          "repository_name": {
+            "@value": null
+          },
+          "repository_study_ID": {
+            "@value": null
+          },
+          "repository_persistent_ID": {
+            "@value": null
+          },
+          "repository_citation": {
+            "@value": null
+          },
+          "@id": "https://repo.metadatacenter.org/template-element-instances/ba80a9ab-b02a-4b7e-9c0e-99b962616ccd"
+        }
+      ],
+      "Metadata Location - Details": {
+        "@context": {
+          "nih_application_id": "https://schema.metadatacenter.org/properties/fc7601ad-54a5-4d74-a238-ef7fca8cd5a1",
+          "nih_reporter_link": "https://schema.metadatacenter.org/properties/a8ffe6d6-cf0a-4b20-bb43-87d1b2d87825",
+          "clinical_trials_study_id": "https://schema.metadatacenter.org/properties/9d95277e-7a59-4f0f-97a6-ab1d929ebee7"
+        },
+        "nih_application_id": {
+          "@value": null
+        },
+        "nih_reporter_link": {},
+        "clinical_trials_study_id": {
+          "@value": null
+        },
+        "@id": "https://repo.metadatacenter.org/template-element-instances/eef1a076-15b8-48a1-b024-c9d3954db384"
+      },
+      "@id": "https://repo.metadatacenter.org/template-element-instances/e515bc59-2bd3-443d-a0c2-d36a89fec53e"
+    },
+    "Citation": {
+      "@context": {
+        "study_collections": "https://schema.metadatacenter.org/properties/d1cd0e6e-27b1-4453-b079-dab44dae1d64",
+        "Funding": "https://schema.metadatacenter.org/properties/376c14f0-e6de-4f73-949d-d632e282910c",
+        "Investigators": "https://schema.metadatacenter.org/properties/905afce2-6f4f-4cde-82c8-15e9e5924563",
+        "heal_funded_status": "https://schema.metadatacenter.org/properties/9a94c346-6e83-4f03-9a3a-c91ae72a1252",
+        "study_collection_status": "https://schema.metadatacenter.org/properties/95ed616f-2c96-48fa-ba83-882b12877bfe"
+      },
+      "study_collections": [
+        {
+          "@value": null
+        }
+      ],
+      "Funding": [
+        {
+          "@context": {
+            "funder_name": "https://schema.metadatacenter.org/properties/4662c4e6-b708-47c7-b757-e9f622400b5b",
+            "funder_abbreviation": "https://schema.metadatacenter.org/properties/29066e8d-c077-49d9-b1c6-1341a9fe5bb1",
+            "funder_type": "https://schema.metadatacenter.org/properties/e81fc425-9c00-4e68-9b2f-67dd0ef4c653",
+            "funder_geographic_reach": "https://schema.metadatacenter.org/properties/0b1593c3-c458-4534-84db-210871caa898",
+            "funding_award_id": "https://schema.metadatacenter.org/properties/3eb766e8-84ef-4675-8bc5-9ddffe5dd45e",
+            "funding_award_name": "https://schema.metadatacenter.org/properties/bbdf5f2c-ed0f-4231-a7c0-45c42e006476"
+          },
+          "funder_name": [
+            {
+              "@value": null
+            }
+          ],
+          "funder_abbreviation": [
+            {
+              "@value": null
+            }
+          ],
+          "funder_type": {
+            "@value": null
+          },
+          "funder_geographic_reach": {
+            "@value": null
+          },
+          "funding_award_id": {
+            "@value": null
+          },
+          "funding_award_name": {
+            "@value": null
+          },
+          "@id": "https://repo.metadatacenter.org/template-element-instances/3aed08e8-9fb2-44c0-a4e9-eeb813c1fd52"
+        }
+      ],
+      "Investigators": [
+        {
+          "@context": {
+            "investigator_first_name": "https://schema.metadatacenter.org/properties/e8829389-2b3a-4f2d-bc73-d3e6bc05b7aa",
+            "investigator_middle_initial": "https://schema.metadatacenter.org/properties/e9d20c7f-3fb6-436b-8d3c-66eeeed7b774",
+            "investigator_last_name": "https://schema.metadatacenter.org/properties/22e6e222-8701-4c51-a800-9d773ecb55c6",
+            "investigator_affiliation": "https://schema.metadatacenter.org/properties/89b6df45-1a3c-4d8b-9675-a415830d839e",
+            "Investigator Identifiers": "https://schema.metadatacenter.org/properties/37c21297-29fb-4bf0-8e63-c7636a8977ea"
+          },
+          "investigator_first_name": {
+            "@value": null
+          },
+          "investigator_middle_initial": {
+            "@value": null
+          },
+          "investigator_last_name": {
+            "@value": null
+          },
+          "investigator_affiliation": {
+            "@value": null
+          },
+          "Investigator Identifiers": [
+            {
+              "@context": {
+                "investigator_ID_type": "https://schema.metadatacenter.org/properties/ef0d34bc-c61e-4b26-bee9-4070095e0ed5",
+                "investigator_ID_value": "https://schema.metadatacenter.org/properties/4f5bb0e9-6906-486c-b940-18461152564e"
+              },
+              "investigator_ID_type": {
+                "@value": null
+              },
+              "investigator_ID_value": {
+                "@value": null
+              },
+              "@id": "https://repo.metadatacenter.org/template-element-instances/05f6d5e0-4dc1-42eb-bd45-b07d11a0834c"
+            }
+          ],
+          "@id": "https://repo.metadatacenter.org/template-element-instances/b5c13dd1-efea-442a-b92e-46fd3d62dfe7"
+        }
+      ],
+      "heal_funded_status": {
+        "@value": null
+      },
+      "study_collection_status": {
+        "@value": null
+      },
+      "@id": "https://repo.metadatacenter.org/template-element-instances/97eb7da9-59af-4a23-8236-16b7de921e8f"
+    },
+    "Contacts and Registrants": {
+      "@context": {
+        "Contacts": "https://schema.metadatacenter.org/properties/9c97a43c-4869-4b8a-bf4c-0db852bc5d38",
+        "Contacts and Registrants": "https://schema.metadatacenter.org/properties/9ae701d9-f63a-4882-9fe1-5c609c3957da",
+        "Registrants": "https://schema.metadatacenter.org/properties/4cc9a060-77b2-4ecd-908e-d5a7d118865b"
+      },
+      "Contacts": [
+        {
+          "@context": {
+            "contact-email": "https://schema.metadatacenter.org/properties/4021d0f3-5707-4bc7-8c38-896535b8de50",
+            "contact_middle_initial": "https://schema.metadatacenter.org/properties/e5f0a1a1-8232-43e1-b89d-d178efe5cc71",
+            "contact_affiliation": "https://schema.metadatacenter.org/properties/5fb25294-15a0-41a6-b701-0efc38220a57",
+            "contact_first_name": "https://schema.metadatacenter.org/properties/a26e76f0-eaad-42f9-bd6a-d1a4a5d63601",
+            "contact_last_name": "https://schema.metadatacenter.org/properties/728aa9d9-a802-4b0b-ac7a-558f123aaea6"
+          },
+          "contact-email": {
+            "@value": null
+          },
+          "contact_middle_initial": {
+            "@value": null
+          },
+          "contact_affiliation": {
+            "@value": null
+          },
+          "contact_first_name": {
+            "@value": null
+          },
+          "contact_last_name": {
+            "@value": null
+          },
+          "@id": "https://repo.metadatacenter.org/template-element-instances/e07351e0-b70d-4fa5-9f83-eb794adfd14e"
+        }
+      ],
+      "Contacts and Registrants": {
+        "@context": {},
+        "@id": "https://repo.metadatacenter.org/template-element-instances/d9e9de12-c4fb-47bd-a836-6a4e3c155bfb"
+      },
+      "Registrants": [
+        {
+          "@context": {
+            "registrant_email": "https://schema.metadatacenter.org/properties/4021d0f3-5707-4bc7-8c38-896535b8de50",
+            "registrant_middle_initial": "https://schema.metadatacenter.org/properties/e5f0a1a1-8232-43e1-b89d-d178efe5cc71",
+            "registrant_affiliation": "https://schema.metadatacenter.org/properties/5fb25294-15a0-41a6-b701-0efc38220a57",
+            "registrant_first_name": "https://schema.metadatacenter.org/properties/a26e76f0-eaad-42f9-bd6a-d1a4a5d63601",
+            "registrant_last_name": "https://schema.metadatacenter.org/properties/728aa9d9-a802-4b0b-ac7a-558f123aaea6"
+          },
+          "registrant_email": {
+            "@value": null
+          },
+          "registrant_middle_initial": {
+            "@value": null
+          },
+          "registrant_affiliation": {
+            "@value": null
+          },
+          "registrant_first_name": {
+            "@value": null
+          },
+          "registrant_last_name": {
+            "@value": null
+          },
+          "@id": "https://repo.metadatacenter.org/template-element-instances/dc6bfd5f-fa32-42b0-9fe8-1384e6b5e4eb"
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/6faf282a-fcd8-4db1-9fdb-3685d890c222"
+    },
+    "Data Availability": {
+      "@context": {
+        "data_available": "https://schema.metadatacenter.org/properties/540cf2c4-012e-40be-a191-4498474918f8",
+        "data_collection_status": "https://schema.metadatacenter.org/properties/74cd5963-7261-439c-83e2-a6329b16d285",
+        "data_release_status": "https://schema.metadatacenter.org/properties/4018cbfd-e055-4e69-8c23-9b2b47dd0191",
+        "data_collection_start_date": "https://schema.metadatacenter.org/properties/1da1c9af-ae90-4efe-8ab2-85797d9e0e82",
+        "data_collection_finish_date": "https://schema.metadatacenter.org/properties/1a39e732-9682-4963-9f80-de08ed504173",
+        "data_release_start_date": "https://schema.metadatacenter.org/properties/82bba606-0597-4080-983d-a4fc3341b211",
+        "data_release_finish_date": "https://schema.metadatacenter.org/properties/236c55ff-14c7-4123-adf2-5019eb5c8344",
+        "data_restricted": "https://schema.metadatacenter.org/properties/6d5d1e5e-1f88-430f-b815-e8414a384f35",
+        "produce_data": "https://schema.metadatacenter.org/properties/a05f2427-6240-4c0c-a29e-4a7a6b43276c",
+        "produce_other": "https://schema.metadatacenter.org/properties/e46f791a-85ec-4aed-a7cc-24a34664b79b"
+      },
+      "data_available": {
+        "@value": null
+      },
+      "data_collection_status": {
+        "@value": null
+      },
+      "data_release_status": {
+        "@value": null
+      },
+      "data_collection_start_date": {
+        "@value": null,
+        "@type": "xsd:date"
+      },
+      "data_collection_finish_date": {
+        "@value": null,
+        "@type": "xsd:date"
+      },
+      "data_release_start_date": {
+        "@value": null,
+        "@type": "xsd:date"
+      },
+      "data_release_finish_date": {
+        "@value": null,
+        "@type": "xsd:date"
+      },
+      "data_restricted": {
+        "@value": null
+      },
+      "produce_data": {
+        "@value": null
+      },
+      "produce_other": {
+        "@value": null
+      },
+      "@id": "https://repo.metadatacenter.org/template-element-instances/212132d1-82b3-476a-8806-78c84a8939cd"
+    },
+    "Findings": {
+      "@context": {
+        "primary_publications": "https://schema.metadatacenter.org/properties/e5f0a1a1-8232-43e1-b89d-d178efe5cc71",
+        "secondary_publications": "https://schema.metadatacenter.org/properties/26a3e131-82b6-40df-b534-30f27dc9fb9f",
+        "primary_study_findings": "https://schema.metadatacenter.org/properties/2567c7bb-574d-448c-b865-c15569d03911"
+      },
+      "primary_publications": [
+        {
+          "@value": null
+        }
+      ],
+      "secondary_publications": [
+        {
+          "@value": null
+        }
+      ],
+      "primary_study_findings": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/9bf447c9-0fe9-4576-95f3-5842d5c29890"
+    },
+    "Study Translation Focus": {
+      "@context": {
+        "study_translation_focus": "https://schema.metadatacenter.org/properties/55184a53-bd1d-449f-a0f8-9df12476224a",
+        "study_translational_topic_grouping": "https://schema.metadatacenter.org/properties/3642f6be-ec33-414d-ace1-fe5c7c5e10e6"
+      },
+      "study_translation_focus": {
+        "@value": null
+      },
+      "study_translational_topic_grouping": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/cf973023-8fd4-4626-a689-dc04144db759"
+    },
+    "Study Type": {
+      "@context": {
+        "study_stage": "https://schema.metadatacenter.org/properties/c178c428-feab-4e16-b386-c5ca0457f136",
+        "study_primary_or_secondary": "https://schema.metadatacenter.org/properties/11ba188c-0baa-43e9-84dc-bc8c4e100a41",
+        "study_observational_or_experimental": "https://schema.metadatacenter.org/properties/c0129f9d-e5d3-41e7-8927-9523db54ffb0",
+        "study_subject_type": "https://schema.metadatacenter.org/properties/154c4687-6f3c-42ac-9f54-926a8357618d",
+        "study_type_design": "https://schema.metadatacenter.org/properties/6d5c5a5d-c7bc-4d76-9b4a-1d1438624e5e"
+      },
+      "study_stage": {
+        "@value": null
+      },
+      "study_primary_or_secondary": {
+        "@value": null
+      },
+      "study_observational_or_experimental": {
+        "@value": null
+      },
+      "study_subject_type": [
+        {
+          "@value": null
+        }
+      ],
+      "study_type_design": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/c50c8dc1-ab81-49fa-ba60-dc03cdff9a21"
+    },
+    "Human Treatment Apply": {
+      "@context": {
+        "treatment_investigation_stage_or_type": "https://schema.metadatacenter.org/properties/b6108e07-a471-449d-9a13-2c9a24384424",
+        "treatment_mode": "https://schema.metadatacenter.org/properties/648f1627-d787-4abe-9fff-5d6628b143b7",
+        "treatment_application_level": "https://schema.metadatacenter.org/properties/ba361d44-0ce2-475a-b1ae-e52f78a6606b",
+        "treatment_type": "https://schema.metadatacenter.org/properties/6aa00a53-272b-40b1-8749-422fafc4661b",
+        "treatment_novelty": "https://schema.metadatacenter.org/properties/d1342545-4fcb-48b0-a3c1-06e7a487d3c6"
+      },
+      "treatment_investigation_stage_or_type": [
+        {
+          "@value": null
+        }
+      ],
+      "treatment_mode": [
+        {
+          "@value": null
+        }
+      ],
+      "treatment_application_level": [
+        {
+          "@value": null
+        }
+      ],
+      "treatment_type": [
+        {
+          "@value": null
+        }
+      ],
+      "treatment_novelty": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/4ff72f9f-e928-4713-b496-b2c4004fe3aa"
+    },
+    "Human Condition Apply": {
+      "@context": {
+        "condition_category": "https://schema.metadatacenter.org/properties/cd67d808-e00f-40e1-9ed8-b68567fc21b1",
+        "condition_investigation_stage_or_type": "https://schema.metadatacenter.org/properties/b5ca5722-7979-4287-b8f8-140777d15450",
+        "pain_causal_condition": "https://schema.metadatacenter.org/properties/f8f92f34-cc40-44e1-b7b3-900968ceade2",
+        "pain_treatment_or_study_target_condition": "https://schema.metadatacenter.org/properties/91cb041e-88d6-4fa5-b9bb-00fb6c881a2d",
+        "all_treatment_or_study_target_condition": "https://schema.metadatacenter.org/properties/96b2b7c0-8abc-4802-a52d-13d9bd35e243",
+        "all_outcome_condition": "https://schema.metadatacenter.org/properties/c763ecf1-915b-4f1f-bca8-9288a30f08fc",
+        "all_other_condition": "https://schema.metadatacenter.org/properties/55645641-6232-4b34-904a-ae05f918379a"
+      },
+      "condition_category": [
+        {
+          "@value": null
+        }
+      ],
+      "condition_investigation_stage_or_type": [
+        {
+          "@value": null
+        }
+      ],
+      "pain_causal_condition": [
+        {}
+      ],
+      "pain_treatment_or_study_target_condition": [
+        {
+          "@value": null
+        }
+      ],
+      "all_treatment_or_study_target_condition": [
+        {}
+      ],
+      "all_outcome_condition": [
+        {}
+      ],
+      "all_other_condition": [
+        {}
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/431eb356-a549-458f-b107-dede7630eccd"
+    },
+    "Human Subjects Apply": {
+      "@context": {
+        "gender_applicability": "https://schema.metadatacenter.org/properties/8d1fe685-884e-4b58-9a25-c11b53abd020",
+        "sexual_identity_applicability": "https://schema.metadatacenter.org/properties/2e51e553-d90b-4b6f-8a52-f8a1c3359444",
+        "geographic_applicability": "https://schema.metadatacenter.org/properties/719dfec7-9449-4fc3-b71d-03dab497e9e3",
+        "irb_vulnerability_conditions_applicability": "https://schema.metadatacenter.org/properties/b3f1e63b-447d-4aaf-ac03-3cff035a7f58",
+        "age_applicability": "https://schema.metadatacenter.org/properties/0a659aab-cde0-4f5e-a7e6-ae7d6b9745ec"
+      },
+      "gender_applicability": [
+        {
+          "@value": null
+        }
+      ],
+      "sexual_identity_applicability": [
+        {
+          "@value": null
+        }
+      ],
+      "geographic_applicability": [
+        {
+          "@value": null
+        }
+      ],
+      "irb_vulnerability_conditions_applicability": [
+        {
+          "@value": null
+        }
+      ],
+      "age_applicability": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/825817a8-9454-4a00-8ab8-433e4fcadab9"
+    },
+    "Data": {
+      "@context": {
+        "subject_data_unit_of_collection": "https://schema.metadatacenter.org/properties/c45b0841-4c50-4d5b-be49-eed993313621",
+        "subject_data_unit_of_analysis": "https://schema.metadatacenter.org/properties/deb7a1ed-f021-4049-a652-8d93eac22919",
+        "subject_data_level_available": "https://schema.metadatacenter.org/properties/a2a4dfeb-2ff5-4b2d-b0b1-c7a5b4115c90",
+        "subject_data_unit_of_collection_expected_number": "https://schema.metadatacenter.org/properties/ebdf8513-cf96-4c41-ae89-a69e5dcb1dbf",
+        "subject_data_unit_of_analysis_expected_number": "https://schema.metadatacenter.org/properties/cd41aebd-4134-4feb-9544-9ce1ba2f1f23",
+        "subject_geographic_data_level_collected": "https://schema.metadatacenter.org/properties/d9ed6775-3a89-4798-8022-866ac6c7508d",
+        "subject_geographic_data_level_available": "https://schema.metadatacenter.org/properties/77092eaa-e48c-4418-a367-d6716b5a1f0b",
+        "data_orientation": "https://schema.metadatacenter.org/properties/0de3ec6b-f3e9-4aa9-a367-b2205eefb92d",
+        "data_type": "https://schema.metadatacenter.org/properties/7a3d7b6c-fb4f-44a3-ac86-852b692b6458",
+        "data_source": "https://schema.metadatacenter.org/properties/4182e91d-60fc-49c8-b9bd-3721affbeced"
+      },
+      "subject_data_unit_of_collection": [
+        {
+          "@value": null
+        }
+      ],
+      "subject_data_unit_of_analysis": [
+        {
+          "@value": null
+        }
+      ],
+      "subject_data_level_available": [
+        {
+          "@value": null
+        }
+      ],
+      "subject_data_unit_of_collection_expected_number": {
+        "@value": null,
+        "@type": "xsd:int"
+      },
+      "subject_data_unit_of_analysis_expected_number": {
+        "@value": null,
+        "@type": "xsd:int"
+      },
+      "subject_geographic_data_level_collected": [
+        {
+          "@value": null
+        }
+      ],
+      "subject_geographic_data_level_available": [
+        {
+          "@value": null
+        }
+      ],
+      "data_orientation": [
+        {
+          "@value": null
+        }
+      ],
+      "data_type": [
+        {
+          "@value": null
+        }
+      ],
+      "data_source": [
+        {
+          "@value": null
+        }
+      ],
+      "@id": "https://repo.metadatacenter.org/template-element-instances/57504a57-c864-4641-ae5b-db81f4b47608"
+    },
+    "schema:isBasedOn": "https://repo.metadatacenter.org/templates/dce33a12-e93f-43d9-a777-c6d23b051487",
+    "schema:name": null,
+    "schema:description": "",
+    "pav:createdOn": null,
+    "pav:createdBy": null,
+    "pav:lastUpdatedOn": null,
+    "oslc:modifiedBy": null
+  }
