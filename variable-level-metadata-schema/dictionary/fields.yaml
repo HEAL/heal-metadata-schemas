@@ -1,0 +1,115 @@
+---
+#TODO: add dependencies or dependencyRequired properties or add if/then statements (if can use >= Draft 7)
+#TODO: currently manually curated list - need to decide if we want to include all
+  #fields from https://specs.frictionlessdata.io/schemas/table-schema.json
+"$schema": http://json-schema.org/draft-04/schema#
+"$id": 'variable-level-metadata'
+title: HEAL Variable Level Metadata 
+description: >
+  Variable level metadata (i.e., data dictionary).
+type: object
+required:
+- name
+- description
+properties:
+  name:
+    type: string
+    title: Variable Name
+    description: >
+      The name of a variable (i.e., field) as it appears in the data.
+  title:
+    type: string
+    title: Variable Label (ie Title)
+    description: The human-readable title of the variable.
+  description:
+    type: string
+    title: Variable Description
+    description: An extended description of the variable.
+    examples:
+      - Definition
+      - Question text (if a survey)
+  type: #TODO: include enum of all potential type values?
+    type: string
+    title: Variable Type
+    description: > 
+      A classification allowing the user (analyst, researcher or computer) to know how
+      to use the variable
+  format:
+    type: string
+    title: Variable Format
+    description: Indicates the format of the type specified in the `type` property
+  enum:
+    type: array
+    title: Variable Possible Values
+  # not sure unit is necessary but dbgap has it...
+  unit:
+    type: string
+    title: Variable Units.  
+    description: Describes the type of units the variable is in (e.g., year, month, kg, lbs, etc)
+  encodings:
+    type: object
+    title: Variable Value Encodings (i.e., mappings; value labels)
+  missingValues:
+    type: array
+    title: Missing Values
+    description: A list of missing values specific to a variable.
+  repo_link:
+    type: string
+    title: Variable Repository Link
+    description: >
+      A link to the variable as it exists on the home repository, if applicable
+  cde_id:
+    type: array
+    items:
+      #probably should choose one of these and stick with it?
+      oneOf:
+        - type: object
+          properties:
+            source: 
+              type: string
+            id:
+              type: string
+        - $ref: '_definitions.yaml#/gen3CdeId'
+  ontology_id:
+      - type: object
+        properties:
+          source: 
+            type: string
+          id:
+            type: string
+    type: array
+    title: The Common Data Elements (CDE) ID(s) and its associated source(s) in the form source:id unless explicitly specified.
+  univariate_numeric_statistics:
+  # create if-then based on variable type property
+    type: object
+    properties:
+      #add categorical counts/rates etc
+      name:
+        type: string
+        enum: 
+          - median
+          - mean
+          - std
+          - min
+          - max
+          - count
+          - mode
+          - skew
+          - kurtosis
+          - twenty_five_percentile
+          - seventy_five_percentile
+        description: >
+          The name of the statistical value.
+        value:
+          oneOf:
+            - type: number 
+            - type: integer
+    univariate_categorical_marginals:
+      type: object
+      properties:
+        name:
+          type: string
+        count:
+          type: integer
+
+    # TODO: multivariate_statistics
