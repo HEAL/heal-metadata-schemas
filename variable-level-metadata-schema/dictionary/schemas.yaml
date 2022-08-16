@@ -1,0 +1,20 @@
+"$schema": http://json-schema.org/draft-04/schema#
+"id": 'vlmd-schemas'
+title: HEAL Variable Level Metadata Study Schemas
+description: >
+  A list of all variable level metadata schemas for a HEAL study.
+type: object
+properties:
+  schema_object_ids: 
+    type: array
+    items:
+      type: string
+    description: >
+      A list of all source files making up schema
+  description:
+    type: string
+    description: >
+      A description of the variable level schema.  
+  fields:
+    $ref: '/fields.yaml#'
+

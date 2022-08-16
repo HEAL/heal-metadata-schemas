@@ -2,11 +2,13 @@
 #TODO: add dependencies or dependencyRequired properties or add if/then statements (if can use >= Draft 7)
 #TODO: currently manually curated list - need to decide if we want to include all
   #fields from https://specs.frictionlessdata.io/schemas/table-schema.json
+#NOTE: On the other hand, we coudl use the 80/20 rule as we are doing minimal validation
+# and just have the current set up.
 "$schema": http://json-schema.org/draft-04/schema#
-"$id": 'variable-level-metadata'
-title: HEAL Variable Level Metadata 
+"id": 'vlmd-fields'
+title: HEAL Variable Level Metadata Fields
 description: >
-  Variable level metadata (i.e., data dictionary).
+  Variable level metadata individual fields 
 type: object
 required:
 - name
@@ -49,7 +51,16 @@ properties:
   encodings:
     type: object
     title: Variable Value Encodings (i.e., mappings; value labels)
-  missingValues:
+  ordered:
+    type: boolean
+    title: An ordered variable 
+    description: >
+      Indicates whether the listed possible values are in an order. This variable 
+      is relevant for variables that have an ordered relationship but not necessarily 
+      a numerical relationship
+    example:
+      - Strongly disagree < Disagree < Neutral < Agree 
+  missing_values:
     type: array
     title: Missing Values
     description: A list of missing values specific to a variable.
@@ -61,24 +72,30 @@ properties:
   cde_id:
     type: array
     items:
+      - type: object
+        properties:
+          source:
+            type: string
+          id:
+            type: string
       #probably should choose one of these and stick with it?
-      oneOf:
-        - type: object
-          properties:
-            source: 
-              type: string
-            id:
-              type: string
-        - $ref: '_definitions.yaml#/gen3CdeId'
+      # oneOf:
+      #   - type: object
+      #     properties:
+      #       source: 
+      #         type: string
+      #       id:
+      #         type: string
+      #   - $ref: '_definitions.yaml#/gen3CdeId'
   ontology_id:
+    type: array
+    items: 
       - type: object
         properties:
           source: 
             type: string
           id:
             type: string
-    type: array
-    title: The Common Data Elements (CDE) ID(s) and its associated source(s) in the form source:id unless explicitly specified.
   univariate_numeric_statistics:
   # create if-then based on variable type property
     type: object
@@ -111,5 +128,4 @@ properties:
           type: string
         count:
           type: integer
-
-    # TODO: multivariate_statistics
+    # TODO: multivariate_statistics?
