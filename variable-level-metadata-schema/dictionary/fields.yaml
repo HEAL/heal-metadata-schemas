@@ -1,14 +1,11 @@
 ---
-#TODO: add dependencies or dependencyRequired properties or add if/then statements (if can use >= Draft 7)
-#TODO: currently manually curated list - need to decide if we want to include all
-  #fields from https://specs.frictionlessdata.io/schemas/table-schema.json
-#NOTE: On the other hand, we coudl use the 80/20 rule as we are doing minimal validation
-# and just have the current set up.
+#fields from https://specs.frictionlessdata.io/schemas/table-schema.json
 "$schema": http://json-schema.org/draft-04/schema#
 "id": 'vlmd-fields'
-title: HEAL Variable Level Metadata Fields
+title: HEAL Variable Level Metadata Fields 
 description: >
-  Variable level metadata individual fields 
+  Variable level metadata individual fields integrated into the variable level metadata
+  object within the HEAL platform metadata service.
 type: object
 required:
   - name
