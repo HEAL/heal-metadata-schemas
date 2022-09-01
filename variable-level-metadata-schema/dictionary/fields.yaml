@@ -9,6 +9,7 @@ description: >
 type: object
 required:
   - name
+  - title
   - description
 properties:
   name:
@@ -133,6 +134,7 @@ properties:
       A link to the variable as it exists on the home repository, if applicable
   cde_id:
     type: array
+    title: Common Data Element Id
     description: The source and id for the NIH Common Data Elements program. 
     items:
       - type: object
@@ -143,6 +145,7 @@ properties:
             type: string
   ontology_id:
     type: array
+    title: Ontology ID
     description: >
       Ontological information for the given variable as indicated 
       by the source, id, and relation to the specified classification.
