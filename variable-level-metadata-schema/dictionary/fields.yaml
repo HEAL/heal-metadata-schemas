@@ -87,8 +87,6 @@ properties:
           oneOf:
             - type: string
             - type: number
-
-
   ordered:
     type: boolean
     title: An ordered variable 
@@ -135,6 +133,7 @@ properties:
       A link to the variable as it exists on the home repository, if applicable
   cde_id:
     type: array
+    description: The source and id for the NIH Common Data Elements program. 
     items:
       - type: object
         properties:
@@ -144,12 +143,19 @@ properties:
             type: string
   ontology_id:
     type: array
+    description: >
+      Ontological information for the given variable as indicated 
+      by the source, id, and relation to the specified classification.
+      One or more ontology classifications can be specified. 
+      
     items: 
       - type: object
         properties:
           source: 
             type: string
           id:
+            type: string
+          relation:
             type: string
   univar_stats:
     type: object
