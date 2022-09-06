@@ -20,4 +20,4 @@ with open(Path(__file__).parent.parent/'schemas'/'fields.json','r') as f:
     fields = json.load(f)
 
 desc = pd.DataFrame(flatten_jsonschema(fields['properties'])).T
-desc.to_csv(Path(__file__).parent.parent/'docs'/'template-descriptions.tsv',sep='\t')
+desc.to_csv(Path(__file__).parent.parent/'docs'/'template-descriptions.csv')
