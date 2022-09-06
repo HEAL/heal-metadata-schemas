@@ -27,12 +27,21 @@ def map_keys_vals(keys,vals):
 
 def split_and_map(string,prop):
     ''' 
-    splits a stringified delimited list
-    and zips/maps to a dictionary with keys of a dictionary
+    splits nested stringified delimited lists 
+    (delimiters being | for outer and = for inner)
+    and zips/maps each of the inner lists to a set
+    of values (right now keys of a dictionary)
     TODO: rename function split_and_map_to_keys
+    TODO: generalize to more than keys
+
+
     '''
     if string:
-        return map_keys_vals(prop.keys(),split_str_array(item))
+        keys = prop['items'][0]['properties'].keys()
+        return [
+            map_keys_vals(keys,split_str_array(x,sep='=')) 
+            for x in split_str_array(string,sep='|')
+        ]
     else:
         return None
 
