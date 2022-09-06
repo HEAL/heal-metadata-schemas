@@ -63,7 +63,7 @@
                 }
             }
         },
-        "encodings": {
+        "encoding": {
             "type": "object",
             "title": "Variable Value Encodings (i.e., mappings; value labels)",
             "description": "Encodings (and mappings) allow categorical values to be stored as numerical values. IMPORTANT: the ==key should be the value represented IN the data== and the ==value should be the to-be-mapped label==. Many analytic software programs use numerical encodings and some algorithms only support numerical values. Additionally, this field provides a way to store categoricals that are stored as  \"short\" labels (such as abbreviations)\n",
@@ -143,15 +143,16 @@
                 {
                     "type": "object",
                     "properties": {
+                        "relation": {
+                            "type": "string"
+                        },
                         "source": {
                             "type": "string"
                         },
                         "id": {
                             "type": "string"
-                        },
-                        "relation": {
-                            "type": "string"
                         }
+
                     }
                 }
             ]
