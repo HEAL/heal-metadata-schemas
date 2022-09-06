@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "$id": "vlmd",
   "title":"Variable Level Metadata (Data Dictionaries)",
-  "description": "This schema defines the variable level metadata (i.e., 1 or more data dictionaries) for a given study.",
+  "description": "This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries",
   "type": "array",
   "items": {
       "$ref":"fields.json/#"
