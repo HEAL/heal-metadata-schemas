@@ -91,7 +91,7 @@ def convert_rec_to_json(record):
 
 
 schema_path = Path(__file__).parent.parent/'schemas'/"fields.json"
-tsv_path = Path(__file__).parent.parent/"templates"/"template_submission.tsv"
+csv_path = Path(__file__).parent.parent/"templates"/"template_submission.csv"
 # read in schema
 with open(schema_path) as f:
     schema = yaml.safe_load(f)
@@ -114,7 +114,7 @@ mappings = {
 # loop through empty json output and assign mapping type
 # read in csv
 template_tbl = (
-    etl.fromtsv(tsv_path)
+    etl.fromcsv(csv_path)
     .convert(mappings)
     .convertnumbers()
 )       
