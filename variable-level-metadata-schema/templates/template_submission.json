@@ -13,6 +13,16 @@
         "title": "Race",
         "description": "Self-reported race",
         "type": "integer",
+        "cde_id": [
+            {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            },
+            {
+                "source": "NLM",
+                "id": "m1_atF7L7U"
+            }
+        ],
         "encoding": {
             "1": "White",
             "2": "Black or African American",
@@ -58,6 +68,12 @@
         "title": "Sex at Birth",
         "description": "The self-reported sex of the participant/subject at birth",
         "type": "string",
+        "cde_id": [
+            {
+                "source": "NLM",
+                "id": "ezelurehr2"
+            }
+        ],
         "constraints": {
             "enum": [
                 "Male",
@@ -74,6 +90,18 @@
         "title": "Heroin Days Used",
         "description": "During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use]",
         "type": "integer",
-        "format": "days"
+        "format": "days",
+        "ontology_id": [
+            {
+                "relation": "is",
+                "source": "CHEBI",
+                "id": "27808"
+            },
+            {
+                "relation": "is",
+                "source": "RXNORM",
+                "id": "3304"
+            }
+        ]
     }
 ]
