@@ -1,0 +1,7 @@
+name,title,description,type,format,constraints.maxLength,constraints.pattern,constraints.minimum,constraints.maximum,ordered,missingValues,trueValues,falseValues,repo_link,cde_id,ontology_id,encoding,constraints.enum
+participant_id,Participant Id,Unique identifier for participant,string,,,[A-Z][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9],,,,,,,,,,,
+race,Race,Self-reported race,integer,,,,,,,99,,,,NLM=Fakc6Jy2x|NLM=m1_atF7L7U,,1=White|2=Black or African American|3=American Indian or Alaska Native|4=Native| 5=Hawaiian or Other Pacific Islander|6=Asian|7=Some other race|8=Multiracial|99=Not reported,1|2|3|4|5|6|7|8
+age,Age,What is your age? (age at enrollment),integer,years,,,0,90,,,,,,,,,
+hispanic,"Hispanic, Latino, or Spanish Origin","Are you of Hispanic, Latino, or Spanish origin?",boolean,,,,,,,Not reported,No,Yes,,,,,
+sex_at_birth,Sex at Birth,The self-reported sex of the participant/subject at birth,string,,,,,,,Prefer not to answer|Unknown,,,,NLM=ezelurehr2,,,Male|Female|Intersex|None of these describe me|Prefer not to answer|Unknown
+SU4,Heroin Days Used,During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use],integer,days,,,,,,,,,,,is=CHEBI=27808|is=RXNORM=3304,,

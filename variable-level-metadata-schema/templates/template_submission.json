@@ -1,0 +1,107 @@
+[
+    {
+        "name": "participant_id",
+        "title": "Participant Id",
+        "description": "Unique identifier for participant",
+        "type": "string",
+        "constraints": {
+            "pattern": "[A-Z][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]"
+        }
+    },
+    {
+        "name": "race",
+        "title": "Race",
+        "description": "Self-reported race",
+        "type": "integer",
+        "cde_id": [
+            {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            },
+            {
+                "source": "NLM",
+                "id": "m1_atF7L7U"
+            }
+        ],
+        "encoding": {
+            "1": "White",
+            "2": "Black or African American",
+            "3": "American Indian or Alaska Native",
+            "4": "Native",
+            "5": "Hawaiian or Other Pacific Islander",
+            "6": "Asian",
+            "7": "Some other race",
+            "8": "Multiracial",
+            "99": "Not reported"
+        },
+        "constraints": {
+            "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+            ]
+        }
+    },
+    {
+        "name": "age",
+        "title": "Age",
+        "description": "What is your age? (age at enrollment)",
+        "type": "integer",
+        "format": "years",
+        "constraints": {
+            "maximum": 90
+        }
+    },
+    {
+        "name": "hispanic",
+        "title": "Hispanic, Latino, or Spanish Origin",
+        "description": "Are you of Hispanic, Latino, or Spanish origin?",
+        "type": "boolean"
+    },
+    {
+        "name": "sex_at_birth",
+        "title": "Sex at Birth",
+        "description": "The self-reported sex of the participant/subject at birth",
+        "type": "string",
+        "cde_id": [
+            {
+                "source": "NLM",
+                "id": "ezelurehr2"
+            }
+        ],
+        "constraints": {
+            "enum": [
+                "Male",
+                "Female",
+                "Intersex",
+                "None of these describe me",
+                "Prefer not to answer",
+                "Unknown"
+            ]
+        }
+    },
+    {
+        "name": "SU4",
+        "title": "Heroin Days Used",
+        "description": "During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use]",
+        "type": "integer",
+        "format": "days",
+        "ontology_id": [
+            {
+                "relation": "is",
+                "source": "CHEBI",
+                "id": "27808"
+            },
+            {
+                "relation": "is",
+                "source": "RXNORM",
+                "id": "3304"
+            }
+        ]
+    }
+]
