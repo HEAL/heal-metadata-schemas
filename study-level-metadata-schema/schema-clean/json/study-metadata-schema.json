@@ -32,7 +32,7 @@
           "type": "string",
           "label": "Study Description or Abstract"
         },
-        "study_nickname": {
+        "alternative_study_name": {
           "description": "Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD)",
           "type": "string",
           "label": "Study Nickname or Alternative Title"
