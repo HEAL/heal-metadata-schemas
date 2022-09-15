@@ -36,9 +36,7 @@
           "description": "Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD)",
           "type": "string",
           "label": "Study Nickname or Alternative Title"
-        }
-      }
-    },
+        },
         "alternative_study_description": {
           "description": "An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.",
           "type": "string",
