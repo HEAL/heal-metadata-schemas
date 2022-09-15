@@ -1,13 +1,14 @@
 # HEAL Platform Study
 
-*A study hosted and indexed on the HEAL Platform*
+*A study hosted and indexed on the HEAL Platform. Note that if the study has more than one aim, a single form should be completed and the multi-select answer options should be used to provide information about each of the aims.*
 
 ## Properties
 
 - **`minimal_info`** *(object)*
   - **`study_name`** *(string)*: The title or name of the study. For NIH-funded studies, this will generally be equivalent to the NIH application ID title.
   - **`study_description`** *(string)*: A description of or abstract for the study. For NIH-funded studies , this will generally be equivalent to the NIH application ID abstract text.
-  - **`study_nickname`** *(string)*: Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD).
+  - **`alternative_study_name`** *(string)*: Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD).
+  - **`alternative_study_description`** *(string)*: An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.
 - **`metadata_location`** *(object)*
   - **`nih_application_id`** *(string)*: NIH application ID; only applicable if study is funded by NIH.
   - **`nih_reporter_link`** *(string)*: URL link to the NIH application ID NIH RePORTER webpage; only applicable if study is funded by NIH. Refer to *#/definitions/saneUrl*.
@@ -82,7 +83,7 @@
   - **`secondary_publications`** *(array)*: List of the doi for any/all secondary study publications that use the study data; include any papers, books, articles, blog posts, etc. authored by persons OTHER THAN the investigators or team responsible for the study; one item in this array per publication/doi.
     - **Items** *(string)*
 - **`study_translational_focus`** *(object)*
-  - **`study_translational_focus`** *(string)*: Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Choose one. Must be one of: `['Condition', 'Treatment']`.
+  - **`study_translational_focus`** *(string)*: Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT OF A CONDITION, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Note there are some studies that are not related to a specific condition or the treatment of a condition.  An example of a study like this is the National Institute on Drug Abuse (NIDA) study Incarceration Effects on Medicaid Status. If a study like this does not apply to a condition or treatment, this question can be left blank.Choose one. Must be one of: `['Condition', 'Treatment of a Condition']`.
   - **`study_translational_topic_grouping`** *(array)*: What types of determinants and/or mechanisms related to human opioid use or pain conditions is the study investigating and/or measuring (e.g. A study investigating differential pain/nociception signaling in persons living in neighborhoods with high versus low social cohesion might choose both 'Biology and Health' and 'Social Determinants'). Choose as many as apply.
     - **Items** *(string)*: Must be one of: `['Biology and Health', 'Mental Health', 'Social Determinants', 'Public Attitudes or Stigma']`.
 - **`study_type`** *(object)*
@@ -122,9 +123,11 @@
     - **Items** *(string)*
 - **`human_subject_applicability`** *(object)*
   - **`gender_applicability`** *(array)*: Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to.
-    - **Items** *(string)*: Must be one of: `['Cis Male', 'Cis Female', 'Trans Male', 'Trans Female', 'Agender, Non-binary, gender non-conforming', 'Gender Queer', 'Intersex', 'Not applicable']`.
+    - **Items** *(string)*: Must be one of: `['Female', 'Female-to-male transsexual', 'Intersexed', 'Male', 'Male-to-female transsexual', 'Other']`.
   - **`sexual_identity_applicability`** *(array)*: Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to.
-    - **Items** *(string)*: Must be one of: `['Heterosexual', 'Homosexual', 'Bisexual', 'Pansexual', 'Queer', 'Asexual', 'Not applicable']`.
+    - **Items** *(string)*: Must be one of: `['Heterosexual', 'Homosexual (gay/lesbian)', 'Bisexual', 'Asexual', 'Other']`.
+  - **`biological_sex_applicability`** *(array)*: Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to.
+    - **Items** *(string)*: Must be one of: `['Ambiguous', 'Female', 'Male']`.
   - **`age_applicability`** *(array)*: Considering the study in a translational context, to humans of which age or developmental stage are the study results intended to apply and/or likely to generalize to.
     - **Items** *(string)*: Must be one of: `['Fetus', 'Infant, newborn (Birth to 1 month)', 'Infant (1 to 23 months)', 'Child, preschool (2 to 5 years)', 'Child (6 to 12 years)', 'Adolescent (13 to 18 years)', 'Adult (19 to 44 years)', 'Middle aged adult (45 to 64 years)', 'Aged adult (65 to 79 years)', 'Aged, 80 and over (80 years and over)']`.
   - **`irb_vulnerability_conditions_applicability`** *(array)*: Considering the study in a translational context, which special IRB human vulnerability conditions are the study results intended to address or apply to?

@@ -17,12 +17,12 @@ repo_path = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas
 ##input_cedar_json = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema-cedar-template.json"
 ##output_cedar_md = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema-cedar-template-for-humans.md"
 
-input_clean_json = os.path.join(repo_path,"study-level-metadata-schema","json","study-metadata-schema.json")
-output_clean_md = os.path.join(repo_path,"study-level-metadata-schema","md","study-metadata-schema-for-humans.md")
-output_clean_md_2 = os.path.join(repo_path,"for-investigators-how-to","study-metadata-schema-for-humans.md")
+input_clean_json = os.path.join(repo_path,"study-level-metadata-schema","schema-clean","json","study-metadata-schema.json")
+output_clean_md = os.path.join(repo_path,"study-level-metadata-schema","schema-clean","md","study-metadata-schema-for-humans.md")
+output_clean_md_2 = os.path.join(repo_path,"for-investigators-how-to","study-level-metadata-fields","study-metadata-schema-for-humans.md")
 
-input_cedar_json = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","json","study-metadata-schema-cedar-template.json")
-output_cedar_md = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","md","study-metadata-schema-cedar-template-for-humans.md")
+##input_cedar_json = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","json","study-metadata-schema-cedar-template.json")
+##output_cedar_md = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","md","study-metadata-schema-cedar-template-for-humans.md")
 
 if file_to_convert == "clean json":
     input_json = input_clean_json

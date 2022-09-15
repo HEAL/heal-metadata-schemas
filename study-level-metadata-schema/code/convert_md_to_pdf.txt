@@ -1,0 +1,7 @@
+in vs code: 
+
+- open markdown file from json
+- Cmd+Shift+P
+- search for Markdown PDC, and select Export PDF
+
+see: https://ramezanpour.net/post/2020/03/03/convert-markdown-files-to-pdf
