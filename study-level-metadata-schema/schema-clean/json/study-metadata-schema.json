@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://healdata.org/schemas/study-metadata-schema-1.0.0.json",
   "title": "HEAL Platform Study",
-  "description": "A study hosted and indexed on the HEAL Platform",
+  "description": "A study hosted and indexed on the HEAL Platform. Note that if the study has more than one aim, a single form should be completed and the multi-select answer options should be used to provide information about each of the aims.",
   "type": "object",
   "required": [ 
     "minimal_info",
@@ -36,6 +36,13 @@
           "description": "Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD)",
           "type": "string",
           "label": "Study Nickname or Alternative Title"
+        }
+      }
+    },
+        "alternative_study_description": {
+          "description": "An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.",
+          "type": "string",
+          "label": "Alternative Study Description or Abstract"
         }
       }
     },
@@ -424,12 +431,12 @@
       "required": [],
       "properties": {
         "study_translational_focus": {
-          "description": "Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Choose one.",
+          "description": "Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT OF A CONDITION, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Note there are some studies that are not related to a specific condition or the treatment of a condition.  An example of a study like this is the National Institute on Drug Abuse (NIDA) study Incarceration Effects on Medicaid Status. If a study like this does not apply to a condition or treatment, this question can be left blank.Choose one.",
           "type": "string",
           "label": "Study Translational Focus",
           "enum": [
             "Condition",
-            "Treatment"
+            "Treatment of a Condition"
           ]
         },
         "study_translational_topic_grouping": {
@@ -758,37 +765,46 @@
       "required": [],
       "properties": {
         "gender_applicability": {
-          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to",
+          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to.",
           "type": "array",
           "label": "To humans of which gender identity(ies) do study results apply?",
           "items": {
             "type": "string",
             "enum": [
-              "Cis Male",
-              "Cis Female",
-              "Trans Male",
-              "Trans Female",
-              "Agender, Non-binary, gender non-conforming",
-              "Gender Queer",
-              "Intersex",
-              "Not applicable" 
+              "Female",
+              "Female-to-male transsexual",
+              "Intersexed",
+              "Male",
+              "Male-to-female transsexual",
+              "Other"
             ]
           }
         },
         "sexual_identity_applicability": {
-          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to",
+          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to.",
           "type": "array",
           "label": "To humans of which sexual identity(ies) do study results apply?",
           "items": {
             "type": "string",
             "enum": [
               "Heterosexual",
-              "Homosexual",
+              "Homosexual (gay/lesbian)",
               "Bisexual",
-              "Pansexual",
-              "Queer",
               "Asexual",
-              "Not applicable"
+              "Other"
+              ]
+          }
+        },
+        "biological_sex_applicability": {
+          "description": "Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to.",
+          "type": "array",
+          "label": "To humans of which biological sexes do study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Ambiguous",
+              "Female",
+              "Male"
               ]
           }
         },
