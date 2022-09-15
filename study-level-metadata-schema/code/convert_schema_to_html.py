@@ -1,7 +1,7 @@
 
 
 file_to_convert = "clean json"
-for_investigators = False
+for_investigators = True
 
 
 # https://github.com/coveooss/json-schema-for-humans
@@ -18,12 +18,12 @@ repo_path = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas
 ##input_cedar_json = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema-cedar-template.json"
 ##output_cedar_html = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema-cedar-template-for-humans.html"
 
-input_clean_json = os.path.join(repo_path,"study-level-metadata-schema","json","study-metadata-schema.json")
-output_clean_html = os.path.join(repo_path,"study-level-metadata-schema","html","study-metadata-schema-for-humans.html")
-output_clean_html_2 = os.path.join(repo_path,"for-investigators-how-to","study-metadata-schema-for-humans.html")
+input_clean_json = os.path.join(repo_path,"study-level-metadata-schema","schema-clean","json","study-metadata-schema.json")
+output_clean_html = os.path.join(repo_path,"study-level-metadata-schema","schema-clean","html","study-metadata-schema-for-humans.html")
+output_clean_html_2 = os.path.join(repo_path,"for-investigators-how-to","study-level-metadata-fields","study-metadata-schema-for-humans.html")
 
-input_cedar_json = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","json","study-metadata-schema-cedar-template.json")
-output_cedar_html = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","html","study-metadata-schema-cedar-template-for-humans.html")
+##input_cedar_json = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","json","study-metadata-schema-cedar-template.json")
+##output_cedar_html = os.path.join(repo_path,"study-level-cedar-template-metadata-schema","html","study-metadata-schema-cedar-template-for-humans.html")
 
 
 if file_to_convert == "clean json":
