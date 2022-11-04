@@ -13,6 +13,9 @@
         "title": "Race",
         "description": "Self-reported race",
         "type": "integer",
+        "missingValues": [
+            "99"
+        ],
         "cde_id": [
             {
                 "source": "NLM",
@@ -61,13 +64,26 @@
         "name": "hispanic",
         "title": "Hispanic, Latino, or Spanish Origin",
         "description": "Are you of Hispanic, Latino, or Spanish origin?",
-        "type": "boolean"
+        "type": "boolean",
+        "missingValues": [
+            "Not reported"
+        ],
+        "trueValues": [
+            "No"
+        ],
+        "falseValues": [
+            "Yes"
+        ]
     },
     {
         "name": "sex_at_birth",
         "title": "Sex at Birth",
         "description": "The self-reported sex of the participant/subject at birth",
         "type": "string",
+        "missingValues": [
+            "Prefer not to answer",
+            "Unknown"
+        ],
         "cde_id": [
             {
                 "source": "NLM",

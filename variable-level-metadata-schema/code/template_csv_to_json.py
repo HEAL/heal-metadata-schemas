@@ -37,7 +37,7 @@ def split_and_map(string,prop):
 
     '''
     if string:
-        keys = prop['items'][0]['properties'].keys()
+        keys = prop['items']['properties'].keys()
         return [
             map_keys_vals(keys,split_str_array(x,sep='=')) 
             for x in split_str_array(string,sep='|')
@@ -114,9 +114,9 @@ mappings = {
     'ontology_id': lambda v: split_and_map(v, props['ontology_id']),
     'encoding':lambda v: loads_dict(v),
     #'univar_stats.cat_marginals':lambda v: split_and_map(v, prop['univar_stats']['cat_marginals']),
-    'missingValues':lambda v: split_and_map(v, props['missingValues']),
-    'trueValues': lambda v: split_and_map(v, props['trueValues']),
-    'falseValues':lambda v: split_and_map(v, props['falseValues']),
+    'missingValues':lambda v: split_str_array(v),
+    'trueValues': lambda v: split_str_array(v),
+    'falseValues':lambda v: split_str_array(v),
     # TODO: add stats
 }
 
@@ -132,5 +132,5 @@ template_json = data_dictionary
 # TODO: use jsonschema resolver and data_dictionary.json
 jsonschema.validate(template_json,schema={'type':'array','items':schema})
 
-with open(Path(__file__).parent.parent/'templates'/'template_submission.json','w') as f:
+with open(Path(__file__).parent.parent/'templates'/'template_submission2.json','w') as f:
     json.dump(template_json,f,indent=4)
