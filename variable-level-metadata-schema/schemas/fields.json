@@ -121,8 +121,7 @@
             "type": "array",
             "title": "Common Data Element Id",
             "description": "The source and id for the NIH Common Data Elements program.",
-            "items": [
-                {
+            "items": {
                     "type": "object",
                     "properties": {
                         "source": {
@@ -133,14 +132,12 @@
                         }
                     }
                 }
-            ]
         },
         "ontology_id": {
             "type": "array",
             "title": "Ontology ID",
             "description": "Ontological information for the given variable as indicated  by the source, id, and relation to the specified classification. One or more ontology classifications can be specified. \n",
-            "items": [
-                {
+            "items": {
                     "type": "object",
                     "properties": {
                         "relation": {
@@ -155,7 +152,6 @@
 
                     }
                 }
-            ]
         },
         "univar_stats": {
             "type": "object",
