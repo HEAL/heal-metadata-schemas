@@ -471,7 +471,7 @@
       "required": [],
       "properties": {
         "gender_applicability": {
-          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to.",
+          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to",
           "type": "array",
           "label": "To humans of which gender identity(ies) do study results apply?",
           "items": {
@@ -487,7 +487,7 @@
           }
         },
         "sexual_identity_applicability": {
-          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to.",
+          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to",
           "type": "array",
           "label": "To humans of which sexual identity(ies) do study results apply?",
           "items": {
@@ -502,7 +502,7 @@
           }
         },
         "biological_sex_applicability": {
-          "description": "Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to.",
+          "description": "Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to",
           "type": "array",
           "label": "To humans of which biological sexes do study results apply?",
           "items": {
