@@ -53,11 +53,6 @@
           "type": "string",
           "label": "NIH Application ID"
         },
-        "clinical_trials_study_ID": {
-          "description": "ClinicalTrials.gov study ID; only applicable if study is a reportable clinical trial and registered on ClinicalTrials.gov",
-          "type": "string",
-          "label": "ClinicalTrials.gov Study ID"
-        },
         "other_study_websites": {
           "description": "any other websites officially associated with this study that provide additional information about the study",
           "type": "array",
