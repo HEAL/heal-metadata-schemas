@@ -9,7 +9,9 @@ import sys
 import json
 import jsonschema2md
 
-repo_path = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas"
+repo_path = r"/Users/taralichtenberg/HEAL/HEAL_JSON:MD_updates/heal-metadata-schemas/"
+
+
 
 ##input_clean_json = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema.json"
 ##output_clean_md = r"C:\Users\tentner-andrea\project_repositories\heal-metadata-schemas\study-metadata-schema-for-humans.md"
