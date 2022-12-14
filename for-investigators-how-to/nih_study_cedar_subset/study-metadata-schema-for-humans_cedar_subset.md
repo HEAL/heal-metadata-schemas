@@ -11,7 +11,6 @@
   - **`alternative_study_description`** *(string)*: An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.
 - **`metadata_location`** *(object)*
   - **`nih_application_id`** *(string)*: NIH application ID; only applicable if study is funded by NIH.
-  - **`clinical_trials_study_ID`** *(string)*: ClinicalTrials.gov study ID; only applicable if study is a reportable clinical trial and registered on ClinicalTrials.gov.
   - **`other_study_websites`** *(array)*: any other websites officially associated with this study that provide additional information about the study.
     - **Items** *(string)*: Refer to *#/definitions/saneUrl*.
 - **`data_availability`** *(object)*

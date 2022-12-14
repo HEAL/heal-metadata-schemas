@@ -4,4 +4,6 @@ in vs code:
 - Cmd+Shift+P
 - search for Markdown PDC, and select Export PDF
 
+note: the Markdown PDC extension will need to be installed if it is not already
+
 see: https://ramezanpour.net/post/2020/03/03/convert-markdown-files-to-pdf
