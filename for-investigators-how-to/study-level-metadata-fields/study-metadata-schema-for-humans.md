@@ -11,9 +11,59 @@
   - **`alternative_study_description`** *(string)*: An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.
 - **`metadata_location`** *(object)*
   - **`nih_application_id`** *(string)*: NIH application ID; only applicable if study is funded by NIH.
+  - **`nih_reporter_link`** *(string)*: URL link to the NIH application ID NIH RePORTER webpage; only applicable if study is funded by NIH. Refer to *#/definitions/saneUrl*.
   - **`clinical_trials_study_ID`** *(string)*: ClinicalTrials.gov study ID; only applicable if study is a reportable clinical trial and registered on ClinicalTrials.gov.
+  - **`data_repositories`** *(array)*: Describe the data repositories to which data or other shareable products produced by the study will be submitted by the study authors and stored for long-term access; one item in this array per repository.
+    - **Items** *(object)*
+      - **`repository_name`** *(string)*: Name of a repository in which data or other shareable research products are submitted for storage by study author.
+      - **`repository_study_ID`** *(string)*: Unique identifier assigned to the study at that repository; usually a number or combination of standard letters and numbers (e.g. study identifiers on ClinicalTrials.gov are generally in the format: NCT12345678).
+      - **`repository_persistent_ID`** *(string)*: Unique persistent identifier assigned to the study at that repository; usually a doi.
+      - **`repository_citation`** *(string)*: The official citation the repository requests be used to cite the study/data when the study/data is discovered/accessed via the repository; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be the repository name).
+  - **`cedar_study_level_metadata_template_instance_ID`** *(string)*: ID of the CEDAR HEAL Study-level Core Metadata Template instance created for this study.
   - **`other_study_websites`** *(array)*: any other websites officially associated with this study that provide additional information about the study.
     - **Items** *(string)*: Refer to *#/definitions/saneUrl*.
+- **`citation`** *(object)*
+  - **`heal_funded_status`** *(boolean)*: Whether or not the study is funded by the NIH HEAL initiative.
+  - **`study_collection_status`** *(boolean)*: Whether or not the study is related to a study group or collection(s) by some administrative mechanism, or belongs to a group or collection of studies (e.g. SAMHSA performs a survey called the National Survey of Substance Abuse Treatment Services (N-SSATS) every year; each annual survey may be registered as a separate study that belongs to a collection called the N-SSATS collection).
+  - **`study_collections`** *(array)*: If this study belongs to a study group or collection(s), this is the name or identifier of the study group or collection(s) (e.g. SAMHSA performs a survey called the National Survey of Substance Abuse Treatment Services (N-SSATS) every year; each annual survey may be registered as a separate study that belongs to a collection called the N-SSATS collection).
+    - **Items** *(string)*
+  - **`funding`** *(array)*: Describe the grants and other funding supporting the study; one item in this array per grant/award or funding source.
+    - **Items** *(object)*
+      - **`funder_name`** *(array)*: Name of a the granting agency or organization funding the study; include sub-agency administrative entity as second element in array if applicable (e.g. National Institute of Health, National Institute on Drug Abuse).
+        - **Items** *(string)*
+      - **`funder_abbreviation`** *(array)*: Abbreviation for the name of the granting agency or organization funding the study; include abbreviation for sub-agency administrative entity as second element in array if applicable (e.g. NIH, NIDA).
+        - **Items** *(string)*
+      - **`funder_type`** *(string)*: Type of granting agency or organization funding the study. Must be one of: `['governmental', 'non-governmental, non-profit, not corporate affiliated', 'non-governmental, non-profit, corporate affiliated', 'non-governmental, for-profit']`.
+      - **`funder_geographic_reach`** *(string)*: The geographic reach of the granting agency or organization funding the study. Must be one of: `['international', 'national - non-US', 'national - US', 'state - US', 'local - US']`.
+      - **`funding_award_ID`** *(string)*: The grant award ID or number. For NIH-funded studies this will be the project or award number and is distinct from the NIH application ID.
+      - **`funding_award_name`** *(string)*: The grant award name. For NIH-funded studies this will be the project or award name and is distinct from the name or title associated with the NIH application ID.
+  - **`investigators`** *(array)*: Describe the primary and co-investigators of the study; one item in this array per investigator.
+    - **Items** *(object)*
+      - **`investigator_first_name`** *(string)*: First name of study primary or co-investigator.
+      - **`investigator_middle_initial`** *(string)*: Middle initial of study primary or co-investigator.
+      - **`investigator_last_name`** *(string)*: Last name of study primary or co-investigator.
+      - **`investigator_affiliation`** *(string)*: Institutional affiliation of study primary or co-investigator.
+      - **`investigator_ID`** *(array)*: Add a structured identifier(s) for the investigator; one item in this array per structured identifier; e.g. one item for providing ORCID, another for providing RAS passport.
+        - **Items** *(object)*
+          - **`investigator_ID_type`** *(string)*: Type of identifier that will be provided. Must be one of: `['internal NIH RePORTER ID', 'doi', 'ORCID', 'eRA Commons ID', 'RAS Passport']`.
+          - **`investigator_ID_value`** *(string)*: Value of the identifier of the type specified by ID_type.
+  - **`heal_platform_persistent_ID`** *(string)*: Persistent identifier assigned to the study on the HEAL Platform; probably a HEAL Platform-branded doi.
+  - **`heal_platform_citation`** *(string)*: The official citation the HEAL Platform will request be used to cite the study/data when the study/data is discovered/accessed via the Platform; will likely follow the format: Principal Investigator(s). Title. Place-of-Distribution and Distributor, Date-of-Distribution. DOI. version (where distributor will be: Platform via [Repository Name]).
+- **`contacts_and_registrants`** *(object)*
+  - **`contacts`** *(array)*: Describe the contact person(s) for the study. This is the person(s) who should be contacted for questions about the study; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per contact person.
+    - **Items** *(object)*
+      - **`contact_first_name`** *(string)*: First name of study contact.
+      - **`contact_middle_initial`** *(string)*: Middle initial of study contact.
+      - **`contact_last_name`** *(string)*: Last name of study contact.
+      - **`contact_affiliation`** *(string)*: Institutional affiliation of study contact.
+      - **`contact_email`** *(string)*: Institutional email of study contact.
+  - **`registrants`** *(array)*: Describe the person(s) who will register the study on the HEAL Platform. This person(s) must be authorized to access the study registration page/process on the HEAL Platform; will be auto-set as NIH contact PI(s) if NIH-funded; one item in this array per registrant.
+    - **Items** *(object)*
+      - **`registrant_first_name`** *(string)*: First name of study registrant.
+      - **`registrant_middle_initial`** *(string)*: Middle initial of study registrant.
+      - **`registrant_last_name`** *(string)*: Last name of study registrant.
+      - **`registrant_affiliation`** *(string)*: Institutional affiliation of study registrant.
+      - **`registrant_email`** *(string)*: Institutional email of study registrant.
 - **`data_availability`** *(object)*
   - **`produce_data`** *(boolean)*: Indicate whether or not the study will collect/produce (primary or secondary) data.
   - **`data_available`** *(string)*: If study will collect/produce data, indicate whether all, some, or none of the data will be made available. Must be one of: `['all', 'some', 'none']`.
@@ -25,6 +75,13 @@
   - **`data_release_start_date`** *(string)*: If study will collect/produce data and make at least some of the data available, indicate the anticipated date when first data will be released.
   - **`data_release_finish_date`** *(string)*: If study will produce data and make at least some of the data available, indicate the anticipated date when last data will be released (data release is complete).
   - **`produce_other`** *(boolean)*: Indicate whether or not the study will produce shareable products other than data.
+- **`findings`** *(object)*
+  - **`primary_publications`** *(array)*: List of the doi for any/all primary study publications that use the study data; include any papers, books, articles, blog posts, etc. authored by the investigators or team responsible for the study; one item in this array per publication/doi.
+    - **Items** *(string)*
+  - **`primary_study_findings`** *(array)*: Simple, one-sentence take-away conclusion(s) from study author publications; one item in this array per single-sentence conclusion (e.g. item #1: Provision of MAT rx to men with documented OUD leaving jail reduces overdose risk by 9%; item #2: Provision of MAT rx plus case management support to men with documented OUD leaving jail reduces overdose risk by 30%; item 3: Provision of MAT rx plus case management support to men with documented OUD leaving jail is more effective than provision of MAT rx alone at reducing risk of OUD overdose).
+    - **Items** *(string)*
+  - **`secondary_publications`** *(array)*: List of the doi for any/all secondary study publications that use the study data; include any papers, books, articles, blog posts, etc. authored by persons OTHER THAN the investigators or team responsible for the study; one item in this array per publication/doi.
+    - **Items** *(string)*
 - **`study_translational_focus`** *(object)*
   - **`study_translational_focus`** *(string)*: Whether the study is primarily focused on learning more about a human opioid or pain CONDITION or on discovering, or learning more about a TREATMENT OF A CONDITION, intervention, or solution for a human opioid or pain condition. This may be quite simple to infer for human subject studies. For studies not involving human subjects, please consider how/where the study will most substantially contribute to the HEAL Initiative translational purpose of learning more about human opioid and pain conditions and driving development of solutions to these conditions. Note there are some studies that are not related to a specific condition or the treatment of a condition.  An example of a study like this is the National Institute on Drug Abuse (NIDA) study Incarceration Effects on Medicaid Status. If a study like this does not apply to a condition or treatment, this question can be left blank.Choose one. Must be one of: `['Condition', 'Treatment of a Condition']`.
   - **`study_translational_topic_grouping`** *(array)*: What types of determinants and/or mechanisms related to human opioid use or pain conditions is the study investigating and/or measuring (e.g. A study investigating differential pain/nociception signaling in persons living in neighborhoods with high versus low social cohesion might choose both 'Biology and Health' and 'Social Determinants'). Choose as many as apply.
