@@ -1,0 +1,13 @@
+csvFieldPatterns:
+  arraysOf: 
+    values: "^(?:[^|]+\|)*[^|]*\|?$"
+    anyDict: "^(?:[^|=]*=[^|]*\|){0,1}[^|=]*=[^|=]*=(?:\|[^|=]*=[^|=]*){0,1}$"
+    dicts: 
+      userKeysAndValues: 
+        $ref: "#/csvFieldPatterns/arraysOf/anyDict"
+      userValuesWith:
+        threeSetKeys: "^(?:[^|=]*=){3}(?:[^|]*\|[^|=]*=){2}[^|]*=(?:[^|]*\|)?$"
+        twoSetKeys: 
+          $ref: "#/csvFieldPatterns/arraysOf/anyDict"
+
+
