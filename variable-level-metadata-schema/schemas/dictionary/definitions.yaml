@@ -9,14 +9,67 @@ csvFieldPatterns:
   object: 
       $ref: "#/csvFieldPatterns/lenTwoItemIter"
 
-csvBooleanTrueValues:
-csvBooleanFalseValues:
-csvBooleanValues:
-csvNumberValues:
-csvStringValues:
 csvIntegerValues:
+  - 'Integer'
+  - 'integer'
+  - 'INTEGER'
+  - 'Int'
+  - 'INT'
+  - 'int'
+csvNumberValues:
+  - 'float'
+  - 'Float'
+  - 'FLOAT'
+  - 'NUM'
+  - 'Num'
+  - 'num'
+  - 'number'
+  - 'Number'
+  - 'NUMBER'
+csvStringValues:
+  - 'text'
+  - 'TEXT'
+  - 'Text'
+  - 'string'
+  - 'STRING'
+  - 'String'
+  - 'CHAR'
+  - 'char'
+  - 'Char'
+csvBooleanTrueValues:
+  - 'TRUE'
+  - 'True'
+  - 'true'
+  - '1'
+  - 'YES'
+  - 'yes'
+  - 'Yes'
+  - 'y'
+  - 'Y'
+  - 'T' 
+  - 't'
+csvBooleanFalseValues:
+  - 'FALSE'
+  - 'false'
+  - 'False'
+  - '0'
+  - 'no'
+  - 'No'
+  - 'NO'
+  - 'N'
+  - 'n'
+  - 'f' 
+  - 'F'
 
-
+csvRequiredBooleanValues:
+  - 'REQUIRED'
+  - 'Required'
+  - 'required'
+csvNotRequiredBooleanValues:
+  - 'Not Required'
+  - 'Not required'
+  - 'not required'
+  - 'NOT REQUIRED'
 
 jsonArray:
   type: array
@@ -37,8 +90,13 @@ jsonBoolean:
   type: boolean 
 csvBoolean:
   type: string 
-  enum: 
-    $ref: "#/booleanReps"
+  anyOf:
+    - enum:
+      $ref: "#/csvBooleanTrueValues"
+    - enum:
+      $ref: "#csvBooleanFalseValues"
+
+    
 
 
 
@@ -127,18 +185,24 @@ fields:
         $ref: "#/jsonObject"
         examples:
           - '{0:"No",1:"Yes"}'
-          - '{"HW":"Hello world","GBW":"Good bye world"}'
+          - '{"HW":"Hello world","GBW":"Good bye world","HM":"Hi, Mike"}'
       _csvSpec:
-          $ref: "#/csvObject"
+        $ref: "#/csvObject"
+        examples:
+          - '0=No|1=Yes'
+          - 'HW=Hello world|GBW=Good bye world|HM=Hi,Mike'  
     ordered:
-      type: boolean
       title: An ordered variable
       description: >
         Indicates whether a categorical variable is ordered. This variable  is
         relevant for variables that have an ordered relationship but not
         necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
         < Neutral < Agree).
-      #TODO: for csv add truey and falsey values from healdata-utils as enum
+      _jsonSpec:
+        $ref: "#/jsonBoolean"
+      _csvSpec:
+        $ref: "#/csvBoolean"
+      
     missingValues:
       title: Missing Values
       description: A list of missing values specific to a variable.
@@ -148,67 +212,82 @@ fields:
         type: string 
         pattern: "#/csvFieldPatterns/arrayOf/values"
     trueValues:
-      type: array
       title: Boolean True Value Labels
       description: >
         For boolean (true) variable (as defined in type field), this field allows
         a physical string representation to be cast as true (increasing
-        readability of the field)
-      items:
-        type: string
-      examples:
-        - 'Yes'
-        - '1'
-        - 'True'
-        - 'true'
-        - Correct
+        readability of the field). It can include one or more values.
+      
+      _jsonSpec:
+        type: array
+        items:
+          type: string
+        examples:
+          - Required
+          - REQUIRED
+          - required
+          - 'Yes'
+          - Checked"
+      _csvSpec: 
+        type: string 
+        examples: 
+          - "Required|REQUIRED"
+          - "required|Yes|Y|Checked"
+          - Checked
+          - Required
     falseValues:
       type: array
       title: Boolean False Value Labels
       description: >
         For boolean (false) variable (as defined in type field), this field allows
         a physical string representation to be cast as false (increasing
-        readability of the field)
+        readability of the field) that is not a standard false value. It can include one or more values.
       items:
         type: string
       examples:
-        - 'No'
-        - '0'
-        - 'False'
-        - 'false'
-        - Incorrect
+        - $ref: "#/csvNotRequiredBooleanValues"
     repo_link:
       type: string
       title: Variable Repository Link
       description: |
         A link to the variable as it exists on the home repository, if applicable
     cde_id:
-      type: array
       title: Common Data Element Id
       description: The source and id for the NIH Common Data Elements program.
-      items:
-        type: object
-        properties:
-          source:
-            type: string
-          id:
-            type: string
+      
+      _jsonSpec:
+        type: array
+        items:
+          type: object
+          properties:
+            source:
+              type: string
+            id:
+              type: string
+      _csvSpec:
+        type: string
+        pattern:
+          $ref: "#/csvFieldPatterns/arrayOf/objects/twoProps"
     ontology_id:
-      type: array
       title: Ontology ID
       description: >
         Ontological information for the given variable as indicated  by the
         source, id, and relation to the specified classification. One or more
         ontology classifications can be specified. 
-      items:
-        type: object
-        properties:
-          relation:
-            type: string
-          source:
-            type: string
-          id:
-            type: string
+      _jsonSpec:
+        type: array
+        items:
+          type: object
+          properties:
+            relation:
+              type: string
+            source:
+              type: string
+            id:
+              type: string
+      _csvSpec:
+        type: string 
+        pattern: "#/csvFieldPatterns/arrayOf/objects/threeProps"
     univar_stats:
       type: object
       properties:
