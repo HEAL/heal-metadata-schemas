@@ -161,6 +161,7 @@ class JsonSchema:
             'name':propname,
             'description':prop.get('description'),
             'title':prop.get('title'),
+            'examples':prop.get('examples'),
             'type':list(set(anyof.get('type',[])+[p for p in [prop.get('type')] if p])),
             'enum':list(set(anyof.get('enum',[])+prop.get('enum',[]))),
             'pattern':prop.get('pattern'),
@@ -188,7 +189,7 @@ class JsonSchema:
         assert 'properties' in self.schema
 
         frictionless = Schema()
-        for propname in ['description','title','name']:
+        for propname in ['description','title','name','examples']:
             if self.schema.get(propname):
                 frictionless[propname] = self.schema[propname]
         # get fields subschema
@@ -210,7 +211,7 @@ csvfields = (
     .flatten()
     .to_frictionless()
 )
-csvfields.frictionless_schema.to_json("schemas/frictionless/csvtemplate2.json")
+csvfields.frictionless_schema.to_json("schemas/frictionless/csvtemplate.json")
 # schema = {
 #     "type": "object",
 #     "properties": {
