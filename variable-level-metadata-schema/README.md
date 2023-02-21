@@ -8,9 +8,10 @@ converting this template to its validated json format.
 
 - `code`: contains the CSV template to json conversion/validation and generation of the template description. 
 - `docs`: (a little unconventional) documents and other materials to understand VLMD materials in this repo.
-- `schemas`: the JSONschemas specifying variable level metadata. As a data dictionary most likely contains multiple variables, a data dictionary is specified as an array (list) of properties (`data_dictionary.json`) that describe a set of variables (`fields.json` and referenced in the data_dictionary.json). 
+- `schemas`: the JSONschemas specifying variable level metadata. As a data dictionary most likely contains multiple variables, a data dictionary is specified as an array (list) of properties(`data_dictionary.json`) that describe a set of variables (`fields.json` and referenced in the data_dictionary.json). 
+- `schemas/frictionless`: contains schemas following the frictionless schema specifications. `csvtemplate.json` contains the frictionless Table Schema descriptor that validates a tabular heal templated csv data dictionary
 - `templates`: the (filled out) templates in TSV spreadsheet format and JSON format. 
-
+- `build.py`: **Work in progress** this script compiles the yaml files and generates associated jsonschemas and frictionless schemas.
 
 
 
