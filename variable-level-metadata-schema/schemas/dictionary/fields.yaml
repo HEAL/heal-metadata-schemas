@@ -9,6 +9,20 @@ required:
   - name
   - description
 properties:
+  module: 
+    type: string 
+    title: Module (i.e., section,form,category)
+    description: >
+      Module (a place to put the section, form, or other broad category used 
+      to group variables.
+    examples:
+      - Demographics
+      - PROMIS
+      - Substance use
+      - Medical History
+      - Sleep questions
+      - Physical activity
+
   name:
     type: string
     title: Variable Name
