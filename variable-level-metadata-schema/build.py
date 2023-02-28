@@ -11,6 +11,7 @@ import yaml
 from pathlib import Path
 import os
 import re
+import json
 import copy
 from collections.abc import MutableMapping,MutableSequence,MutableSet
 from functools import reduce
@@ -125,26 +126,37 @@ def flatten(items,schema,parentkey="",sep="."):
 
     return schema_flattened
 
-class JsonSchema:
+class SchemaBuilder:
+    """
+    methods to transform 
+    a jsonschema into a frictionless schema
+
+    NOTE: 
+    """
     def __init__(self,schema):
         self.schema = copy.deepcopy(schema)
+        self.required = self.schema.get("required",[])
     
     def flatten(self):
         self.schema['properties'] = flatten(self.schema['properties'],self.schema)
+        #How to deal with required properties that are flattened?
         return self
 
-    def select_specs(self):
-        self.schema = select_specs(self.schema,self.schema)
+    def select_specs(self,specname):
+        self.schema = select_specs(self.schema,self.schema,specname)
+        self.required = self.schema.get("required",[])
         return self
     
     def resolve_refs(self):
         self.schema = resolve_refs(self.schema,self.schema)
+        self.required = self.schema.get("required",[])
         return self
     
     def select_properties(self,jsonpath):
         path = jsonpath.split("/")
         get_item = lambda item,key: item.get(key,{})
         self.schema = reduce(get_item,path,self.schema)
+        self.required = self.schema.get("required",[])
         return self
 
     def _to_frictionless_field(self,propname,prop):
@@ -156,7 +168,6 @@ class JsonSchema:
             'type':[t for t in get_anyof('type') if t],
             'enum':[val for enumlist in get_anyof('enum') for val in enumlist],
         }
-        
         jsonfields = {
             'name':propname,
             'description':prop.get('description'),
@@ -166,8 +177,11 @@ class JsonSchema:
             'enum':list(set(anyof.get('enum',[])+prop.get('enum',[]))),
             'pattern':prop.get('pattern'),
         }
+        # add required 
+        if propname in self.required:
+            jsonfields['required'] = True
 
-        constraintfields = ['enum','pattern']
+        constraintfields = ['enum','pattern','required']
         targetfield = {}
 
         for propname,prop in jsonfields.items():
@@ -180,6 +194,8 @@ class JsonSchema:
                     targetfield['constraint'] = {propname:prop}
             elif prop:
                 targetfield[propname] = prop
+
+
 
         return targetfield
 
@@ -203,39 +219,23 @@ class JsonSchema:
         self.frictionless_schema = frictionless
         return self
 
+# compile frictionless schema fields
 csvfields = (
-    JsonSchema(load_all_yamls())
-    .select_specs()
+    SchemaBuilder(load_all_yamls())
+    .select_specs(specname="_csvSpecs")
     .resolve_refs()
     .select_properties(jsonpath="fields")
     .flatten()
     .to_frictionless()
+    .frictionless_schema
 )
-csvfields.frictionless_schema.to_json("schemas/frictionless/csvtemplate.json")
-# schema = {
-#     "type": "object",
-#     "properties": {
-#         "foo": {"$ref": "#/definitions/footest"},
-#         "foo2": [{"$ref": "#/definitions/footest"}],
-#     },
-#     "definitions": {
-#         "footest": {
-#             "type": "string"
-#         }
-#     }
-# }
+csvfields.to_json("schemas/frictionless/fields.json")
 
-# test = resolve_refs(schema,schema)
-
-# test = {
-#   "type": "object",
-#   "properties": {
-#     "name": {
-#       "type": "string",
-#       "enum": [
-#         "Sally",
-#         "Ann"
-#       ]
-#     }
-#   }
-# }
+# compile json schema fields
+jsonfields = (SchemaBuilder(load_all_yamls())\
+    .select_specs(specname="_jsonSpec")\
+    .resolve_refs()
+    .select_properties(jsonpath="fields")
+    .schema
+)
+Path("schemas/jsonschema/fields.json").write_text(json.dumps(jsonfields,indent=4))
