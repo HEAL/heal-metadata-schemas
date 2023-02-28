@@ -60,7 +60,8 @@ csvBooleanFalseValues:
     - 'f' 
     - 'F'
 
-
+# for frictionless types and formats see:
+# https://specs.frictionlessdata.io/table-schema/#types-and-formats
 frictionlessTypes:
   type: string 
   enum:
@@ -76,6 +77,28 @@ frictionlessTypes:
     - "yearmonth"
     - "duration"
     - "geopoint"
+
+# need to make additional conditional check in fricitonless (if/then/else not available)
+frictionlessFormats:
+  type: string 
+  enum: 
+  # string formats
+    - uri 
+    - email 
+    - binary 
+    - uuid
+  # date formats
+    # the any format for dates/times/datetime/year, could be a number of formats. Right now just any
+    #NOTE: see https://specs.frictionlessdata.io/table-schema/#date
+    - any 
+
+  # geopoint 
+    - array 
+    - object 
+
+  # geojson
+    - topojson
+
 
 csvRequiredBooleanValues:
   type: string 
