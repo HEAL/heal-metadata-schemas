@@ -9,6 +9,19 @@
         "description"
     ],
     "properties": {
+        "module": {
+            "type": "string",
+            "title": "Module (i.e., section,form,category)",
+            "description": "Module (a place to put the section, form, or other broad category used  to group variables.\n",
+            "examples": [
+                "Demographics",
+                "PROMIS",
+                "Substance use",
+                "Medical History",
+                "Sleep questions",
+                "Physical activity"
+            ]
+        },
         "name": {
             "type": "string",
             "title": "Variable Name",
@@ -29,14 +42,38 @@
             ]
         },
         "type": {
-            "type": "string",
             "title": "Variable Type",
-            "description": "A classification allowing the user (analyst, researcher or computer) to know how to use the variable\n"
+            "description": "A classification allowing the user (analyst, researcher or computer) to know how to use the variable\n",
+            "type": "string",
+            "enum": [
+                "number",
+                "integer",
+                "string",
+                "any",
+                "boolean",
+                "date",
+                "datetime",
+                "time",
+                "year",
+                "yearmonth",
+                "duration",
+                "geopoint"
+            ]
         },
         "format": {
-            "type": "string",
             "title": "Variable Format",
-            "description": "Indicates the format of the type specified in the `type` property. This may describe the type of unit (such as for time fields like year or month) or the format of a date field (such as %y%m%d).\n"
+            "description": "Indicates the format of the type specified in the `type` property. This may describe the type of unit (such as for time fields like year or month) or the format of a date field (such as %y%m%d).\n",
+            "type": "string",
+            "enum": [
+                "uri",
+                "email",
+                "binary",
+                "uuid",
+                "any",
+                "array",
+                "object",
+                "topojson"
+            ]
         },
         "constraints": {
             "type": "object",
@@ -49,12 +86,12 @@
                 "enum": {
                     "type": "array",
                     "title": "Variable Possible Values",
-                    "description": "Constrains possible values to a set of values.\n"
+                    "description": "Constrains possible values to a set of values."
                 },
                 "pattern": {
                     "type": "string",
                     "title": "Regular Expression Pattern",
-                    "description": "A regular expression pattern the data MUST conform to.\n"
+                    "description": "A regular expression pattern the data MUST conform to."
                 },
                 "maximum": {
                     "type": "integer",
@@ -64,53 +101,43 @@
             }
         },
         "encoding": {
-            "type": "object",
             "title": "Variable Value Encodings (i.e., mappings; value labels)",
             "description": "Encodings (and mappings) allow categorical values to be stored as numerical values. IMPORTANT: the ==key should be the value represented IN the data== and the ==value should be the to-be-mapped label==. Many analytic software programs use numerical encodings and some algorithms only support numerical values. Additionally, this field provides a way to store categoricals that are stored as  \"short\" labels (such as abbreviations)\n",
+            "type": "object",
             "examples": [
-                "{0:'No',1:'Yes'}",
-                "{'HW':'Hello world','GBW':'Good bye world'}"
+                "{0:\"No\",1:\"Yes\"}",
+                "{\"HW\":\"Hello world\",\"GBW\":\"Good bye world\",\"HM\":\"Hi, Mike\"}"
             ]
         },
         "ordered": {
-            "type": "boolean",
             "title": "An ordered variable",
-            "description": "Indicates whether a categorical variable is ordered. This variable  is relevant for variables that have an ordered relationship but not necessarily  a numerical relationship (e.g., Strongly disagree < Disagree < Neutral < Agree).\n"
+            "description": "Indicates whether a categorical variable is ordered. This variable  is relevant for variables that have an ordered relationship but not necessarily  a numerical relationship (e.g., Strongly disagree < Disagree < Neutral < Agree).\n",
+            "type": "boolean"
         },
         "missingValues": {
-            "type": "array",
             "title": "Missing Values",
-            "description": "A list of missing values specific to a variable."
+            "description": "A list of missing values specific to a variable.",
+            "type": "array"
         },
         "trueValues": {
-            "type": "array",
             "title": "Boolean True Value Labels",
-            "description": "For boolean (true) variable (as defined in type field), this field allows a physical string representation to be cast as true (increasing readability of the field)\n",
+            "description": "For boolean (true) variable (as defined in type field), this field allows a physical string representation to be cast as true (increasing readability of the field). It can include one or more values.\n",
+            "type": "array",
             "items": {
                 "type": "string"
             },
             "examples": [
+                "Required",
+                "REQUIRED",
+                "required",
                 "Yes",
-                "1",
-                "True",
-                "true",
-                "Correct"
+                "Checked\""
             ]
         },
         "falseValues": {
-            "type": "array",
             "title": "Boolean False Value Labels",
-            "description": "For boolean (false) variable (as defined in type field), this field allows a physical string representation to be cast as false (increasing readability of the field)\n",
-            "items": {
-                "type": "string"
-            },
-            "examples": [
-                "No",
-                "0",
-                "False",
-                "false",
-                "Incorrect"
-            ]
+            "description": "For boolean (false) variable (as defined in type field), this field allows a physical string representation to be cast as false (increasing readability of the field) that is not a standard false value. It can include one or more values.\n",
+            "type": "array"
         },
         "repo_link": {
             "type": "string",
@@ -118,40 +145,39 @@
             "description": "A link to the variable as it exists on the home repository, if applicable\n"
         },
         "cde_id": {
-            "type": "array",
             "title": "Common Data Element Id",
             "description": "The source and id for the NIH Common Data Elements program.",
+            "type": "array",
             "items": {
-                    "type": "object",
-                    "properties": {
-                        "source": {
-                            "type": "string"
-                        },
-                        "id": {
-                            "type": "string"
-                        }
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
                     }
                 }
+            }
         },
         "ontology_id": {
-            "type": "array",
             "title": "Ontology ID",
             "description": "Ontological information for the given variable as indicated  by the source, id, and relation to the specified classification. One or more ontology classifications can be specified. \n",
+            "type": "array",
             "items": {
-                    "type": "object",
-                    "properties": {
-                        "relation": {
-                            "type": "string"
-                        },
-                        "source": {
-                            "type": "string"
-                        },
-                        "id": {
-                            "type": "string"
-                        }
-
+                "type": "object",
+                "properties": {
+                    "relation": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
                     }
                 }
+            }
         },
         "univar_stats": {
             "type": "object",
