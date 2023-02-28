@@ -51,18 +51,18 @@
       "type": "string",
       "constraint": {
         "enum": [
-          "geopoint",
-          "number",
-          "duration",
-          "yearmonth",
-          "integer",
-          "datetime",
-          "time",
-          "year",
-          "string",
           "any",
+          "yearmonth",
+          "geopoint",
+          "duration",
+          "number",
+          "string",
           "boolean",
-          "date"
+          "datetime",
+          "year",
+          "date",
+          "time",
+          "integer"
         ]
       }
     },
@@ -73,14 +73,14 @@
       "type": "string",
       "constraint": {
         "enum": [
-          "topojson",
+          "any",
+          "binary",
           "uri",
-          "array",
-          "uuid",
           "email",
           "object",
-          "any",
-          "binary"
+          "uuid",
+          "topojson",
+          "array"
         ]
       }
     },
