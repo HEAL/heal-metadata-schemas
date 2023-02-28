@@ -51,18 +51,18 @@
       "type": "string",
       "constraint": {
         "enum": [
+          "integer",
+          "boolean",
+          "year",
           "any",
-          "yearmonth",
+          "time",
+          "date",
+          "string",
           "geopoint",
+          "yearmonth",
           "duration",
           "number",
-          "string",
-          "boolean",
-          "datetime",
-          "year",
-          "date",
-          "time",
-          "integer"
+          "datetime"
         ]
       }
     },
@@ -73,14 +73,14 @@
       "type": "string",
       "constraint": {
         "enum": [
-          "any",
           "binary",
-          "uri",
+          "array",
+          "any",
           "email",
-          "object",
-          "uuid",
           "topojson",
-          "array"
+          "uuid",
+          "uri",
+          "object"
         ]
       }
     },
@@ -196,5 +196,8 @@
       "name": "univar_stats.cat_marginals",
       "type": "array"
     }
+  ],
+  "missingValues": [
+    ""
   ]
 }

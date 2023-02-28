@@ -216,6 +216,7 @@ class SchemaBuilder:
             frictionlessfields.append(self._to_frictionless_field(name,field))
 
         frictionless['fields'] = frictionlessfields
+        frictionless['missingValues'] = [""]
         self.frictionless_schema = frictionless
         return self
 
