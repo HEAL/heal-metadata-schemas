@@ -21,7 +21,7 @@
       "description": "The name of a variable (i.e., field) as it appears in the data.\n",
       "title": "Variable Name",
       "type": "string",
-      "constraint": {
+      "constraints": {
         "required": true
       }
     },
@@ -40,7 +40,7 @@
         "Question text (if a survey)"
       ],
       "type": "string",
-      "constraint": {
+      "constraints": {
         "required": true
       }
     },
@@ -49,20 +49,20 @@
       "description": "A classification allowing the user (analyst, researcher or computer) to know how to use the variable\n",
       "title": "Variable Type",
       "type": "string",
-      "constraint": {
+      "constraints": {
         "enum": [
-          "integer",
-          "boolean",
-          "year",
-          "any",
-          "time",
-          "date",
-          "string",
-          "geopoint",
-          "yearmonth",
-          "duration",
+          "datetime",
           "number",
-          "datetime"
+          "integer",
+          "date",
+          "geopoint",
+          "any",
+          "duration",
+          "boolean",
+          "string",
+          "year",
+          "yearmonth",
+          "time"
         ]
       }
     },
@@ -71,16 +71,16 @@
       "description": "Indicates the format of the type specified in the `type` property. This may describe the type of unit (such as for time fields like year or month) or the format of a date field (such as %y%m%d).\n",
       "title": "Variable Format",
       "type": "string",
-      "constraint": {
+      "constraints": {
         "enum": [
+          "email",
+          "uuid",
+          "any",
+          "object",
+          "uri",
           "binary",
           "array",
-          "any",
-          "email",
-          "topojson",
-          "uuid",
-          "uri",
-          "object"
+          "topojson"
         ]
       }
     },

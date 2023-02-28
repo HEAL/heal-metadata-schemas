@@ -188,10 +188,10 @@ class SchemaBuilder:
             if propname=='type' :
                 targetfield[propname] = prop[0] if len(prop)==1 else 'any'
             elif propname in constraintfields and prop:
-                if targetfield.get('constraint'):
-                    targetfield['constraint'][propname] = prop
+                if targetfield.get('constraints'):
+                    targetfield['constraints'][propname] = prop
                 else:
-                    targetfield['constraint'] = {propname:prop}
+                    targetfield['constraints'] = {propname:prop}
             elif prop:
                 targetfield[propname] = prop
 
