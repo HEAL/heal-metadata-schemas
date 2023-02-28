@@ -1,5 +1,7 @@
 
-
+_jsonSpec:
+  "$schema": http://json-schema.org/draft-04/schema#
+  "$id": vlmd-fields
 title: HEAL Variable Level Metadata Fields
 description: >
   Variable level metadata individual fields integrated into the variable level
@@ -46,12 +48,12 @@ properties:
       know how to use the variable
     $ref: "#/definitions/frictionlessTypes"
   format:
-    type: string
     title: Variable Format
     description: >
       Indicates the format of the type specified in the `type` property. This
       may describe the type of unit (such as for time fields like year or month)
       or the format of a date field (such as %y%m%d).
+    $ref: "#/definitions/frictionlessFormats"
   constraints:
     type: object
     properties:
