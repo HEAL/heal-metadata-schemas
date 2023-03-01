@@ -1,4 +1,0 @@
-- migrate all json schema (eg fields.json) to a `jsonschema` folder 
-- add jsonschema write to `build.py`
-- run build.py after adding (this should add enums for type property in fields.json)
-- add required as a field
