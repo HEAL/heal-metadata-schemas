@@ -82,7 +82,7 @@ properties:
           Specifies the maximum value of a field (e.g., maximum -- or most
           recent -- date, maximum integer etc). Note, this is different then
           maxLength property.
-  encoding:
+  encodings:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
       Encodings (and mappings) allow categorical values to be stored as

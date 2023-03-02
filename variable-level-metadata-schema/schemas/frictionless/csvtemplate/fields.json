@@ -51,18 +51,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "integer",
-          "any",
-          "duration",
           "boolean",
-          "geopoint",
-          "string",
-          "datetime",
-          "year",
-          "number",
+          "any",
+          "date",
           "yearmonth",
+          "string",
+          "integer",
+          "duration",
+          "number",
+          "geopoint",
           "time",
-          "date"
+          "datetime",
+          "year"
         ]
       }
     },
@@ -73,14 +73,14 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "uri",
-          "object",
-          "any",
-          "array",
-          "topojson",
-          "uuid",
+          "binary",
           "email",
-          "binary"
+          "any",
+          "uuid",
+          "object",
+          "uri",
+          "topojson",
+          "array"
         ]
       }
     },
@@ -109,7 +109,7 @@
       "type": "integer"
     },
     {
-      "name": "encoding",
+      "name": "encodings",
       "description": "Encodings (and mappings) allow categorical values to be stored as\nnumerical values. IMPORTANT: the ==key should be the value represented IN\nthe data== and the ==value should be the to-be-mapped label==. Many\nanalytic software programs use numerical encodings and some algorithms\nonly support numerical values. Additionally, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations)\n",
       "title": "Variable Value Encodings (i.e., mappings; value labels)",
       "type": "any"
