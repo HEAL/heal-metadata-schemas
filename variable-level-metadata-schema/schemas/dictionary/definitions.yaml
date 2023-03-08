@@ -1,0 +1,127 @@
+csvIntegerNames:
+  type: string 
+  enum:
+    - 'Integer'
+    - 'integer'
+    - 'INTEGER'
+    - 'Int'
+    - 'INT'
+    - 'int'
+csvNumberNames:
+  type: string 
+  enum:
+    - 'float'
+    - 'Float'
+    - 'FLOAT'
+    - 'NUM'
+    - 'Num'
+    - 'num'
+    - 'number'
+    - 'Number'
+    - 'NUMBER'
+csvStringNames:
+  type: string 
+  enum:
+    - 'text'
+    - 'TEXT'
+    - 'Text'
+    - 'string'
+    - 'STRING'
+    - 'String'
+    - 'CHAR'
+    - 'char'
+    - 'Char'
+csvBooleanTrueValues:
+  type: string 
+  enum:
+    - 'TRUE'
+    - 'True'
+    - 'true'
+    - '1'
+    - 'YES'
+    - 'yes'
+    - 'Yes'
+    - 'y'
+    - 'Y'
+    - 'T' 
+    - 't'
+csvBooleanFalseValues:
+  type: string 
+  enum:
+    - 'FALSE'
+    - 'false'
+    - 'False'
+    - '0'
+    - 'no'
+    - 'No'
+    - 'NO'
+    - 'N'
+    - 'n'
+    - 'f' 
+    - 'F'
+
+# for frictionless types and formats see:
+# https://specs.frictionlessdata.io/table-schema/#types-and-formats
+frictionlessTypes:
+  type: string 
+  enum:
+    - "number"
+    - "integer"
+    - "string"
+    - "any"
+    - "boolean"
+    - "date"
+    - "datetime"
+    - "time"
+    - "year"
+    - "yearmonth"
+    - "duration"
+    - "geopoint"
+
+# need to make additional conditional check in fricitonless (if/then/else not available)
+frictionlessFormats:
+  type: string 
+  enum: 
+  # string formats
+    - uri 
+    - email 
+    - binary 
+    - uuid
+  # date formats
+    # the any format for dates/times/datetime/year, could be a number of formats. Right now just any
+    #NOTE: see https://specs.frictionlessdata.io/table-schema/#date
+    - any 
+
+  # geopoint 
+    - array 
+    - object 
+
+  # geojson
+    - topojson
+
+
+csvRequiredBooleanValues:
+  type: string 
+  enum:
+    - 'REQUIRED'
+    - 'Required'
+    - 'required'
+csvNotRequiredBooleanValues:
+  type: string 
+  enum:
+    - 'Not Required'
+    - 'Not required'
+    - 'not required'
+    - 'NOT REQUIRED'
+
+csvArray:
+  type: string 
+  pattern: ^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$
+
+csvObject:
+  type: string 
+  pattern: ^(?:.*?=.*?(?:\||$))+$
+csvBoolean:
+  anyOf:
+    - $ref: "#/csvBooleanTrueValues"
+    - $ref: "#/csvBooleanFalseValues"
