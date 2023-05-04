@@ -230,7 +230,7 @@ csvfields = (
     .to_frictionless()
     .frictionless_schema
 )
-csvfields.to_json("schemas/frictionless/fields.json")
+csvfields.to_json("schemas/frictionless/csvtemplate/fields.json")
 
 # compile json schema fields
 jsonfields = (SchemaBuilder(load_all_yamls())\
