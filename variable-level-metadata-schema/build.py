@@ -45,7 +45,7 @@ def select_specs(items,schema,specname="_csvSpec"):
     #loop through schema
     schema_selected = {}
     for key,item in items.items():
-        if key==specname:
+        if key==specname or key+"s"==specname or key==specname+"s": #allow plural of Spec
             spec = item
             schema_selected.update(spec)
         elif re.search("^_.*Spec$",key):
