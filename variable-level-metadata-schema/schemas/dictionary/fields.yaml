@@ -166,28 +166,66 @@ properties:
     title: Variable Repository Link
     description: |
       A link to the variable as it exists on the home repository, if applicable
-  cde_id:
-    title: Common Data Element Id
-    description: The source and id for the NIH Common Data Elements program.
+  # cde_id:
+  #   title: Common Data Element Id
+  #   description: The source and id for the NIH Common Data Elements program.
+  #   type: array
+  #   items:
+  #     type: object
+  #     properties:
+  #       source:
+  #         type: string
+  #       id:
+  #         type: string
+  # ontology_id:
+  #   title: Ontology ID
+  #   description: |
+  #     Ontological information for the given variable as indicated  by the
+  #     source, id, and relation to the specified classification. One or more
+  #     ontology classifications can be specified. 
+  #   type: array
+  #   items:
+  #     type: object
+  #     properties:
+  #       relation:
+  #         type: string
+  #       source:
+  #         type: string
+  #       id:
+  #         type: string
+  standardsMappings:
+    title: Standards Mappings
+    description: |
+      A mapping to a published set of standard variables such as the NIH Common Data Elements program.
+      One or more mappings can be specified. 
     type: array
     items:
       type: object
       properties:
+        type:
+          type: string 
+        label:
+          type: string
+        url:
+          type: string
         source:
           type: string
         id:
           type: string
-  ontology_id:
-    title: Ontology ID
+  relatedConcepts:
+    title: Related concepts
     description: |
-      Ontological information for the given variable as indicated  by the
-      source, id, and relation to the specified classification. One or more
-      ontology classifications can be specified. 
+      A set of published concepts related to the given field such as 
+      ontological information (eg., NCI thesaurus, bioportal etc)
     type: array
     items:
       type: object
       properties:
-        relation:
+        type:
+          type: string 
+        label:
+          type: string
+        url:
           type: string
         source:
           type: string
