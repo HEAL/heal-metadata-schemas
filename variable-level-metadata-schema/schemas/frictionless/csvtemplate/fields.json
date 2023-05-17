@@ -51,16 +51,16 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "duration",
           "string",
-          "geopoint",
+          "date",
           "boolean",
-          "number",
-          "yearmonth",
+          "time",
           "year",
           "datetime",
-          "date",
-          "time",
+          "duration",
+          "number",
+          "yearmonth",
+          "geopoint",
           "integer",
           "any"
         ]
@@ -74,12 +74,12 @@
       "constraints": {
         "enum": [
           "binary",
-          "uuid",
           "uri",
+          "uuid",
           "object",
+          "array",
           "email",
           "topojson",
-          "array",
           "any"
         ]
       }
@@ -141,8 +141,6 @@
     },
     {
       "name": "trueValues",
-      "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n",
-      "title": "Boolean True Value Labels",
       "examples": [
         "Required|REQUIRED",
         "required|Yes|Y|Checked",
@@ -182,43 +180,43 @@
       "type": "array"
     },
     {
-      "name": "univar_stats.median",
+      "name": "univarStats.median",
       "type": "number"
     },
     {
-      "name": "univar_stats.mean",
+      "name": "univarStats.mean",
       "type": "number"
     },
     {
-      "name": "univar_stats.std",
+      "name": "univarStats.std",
       "type": "number"
     },
     {
-      "name": "univar_stats.min",
+      "name": "univarStats.min",
       "type": "number"
     },
     {
-      "name": "univar_stats.max",
+      "name": "univarStats.max",
       "type": "number"
     },
     {
-      "name": "univar_stats.mode",
+      "name": "univarStats.mode",
       "type": "number"
     },
     {
-      "name": "univar_stats.count",
+      "name": "univarStats.count",
       "type": "integer"
     },
     {
-      "name": "univar_stats.twenty_five_percentile",
+      "name": "univarStats.twentyFifthPercentile",
       "type": "number"
     },
     {
-      "name": "univar_stats.seventy_five_percentile",
+      "name": "univarStats.seventyFifthPercentile",
       "type": "number"
     },
     {
-      "name": "univar_stats.cat_marginals",
+      "name": "univarStats.categoricalMarginals",
       "type": "array"
     }
   ],
