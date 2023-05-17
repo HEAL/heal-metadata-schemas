@@ -144,13 +144,22 @@
             "title": "Variable Repository Link",
             "description": "A link to the variable as it exists on the home repository, if applicable\n"
         },
-        "cde_id": {
-            "title": "Common Data Element Id",
-            "description": "The source and id for the NIH Common Data Elements program.",
+        "standardsMappings": {
+            "title": "Standards Mappings",
+            "description": "A mapping to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
                     "source": {
                         "type": "string"
                     },
@@ -160,14 +169,20 @@
                 }
             }
         },
-        "ontology_id": {
-            "title": "Ontology ID",
-            "description": "Ontological information for the given variable as indicated  by the\nsource, id, and relation to the specified classification. One or more\nontology classifications can be specified. \n",
+        "relatedConcepts": {
+            "title": "Related concepts",
+            "description": "A set of published concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "relation": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "url": {
                         "type": "string"
                     },
                     "source": {

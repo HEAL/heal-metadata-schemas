@@ -113,7 +113,7 @@
     },
     {
       "name": "encodings",
-      "description": "Encodings (and mappings) allow categorical values to be stored as\nnumerical values. IMPORTANT: the ==key should be the value represented IN\nthe data== and the ==value should be the to-be-mapped label==. Many\nanalytic software programs use numerical encodings and some algorithms\nonly support numerical values. Additionally, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations)\n",
+      "description": "Encodings (and mappings) allow categorical values to be stored as\nnumerical values. IMPORTANT: the ==key should be the value represented IN\nthe data== and the ==value should be the to-be-mapped label==. Many\nanalytic software programs use numerical encodings and some algorithms\nonly support numerical values. Additionally, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n",
       "title": "Variable Value Encodings (i.e., mappings; value labels)",
       "examples": [
         "0=No|1=Yes",
@@ -170,22 +170,16 @@
       "type": "string"
     },
     {
-      "name": "cde_id",
-      "description": "The source and id for the NIH Common Data Elements program.",
-      "title": "Common Data Element Id",
-      "type": "string",
-      "constraints": {
-        "pattern": "^(?:.*?=.*?(?:\\||$))+$"
-      }
+      "name": "standardsMappings",
+      "description": "A mapping to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
+      "title": "Standards Mappings",
+      "type": "array"
     },
     {
-      "name": "ontology_id",
-      "description": "Ontological information for the given variable as indicated  by the\nsource, id, and relation to the specified classification. One or more\nontology classifications can be specified. \n",
-      "title": "Ontology ID",
-      "type": "string",
-      "constraints": {
-        "pattern": "^(?:[^|=]*=){3}(?:[^|]*\\|[^|=]*=){2}[^|]*=(?:[^|]*\\|)?$"
-      }
+      "name": "relatedConcepts",
+      "description": "A set of published concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
+      "title": "Related concepts",
+      "type": "array"
     },
     {
       "name": "univar_stats.median",
