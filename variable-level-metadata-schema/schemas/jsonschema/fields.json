@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "$id": "vlmd-fields",
     "title": "HEAL Variable Level Metadata Fields",
-    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n",
+    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional.\n",
     "type": "object",
     "required": [
         "name",
@@ -11,8 +11,8 @@
     "properties": {
         "module": {
             "type": "string",
-            "title": "Module (i.e., section,form,category)",
-            "description": "Module (a place to put the section, form, or other broad category used \nto group variables.\n",
+            "title": "Module",
+            "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
             "examples": [
                 "Demographics",
                 "PROMIS",
@@ -30,12 +30,15 @@
         "title": {
             "type": "string",
             "title": "Variable Label (ie Title)",
-            "description": "The human-readable title of the variable."
+            "description": "The human-readable title or label of the variable.",
+            "examples": [
+                "My Variable (for name of my_variable)"
+            ]
         },
         "description": {
             "type": "string",
             "title": "Variable Description",
-            "description": "An extended description of the variable.",
+            "description": "An extended description of the variable. This could be the definition of a variable or the question text (e.g., if a survey).",
             "examples": [
                 "Definition",
                 "Question text (if a survey)"
@@ -43,8 +46,46 @@
         },
         "type": {
             "title": "Variable Type",
-            "description": "A classification allowing the user (analyst, researcher or computer) to\nknow how to use the variable\n",
+            "description": "The data type of the variable. This categorization allows the researcher to know what operations can be performed\nwith the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.\n",
             "type": "string",
+            "examples": [
+                {
+                    "number": "A numeric value with optional decimal places. (e.g., 3.14)"
+                },
+                {
+                    "integer": "A whole number without decimal places. (e.g., 42)"
+                },
+                {
+                    "string": "A sequence of characters. (e.g., \"test\")"
+                },
+                {
+                    "any": "Any type of data is allowed. (e.g., true)"
+                },
+                {
+                    "boolean": "A binary value representing true or false. (e.g., true)"
+                },
+                {
+                    "date": "A specific calendar date. (e.g., \"2023-05-25\")"
+                },
+                {
+                    "datetime": "A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\")"
+                },
+                {
+                    "time": "A specific time of day. (e.g., \"10:30:00\")"
+                },
+                {
+                    "year": "A specific year. (e.g., 2023)"
+                },
+                {
+                    "yearmonth": "A specific year and month. (e.g., \"2023-05\")"
+                },
+                {
+                    "duration": "A length of time. (e.g., \"PT1H\")"
+                },
+                {
+                    "geopoint": "A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278])"
+                }
+            ],
             "enum": [
                 "number",
                 "integer",
@@ -61,18 +102,60 @@
             ]
         },
         "format": {
-            "title": "Variable Format",
-            "description": "Indicates the format of the type specified in the `type` property. This\nmay describe the type of unit (such as for time fields like year or month)\nor the format of a date field (such as %y%m%d).\n",
-            "type": "string",
-            "enum": [
-                "uri",
-                "email",
-                "binary",
-                "uuid",
-                "any",
-                "array",
-                "object",
-                "topojson"
+            "title": "Frictionless Formats",
+            "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas. For example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)",
+            "name": "frictionless_formats",
+            "anyOf": [
+                {
+                    "name": "string_format",
+                    "title": "String Format",
+                    "enum": [
+                        "uri",
+                        "email",
+                        "binary",
+                        "uuid"
+                    ]
+                },
+                {
+                    "name": "date_format",
+                    "title": "Date Format",
+                    "description": "A format for a date variable (`date`,`time`,`datetime`).  \n    * **default**: An ISO8601 format string.\n    * **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n    * **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\n",
+                    "examples": [
+                        "`%Y-%m-%d` (for date, e.g., 2023-05-25)",
+                        "`%Y%-%d` (for date, e.g., 20230525) for date without dashes",
+                        "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)",
+                        "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)",
+                        "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)",
+                        "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)",
+                        "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)",
+                        "`%H:%M:%S` (for time, e.g., 10:30:45)",
+                        "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)",
+                        "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+                    ]
+                },
+                {
+                    "name": "geopoint_format",
+                    "title": "Geopoint Format",
+                    "description": "The two types of formats for `geopoint` (describing a geographic point).",
+                    "oneOf": [
+                        {
+                            "type": "array",
+                            "description": "A JSON array or a string parsable as a JSON array where each item is a number with the first \nas the latitude and the second as longitude. \n"
+                        },
+                        {
+                            "type": "object",
+                            "description": "Contains latitude and longitude with two keys (\"lat\" and \"long\") with number items mapped to each key.\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "geojson",
+                    "description": "The JSON object according to the geojson spec.",
+                    "enum": [
+                        "topojson",
+                        "default"
+                    ]
+                }
             ]
         },
         "constraints": {
@@ -146,12 +229,18 @@
         },
         "standardsMappings": {
             "title": "Standards Mappings",
-            "description": "A mapping to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
+            "description": "A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "type": {
+                        "description": "The type of mapping.",
+                        "examples": [
+                            "cde",
+                            "ontology",
+                            null
+                        ],
                         "type": "string"
                     },
                     "label": {

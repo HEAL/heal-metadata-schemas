@@ -1,11 +1,11 @@
 {
-  "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n",
+  "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional.\n",
   "title": "HEAL Variable Level Metadata Fields",
   "fields": [
     {
       "name": "module",
-      "description": "Module (a place to put the section, form, or other broad category used \nto group variables.\n",
-      "title": "Module (i.e., section,form,category)",
+      "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
+      "title": "Module",
       "examples": [
         "Demographics",
         "PROMIS",
@@ -27,13 +27,16 @@
     },
     {
       "name": "title",
-      "description": "The human-readable title of the variable.",
+      "description": "The human-readable title or label of the variable.",
       "title": "Variable Label (ie Title)",
+      "examples": [
+        "My Variable (for name of my_variable)"
+      ],
       "type": "string"
     },
     {
       "name": "description",
-      "description": "An extended description of the variable.",
+      "description": "An extended description of the variable. This could be the definition of a variable or the question text (e.g., if a survey).",
       "title": "Variable Description",
       "examples": [
         "Definition",
@@ -46,43 +49,69 @@
     },
     {
       "name": "type",
-      "description": "A classification allowing the user (analyst, researcher or computer) to\nknow how to use the variable\n",
+      "description": "The data type of the variable. This categorization allows the researcher to know what operations can be performed\nwith the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.\n",
       "title": "Variable Type",
+      "examples": [
+        {
+          "number": "A numeric value with optional decimal places. (e.g., 3.14)"
+        },
+        {
+          "integer": "A whole number without decimal places. (e.g., 42)"
+        },
+        {
+          "string": "A sequence of characters. (e.g., \"test\")"
+        },
+        {
+          "any": "Any type of data is allowed. (e.g., true)"
+        },
+        {
+          "boolean": "A binary value representing true or false. (e.g., true)"
+        },
+        {
+          "date": "A specific calendar date. (e.g., \"2023-05-25\")"
+        },
+        {
+          "datetime": "A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\")"
+        },
+        {
+          "time": "A specific time of day. (e.g., \"10:30:00\")"
+        },
+        {
+          "year": "A specific year. (e.g., 2023)"
+        },
+        {
+          "yearmonth": "A specific year and month. (e.g., \"2023-05\")"
+        },
+        {
+          "duration": "A length of time. (e.g., \"PT1H\")"
+        },
+        {
+          "geopoint": "A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278])"
+        }
+      ],
       "type": "string",
       "constraints": {
         "enum": [
-          "string",
-          "date",
-          "boolean",
+          "number",
           "time",
           "year",
-          "datetime",
-          "duration",
-          "number",
+          "string",
           "yearmonth",
-          "geopoint",
+          "date",
+          "boolean",
+          "any",
+          "duration",
           "integer",
-          "any"
+          "datetime",
+          "geopoint"
         ]
       }
     },
     {
       "name": "format",
-      "description": "Indicates the format of the type specified in the `type` property. This\nmay describe the type of unit (such as for time fields like year or month)\nor the format of a date field (such as %y%m%d).\n",
-      "title": "Variable Format",
-      "type": "string",
-      "constraints": {
-        "enum": [
-          "binary",
-          "uri",
-          "uuid",
-          "object",
-          "array",
-          "email",
-          "topojson",
-          "any"
-        ]
-      }
+      "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas. For example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)",
+      "title": "Frictionless Formats",
+      "type": "any"
     },
     {
       "name": "constraints.maxLength",
@@ -169,7 +198,7 @@
     },
     {
       "name": "standardsMappings",
-      "description": "A mapping to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
+      "description": "A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
       "title": "Standards Mappings",
       "type": "array"
     },

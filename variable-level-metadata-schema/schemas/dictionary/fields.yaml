@@ -4,6 +4,8 @@ title: HEAL Variable Level Metadata Fields
 description: |
   Variable level metadata individual fields integrated into the variable level
   metadata object within the HEAL platform metadata service.
+
+  > Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional.
 type: object
 required:
   - name
@@ -11,9 +13,9 @@ required:
 properties:
   module: 
     type: string 
-    title: Module (i.e., section,form,category)
+    title: Module 
     description: |
-      Module (a place to put the section, form, or other broad category used 
+      The section, form, survey instrument, set of measures  or other broad category used 
       to group variables.
     examples:
       - Demographics
@@ -31,26 +33,27 @@ properties:
   title:
     type: string
     title: Variable Label (ie Title)
-    description: The human-readable title of the variable.
+    description: The human-readable title or label of the variable.
+    examples:
+    - My Variable (for name of my_variable)
   description:
     type: string
     title: Variable Description
-    description: An extended description of the variable.
+    description: An extended description of the variable. This could be the definition of a variable or the 
+      question text (e.g., if a survey).
     examples:
       - Definition
       - Question text (if a survey)
   type:
     title: Variable Type
     description: |
-      A classification allowing the user (analyst, researcher or computer) to
-      know how to use the variable
+      The data type of the variable. This categorization allows the researcher to know what operations can be performed
+      with the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.
     $ref: "#/definitions/frictionlessTypes"
   format:
     title: Variable Format
     description: |
-      Indicates the format of the type specified in the `type` property. This
-      may describe the type of unit (such as for time fields like year or month)
-      or the format of a date field (such as %y%m%d).
+      Indicates the format of the type specified in the `type` property.
     $ref: "#/definitions/frictionlessFormats"
   constraints:
     type: object
@@ -84,11 +87,15 @@ properties:
   encodingsJsonSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
-      Encodings (and mappings) allow categorical values to be stored as
-      numerical values. IMPORTANT: the ==key should be the value represented IN
-      the data== and the ==value should be the to-be-mapped label==. Many
-      analytic software programs use numerical encodings and some algorithms
-      only support numerical values. Additionally, this field provides a way to
+      Variable value encodings provide a way to further annotate any value within a any variable type,
+      making values easier to understand. 
+
+      
+      Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
+      only support numerical values. Encodings (and mappings) allow categorical values to be stored as
+      numerical values.
+      
+      Additionally, as another use case, this field provides a way to
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
     type: object
@@ -98,11 +105,15 @@ properties:
   encodingsCsvSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
-      Encodings (and mappings) allow categorical values to be stored as
-      numerical values. IMPORTANT: the ==key should be the value represented IN
-      the data== and the ==value should be the to-be-mapped label==. Many
-      analytic software programs use numerical encodings and some algorithms
-      only support numerical values. Additionally, this field provides a way to
+      Variable value encodings provide a way to further annotate any value within a any variable type,
+      making values easier to understand. 
+
+      
+      Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
+      only support numerical values. Encodings (and mappings) allow categorical values to be stored as
+      numerical values.
+      
+      Additionally, as another use case, this field provides a way to
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
     $ref: "#/definitions/csvObject"
@@ -196,13 +207,17 @@ properties:
   standardsMappings:
     title: Standards Mappings
     description: |
-      A mapping to a published set of standard variables such as the NIH Common Data Elements program.
+      A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
       One or more mappings can be specified. 
     type: array
     items:
       type: object
       properties:
         type:
+          description: The type of mapping.
+          examples:
+          - cde
+          - ontology
           type: string 
         label:
           type: string
