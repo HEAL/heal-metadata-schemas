@@ -2,8 +2,9 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "$id": "vlmd-fields",
     "title": "HEAL Variable Level Metadata Fields",
-    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional.\n",
+    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Note, only `name` and `description` are required.\n>  Listed at the end of the description are suggested \"priority\" levels in brackets (e.g., [<priority>]):\n  1. [Required]: Needs to be filled out to be valid.\n  2. [Highly recommended]: Greatly help using the data dictionary but not required. \n  3. [Optional, if applicable]: May only be applicable to certain fields.\n  4. [Autopopulated]: These fields are intended to be autopopulated from other fields.\n  5. [Experimental]: These fields are not currently used but are in development.\n",
     "type": "object",
+    "additionalProperties": true,
     "required": [
         "name",
         "description"
@@ -25,12 +26,12 @@
         "name": {
             "type": "string",
             "title": "Variable Name",
-            "description": "The name of a variable (i.e., field) as it appears in the data.\n"
+            "description": "The name of a variable (i.e., field) as it appears in the data. \n\n[Required]\n"
         },
         "title": {
             "type": "string",
             "title": "Variable Label (ie Title)",
-            "description": "The human-readable title or label of the variable.",
+            "description": "The human-readable title or label of the variable. \n\n[Highly recommended]\n",
             "examples": [
                 "My Variable (for name of my_variable)"
             ]
@@ -38,7 +39,7 @@
         "description": {
             "type": "string",
             "title": "Variable Description",
-            "description": "An extended description of the variable. This could be the definition of a variable or the question text (e.g., if a survey).",
+            "description": "An extended description of the variable. This could be the definition of a variable or the \nquestion text (e.g., if a survey). \n\n[Required]\n",
             "examples": [
                 "Definition",
                 "Question text (if a survey)"
@@ -46,7 +47,7 @@
         },
         "type": {
             "title": "Variable Type",
-            "description": "The data type of the variable. This categorization allows the researcher to know what operations can be performed\nwith the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.\n",
+            "description": "The data type of the variable. This categorization allows the researcher to know what operations can be performed\nwith the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.\n\n[Highly recommended]\n",
             "type": "string",
             "examples": [
                 {
@@ -164,28 +165,28 @@
                 "maxLength": {
                     "type": "integer",
                     "title": "Maximum Length",
-                    "description": "Indicates the maximum length of an iterable (e.g., array, string, or\nobject). For example, if 'Hello World' is the longest value of a\ncategorical variable, this would be a maxLength of 11.\n"
+                    "description": "Indicates the maximum length of an iterable (e.g., array, string, or\nobject). For example, if 'Hello World' is the longest value of a\ncategorical variable, this would be a maxLength of 11.\n\n[Optional,if applicable]\n"
                 },
                 "enum": {
                     "title": "Variable Possible Values",
-                    "description": "Constrains possible values to a set of values.",
+                    "description": "Constrains possible values to a set of values.\n\n[Optional,if applicable]\n",
                     "type": "array"
                 },
                 "pattern": {
                     "type": "string",
                     "title": "Regular Expression Pattern",
-                    "description": "A regular expression pattern the data MUST conform to."
+                    "description": "A regular expression pattern the data MUST conform to.\n\n[Optional,if applicable]\n"
                 },
                 "maximum": {
                     "type": "integer",
                     "title": "Maximum Value",
-                    "description": "Specifies the maximum value of a field (e.g., maximum -- or most\nrecent -- date, maximum integer etc). Note, this is different then\nmaxLength property.\n"
+                    "description": "Specifies the maximum value of a field (e.g., maximum -- or most\nrecent -- date, maximum integer etc). Note, this is different then\nmaxLength property.\n\n[Optional,if applicable]\n"
                 }
             }
         },
         "encodings": {
             "title": "Variable Value Encodings (i.e., mappings; value labels)",
-            "description": "Encodings (and mappings) allow categorical values to be stored as\nnumerical values. IMPORTANT: the ==key should be the value represented IN\nthe data== and the ==value should be the to-be-mapped label==. Many\nanalytic software programs use numerical encodings and some algorithms\nonly support numerical values. Additionally, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n",
+            "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n\n[Optional,if applicable]\n",
             "type": "object",
             "examples": [
                 "{0:\"No\",1:\"Yes\"}",
@@ -194,17 +195,17 @@
         },
         "ordered": {
             "title": "An ordered variable",
-            "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n",
+            "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n\n[Optional,if applicable]\n",
             "type": "boolean"
         },
         "missingValues": {
             "title": "Missing Values",
-            "description": "A list of missing values specific to a variable.",
+            "description": "A list of missing values specific to a variable.\n\n[Highly recommended]\n",
             "type": "array"
         },
         "trueValues": {
             "title": "Boolean True Value Labels",
-            "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n",
+            "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n\n[Highly recommended]\n",
             "type": "array",
             "items": {
                 "type": "string"
@@ -227,9 +228,44 @@
             "title": "Variable Repository Link",
             "description": "A link to the variable as it exists on the home repository, if applicable\n"
         },
+        "cde_id": {
+            "title": "Common Data Element Id",
+            "description": "[DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.\n",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ontology_id": {
+            "title": "Ontology ID",
+            "description": "[DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the\nsource, id, and relation to the specified classification. One or more\nontology classifications can be specified. \n",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "relation": {
+                        "type": "string"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "standardsMappings": {
             "title": "Standards Mappings",
-            "description": "A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n",
+            "description": "A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n\n[Autopopulated]\n",
             "type": "array",
             "items": {
                 "type": "object",
@@ -239,11 +275,12 @@
                         "examples": [
                             "cde",
                             "ontology",
-                            null
+                            "reference_list"
                         ],
                         "type": "string"
                     },
                     "label": {
+                        "description": null,
                         "type": "string"
                     },
                     "url": {
@@ -260,7 +297,7 @@
         },
         "relatedConcepts": {
             "title": "Related concepts",
-            "description": "A set of published concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
+            "description": "A set of published concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated]\n",
             "type": "array",
             "items": {
                 "type": "object",
@@ -285,6 +322,7 @@
         },
         "univarStats": {
             "type": "object",
+            "description": "Univariate statistics inferred from the data about the given variable \n\n[Experimental]\n",
             "properties": {
                 "median": {
                     "type": "number"

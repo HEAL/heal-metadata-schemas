@@ -5,7 +5,13 @@ description: |
   Variable level metadata individual fields integrated into the variable level
   metadata object within the HEAL platform metadata service.
 
-  > Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional/if applicable.
+  > Note, only `name` and `description` are required.
+  >  Listed at the end of the description are suggested "priority" levels in brackets (e.g., [<priority>]):
+    1. [Required]: Needs to be filled out to be valid.
+    2. [Highly recommended]: Greatly help using the data dictionary but not required. 
+    3. [Optional, if applicable]: May only be applicable to certain fields.
+    4. [Autopopulated]: These fields are intended to be autopopulated from other fields.
+    5. [Experimental]: These fields are not currently used but are in development.
 type: object
 additionalProperties: true
 required:
@@ -107,7 +113,7 @@ properties:
           Specifies the maximum value of a field (e.g., maximum -- or most
           recent -- date, maximum integer etc). Note, this is different then
           maxLength property.
-          
+
           [Optional,if applicable]
   encodingsJsonSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
@@ -157,7 +163,7 @@ properties:
       necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
       < Neutral < Agree).
 
-      [Optional,if applicable,experimental]
+      [Optional,if applicable]
     type: boolean
   missingValuesJsonSpec:
     title: Missing Values
@@ -192,6 +198,8 @@ properties:
       - Checked"
   trueValuesCsvSpec: 
     $ref: "#/definitions/csvArray"
+    description: |
+      [Optional,if applicable]
     examples: 
       - "Required|REQUIRED"
       - "required|Yes|Y|Checked"
@@ -216,38 +224,41 @@ properties:
     title: Variable Repository Link
     description: |
       A link to the variable as it exists on the home repository, if applicable
-  # cde_id:
-  #   title: Common Data Element Id
-  #   description: The source and id for the NIH Common Data Elements program.
-  #   type: array
-  #   items:
-  #     type: object
-  #     properties:
-  #       source:
-  #         type: string
-  #       id:
-  #         type: string
-  # ontology_id:
-  #   title: Ontology ID
-  #   description: |
-  #     Ontological information for the given variable as indicated  by the
-  #     source, id, and relation to the specified classification. One or more
-  #     ontology classifications can be specified. 
-  #   type: array
-  #   items:
-  #     type: object
-  #     properties:
-  #       relation:
-  #         type: string
-  #       source:
-  #         type: string
-  #       id:
-  #         type: string
+  cde_id:
+    title: Common Data Element Id
+    description: |
+      [DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.
+    type: array
+    items:
+      type: object
+      properties:
+        source:
+          type: string
+        id:
+          type: string
+  ontology_id:
+    title: Ontology ID
+    description: |
+      [DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the
+      source, id, and relation to the specified classification. One or more
+      ontology classifications can be specified. 
+    type: array
+    items:
+      type: object
+      properties:
+        relation:
+          type: string
+        source:
+          type: string
+        id:
+          type: string
   standardsMappings:
     title: Standards Mappings
     description: |
       A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
       One or more mappings can be specified. 
+
+      [Autopopulated]
     type: array
     items:
       type: object
@@ -257,8 +268,10 @@ properties:
           examples:
           - cde
           - ontology
+          - reference_list
           type: string 
         label:
+          description: 
           type: string
         url:
           type: string
@@ -271,6 +284,8 @@ properties:
     description: |
       A set of published concepts related to the given field such as 
       ontological information (eg., NCI thesaurus, bioportal etc)
+
+      [Autopopulated]
     type: array
     items:
       type: object
@@ -287,6 +302,10 @@ properties:
           type: string
   univarStats:
     type: object
+    description: |
+      Univariate statistics inferred from the data about the given variable 
+      
+      [Experimental]
     properties:
       median:
         type: number
