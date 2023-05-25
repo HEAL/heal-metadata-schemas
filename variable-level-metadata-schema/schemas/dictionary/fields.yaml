@@ -5,8 +5,9 @@ description: |
   Variable level metadata individual fields integrated into the variable level
   metadata object within the HEAL platform metadata service.
 
-  > Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional.
+  > Only `name`` and `description` are required. The other fields are either recommended (but optional) or optional/if applicable.
 type: object
+additionalProperties: true
 required:
   - name
   - description
@@ -29,18 +30,26 @@ properties:
     type: string
     title: Variable Name
     description: |
-      The name of a variable (i.e., field) as it appears in the data.
+      The name of a variable (i.e., field) as it appears in the data. 
+      
+      [Required]
   title:
     type: string
     title: Variable Label (ie Title)
-    description: The human-readable title or label of the variable.
+    description: |
+      The human-readable title or label of the variable. 
+      
+      [Highly recommended]
     examples:
     - My Variable (for name of my_variable)
   description:
     type: string
     title: Variable Description
-    description: An extended description of the variable. This could be the definition of a variable or the 
-      question text (e.g., if a survey).
+    description: |
+      An extended description of the variable. This could be the definition of a variable or the 
+      question text (e.g., if a survey). 
+      
+      [Required]
     examples:
       - Definition
       - Question text (if a survey)
@@ -49,11 +58,14 @@ properties:
     description: |
       The data type of the variable. This categorization allows the researcher to know what operations can be performed
       with the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.
+      
+      [Highly recommended]
     $ref: "#/definitions/frictionlessTypes"
   format:
     title: Variable Format
     description: |
       Indicates the format of the type specified in the `type` property.
+      [Optional, if applicable]
     $ref: "#/definitions/frictionlessFormats"
   constraints:
     type: object
@@ -65,18 +77,29 @@ properties:
           Indicates the maximum length of an iterable (e.g., array, string, or
           object). For example, if 'Hello World' is the longest value of a
           categorical variable, this would be a maxLength of 11.
+
+          [Optional,if applicable]
       enumJsonSpec:
         title: Variable Possible Values
-        description:   Constrains possible values to a set of values.
+        description: |
+          Constrains possible values to a set of values.
+
+          [Optional,if applicable]
         type: array
       enumCsvSpec:
         title: Variable Possible Values
-        description:   Constrains possible values to a set of values.
+        description:  |
+          Constrains possible values to a set of values.
+
+          [Optional,if applicable]
         $ref: "#/definitions/csvArray"
       pattern:
         type: string
         title: Regular Expression Pattern
-        description:   A regular expression pattern the data MUST conform to.
+        description:   |
+          A regular expression pattern the data MUST conform to.
+          
+          [Optional,if applicable]
       maximum:
         type: integer
         title: Maximum Value
@@ -84,6 +107,8 @@ properties:
           Specifies the maximum value of a field (e.g., maximum -- or most
           recent -- date, maximum integer etc). Note, this is different then
           maxLength property.
+          
+          [Optional,if applicable]
   encodingsJsonSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
@@ -98,6 +123,8 @@ properties:
       Additionally, as another use case, this field provides a way to
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
+
+      [Optional,if applicable]
     type: object
     examples:
       - '{0:"No",1:"Yes"}'
@@ -116,6 +143,8 @@ properties:
       Additionally, as another use case, this field provides a way to
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
+
+      [Optional,if applicable]
     $ref: "#/definitions/csvObject"
     examples:
       - '0=No|1=Yes'
@@ -127,14 +156,22 @@ properties:
       relevant for variables that have an ordered relationship but not
       necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
       < Neutral < Agree).
+
+      [Optional,if applicable,experimental]
     type: boolean
   missingValuesJsonSpec:
     title: Missing Values
-    description: A list of missing values specific to a variable.
+    description: |
+      A list of missing values specific to a variable.
+
+      [Highly recommended]
     type: array
   missingValuesCsvSpec:
     title: Missing Values
-    description: A list of missing values specific to a variable.
+    description: |
+      A list of missing values specific to a variable.
+
+      [Highly recommended]
     $ref: "#/definitions/csvArray"
   trueValuesJsonSpec:
     title: Boolean True Value Labels
@@ -142,6 +179,8 @@ properties:
       For boolean (true) variable (as defined in type field), this field allows
       a physical string representation to be cast as true (increasing
       readability of the field). It can include one or more values.
+
+      [Highly recommended]
     type: array
     items:
       type: string
