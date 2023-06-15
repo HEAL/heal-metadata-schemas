@@ -1,0 +1,10 @@
+name: heal-metadata-schemas
+channels:
+  - conda-forge
+  - default
+dependencies:
+  - python
+  - jupyter
+  - pip 
+  - pip: 
+    - json-schema-for-humans

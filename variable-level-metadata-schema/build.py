@@ -10,7 +10,9 @@ import json
 import copy
 from collections.abc import MutableMapping, MutableSequence, MutableSet
 from functools import reduce
-
+from json_schema_for_humans.generate import generate_from_filename
+from json_schema_for_humans.generation_configuration import GenerationConfiguration
+import jsonschema
 
 os.chdir(Path(__file__).parent)
 
@@ -121,8 +123,13 @@ def flatten_properties(properties, parentkey="", sep="."):
 
         if isinstance(item, MutableMapping):
             props = item.get("properties")
+            items = item.get("items",{}).get("properties")
             if props:
                 newprops = flatten_properties(props, parentkey=flattenedkey)
+                properties_flattened.update(newprops)
+
+            elif items:
+                newprops = flatten_properties(items,parentkey=flattenedkey)
                 properties_flattened.update(newprops)
             else:
                 properties_flattened[flattenedkey] = item
@@ -221,6 +228,27 @@ def run_pipeline_step(input, step):
     else:
         raise Exception("Step must be at least of length 1")
 
+def make_human_readable_schema():
+    pass 
+
+def generate_template(schema):
+    template = {}
+    if 'properties' in schema:
+        for prop, prop_schema in schema['properties'].items():
+            if 'type' in prop_schema:
+                if prop_schema['type'] == 'object':
+                    template[prop] = generate_template(prop_schema)
+                elif prop_schema['type'] == 'array':
+                    if prop_schema.get("items"):
+                        template[prop] = [generate_template(prop_schema['items'])]
+                    else:
+                        template[prop] = []
+                else:
+                    template[prop] = None
+            elif '$ref' in prop_schema:
+                ref_schema = get_referenced_schema(prop_schema['$ref'])
+                template[prop] = generate_template(ref_schema)
+    return template
 
 if __name__ == "__main__":
     # compile frictionless schema fields
@@ -234,10 +262,22 @@ if __name__ == "__main__":
         (flatten_schema, None),
         (to_frictionless, None),
     ]
-    csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
+    frictionlessfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
     Path("schemas/frictionless/csvtemplate/fields.json").write_text(
-        json.dumps(csvfields, indent=2)
+        json.dumps(frictionlessfields, indent=2)
     )
+
+    # compile json schema fields
+    csv_pipeline = [
+        (select_specs, {"specsuffix": "CsvSpec"}),
+        # recursive fxn so need to grab items from overall dictionary for json paths
+        (resolve_refs, {"schema": dictionary}),
+        # no longer need the definitons as they have been resolved
+        (lambda _schema: _schema["fields"], None),  
+        (flatten_schema, None),
+    ]
+    csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
+    Path("schemas/jsonschema/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
 
     # compile json schema fields
     json_pipeline = [
@@ -249,3 +289,39 @@ if __name__ == "__main__":
     ]
     jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
     Path("schemas/jsonschema/fields.json").write_text(json.dumps(jsonfields, indent=4))
+
+    # parser = jsonschema2md.Parser(
+    #     examples_as_yaml=False,
+    #     show_examples="all",
+    # )
+
+    config = GenerationConfiguration(
+        template_name="md",
+        template_md_options={
+            "badge_as_image": False,
+            "show_heading_numbers":False,
+            "show_toc":False,
+            # "tables":False
+            },
+        deprecated_from_description=True,
+        footer_show_time=False,
+        show_breadcrumbs=False
+    )
+    # generate json schema versions of field schemas for documentation
+    generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
+        "docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md",
+        config=config)
+    generate_from_filename("schemas/jsonschema/fields.json",
+        "docs/md-rendered-schemas/jsonschema-fields.md",
+        config=config)
+
+    #generate json schema versions of field schemas for documentation
+    generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
+        "docs/html-rendered-schemas/jsonschema-csvtemplate-fields.html")
+    generate_from_filename("schemas/jsonschema/fields.json",
+        "docs/html-rendered-schemas/jsonschema-fields.html")
+
+
+    # generate templates
+    Path("templates/template_submission.json").write_text(json.dumps([generate_template(jsonfields)],indent=4))
+    Path("templates/template_submission.csv").write_text(",".join((generate_template(csvfields)).keys()))

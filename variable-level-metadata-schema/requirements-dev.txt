@@ -1,0 +1,2 @@
+git+https://github.com/norc-heal/json-schema-for-humans.git@mbkranz/mkdocs-dev
+jsonschema

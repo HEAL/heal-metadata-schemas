@@ -10,8 +10,10 @@ description: |
     1. [Required]: Needs to be filled out to be valid.
     2. [Highly recommended]: Greatly help using the data dictionary but not required. 
     3. [Optional, if applicable]: May only be applicable to certain fields.
-    4. [Autopopulated]: These fields are intended to be autopopulated from other fields.
+    4. [Autopopulated, if not filled]: These fields are intended to be autopopulated from other fields but can be filled out if desired.
     5. [Experimental]: These fields are not currently used but are in development.
+
+
 type: object
 additionalProperties: true
 required:
@@ -71,6 +73,8 @@ properties:
     title: Variable Format
     description: |
       Indicates the format of the type specified in the `type` property.
+      For more information on frictionless formats [see here]()
+
       [Optional, if applicable]
     $ref: "#/definitions/frictionlessFormats"
   constraints:
@@ -132,9 +136,9 @@ properties:
 
       [Optional,if applicable]
     type: object
-    examples:
-      - '{0:"No",1:"Yes"}'
-      - '{"HW":"Hello world","GBW":"Good bye world","HM":"Hi, Mike"}'
+    examples: 
+      - {"0":"No","1":"Yes"}
+      - {"HW":"Hello world","GBW":"Good bye world","HM":"Hi, Mike"}
   encodingsCsvSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
@@ -177,7 +181,7 @@ properties:
     description: |
       A list of missing values specific to a variable.
 
-      [Highly recommended]
+      [Optional, if applicable]
     $ref: "#/definitions/csvArray"
   trueValuesJsonSpec:
     title: Boolean True Value Labels
@@ -186,7 +190,7 @@ properties:
       a physical string representation to be cast as true (increasing
       readability of the field). It can include one or more values.
 
-      [Highly recommended]
+      [Optional, if applicable]
     type: array
     items:
       type: string
@@ -199,7 +203,11 @@ properties:
   trueValuesCsvSpec: 
     $ref: "#/definitions/csvArray"
     description: |
-      [Optional,if applicable]
+      For boolean (true) variable (as defined in type field), this field allows
+      a physical string representation to be cast as true (increasing
+      readability of the field). It can include one or more values.
+
+      [Optional, if applicable]
     examples: 
       - "Required|REQUIRED"
       - "required|Yes|Y|Checked"
@@ -227,7 +235,7 @@ properties:
   cde_id:
     title: Common Data Element Id
     description: |
-      [DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.
+      [FUTURE WARNING: WILL BE DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.
     type: array
     items:
       type: object
@@ -239,7 +247,7 @@ properties:
   ontology_id:
     title: Ontology ID
     description: |
-      [DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the
+      [FUTURE WARNING: WILL BE DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the
       source, id, and relation to the specified classification. One or more
       ontology classifications can be specified. 
     type: array
@@ -254,52 +262,111 @@ properties:
           type: string
   standardsMappings:
     title: Standards Mappings
-    description: |
-      A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
-      One or more mappings can be specified. 
-
-      [Autopopulated]
+    description: A published set of standard variables such as the NIH Common Data Elements program.
+          
+          [Autopopulated, if not filled]
     type: array
     items:
       type: object
       properties:
         type:
-          description: The type of mapping.
+          title: Standards Mapping - Title
+          description: |
+            The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.
+            [Autopopulated, if not filled]
           examples:
           - cde
           - ontology
           - reference_list
           type: string 
         label:
-          description: 
+          title: Standards Mapping - Label
+          description: |
+            A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
+            
+            [Autopopulated, if not filled]
           type: string
-        url:
-          type: string
-        source:
-          type: string
-        id:
-          type: string
-  relatedConcepts:
-    title: Related concepts
-    description: |
-      A set of published concepts related to the given field such as 
-      ontological information (eg., NCI thesaurus, bioportal etc)
+          examples: 
+            - substance use
+            - chemical compound
+            - promis
 
-      [Autopopulated]
+        url:
+          title: Standards Mapping - Url
+          description: |
+            The url that links out to the published, standardized mapping.
+
+            [Autopopulated, if not filled]
+          type: string
+          format: uri
+          examples:
+            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
+
+        source:
+          title: Standard Mapping - Source 
+          description: |
+            The source of the standardized variable.
+          type: string
+          examples:
+            - TBD (will have controlled vocabulary)
+        id:
+          title: Standard Mapping - Id
+          type: string
+          description: |
+            The id locating the individual mapping within the given source.
+  relatedConcepts:
+    title: Related Concepts
+    description: Mappings to a published set of concepts related to the given field such as 
+            ontological information (eg., NCI thesaurus, bioportal etc)
+          
+          [Autopopulated, if not filled]
+
     type: array
     items:
       type: object
       properties:
         type:
+          title: Related concepts - Type
+          description: |
+            The **type** of mapping to a published set of concepts related to the given field such as 
+            ontological information (eg., NCI thesaurus, bioportal etc)
+
+            [Autopopulated, if not filled]
           type: string 
         label:
           type: string
+          title: Related Concepts - Label
+          description: |
+            A free text **label** of mapping to a published set of concepts related to the given field such as 
+            ontological information (eg., NCI thesaurus, bioportal etc)
+            
+            [Autopopulated, if not filled]
         url:
+          title: Related Concepts - Url
+          description: |
+            The url that links out to the published, standardized concept.
+
+            [Autopopulated, if not filled]
           type: string
+          format: uri
+          examples:
+            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
         source:
+          title: Related Concepts - Source 
+          description: |
+            The source of the related concept.
+
+            [Autopopulated, if not filled]
           type: string
+          examples:
+            - TBD (will have controlled vocabulary)
         id:
+          title: Related Concepts - Id
           type: string
+          description: |
+            The id locating the individual mapping within the given source.
+
+            [Autopopulated, if not filled]
   univarStats:
     type: object
     description: |
