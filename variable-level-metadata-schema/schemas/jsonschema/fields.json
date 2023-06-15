@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "$id": "vlmd-fields",
     "title": "HEAL Variable Level Metadata Fields",
-    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Note, only `name` and `description` are required.\n>  Listed at the end of the description are suggested \"priority\" levels in brackets (e.g., [<priority>]):\n  1. [Required]: Needs to be filled out to be valid.\n  2. [Highly recommended]: Greatly help using the data dictionary but not required. \n  3. [Optional, if applicable]: May only be applicable to certain fields.\n  4. [Autopopulated]: These fields are intended to be autopopulated from other fields.\n  5. [Experimental]: These fields are not currently used but are in development.\n",
+    "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n> Note, only `name` and `description` are required.\n>  Listed at the end of the description are suggested \"priority\" levels in brackets (e.g., [<priority>]):\n  1. [Required]: Needs to be filled out to be valid.\n  2. [Highly recommended]: Greatly help using the data dictionary but not required. \n  3. [Optional, if applicable]: May only be applicable to certain fields.\n  4. [Autopopulated, if not filled]: These fields are intended to be autopopulated from other fields but can be filled out if desired.\n  5. [Experimental]: These fields are not currently used but are in development.\n",
     "type": "object",
     "additionalProperties": true,
     "required": [
@@ -47,46 +47,8 @@
         },
         "type": {
             "title": "Variable Type",
-            "description": "The data type of the variable. This categorization allows the researcher to know what operations can be performed\nwith the variable (i.e., statistical test) in addition to telling the computer how to effectively store these data.\n\n[Highly recommended]\n",
+            "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
             "type": "string",
-            "examples": [
-                {
-                    "number": "A numeric value with optional decimal places. (e.g., 3.14)"
-                },
-                {
-                    "integer": "A whole number without decimal places. (e.g., 42)"
-                },
-                {
-                    "string": "A sequence of characters. (e.g., \"test\")"
-                },
-                {
-                    "any": "Any type of data is allowed. (e.g., true)"
-                },
-                {
-                    "boolean": "A binary value representing true or false. (e.g., true)"
-                },
-                {
-                    "date": "A specific calendar date. (e.g., \"2023-05-25\")"
-                },
-                {
-                    "datetime": "A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\")"
-                },
-                {
-                    "time": "A specific time of day. (e.g., \"10:30:00\")"
-                },
-                {
-                    "year": "A specific year. (e.g., 2023)"
-                },
-                {
-                    "yearmonth": "A specific year and month. (e.g., \"2023-05\")"
-                },
-                {
-                    "duration": "A length of time. (e.g., \"PT1H\")"
-                },
-                {
-                    "geopoint": "A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278])"
-                }
-            ],
             "enum": [
                 "number",
                 "integer",
@@ -104,11 +66,10 @@
         },
         "format": {
             "title": "Frictionless Formats",
-            "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas. For example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)",
+            "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas.\nFor example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)\n\nEach format is dependent on the `type` specified. For example:\nIf `type` is \"string\", then see the String formats. \nIf `type` is one of the date-like formats, then see Date formats.\n",
             "name": "frictionless_formats",
             "anyOf": [
                 {
-                    "name": "string_format",
                     "title": "String Format",
                     "enum": [
                         "uri",
@@ -118,24 +79,10 @@
                     ]
                 },
                 {
-                    "name": "date_format",
                     "title": "Date Format",
-                    "description": "A format for a date variable (`date`,`time`,`datetime`).  \n    * **default**: An ISO8601 format string.\n    * **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n    * **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\n",
-                    "examples": [
-                        "`%Y-%m-%d` (for date, e.g., 2023-05-25)",
-                        "`%Y%-%d` (for date, e.g., 20230525) for date without dashes",
-                        "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)",
-                        "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)",
-                        "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)",
-                        "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)",
-                        "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)",
-                        "`%H:%M:%S` (for time, e.g., 10:30:45)",
-                        "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)",
-                        "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
-                    ]
+                    "description": "A format for a date variable (`date`,`time`,`datetime`).  \n    \\n\\t* **default**: An ISO8601 format string.\n    \\n\\t* **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n    \\n\\t* **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\n\n\\nExamples:\n\n  `%Y-%m-%d` (for date, e.g., 2023-05-25)\n  `%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n  `%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\n  `%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\n  `%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\n  `%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\n  `%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\n  `%H:%M:%S` (for time, e.g., 10:30:45)\n  `%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\n  `%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\n"
                 },
                 {
-                    "name": "geopoint_format",
                     "title": "Geopoint Format",
                     "description": "The two types of formats for `geopoint` (describing a geographic point).",
                     "oneOf": [
@@ -150,7 +97,7 @@
                     ]
                 },
                 {
-                    "name": "geojson",
+                    "title": "geojson",
                     "description": "The JSON object according to the geojson spec.",
                     "enum": [
                         "topojson",
@@ -189,8 +136,15 @@
             "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n\n[Optional,if applicable]\n",
             "type": "object",
             "examples": [
-                "{0:\"No\",1:\"Yes\"}",
-                "{\"HW\":\"Hello world\",\"GBW\":\"Good bye world\",\"HM\":\"Hi, Mike\"}"
+                {
+                    "0": "No",
+                    "1": "Yes"
+                },
+                {
+                    "HW": "Hello world",
+                    "GBW": "Good bye world",
+                    "HM": "Hi, Mike"
+                }
             ]
         },
         "ordered": {
@@ -205,7 +159,7 @@
         },
         "trueValues": {
             "title": "Boolean True Value Labels",
-            "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n\n[Highly recommended]\n",
+            "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n\n[Optional, if applicable]\n",
             "type": "array",
             "items": {
                 "type": "string"
@@ -230,7 +184,7 @@
         },
         "cde_id": {
             "title": "Common Data Element Id",
-            "description": "[DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.\n",
+            "description": "[FUTURE WARNING: WILL BE DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.\n",
             "type": "array",
             "items": {
                 "type": "object",
@@ -246,7 +200,7 @@
         },
         "ontology_id": {
             "title": "Ontology ID",
-            "description": "[DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the\nsource, id, and relation to the specified classification. One or more\nontology classifications can be specified. \n",
+            "description": "[FUTURE WARNING: WILL BE DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the\nsource, id, and relation to the specified classification. One or more\nontology classifications can be specified. \n",
             "type": "array",
             "items": {
                 "type": "object",
@@ -265,13 +219,14 @@
         },
         "standardsMappings": {
             "title": "Standards Mappings",
-            "description": "A mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\nOne or more mappings can be specified. \n\n[Autopopulated]\n",
+            "description": "A published set of standard variables such as the NIH Common Data Elements program.\n[Autopopulated, if not filled]",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "type": {
-                        "description": "The type of mapping.",
+                        "title": "Standards Mapping - Title",
+                        "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.\n[Autopopulated, if not filled]\n",
                         "examples": [
                             "cde",
                             "ontology",
@@ -280,42 +235,78 @@
                         "type": "string"
                     },
                     "label": {
-                        "description": null,
-                        "type": "string"
+                        "title": "Standards Mapping - Label",
+                        "description": "A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\n\n[Autopopulated, if not filled]\n",
+                        "type": "string",
+                        "examples": [
+                            "substance use",
+                            "chemical compound",
+                            "promis"
+                        ]
                     },
                     "url": {
-                        "type": "string"
+                        "title": "Standards Mapping - Url",
+                        "description": "The url that links out to the published, standardized mapping.\n\n[Autopopulated, if not filled]\n",
+                        "type": "string",
+                        "format": "uri",
+                        "examples": [
+                            "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+                        ]
                     },
                     "source": {
-                        "type": "string"
+                        "title": "Standard Mapping - Source",
+                        "description": "The source of the standardized variable.\n",
+                        "type": "string",
+                        "examples": [
+                            "TBD (will have controlled vocabulary)"
+                        ]
                     },
                     "id": {
-                        "type": "string"
+                        "title": "Standard Mapping - Id",
+                        "type": "string",
+                        "description": "The id locating the individual mapping within the given source.\n"
                     }
                 }
             }
         },
         "relatedConcepts": {
-            "title": "Related concepts",
-            "description": "A set of published concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated]\n",
+            "title": "Related Concepts",
+            "description": "Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)\n[Autopopulated, if not filled]",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "type": {
+                        "title": "Related concepts - Type",
+                        "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n",
                         "type": "string"
                     },
                     "label": {
-                        "type": "string"
+                        "type": "string",
+                        "title": "Related Concepts - Label",
+                        "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n"
                     },
                     "url": {
-                        "type": "string"
+                        "title": "Related Concepts - Url",
+                        "description": "The url that links out to the published, standardized concept.\n\n[Autopopulated, if not filled]\n",
+                        "type": "string",
+                        "format": "uri",
+                        "examples": [
+                            "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+                        ]
                     },
                     "source": {
-                        "type": "string"
+                        "title": "Related Concepts - Source",
+                        "description": "The source of the related concept.\n\n[Autopopulated, if not filled]\n",
+                        "type": "string",
+                        "examples": [
+                            "TBD (will have controlled vocabulary)"
+                        ]
                     },
                     "id": {
-                        "type": "string"
+                        "title": "Related Concepts - Id",
+                        "type": "string",
+                        "description": "The id locating the individual mapping within the given source.\n\n[Autopopulated, if not filled]\n"
                     }
                 }
             }
