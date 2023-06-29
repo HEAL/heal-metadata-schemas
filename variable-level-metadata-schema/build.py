@@ -285,10 +285,10 @@ if __name__ == "__main__":
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
-        (lambda _schema: _schema["fields"], None),
+        (lambda _schema: _schema["data-dictionary"], None),
     ]
     jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
-    Path("schemas/jsonschema/fields.json").write_text(json.dumps(jsonfields, indent=4))
+    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(jsonfields, indent=4))
 
     # parser = jsonschema2md.Parser(
     #     examples_as_yaml=False,

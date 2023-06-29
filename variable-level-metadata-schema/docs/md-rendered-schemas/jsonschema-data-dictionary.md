@@ -29,10 +29,10 @@
   ### 
 ## `data_dictionary`
 
-|              |         |
-| ------------ | ------- |
-| **Type**     | `array` |
-| **Required** | Yes     |
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of object` |
+| **Required** | Yes               |
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |
@@ -42,18 +42,19 @@
 | **Additional items** | False              |
 | **Tuple validation** | See below          |
 
-| Each item of this array must be | Description                                                                      |
-| ------------------------------- | -------------------------------------------------------------------------------- |
-| [#](#data_dictionary_items)     | Variable level metadata individual fields integrated into the variable level ... |
+| Each item of this array must be                               | Description                                                                      |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [HEAL Variable Level Metadata Fields](#data_dictionary_items) | Variable level metadata individual fields integrated into the variable level ... |
 
-### #
+### HEAL Variable Level Metadata Fields
+
+**Title:** HEAL Variable Level Metadata Fields
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | fields.json/#                                                             |
 
 **Description:** Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.
@@ -361,7 +362,7 @@ categorical variable, this would be a maxLength of 11.
 [Optional,if applicable]
 
   ### 
-##### `enum`
+##### `enumJsonSpec`
 
 **Title:** Variable Possible Values
 
@@ -381,6 +382,24 @@ categorical variable, this would be a maxLength of 11.
 | **Items unicity**    | False              |
 | **Additional items** | False              |
 | **Tuple validation** | N/A                |
+
+  ### 
+##### `enumCsvSpec`
+
+**Title:** Variable Possible Values
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Constrains possible values to a set of values.
+
+[Optional,if applicable]
+
+| Restrictions                      |                                                                                                                                                                                                    |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```^(?:[^\|]+\\|\|[^\|]*)(?:[^\|]*\\|)*[^\|]*$``` [Test](https://regex101.com/?regex=%5E%28%3F%3A%5B%5E%7C%5D%2B%5C%7C%7C%5B%5E%7C%5D%2A%29%28%3F%3A%5B%5E%7C%5D%2A%5C%7C%29%2A%5B%5E%7C%5D%2A%24) |
 
   ### 
 ##### `pattern`
@@ -413,7 +432,7 @@ maxLength property.
 [Optional,if applicable]
 
   ### 
-#### `encodings`
+#### `encodingsJsonSpec`
 
 **Title:** Variable Value Encodings (i.e., mappings; value labels)
 
@@ -454,6 +473,43 @@ abbreviations).
 ```
 
   ### 
+#### `encodingsCsvSpec`
+
+**Title:** Variable Value Encodings (i.e., mappings; value labels)
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Variable value encodings provide a way to further annotate any value within a any variable type,
+making values easier to understand. 
+
+Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
+only support numerical values. Encodings (and mappings) allow categorical values to be stored as
+numerical values.
+
+Additionally, as another use case, this field provides a way to
+store categoricals that are stored as  "short" labels (such as
+abbreviations).
+
+[Optional,if applicable]
+
+**Examples:** 
+
+```json
+"0=No|1=Yes"
+```
+
+```json
+"HW=Hello world|GBW=Good bye world|HM=Hi,Mike"
+```
+
+| Restrictions                      |                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```^(?:.*?=.*?(?:\\|\|$))+$``` [Test](https://regex101.com/?regex=%5E%28%3F%3A.%2A%3F%3D.%2A%3F%28%3F%3A%5C%7C%7C%24%29%29%2B%24&testString=%220%3DNo%7C1%3DYes%22) |
+
+  ### 
 #### `ordered`
 
 **Title:** An ordered variable
@@ -471,7 +527,7 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 [Optional,if applicable]
 
   ### 
-#### `missingValues`
+#### `missingValuesJsonSpec`
 
 **Title:** Missing Values
 
@@ -493,7 +549,25 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 | **Tuple validation** | N/A                |
 
   ### 
-#### `trueValues`
+#### `missingValuesCsvSpec`
+
+**Title:** Missing Values
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** A list of missing values specific to a variable.
+
+[Optional, if applicable]
+
+| Restrictions                      |                                                                                                                                                                                                    |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```^(?:[^\|]+\\|\|[^\|]*)(?:[^\|]*\\|)*[^\|]*$``` [Test](https://regex101.com/?regex=%5E%28%3F%3A%5B%5E%7C%5D%2B%5C%7C%7C%5B%5E%7C%5D%2A%29%28%3F%3A%5B%5E%7C%5D%2A%5C%7C%29%2A%5B%5E%7C%5D%2A%24) |
+
+  ### 
+#### `trueValuesJsonSpec`
 
 **Title:** Boolean True Value Labels
 
@@ -538,11 +612,11 @@ readability of the field). It can include one or more values.
 | **Additional items** | False              |
 | **Tuple validation** | See below          |
 
-| Each item of this array must be                             | Description |
-| ----------------------------------------------------------- | ----------- |
-| [trueValues items](#data_dictionary_items_trueValues_items) | -           |
+| Each item of this array must be                                             | Description |
+| --------------------------------------------------------------------------- | ----------- |
+| [trueValuesJsonSpec items](#data_dictionary_items_trueValuesJsonSpec_items) | -           |
 
-##### trueValues items
+##### trueValuesJsonSpec items
 
 |              |          |
 | ------------ | -------- |
@@ -550,7 +624,43 @@ readability of the field). It can include one or more values.
 | **Required** | No       |
 
   ### 
-#### `falseValues`
+#### `trueValuesCsvSpec`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** For boolean (true) variable (as defined in type field), this field allows
+a physical string representation to be cast as true (increasing
+readability of the field). It can include one or more values.
+
+[Optional, if applicable]
+
+**Examples:** 
+
+```json
+"Required|REQUIRED"
+```
+
+```json
+"required|Yes|Y|Checked"
+```
+
+```json
+"Checked"
+```
+
+```json
+"Required"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```^(?:[^\|]+\\|\|[^\|]*)(?:[^\|]*\\|)*[^\|]*$``` [Test](https://regex101.com/?regex=%5E%28%3F%3A%5B%5E%7C%5D%2B%5C%7C%7C%5B%5E%7C%5D%2A%29%28%3F%3A%5B%5E%7C%5D%2A%5C%7C%29%2A%5B%5E%7C%5D%2A%24&testString=%22Required%7CREQUIRED%22) |
+
+  ### 
+#### `falseValuesJsonSpec`
 
 **Title:** Boolean False Value Labels
 
@@ -570,6 +680,24 @@ readability of the field) that is not a standard false value. It can include one
 | **Items unicity**    | False              |
 | **Additional items** | False              |
 | **Tuple validation** | N/A                |
+
+  ### 
+#### `falseValuesCsvSpec`
+
+**Title:** Boolean False Value Labels
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** For boolean (false) variable (as defined in type field), this field allows
+a physical string representation to be cast as false (increasing
+readability of the field) that is not a standard false value. It can include one or more values.
+
+| Restrictions                      |                                                                                                                                                                                                    |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```^(?:[^\|]+\\|\|[^\|]*)(?:[^\|]*\\|)*[^\|]*$``` [Test](https://regex101.com/?regex=%5E%28%3F%3A%5B%5E%7C%5D%2B%5C%7C%7C%5B%5E%7C%5D%2A%29%28%3F%3A%5B%5E%7C%5D%2A%5C%7C%29%2A%5B%5E%7C%5D%2A%24) |
 
   ### 
 #### `repo_link`

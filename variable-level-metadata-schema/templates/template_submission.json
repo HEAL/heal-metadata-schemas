@@ -1,71 +1,82 @@
 [
     {
-        "module": null,
-        "name": null,
         "title": null,
         "description": null,
-        "type": null,
-        "constraints": {
-            "maxLength": null,
-            "enum": [],
-            "pattern": null,
-            "maximum": null
-        },
-        "encodings": {},
-        "ordered": null,
-        "missingValues": [],
-        "trueValues": [
-            {}
-        ],
-        "falseValues": [],
-        "repo_link": null,
-        "cde_id": [
+        "data_dictionary": [
             {
-                "source": null,
-                "id": null
-            }
-        ],
-        "ontology_id": [
-            {
-                "relation": null,
-                "source": null,
-                "id": null
-            }
-        ],
-        "standardsMappings": [
-            {
+                "module": null,
+                "name": null,
+                "title": null,
+                "description": null,
                 "type": null,
-                "label": null,
-                "url": null,
-                "source": null,
-                "id": null
-            }
-        ],
-        "relatedConcepts": [
-            {
-                "type": null,
-                "label": null,
-                "url": null,
-                "source": null,
-                "id": null
-            }
-        ],
-        "univarStats": {
-            "median": null,
-            "mean": null,
-            "std": null,
-            "min": null,
-            "max": null,
-            "mode": null,
-            "count": null,
-            "twentyFifthPercentile": null,
-            "seventyFifthPercentile": null,
-            "categoricalMarginals": [
-                {
-                    "name": null,
-                    "count": null
+                "constraints": {
+                    "maxLength": null,
+                    "enumJsonSpec": [],
+                    "enumCsvSpec": null,
+                    "pattern": null,
+                    "maximum": null
+                },
+                "encodingsJsonSpec": {},
+                "encodingsCsvSpec": null,
+                "ordered": null,
+                "missingValuesJsonSpec": [],
+                "missingValuesCsvSpec": null,
+                "trueValuesJsonSpec": [
+                    {}
+                ],
+                "trueValuesCsvSpec": null,
+                "falseValuesJsonSpec": [],
+                "falseValuesCsvSpec": null,
+                "repo_link": null,
+                "cde_id": [
+                    {
+                        "source": null,
+                        "id": null
+                    }
+                ],
+                "ontology_id": [
+                    {
+                        "relation": null,
+                        "source": null,
+                        "id": null
+                    }
+                ],
+                "standardsMappings": [
+                    {
+                        "type": null,
+                        "label": null,
+                        "url": null,
+                        "source": null,
+                        "id": null
+                    }
+                ],
+                "relatedConcepts": [
+                    {
+                        "type": null,
+                        "label": null,
+                        "url": null,
+                        "source": null,
+                        "id": null
+                    }
+                ],
+                "univarStats": {
+                    "median": null,
+                    "mean": null,
+                    "std": null,
+                    "min": null,
+                    "max": null,
+                    "mode": null,
+                    "count": null,
+                    "twentyFifthPercentile": null,
+                    "seventyFifthPercentile": null,
+                    "categoricalMarginals": [
+                        {
+                            "name": null,
+                            "count": null
+                        }
+                    ]
                 }
-            ]
-        }
+            }
+        ]
     }
 ]
