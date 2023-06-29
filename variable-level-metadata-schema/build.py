@@ -311,17 +311,19 @@ if __name__ == "__main__":
     generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
         "docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md",
         config=config)
-    generate_from_filename("schemas/jsonschema/fields.json",
-        "docs/md-rendered-schemas/jsonschema-fields.md",
+    generate_from_filename("schemas/jsonschema/data-dictionary.json",
+        "docs/md-rendered-schemas/jsonschema-data-dictionary.md",
         config=config)
 
-    #generate json schema versions of field schemas for documentation
+    #generate json schema versions of field schemas for documentation 
     generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
         "docs/html-rendered-schemas/jsonschema-csvtemplate-fields.html")
-    generate_from_filename("schemas/jsonschema/fields.json",
-        "docs/html-rendered-schemas/jsonschema-fields.html")
+    
+    
+    generate_from_filename("schemas/jsonschema/data-dictionary.json",
+        "docs/html-rendered-schemas/jsonschema-jsontemplate-data-dictionary.html")
 
-
+    
     # generate templates
     Path("templates/template_submission.json").write_text(json.dumps([generate_template(jsonfields)],indent=4))
     Path("templates/template_submission.csv").write_text(",".join((generate_template(csvfields)).keys()))
