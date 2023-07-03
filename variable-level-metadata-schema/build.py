@@ -281,9 +281,9 @@ if __name__ == "__main__":
 
     # compile json schema fields
     json_pipeline = [
-        (select_specs, {"specsuffix": "JsonSpec"}),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
+        (select_specs, {"specsuffix": "JsonSpec"}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["data-dictionary"], None),
     ]

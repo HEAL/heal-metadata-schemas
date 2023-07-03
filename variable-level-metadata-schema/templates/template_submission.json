@@ -11,22 +11,17 @@
                 "type": null,
                 "constraints": {
                     "maxLength": null,
-                    "enumJsonSpec": [],
-                    "enumCsvSpec": null,
+                    "enum": [],
                     "pattern": null,
                     "maximum": null
                 },
-                "encodingsJsonSpec": {},
-                "encodingsCsvSpec": null,
+                "encodings": {},
                 "ordered": null,
-                "missingValuesJsonSpec": [],
-                "missingValuesCsvSpec": null,
-                "trueValuesJsonSpec": [
+                "missingValues": [],
+                "trueValues": [
                     {}
                 ],
-                "trueValuesCsvSpec": null,
-                "falseValuesJsonSpec": [],
-                "falseValuesCsvSpec": null,
+                "falseValues": [],
                 "repo_link": null,
                 "cde_id": [
                     {
