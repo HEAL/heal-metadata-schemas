@@ -14,11 +14,13 @@ The `schemas/dictionary` directory contains a comprehensive json schema with fie
 - `docs`: 
 See the rendered human readable schemas
 in a markdown format and an interactive html format.
-- `schemas/jsonschema`: the JSONschemas specifying variable level metadata. As a data dictionary most likely contains multiple variables, a data dictionary is specified as an array (list) of properties(`data_dictionary.json`) that describe a set of variables (`fields.json` and referenced in the data_dictionary.json). 
-- `schemas/frictionless/csvtemplate`: contains schemas following the frictionless schema specifications. `fields.json` contains the frictionless Table Schema descriptor that validates a tabular heal templated csv data dictionary. See [here](https://specs.frictionlessdata.io/table-schema/) for the specification
+- `schemas/jsonschema`: `data_dictionary.json` contains the final and full specification.
+- `schemas/frictionless/csvtemplate`: contains schemas following the frictionless schema specifications. `fields.json` contains the frictionless Table Schema descriptor that validates a tabular heal templated csv data dictionary. See [here](https://specs.frictionlessdata.io/table-schema/) for the specification. **NOTE: the `csvtemplate` is an intermediate format meant to be converted into the final `jsontemplate` format.
 - `schemas/dictionary`: the yaml files used to generate json schemas with build.py. Fields with `jsonSpec` and `csvSpec` keys to indicate which property to extract in the `build.py` script. 
-- `templates`: the ~~(filled out)~~ templates in csv spreadsheet format and JSON format. 
-- `build.py`: This script compiles the yaml files and generates associated jsonschemas and frictionless schemas.
+- `templates`: empty templates in csv spreadsheet format and JSON format. 
+- `examples`: the ~~(filled out)~~ templates in csv spreadsheet format and JSON format.
+ TO BE ADDED: for now, see https://github.com/norc-heal/healdata-utils/tree/main/tests/data/valid/output
+- `build.py`: This script compiles the yaml files and generates associated jsonschemas and frictionless schemas in addition to the human rendered schemas
 
 ## Contributing
 
