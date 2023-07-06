@@ -232,34 +232,6 @@ properties:
     title: Variable Repository Link
     description: |
       A link to the variable as it exists on the home repository, if applicable
-  cde_id:
-    title: Common Data Element Id
-    description: |
-      [FUTURE WARNING: WILL BE DEPRECATED] Use `standardsMapping`. The source and id for the NIH Common Data Elements program.
-    type: array
-    items:
-      type: object
-      properties:
-        source:
-          type: string
-        id:
-          type: string
-  ontology_id:
-    title: Ontology ID
-    description: |
-      [FUTURE WARNING: WILL BE DEPRECATED] - Use `relatedConcepts`. Ontological information for the given variable as indicated  by the
-      source, id, and relation to the specified classification. One or more
-      ontology classifications can be specified. 
-    type: array
-    items:
-      type: object
-      properties:
-        relation:
-          type: string
-        source:
-          type: string
-        id:
-          type: string
   standardsMappings:
     title: Standards Mappings
     description: A published set of standard variables such as the NIH Common Data Elements program.

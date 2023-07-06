@@ -23,19 +23,6 @@
                 ],
                 "falseValues": [],
                 "repo_link": null,
-                "cde_id": [
-                    {
-                        "source": null,
-                        "id": null
-                    }
-                ],
-                "ontology_id": [
-                    {
-                        "relation": null,
-                        "source": null,
-                        "id": null
-                    }
-                ],
                 "standardsMappings": [
                     {
                         "type": null,

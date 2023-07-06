@@ -22,11 +22,6 @@
 - [Property `trueValues`](#trueValues)
 - [Property `falseValues`](#falseValues)
 - [Property `repo_link`](#repo_link)
-- [Property `cde_id.source`](#cde_idsource)
-- [Property `cde_id.id`](#cde_idid)
-- [Property `ontology_id.relation`](#ontology_idrelation)
-- [Property `ontology_id.source`](#ontology_idsource)
-- [Property `ontology_id.id`](#ontology_idid)
 - [Property `standardsMappings.type`](#standardsMappingstype)
 - [Property `standardsMappings.label`](#standardsMappingslabel)
 - [Property `standardsMappings.url`](#standardsMappingsurl)
@@ -86,11 +81,6 @@ metadata object within the HEAL platform metadata service.
 | - [trueValues](#trueValues )                                                       | No      | string           | No         | -          | For boolean (true) variable (as defined in type field), this field allows<br />a physical string representation to be cast as true (increasing<br />readability of the field). It can include one or more values.<br /><br />[Optional, if applicable]<br /> |
 | - [falseValues](#falseValues )                                                     | No      | string           | No         | -          | Boolean False Value Labels                                                                                                                                                                                                                                   |
 | - [repo_link](#repo_link )                                                         | No      | string           | No         | -          | Variable Repository Link                                                                                                                                                                                                                                     |
-| - [cde_id.source](#cde_idsource )                                                  | No      | string           | No         | -          | -                                                                                                                                                                                                                                                            |
-| - [cde_id.id](#cde_idid )                                                          | No      | string           | No         | -          | -                                                                                                                                                                                                                                                            |
-| - [ontology_id.relation](#ontology_idrelation )                                    | No      | string           | No         | -          | -                                                                                                                                                                                                                                                            |
-| - [ontology_id.source](#ontology_idsource )                                        | No      | string           | No         | -          | -                                                                                                                                                                                                                                                            |
-| - [ontology_id.id](#ontology_idid )                                                | No      | string           | No         | -          | -                                                                                                                                                                                                                                                            |
 | - [standardsMappings.type](#standardsMappingstype )                                | No      | string           | No         | -          | Standards Mapping - Title                                                                                                                                                                                                                                    |
 | - [standardsMappings.label](#standardsMappingslabel )                              | No      | string           | No         | -          | Standards Mapping - Label                                                                                                                                                                                                                                    |
 | - [standardsMappings.url](#standardsMappingsurl )                                  | No      | string           | No         | -          | Standards Mapping - Url                                                                                                                                                                                                                                      |
@@ -564,41 +554,6 @@ readability of the field) that is not a standard false value. It can include one
 | **Required** | No       |
 
 **Description:** A link to the variable as it exists on the home repository, if applicable
-
-## <a name="cde_idsource"></a>Property `cde_id.source`
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
-
-## <a name="cde_idid"></a>Property `cde_id.id`
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
-
-## <a name="ontology_idrelation"></a>Property `ontology_id.relation`
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
-
-## <a name="ontology_idsource"></a>Property `ontology_id.source`
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
-
-## <a name="ontology_idid"></a>Property `ontology_id.id`
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
 
 ## <a name="standardsMappingstype"></a>Property `standardsMappings.type`
 

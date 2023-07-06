@@ -54,18 +54,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "time",
           "integer",
+          "geopoint",
           "string",
-          "duration",
-          "boolean",
-          "any",
+          "yearmonth",
           "number",
           "date",
-          "datetime",
+          "boolean",
+          "any",
           "year",
-          "geopoint",
-          "yearmonth"
+          "duration",
+          "time",
+          "datetime"
         ]
       }
     },
@@ -157,26 +157,6 @@
       "name": "repo_link",
       "description": "A link to the variable as it exists on the home repository, if applicable\n",
       "title": "Variable Repository Link",
-      "type": "string"
-    },
-    {
-      "name": "cde_id.source",
-      "type": "string"
-    },
-    {
-      "name": "cde_id.id",
-      "type": "string"
-    },
-    {
-      "name": "ontology_id.relation",
-      "type": "string"
-    },
-    {
-      "name": "ontology_id.source",
-      "type": "string"
-    },
-    {
-      "name": "ontology_id.id",
       "type": "string"
     },
     {

@@ -170,21 +170,6 @@
             "title": "Variable Repository Link",
             "description": "A link to the variable as it exists on the home repository, if applicable\n"
         },
-        "cde_id.source": {
-            "type": "string"
-        },
-        "cde_id.id": {
-            "type": "string"
-        },
-        "ontology_id.relation": {
-            "type": "string"
-        },
-        "ontology_id.source": {
-            "type": "string"
-        },
-        "ontology_id.id": {
-            "type": "string"
-        },
         "standardsMappings.type": {
             "title": "Standards Mapping - Title",
             "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.\n[Autopopulated, if not filled]\n",
