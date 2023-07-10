@@ -2,31 +2,12 @@ import jsonschema
 import frictionless
 import petl as etl
 from pathlib import Path
+from healdata_utils import convert_to_vlmd
 
 VLMD_PATH = "variable-level-metadata-schema/examples"
 CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
 JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
 VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
-
-def validate_against_jsonschema(json_object,schema):
-    
-    Validator = jsonschema.validators.validator_for(schema)
-    validator = Validator(schema)
-    report = []
-    is_valid = True
-    for error in validator.iter_errors(json_object):
-        is_valid = False
-        error_report = {
-            "json_path":error.json_path,
-            "message":error.message,
-            "absolute_path":list(error.path),
-            "relative_path":list(error.relative_path),
-            "validator":error.validator,
-            "validator_value":error.validator_value
-        }
-        report.append(error_report)
-
-    return {"valid":is_valid,"errors":report}
 
 
 # frictionless schemas --> if csv file
@@ -50,7 +31,7 @@ def test_valid_json_data_dictionaries():
         # report to etl to pretty print
         report_summary = str(etl.fromdicts(report["errors"]).totext())
 
-        assert report["valid"],f"# invalid: {str(filepath)}\n\n{report_summary}"
+        assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {str(filepath)}\n\n{report_summary}"
 
 
 def test_invalid_csv_data_dictionaries():
