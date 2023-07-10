@@ -1,1 +1,3 @@
 git+https://github.com/norc-heal/json-schema-for-humans.git@develop
+frictionless
+jsonschema
