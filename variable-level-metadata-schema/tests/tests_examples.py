@@ -1,5 +1,12 @@
 import jsonschema
 import frictionless
+import petl as etl
+from pathlib import Path
+
+VLMD_PATH = "variable-level-metadata-schema/examples"
+CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
+JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
+VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
 
 def validate_against_jsonschema(json_object,schema):
     
@@ -25,18 +32,24 @@ def validate_against_jsonschema(json_object,schema):
 # frictionless schemas --> if csv file
 # json schemas --> if json file
 
+def test_validity_csv_data_dictionaries():
+    csvs = Path(VLMD_EXAMPLE_PATH).glob("*/*.csv")
+    csvreports = []
+    for filepath in csvs:
+        resource = frictionless.Resource(path=filepath,schema=CSV_FRICTIONLESS_SCHEMA_PATH)
+        report = resource.validate()
+        assert report["valid"],report.to_summary()
 
-csvs = Path("examples").glob("*/*.csv")
-jsons = Path("examples").glob("*/*.json")
+def test_validity_json_data_dictionaries():
+    jsons = Path(VLMD_EXAMPLE_PATH).glob("*/*.json")
+    jsonreports = []
+    for filepath in jsons:
+        json_object = json.loads(filepath.read_text())
+        report = validate_against_jsonschema(json_object, schema=JSON_SCHEMA_PATH)
+        
+        # report to etl to pretty print
+        report_summary = str(etl.fromdicts(report["errors"]).totext())
+        assert report["valid"],f"# invalid: {str(filepath)}\n\n{report_summary}"
 
-csvreports = []
-for filepath in csvs:
-    resource = Resource(path=filepath,schema="schemas/frictionless/csvtemplate/fields.json")
-    report = resource.validate()
-    csvreports.append(report)
-
-jsonreports = []
-for filepath in jsons:
-    json_object = json.loads(filepath.read_text())
-    report = validate_against_jsonschema(json_object, schema="schemas/jsonschema/data-dictionary.json")
-    jsonreports.append(report)
+test_validity_csv_data_dictionaries()
+test_validity_json_data_dictionaries()
