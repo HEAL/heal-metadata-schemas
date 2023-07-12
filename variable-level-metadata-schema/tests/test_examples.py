@@ -2,14 +2,16 @@ import jsonschema
 import frictionless
 import petl as etl
 from pathlib import Path
-
-
+import os
+import json
+os.chdir(Path(__file__).parents[2])
 VLMD_PATH = "variable-level-metadata-schema"
 CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
 JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
 VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
 
-
+json_schema_object = json.loads(JSON_SCHEMA_PATH.read_text())
+csv_frictionless_schema_object = json.loads(CSV_FRICTIONLESS_SCHEMA_PATH.read_text())
 def validate_against_jsonschema(json_object,schema):
     
     Validator = jsonschema.validators.validator_for(schema)
@@ -37,20 +39,23 @@ def test_valid_csv_data_dictionaries():
     csvs = Path(VLMD_EXAMPLE_PATH).glob("valid/*.csv")
     csvreports = []
     for filepath in csvs:
-        resource = frictionless.Resource(path=filepath,schema=CSV_FRICTIONLESS_SCHEMA_PATH)
+        resource = frictionless.Resource(path=str(filepath),schema=csv_frictionless_schema_object)
         report = resource.validate()
-        assert report["valid"],report.to_summary()
+        print("Testing:")
+        print(str(filepath))
+        assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {report.to_summary()}"
 
 def test_valid_json_data_dictionaries():
     jsons = Path(VLMD_EXAMPLE_PATH).glob("valid/*.json")
     jsonreports = []
     for filepath in jsons:
         json_object = json.loads(filepath.read_text())
-        report = validate_against_jsonschema(json_object, schema=JSON_SCHEMA_PATH)
+        report = validate_against_jsonschema(json_object, schema=json_schema_object)
         
         # report to etl to pretty print
-        report_summary = str(etl.fromdicts(report["errors"]).totext())
-
+        report_summary = str(etl.fromdicts(report["errors"]))
+        print("Testing:")
+        print(str(filepath))
         assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {str(filepath)}\n\n{report_summary}"
 
 
@@ -58,8 +63,10 @@ def test_invalid_csv_data_dictionaries():
     csvs = Path(VLMD_EXAMPLE_PATH).glob("invalid/*.csv")
     csvreports = []
     for filepath in csvs:
-        resource = frictionless.Resource(path=filepath,schema=CSV_FRICTIONLESS_SCHEMA_PATH)
+        resource = frictionless.Resource(path=str(filepath),schema=csv_frictionless_schema_object)
         report = resource.validate()
+        print("Testing:")
+        print(str(filepath))
         assert not report["valid"],f"{str(filepath)} should be an example of an INVALID csv file but is valid." 
 
 def test_invalid_json_data_dictionaries():
@@ -67,6 +74,8 @@ def test_invalid_json_data_dictionaries():
     jsonreports = []
     for filepath in jsons:
         json_object = json.loads(filepath.read_text())
-        report = validate_against_jsonschema(json_object, schema=JSON_SCHEMA_PATH)
+        report = validate_against_jsonschema(json_object, schema=json_schema_object)
+        print("Testing:")
+        print(str(filepath))
         assert not report["valid"],f"{str(filepath)} should be an example of an INVALID json file but is valid." 
  
