@@ -4,10 +4,10 @@
 name: Variable level metadata validation
 on: 
   push:
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - synchronize
+  pull_request:
+    types:
+      - opened
+      - synchronize
   workflow_dispatch:  
 permissions:
   contents: read
