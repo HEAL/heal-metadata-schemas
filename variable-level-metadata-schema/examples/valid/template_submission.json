@@ -1,6 +1,6 @@
 {
-    "title": "template_submission",
-    "description": "This is an example slightly more filled out",
+    "title": "Example VLMD",
+    "description": "This is an example description",
     "data_dictionary": [
         {
             "module": "Enrollment",
@@ -30,16 +30,26 @@
                     "8"
                 ]
             },
+            "encodings": {
+                "1": "White",
+                "2": "Black or African American",
+                "3": "American Indian or Alaska Native",
+                "4": "Native",
+                "5": "Hawaiian or Other Pacific Islander",
+                "6": "Asian",
+                "7": "Some other race",
+                "8": "Multiracial",
+                "99": "Not reported"
+            },
             "missingValues": [
                 "99"
             ],
-            "encoding": "1=White|2=Black or African American|3=American Indian or Alaska Native|4=Native| 5=Hawaiian or Other Pacific Islander|6=Asian|7=Some other race|8=Multiracial|99=Not reported",
             "standardsMappings": [
                 {
                     "type": "cde",
+                    "label": "NLM race",
                     "source": "NLM",
-                    "id": "Fakc6Jy2x",
-                    "label": "NLM race"
+                    "id": "Fakc6Jy2x"
                 },
                 {
                     "type": "cde",
@@ -56,7 +66,7 @@
             "type": "integer",
             "constraints": {
                 "maximum": 90,
-                "minimum": "0"
+                "minimum": 0
             }
         },
         {

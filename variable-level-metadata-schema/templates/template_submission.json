@@ -13,7 +13,8 @@
                     "maxLength": null,
                     "enum": [],
                     "pattern": null,
-                    "maximum": null
+                    "maximum": null,
+                    "minimum": null
                 },
                 "encodings": {},
                 "ordered": null,

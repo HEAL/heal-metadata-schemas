@@ -1,6 +1,6 @@
 {
-    "title": "template_submission_minimal",
-    "description": "This is an example slightly more filled out",
+    "title": "Minimal Example VLMD",
+    "description": "This is an minimally filled out template",
     "data_dictionary": [
         {
             "name": "participant_id",
