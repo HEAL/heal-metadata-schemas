@@ -4,7 +4,7 @@ import petl as etl
 from pathlib import Path
 import os
 import json
-
+print(os.getcwd())
 VLMD_PATH = "variable-level-metadata-schema"
 CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
 JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
@@ -12,8 +12,10 @@ VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
 
 json_schema_object = json.loads(JSON_SCHEMA_PATH.read_text())
 csv_frictionless_schema_object = json.loads(CSV_FRICTIONLESS_SCHEMA_PATH.read_text())
+
+
 def validate_against_jsonschema(json_object,schema):
-    
+    print(os.listdir())
     Validator = jsonschema.validators.validator_for(schema)
     validator = Validator(schema)
     report = []

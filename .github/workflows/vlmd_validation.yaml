@@ -32,4 +32,4 @@ jobs:
         pip install pytest jsonschema frictionless
     - name: Test with pytest
       run: |
-        pytest -q
+        pytest
