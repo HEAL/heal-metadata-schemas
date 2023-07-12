@@ -4,7 +4,7 @@ channels:
   - default
 dependencies:
   - python
-  - jupyter
+  #- jupyter
   - pip 
   - pip: 
-    - json-schema-for-humans
+    - -r requirements.txt
