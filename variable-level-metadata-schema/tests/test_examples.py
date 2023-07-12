@@ -4,7 +4,7 @@ import petl as etl
 from pathlib import Path
 import os
 import json
-os.chdir(Path(__file__).parents[2])
+
 VLMD_PATH = "variable-level-metadata-schema"
 CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
 JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
