@@ -40,9 +40,9 @@ def validate_against_jsonschema(json_object,schema):
 def test_valid_csv_data_dictionaries():
     csvs = Path(VLMD_EXAMPLE_PATH).glob("valid/*.csv")
     csvreports = []
-    print("Testing:")
-    print(str(filepath))
     for filepath in csvs:
+        print("Testing:")
+        print(str(filepath))
         resource = frictionless.Resource(path=str(filepath),schema=csv_frictionless_schema_object)
         report = resource.validate()
 
