@@ -5,7 +5,7 @@ from pathlib import Path
 import os
 import json
 
-VLMD_PATH = "variable-level-metadata-schema"
+VLMD_PATH = "."
 CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
 JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
 VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
