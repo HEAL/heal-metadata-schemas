@@ -21,6 +21,7 @@
       - [Property `enum`](#data_dictionary_items_constraints_enum)
       - [Property `pattern`](#data_dictionary_items_constraints_pattern)
       - [Property `maximum`](#data_dictionary_items_constraints_maximum)
+      - [Property `minimum`](#data_dictionary_items_constraints_minimum)
     - [Property `encodings`](#data_dictionary_items_encodings)
     - [Property `ordered`](#data_dictionary_items_ordered)
     - [Property `missingValues`](#data_dictionary_items_missingValues)
@@ -420,6 +421,7 @@ Must be one of:
 | - [enum](#data_dictionary_items_constraints_enum )           | No      | array   | No         | -          | Variable Possible Values   |
 | - [pattern](#data_dictionary_items_constraints_pattern )     | No      | string  | No         | -          | Regular Expression Pattern |
 | - [maximum](#data_dictionary_items_constraints_maximum )     | No      | integer | No         | -          | Maximum Value              |
+| - [minimum](#data_dictionary_items_constraints_minimum )     | No      | integer | No         | -          | Minimum Value              |
 
 ##### <a name="data_dictionary_items_constraints_maxLength"></a>Property `maxLength`
 
@@ -482,6 +484,19 @@ categorical variable, this would be a maxLength of 11.
 **Description:** Specifies the maximum value of a field (e.g., maximum -- or most
 recent -- date, maximum integer etc). Note, this is different then
 maxLength property.
+
+[Optional,if applicable]
+
+##### <a name="data_dictionary_items_constraints_minimum"></a>Property `minimum`
+
+**Title:** Minimum Value
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Specifies the minimum value of a field.
 
 [Optional,if applicable]
 

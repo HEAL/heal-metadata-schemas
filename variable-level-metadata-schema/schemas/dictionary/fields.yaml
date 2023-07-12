@@ -119,6 +119,13 @@ properties:
           maxLength property.
 
           [Optional,if applicable]
+      minimum:
+        type: integer
+        title: Minimum Value
+        description: |
+          Specifies the minimum value of a field.
+
+          [Optional,if applicable]
   encodingsJsonSpec:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |

@@ -16,6 +16,7 @@
 - [Property `constraints.enum`](#constraintsenum)
 - [Property `constraints.pattern`](#constraintspattern)
 - [Property `constraints.maximum`](#constraintsmaximum)
+- [Property `constraints.minimum`](#constraintsminimum)
 - [Property `encodings`](#encodings)
 - [Property `ordered`](#ordered)
 - [Property `missingValues`](#missingValues)
@@ -75,6 +76,7 @@ metadata object within the HEAL platform metadata service.
 | - [constraints.enum](#constraintsenum )                                            | No      | string           | No         | -          | Variable Possible Values                                                                                                                                                                                                                                     |
 | - [constraints.pattern](#constraintspattern )                                      | No      | string           | No         | -          | Regular Expression Pattern                                                                                                                                                                                                                                   |
 | - [constraints.maximum](#constraintsmaximum )                                      | No      | integer          | No         | -          | Maximum Value                                                                                                                                                                                                                                                |
+| - [constraints.minimum](#constraintsminimum )                                      | No      | integer          | No         | -          | Minimum Value                                                                                                                                                                                                                                                |
 | - [encodings](#encodings )                                                         | No      | string           | No         | -          | Variable Value Encodings (i.e., mappings; value labels)                                                                                                                                                                                                      |
 | - [ordered](#ordered )                                                             | No      | boolean          | No         | -          | An ordered variable                                                                                                                                                                                                                                          |
 | - [missingValues](#missingValues )                                                 | No      | string           | No         | -          | Missing Values                                                                                                                                                                                                                                               |
@@ -420,6 +422,19 @@ categorical variable, this would be a maxLength of 11.
 **Description:** Specifies the maximum value of a field (e.g., maximum -- or most
 recent -- date, maximum integer etc). Note, this is different then
 maxLength property.
+
+[Optional,if applicable]
+
+## <a name="constraintsminimum"></a>Property `constraints.minimum`
+
+**Title:** Minimum Value
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+
+**Description:** Specifies the minimum value of a field.
 
 [Optional,if applicable]
 

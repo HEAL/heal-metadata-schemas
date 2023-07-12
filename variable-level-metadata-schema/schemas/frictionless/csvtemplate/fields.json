@@ -103,6 +103,12 @@
       "type": "integer"
     },
     {
+      "name": "constraints.minimum",
+      "description": "Specifies the minimum value of a field.\n\n[Optional,if applicable]\n",
+      "title": "Minimum Value",
+      "type": "integer"
+    },
+    {
       "name": "encodings",
       "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n\n[Optional,if applicable]\n",
       "title": "Variable Value Encodings (i.e., mappings; value labels)",

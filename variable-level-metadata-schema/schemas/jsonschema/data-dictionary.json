@@ -147,6 +147,11 @@
                                 "type": "integer",
                                 "title": "Maximum Value",
                                 "description": "Specifies the maximum value of a field (e.g., maximum -- or most\nrecent -- date, maximum integer etc). Note, this is different then\nmaxLength property.\n\n[Optional,if applicable]\n"
+                            },
+                            "minimum": {
+                                "type": "integer",
+                                "title": "Minimum Value",
+                                "description": "Specifies the minimum value of a field.\n\n[Optional,if applicable]\n"
                             }
                         }
                     },
