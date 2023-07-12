@@ -70,5 +70,3 @@ def test_invalid_json_data_dictionaries():
         report = validate_against_jsonschema(json_object, schema=JSON_SCHEMA_PATH)
         assert not report["valid"],f"{str(filepath)} should be an example of an INVALID json file but is valid." 
  
-
-test_invalid_csv_data_dictionaries()
