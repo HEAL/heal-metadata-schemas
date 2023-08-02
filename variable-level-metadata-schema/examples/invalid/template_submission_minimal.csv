@@ -1,0 +1,8 @@
+name,description,type
+participant_id,Unique identifier for participant,character
+race,Self-reported race,integer
+,,integer
+hispanic,"Are you of Hispanic, Latino, or Spanish origin?",boolean
+sex_at_birth,The self-reported sex of the participant/subject at birth,
+SU4,During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use],integer
+pulse_rate,Heart rate measured at systemic artery,number

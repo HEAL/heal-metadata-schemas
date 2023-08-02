@@ -1,0 +1,83 @@
+{
+    "title": "template_submission",
+    "description": "This is an example",
+    "data_dictionary": [
+        {
+            "name": "participant_id",
+            "title": "Participant Id",
+            "description": "Unique identifier for participant",
+            "type": "string",
+            "constraints": {
+                "pattern": "[A-Z][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]"
+            }
+        },
+        {
+            "name": "race",
+            "title": "Race",
+            "description": "Self-reported race",
+            "type": "integer",
+            "missingValues": "99",
+            "standardsMappings": {
+                "label": "NLM race",
+                "source": "NLM|NLM",
+                "id": "Fakc6Jy2x|m1_atF7L7U"
+            },
+            "encoding": "1=White|2=Black or African American|3=American Indian or Alaska Native|4=Native| 5=Hawaiian or Other Pacific Islander|6=Asian|7=Some other race|8=Multiracial|99=Not reported",
+            "constraints": {
+                "enum": "1|2|3|4|5|6|7|8"
+            }
+        },
+        {
+            "name": "age",
+            "title": "Age",
+            "description": "What is your age? (age at enrollment)",
+            "type": "integer",
+            "constraints": {
+                "minimum": "0",
+                "maximum": "90"
+            }
+        },
+        {
+            "name": "hispanic",
+            "title": "Hispanic, Latino, or Spanish Origin",
+            "description": "Are you of Hispanic, Latino, or Spanish origin?",
+            "type": "boolean",
+            "missingValues": "Not reported",
+            "trueValues": "No",
+            "falseValues": "Yes"
+        },
+        {
+            "name": "sex_at_birth",
+            "title": "Sex at Birth",
+            "description": "The self-reported sex of the participant/subject at birth",
+            "type": "string",
+            "missingValues": "Prefer not to answer|Unknown",
+            "constraints": {
+                "enum": "Male|Female|Intersex|None of these describe me|Prefer not to answer|Unknown"
+            }
+        },
+        {
+            "name": "SU4",
+            "title": "Heroin Days Used",
+            "description": "During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use]",
+            "type": "integer",
+            "relatedConcepts": {
+                "source": "CHEBI|RXNORM",
+                "id": "27808|3304",
+                "url": "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808|http://purl.bioontology.org/ontology/RXNORM/3304"
+            }
+        },
+        {
+            "name": "pulse_rate",
+            "title": "Pulse Rate",
+            "description": "Heart rate measured at systemic artery",
+            "type": "number",
+            "relatedConcepts": {
+                "label": "SNOMEDCT bioontology",
+                "source": "SNOMEDCT",
+                "id": "78564009",
+                "url": "http://purl.bioontology.org/ontology/SNOMEDCT/78564009"
+            }
+        }
+    ]
+}

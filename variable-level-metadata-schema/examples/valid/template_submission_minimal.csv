@@ -1,0 +1,8 @@
+module,name,title,description,type,format,constraints.maxLength,constraints.enum,constraints.pattern,constraints.maximum,constraints.minimum,encodings,ordered,missingValues,trueValues,falseValues,repo_link,standardsMappings.type,standardsMappings.label,standardsMappings.url,standardsMappings.source,standardsMappings.id,relatedConcepts.type,relatedConcepts.label,relatedConcepts.url,relatedConcepts.source,relatedConcepts.id,univarStats.median,univarStats.mean,univarStats.std,univarStats.min,univarStats.max,univarStats.mode,univarStats.count,univarStats.twentyFifthPercentile,univarStats.seventyFifthPercentile,univarStats.categoricalMarginals.name,univarStats.categoricalMarginals.count
+,participant_id,,Unique identifier for participant,string,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,race,,Self-reported race,integer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,age,,What is your age? (age at enrollment),integer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,hispanic,,"Are you of Hispanic, Latino, or Spanish origin?",boolean,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,sex_at_birth,,The self-reported sex of the participant/subject at birth,string,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,SU4,,During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use],integer,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,pulse_rate,,Heart rate measured at systemic artery,number,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

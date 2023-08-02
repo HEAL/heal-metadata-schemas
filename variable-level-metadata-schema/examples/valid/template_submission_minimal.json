@@ -1,0 +1,41 @@
+{
+    "title": "Minimal Example VLMD",
+    "description": "This is an minimally filled out template",
+    "data_dictionary": [
+        {
+            "name": "participant_id",
+            "description": "Unique identifier for participant",
+            "type": "string"
+        },
+        {
+            "name": "race",
+            "description": "Self-reported race",
+            "type": "integer"
+        },
+        {
+            "name": "age",
+            "description": "What is your age? (age at enrollment)",
+            "type": "integer"
+        },
+        {
+            "name": "hispanic",
+            "description": "Are you of Hispanic, Latino, or Spanish origin?",
+            "type": "boolean"
+        },
+        {
+            "name": "sex_at_birth",
+            "description": "The self-reported sex of the participant/subject at birth",
+            "type": "string"
+        },
+        {
+            "name": "SU4",
+            "description": "During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use]",
+            "type": "integer"
+        },
+        {
+            "name": "pulse_rate",
+            "description": "Heart rate measured at systemic artery",
+            "type": "number"
+        }
+    ]
+}
