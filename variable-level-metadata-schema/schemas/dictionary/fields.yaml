@@ -75,10 +75,20 @@ properties:
     title: Variable Format
     description: |
       Indicates the format of the type specified in the `type` property.
-      For more information on frictionless formats [see here]()
 
-      [Optional, if applicable]
-    $ref: "#/definitions/frictionlessFormats"
+      Each format is dependent on the `type` specified. For example:
+      If `type` is "string", then see the String formats. 
+      If `type` is one of the date-like formats, then see Date formats.
+
+      Sources:
+
+      - [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
+    anyOf:
+        - $ref: "#/definitions/stringFormat"
+        - $ref: "#/definitions/dateFormat"
+        - $ref: "#/definitions/geopointFormat"
+        - $ref: "#/definitions/geojsonFormat"
+
   constraints:
     type: object
     properties:
