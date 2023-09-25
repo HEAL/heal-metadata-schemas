@@ -15,9 +15,7 @@ metadata object within the HEAL platform metadata service.
 ## Properties
 
 
-
-[]
-`module` _(string,required)_
+`module` _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
@@ -52,17 +50,13 @@ to group variables.
 
  ```
 
-
-[]
 `name` _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
 [Required]
 
 
-
-[]
-`title` _(string,required)_
+`title` _(string)_
  The human-readable title or label of the variable. 
 
 [Highly recommended]
@@ -78,8 +72,6 @@ to group variables.
 
  ```
 
-
-[]
 `description` _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
 question text (e.g., if a survey). 
@@ -97,9 +89,7 @@ question text (e.g., if a survey).
 
  ```
 
-
-[]
-`type` _(string,required)_
+`type` _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Definitions:
@@ -180,9 +170,7 @@ Possible values:
  ```
 
 
-
-[]
-`format` _(of below,required)_
+`format` _(of below)_
  Indicates the format of the type specified in the `type` property.
 
 Each format is dependent on the `type` specified. For example:
@@ -194,8 +182,7 @@ Sources:
 - [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 
 Any of the following:
-- []
-    None _(of below,required)_
+- None _(of below)_
      A format for a specialized type of string of:
 
     - "`email` if valid emails (e.g., test@gmail.com)"
@@ -226,8 +213,7 @@ Any of the following:
      ```
 
 
-- []
-    None _(string,required)_
+- None _(string)_
      A format for a date variable (`date`,`time`,`datetime`).  
         **default**: An ISO8601 format string.
         **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
@@ -248,8 +234,7 @@ Any of the following:
     - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
 
 
-- []
-    None _(string,required)_
+- None _(string)_
      The two types of formats for `geopoint` (describing a geographic point).
 
     - `array` (if 'lat,long' (e.g., 36.63,-90.20))
@@ -268,8 +253,7 @@ Any of the following:
      ```
 
 
-- []
-    None _(string,required)_
+- None _(string)_
      The JSON object according to the geojson spec.
     Possible values:
     ```json
@@ -286,9 +270,7 @@ Any of the following:
 
 
 
-
-[]
-`constraints.maxLength` _(integer,required)_
+`constraints.maxLength` _(integer)_
  Indicates the maximum length of an iterable (e.g., array, string, or
 object). For example, if 'Hello World' is the longest value of a
 categorical variable, this would be a maxLength of 11.
@@ -296,9 +278,7 @@ categorical variable, this would be a maxLength of 11.
 [Optional,if applicable]
 
 
-
-[]
-`constraints.enum` _(string,required)_
+`constraints.enum` _(string)_
  Constrains possible values to a set of values.
 
 [Optional,if applicable]
@@ -314,17 +294,13 @@ categorical variable, this would be a maxLength of 11.
 
  ```
 
-
-[]
-`constraints.pattern` _(string,required)_
+`constraints.pattern` _(string)_
  A regular expression pattern the data MUST conform to.
 
 [Optional,if applicable]
 
 
-
-[]
-`constraints.maximum` _(integer,required)_
+`constraints.maximum` _(integer)_
  Specifies the maximum value of a field (e.g., maximum -- or most
 recent -- date, maximum integer etc). Note, this is different then
 maxLength property.
@@ -332,17 +308,13 @@ maxLength property.
 [Optional,if applicable]
 
 
-
-[]
-`constraints.minimum` _(integer,required)_
+`constraints.minimum` _(integer)_
  Specifies the minimum value of a field.
 
 [Optional,if applicable]
 
 
-
-[]
-`encodings` _(string,required)_
+`encodings` _(string)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -368,9 +340,7 @@ abbreviations).
 
  ```
 
-
-[]
-`ordered` _(boolean,required)_
+`ordered` _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
@@ -379,9 +349,7 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 [Optional,if applicable]
 
 
-
-[]
-`missingValues` _(string,required)_
+`missingValues` _(string)_
  A list of missing values specific to a variable.
 
 [Optional, if applicable]
@@ -397,9 +365,7 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 
  ```
 
-
-[]
-`trueValues` _(string,required)_
+`trueValues` _(string)_
  For boolean (true) variable (as defined in type field), this field allows
 a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
@@ -427,23 +393,17 @@ readability of the field). It can include one or more values.
 
  ```
 
-
-[]
-`falseValues` _(string,required)_
+`falseValues` _(string)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-
-[]
-`repo_link` _(string,required)_
+`repo_link` _(string)_
  A link to the variable as it exists on the home repository, if applicable
 
 
-
-[]
-`standardsMappings.url` _(string,required)_
+`standardsMappings.url` _(string)_
  The url that links out to the published, standardized mapping.
 
 [Autopopulated, if not filled]
@@ -454,9 +414,7 @@ readability of the field) that is not a standard false value. It can include one
 
  ```
 
-
-[]
-`standardsMappings.type` _(string,required)_
+`standardsMappings.type` _(string)_
  The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.
 [Autopopulated, if not filled]
 
@@ -476,9 +434,7 @@ readability of the field) that is not a standard false value. It can include one
 
  ```
 
-
-[]
-`standardsMappings.label` _(string,required)_
+`standardsMappings.label` _(string)_
  A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
 
 [Autopopulated, if not filled]
@@ -499,9 +455,7 @@ readability of the field) that is not a standard false value. It can include one
 
  ```
 
-
-[]
-`standardsMappings.source` _(string,required)_
+`standardsMappings.source` _(string)_
  The source of the standardized variable.
 
 ```json
@@ -510,15 +464,11 @@ readability of the field) that is not a standard false value. It can include one
 
  ```
 
-
-[]
-`standardsMappings.id` _(string,required)_
+`standardsMappings.id` _(string)_
  The id locating the individual mapping within the given source.
 
 
-
-[]
-`relatedConcepts.url` _(string,required)_
+`relatedConcepts.url` _(string)_
  The url that links out to the published, standardized concept.
 
 [Autopopulated, if not filled]
@@ -529,27 +479,21 @@ readability of the field) that is not a standard false value. It can include one
 
  ```
 
-
-[]
-`relatedConcepts.type` _(string,required)_
+`relatedConcepts.type` _(string)_
  The **type** of mapping to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
 
 [Autopopulated, if not filled]
 
 
-
-[]
-`relatedConcepts.label` _(string,required)_
+`relatedConcepts.label` _(string)_
  A free text **label** of mapping to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
 
 [Autopopulated, if not filled]
 
 
-
-[]
-`relatedConcepts.source` _(string,required)_
+`relatedConcepts.source` _(string)_
  The source of the related concept.
 
 [Autopopulated, if not filled]
@@ -560,65 +504,41 @@ ontological information (eg., NCI thesaurus, bioportal etc)
 
  ```
 
-
-[]
-`relatedConcepts.id` _(string,required)_
+`relatedConcepts.id` _(string)_
  The id locating the individual mapping within the given source.
 
 [Autopopulated, if not filled]
 
 
-
-[]
-`univarStats.median` _(number,required)_
+`univarStats.median` _(number)_
  
 
-
-[]
-`univarStats.mean` _(number,required)_
+`univarStats.mean` _(number)_
  
 
-
-[]
-`univarStats.std` _(number,required)_
+`univarStats.std` _(number)_
  
 
-
-[]
-`univarStats.min` _(number,required)_
+`univarStats.min` _(number)_
  
 
-
-[]
-`univarStats.max` _(number,required)_
+`univarStats.max` _(number)_
  
 
-
-[]
-`univarStats.mode` _(number,required)_
+`univarStats.mode` _(number)_
  
 
-
-[]
-`univarStats.count` _(integer,required)_
+`univarStats.count` _(integer)_
  
 
-
-[]
-`univarStats.twentyFifthPercentile` _(number,required)_
+`univarStats.twentyFifthPercentile` _(number)_
  
 
-
-[]
-`univarStats.seventyFifthPercentile` _(number,required)_
+`univarStats.seventyFifthPercentile` _(number)_
  
 
-
-[]
-`univarStats.categoricalMarginals.name` _(string,required)_
+`univarStats.categoricalMarginals.name` _(string)_
  
 
-
-[]
-`univarStats.categoricalMarginals.count` _(integer,required)_
+`univarStats.categoricalMarginals.count` _(integer)_
  

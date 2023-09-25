@@ -20,11 +20,8 @@ metadata object within the HEAL platform metadata service.
   5. [Experimental]: These fields are not currently used but are in development.
 
 #### Properties for each record
-['name', 'description']
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`module` _(string,required)_
+`module` _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
@@ -59,17 +56,13 @@ to group variables.
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`name` _(string,required)_
+`name` _(string)_
  The name of a variable (i.e., field) as it appears in the data. 
 
 [Required]
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`title` _(string,required)_
+`title` _(string)_
  The human-readable title or label of the variable. 
 
 [Highly recommended]
@@ -85,9 +78,7 @@ to group variables.
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`description` _(string,required)_
+`description` _(string)_
  An extended description of the variable. This could be the definition of a variable or the 
 question text (e.g., if a survey). 
 
@@ -104,9 +95,7 @@ question text (e.g., if a survey).
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`type` _(string,required)_
+`type` _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Definitions:
@@ -187,9 +176,7 @@ Possible values:
  ```
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`format` _(of below,required)_
+`format` _(of below)_
  Indicates the format of the type specified in the `type` property.
 
 Each format is dependent on the `type` specified. For example:
@@ -201,8 +188,7 @@ Sources:
 - [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 
 Any of the following:
-- ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    None _(of below,required)_
+- None _(of below)_
      A format for a specialized type of string of:
 
     - "`email` if valid emails (e.g., test@gmail.com)"
@@ -233,8 +219,7 @@ Any of the following:
      ```
 
 
-- ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    None _(string,required)_
+- None _(string)_
      A format for a date variable (`date`,`time`,`datetime`).  
         **default**: An ISO8601 format string.
         **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
@@ -255,8 +240,7 @@ Any of the following:
     - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
 
 
-- ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    None _(string,required)_
+- None _(string)_
      The two types of formats for `geopoint` (describing a geographic point).
 
     - `array` (if 'lat,long' (e.g., 36.63,-90.20))
@@ -275,8 +259,7 @@ Any of the following:
      ```
 
 
-- ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    None _(string,required)_
+- None _(string)_
      The JSON object according to the geojson spec.
     Possible values:
     ```json
@@ -293,14 +276,11 @@ Any of the following:
 
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`constraints` _(object,required)_
+`constraints` _(object)_
  
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `maxLength` _(integer,required)_
+    ``maxLength`` _(integer)_
      Indicates the maximum length of an iterable (e.g., array, string, or
     object). For example, if 'Hello World' is the longest value of a
     categorical variable, this would be a maxLength of 11.
@@ -309,8 +289,7 @@ Any of the following:
 
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `enum` _(array,required)_
+    ``enum`` _(array)_
      Constrains possible values to a set of values.
 
     [Optional,if applicable]
@@ -327,16 +306,14 @@ Any of the following:
      ```
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `pattern` _(string,required)_
+    ``pattern`` _(string)_
      A regular expression pattern the data MUST conform to.
 
     [Optional,if applicable]
 
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `maximum` _(integer,required)_
+    ``maximum`` _(integer)_
      Specifies the maximum value of a field (e.g., maximum -- or most
     recent -- date, maximum integer etc). Note, this is different then
     maxLength property.
@@ -345,17 +322,14 @@ Any of the following:
 
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `minimum` _(integer,required)_
+    ``minimum`` _(integer)_
      Specifies the minimum value of a field.
 
     [Optional,if applicable]
 
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`encodings` _(object,required)_
+`encodings` _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -381,9 +355,7 @@ abbreviations).
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`ordered` _(boolean,required)_
+`ordered` _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
@@ -392,9 +364,7 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 [Optional,if applicable]
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`missingValues` _(array,required)_
+`missingValues` _(array)_
  A list of missing values specific to a variable.
 
 [Highly recommended]
@@ -410,9 +380,7 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`trueValues` _(array,required)_
+`trueValues` _(array)_
  For boolean (true) variable (as defined in type field), this field allows
 a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
@@ -430,87 +398,67 @@ readability of the field). It can include one or more values.
 
  ```
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`falseValues` _(array,required)_
+`falseValues` _(array)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`repo_link` _(string,required)_
+`repo_link` _(string)_
  A link to the variable as it exists on the home repository, if applicable
 
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`standardsMappings` _(array,required)_
+`standardsMappings` _(array)_
  A published set of standard variables such as the NIH Common Data Elements program.
 [Autopopulated, if not filled]
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`relatedConcepts` _(array,required)_
+`relatedConcepts` _(array)_
  Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
 [Autopopulated, if not filled]
 
-
-['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-`univarStats` _(object,required)_
+`univarStats` _(object)_
  Univariate statistics inferred from the data about the given variable 
 
 [Experimental]
 
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `median` _(number,required)_
+    ``median`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `mean` _(number,required)_
+    ``mean`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `std` _(number,required)_
+    ``std`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `min` _(number,required)_
+    ``min`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `max` _(number,required)_
+    ``max`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `mode` _(number,required)_
+    ``mode`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `count` _(integer,required)_
+    ``count`` _(integer)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `twentyFifthPercentile` _(number,required)_
+    ``twentyFifthPercentile`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `seventyFifthPercentile` _(number,required)_
+    ``seventyFifthPercentile`` _(number)_
      
 
 
-    ['[', "'", 'n', 'a', 'm', 'e', "'", ',', ' ', "'", 'd', 'e', 's', 'c', 'r', 'i', 'p', 't', 'i', 'o', 'n', "'", ']']
-    `categoricalMarginals` _(array,required)_
+    ``categoricalMarginals`` _(array)_
      
 
