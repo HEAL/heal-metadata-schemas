@@ -8,11 +8,12 @@ import os
 import re
 import json
 import copy
-from collections.abc import MutableMapping, MutableSequence, MutableSet
+from collections.abc import MutableMapping, MutableSequence, MutableSet,Sequence
 from functools import reduce
-from json_schema_for_humans.generate import generate_from_filename
-from json_schema_for_humans.generation_configuration import GenerationConfiguration
 import jsonschema
+from json_schema_for_humans.generate import generate_from_filename
+import jinja2 
+import json
 
 os.chdir(Path(__file__).parent)
 
@@ -228,8 +229,17 @@ def run_pipeline_step(input, step):
     else:
         raise Exception("Step must be at least of length 1")
 
-def make_human_readable_schema():
-    pass 
+def render_markdown(item,schema,templatefile):
+    env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader("docs/assets/templates"),
+        trim_blocks=True,
+        lstrip_blocks=True
+    )
+
+    template = env.get_template(templatefile)
+    output = template.render(item=item,schema=schema)
+    return output
+
 
 def generate_template(schema):
     template = {}
@@ -266,6 +276,7 @@ if __name__ == "__main__":
     Path("schemas/frictionless/csvtemplate/fields.json").write_text(
         json.dumps(frictionlessfields, indent=2)
     )
+    
 
     # compile json schema fields
     csv_pipeline = [
@@ -290,40 +301,28 @@ if __name__ == "__main__":
     jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
     Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(jsonfields, indent=4))
 
-    # parser = jsonschema2md.Parser(
-    #     examples_as_yaml=False,
-    #     show_examples="all",
-    # )
 
-    config = GenerationConfiguration(
-        template_name="md",
-        template_md_options={
-            "badge_as_image": False,
-            "show_heading_numbers":False,
-            "show_toc":False,
-            # "tables":False
-            },
-        deprecated_from_description=True,
-        footer_show_time=False,
-        show_breadcrumbs=False
-    )
-    # generate json schema versions of field schemas for documentation
-    generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
-        "docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md",
-        config=config)
-    generate_from_filename("schemas/jsonschema/data-dictionary.json",
-        "docs/md-rendered-schemas/jsonschema-data-dictionary.md",
-        config=config)
+    # generate json schema versions of field schemas for documentation 
 
-    #generate json schema versions of field schemas for documentation 
+    # generate html using the json-schema for human library
     generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
         "docs/html-rendered-schemas/jsonschema-csvtemplate-fields.html")
-    
-    
     generate_from_filename("schemas/jsonschema/data-dictionary.json",
         "docs/html-rendered-schemas/jsonschema-jsontemplate-data-dictionary.html")
 
-    
+    # render and write markdown versions
+    csvfields_md = render_markdown(
+        item=csvfields,
+        schema=csvfields,
+        templatefile="csvtemplate.md")
+    jsonfields_md = render_markdown(
+        item=jsonfields,
+        schema=jsonfields,
+        templatefile="jsontemplate.md"
+    )
+    Path("docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md").write_text(csvfields_md)
+    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(jsonfields_md)
+
     # generate templates
     Path("templates/template_submission.json").write_text(json.dumps([generate_template(jsonfields)],indent=4))
     Path("templates/template_submission.csv").write_text(",".join((generate_template(csvfields)).keys()))
