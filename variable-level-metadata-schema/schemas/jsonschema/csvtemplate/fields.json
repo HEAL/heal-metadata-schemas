@@ -33,7 +33,8 @@
             "title": "Variable Label (ie Title)",
             "description": "The human-readable title or label of the variable. \n\n[Highly recommended]\n",
             "examples": [
-                "My Variable (for name of my_variable)"
+                "My Variable",
+                "Gender identity"
             ]
         },
         "description": {
@@ -41,13 +42,13 @@
             "title": "Variable Description",
             "description": "An extended description of the variable. This could be the definition of a variable or the \nquestion text (e.g., if a survey). \n\n[Required]\n",
             "examples": [
-                "Definition",
-                "Question text (if a survey)"
+                "The participant's age at the time of study enrollment",
+                "What is the highest grade or level of school you have completed or the highest degree you have received?"
             ]
         },
         "type": {
             "title": "Variable Type",
-            "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
+            "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\nDefinitions:\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
             "type": "string",
             "enum": [
                 "number",
@@ -65,12 +66,12 @@
             ]
         },
         "format": {
-            "title": "Frictionless Formats",
-            "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas.\nFor example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)\n\nEach format is dependent on the `type` specified. For example:\nIf `type` is \"string\", then see the String formats. \nIf `type` is one of the date-like formats, then see Date formats.\n",
-            "name": "frictionless_formats",
+            "title": "Variable Format",
+            "description": "Indicates the format of the type specified in the `type` property.\n\nEach format is dependent on the `type` specified. For example:\nIf `type` is \"string\", then see the String formats. \nIf `type` is one of the date-like formats, then see Date formats.\n\nSources:\n\n- [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)\n",
             "anyOf": [
                 {
-                    "title": "String Format",
+                    "title": "String Formats",
+                    "description": "A format for a specialized type of string of:\n\n- \"`email` if valid emails (e.g., test@gmail.com)\"\n- \"`uri` if valid uri addresses (e.g., https://example.com/resource123)\"\n- \"`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)\"\n- \"`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)\"\n",
                     "enum": [
                         "uri",
                         "email",
@@ -79,25 +80,22 @@
                     ]
                 },
                 {
-                    "title": "Date Format",
-                    "description": "A format for a date variable (`date`,`time`,`datetime`).  \n    \\n\\t* **default**: An ISO8601 format string.\n    \\n\\t* **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n    \\n\\t* **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\n\n\\nExamples:\n\n  `%Y-%m-%d` (for date, e.g., 2023-05-25)\n  `%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n  `%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\n  `%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\n  `%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\n  `%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\n  `%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\n  `%H:%M:%S` (for time, e.g., 10:30:45)\n  `%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\n  `%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\n"
+                    "title": "Date Formats",
+                    "type": "string",
+                    "description": "A format for a date variable (`date`,`time`,`datetime`).  \n    **default**: An ISO8601 format string.\n    **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n\n**{PATTERN}**: The value can be parsed according to `{PATTERN}`,\n which `MUST` follow the date formatting syntax of \n C / Python [strftime](http://strftime.org/) such as:\n\n- \"`%Y-%m-%d` (for date, e.g., 2023-05-25)\"\n- \"`%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n- \"`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\"\n- \"`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\"\n- \"`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\"\n- \"`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\"\n- \"`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\"\n- \"`%H:%M:%S` (for time, e.g., 10:30:45)\"\n- \"`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\"\n- \"`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\"\n"
                 },
                 {
                     "title": "Geopoint Format",
-                    "description": "The two types of formats for `geopoint` (describing a geographic point).",
-                    "oneOf": [
-                        {
-                            "type": "array",
-                            "description": "A JSON array or a string parsable as a JSON array where each item is a number with the first \nas the latitude and the second as longitude. \n"
-                        },
-                        {
-                            "type": "object",
-                            "description": "Contains latitude and longitude with two keys (\"lat\" and \"long\") with number items mapped to each key.\n"
-                        }
+                    "type": "string",
+                    "description": "The two types of formats for `geopoint` (describing a geographic point).\n\n- `array` (if 'lat,long' (e.g., 36.63,-90.20))\n- `object` (if {'lat':36.63,'lon':-90.20})\n",
+                    "enum": [
+                        "array",
+                        "object"
                     ]
                 },
                 {
-                    "title": "geojson",
+                    "title": "Geojson Formats",
+                    "type": "string",
                     "description": "The JSON object according to the geojson spec.",
                     "enum": [
                         "topojson",
@@ -115,7 +113,11 @@
             "title": "Variable Possible Values",
             "description": "Constrains possible values to a set of values.\n\n[Optional,if applicable]\n",
             "type": "string",
-            "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
+            "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$",
+            "examples": [
+                "1|2|3|4|5|6|7|8",
+                "White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial"
+            ]
         },
         "constraints.pattern": {
             "type": "string",
@@ -150,6 +152,10 @@
         "missingValues": {
             "title": "Missing Values",
             "description": "A list of missing values specific to a variable.\n\n[Optional, if applicable]\n",
+            "examples": [
+                "Missing|Skipped|No preference",
+                "Missing"
+            ],
             "type": "string",
             "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
         },
@@ -175,6 +181,15 @@
             "title": "Variable Repository Link",
             "description": "A link to the variable as it exists on the home repository, if applicable\n"
         },
+        "standardsMappings.url": {
+            "title": "Standards Mapping - Url",
+            "description": "The url that links out to the published, standardized mapping.\n\n[Autopopulated, if not filled]\n",
+            "type": "string",
+            "format": "uri",
+            "examples": [
+                "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+            ]
+        },
         "standardsMappings.type": {
             "title": "Standards Mapping - Title",
             "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.\n[Autopopulated, if not filled]\n",
@@ -195,15 +210,6 @@
                 "promis"
             ]
         },
-        "standardsMappings.url": {
-            "title": "Standards Mapping - Url",
-            "description": "The url that links out to the published, standardized mapping.\n\n[Autopopulated, if not filled]\n",
-            "type": "string",
-            "format": "uri",
-            "examples": [
-                "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
-            ]
-        },
         "standardsMappings.source": {
             "title": "Standard Mapping - Source",
             "description": "The source of the standardized variable.\n",
@@ -217,6 +223,15 @@
             "type": "string",
             "description": "The id locating the individual mapping within the given source.\n"
         },
+        "relatedConcepts.url": {
+            "title": "Related Concepts - Url",
+            "description": "The url that links out to the published, standardized concept.\n\n[Autopopulated, if not filled]\n",
+            "type": "string",
+            "format": "uri",
+            "examples": [
+                "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+            ]
+        },
         "relatedConcepts.type": {
             "title": "Related concepts - Type",
             "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n",
@@ -226,15 +241,6 @@
             "type": "string",
             "title": "Related Concepts - Label",
             "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n"
-        },
-        "relatedConcepts.url": {
-            "title": "Related Concepts - Url",
-            "description": "The url that links out to the published, standardized concept.\n\n[Autopopulated, if not filled]\n",
-            "type": "string",
-            "format": "uri",
-            "examples": [
-                "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
-            ]
         },
         "relatedConcepts.source": {
             "title": "Related Concepts - Source",

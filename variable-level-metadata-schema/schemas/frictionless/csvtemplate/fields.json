@@ -30,7 +30,8 @@
       "description": "The human-readable title or label of the variable. \n\n[Highly recommended]\n",
       "title": "Variable Label (ie Title)",
       "examples": [
-        "My Variable (for name of my_variable)"
+        "My Variable",
+        "Gender identity"
       ],
       "type": "string"
     },
@@ -39,8 +40,8 @@
       "description": "An extended description of the variable. This could be the definition of a variable or the \nquestion text (e.g., if a survey). \n\n[Required]\n",
       "title": "Variable Description",
       "examples": [
-        "Definition",
-        "Question text (if a survey)"
+        "The participant's age at the time of study enrollment",
+        "What is the highest grade or level of school you have completed or the highest degree you have received?"
       ],
       "type": "string",
       "constraints": {
@@ -49,7 +50,7 @@
     },
     {
       "name": "type",
-      "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
+      "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\nDefinitions:\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
       "title": "Variable Type",
       "type": "string",
       "constraints": {
@@ -71,8 +72,8 @@
     },
     {
       "name": "format",
-      "description": "A format taken from one of the [frictionless specification](https://specs.frictionlessdata.io/) schemas.\nFor example, for tabular data, there is the [Table Schema specification](https://specs.frictionlessdata.io/table-schema)\n\nEach format is dependent on the `type` specified. For example:\nIf `type` is \"string\", then see the String formats. \nIf `type` is one of the date-like formats, then see Date formats.\n",
-      "title": "Frictionless Formats",
+      "description": "Indicates the format of the type specified in the `type` property.\n\nEach format is dependent on the `type` specified. For example:\nIf `type` is \"string\", then see the String formats. \nIf `type` is one of the date-like formats, then see Date formats.\n\nSources:\n\n- [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)\n",
+      "title": "Variable Format",
       "type": "any"
     },
     {
@@ -85,6 +86,10 @@
       "name": "constraints.enum",
       "description": "Constrains possible values to a set of values.\n\n[Optional,if applicable]\n",
       "title": "Variable Possible Values",
+      "examples": [
+        "1|2|3|4|5|6|7|8",
+        "White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial"
+      ],
       "type": "string",
       "constraints": {
         "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
@@ -131,6 +136,10 @@
       "name": "missingValues",
       "description": "A list of missing values specific to a variable.\n\n[Optional, if applicable]\n",
       "title": "Missing Values",
+      "examples": [
+        "Missing|Skipped|No preference",
+        "Missing"
+      ],
       "type": "string",
       "constraints": {
         "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
@@ -166,6 +175,15 @@
       "type": "string"
     },
     {
+      "name": "standardsMappings.url",
+      "description": "The url that links out to the published, standardized mapping.\n\n[Autopopulated, if not filled]\n",
+      "title": "Standards Mapping - Url",
+      "examples": [
+        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+      ],
+      "type": "string"
+    },
+    {
       "name": "standardsMappings.type",
       "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.\n[Autopopulated, if not filled]\n",
       "title": "Standards Mapping - Title",
@@ -188,15 +206,6 @@
       "type": "string"
     },
     {
-      "name": "standardsMappings.url",
-      "description": "The url that links out to the published, standardized mapping.\n\n[Autopopulated, if not filled]\n",
-      "title": "Standards Mapping - Url",
-      "examples": [
-        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
-      ],
-      "type": "string"
-    },
-    {
       "name": "standardsMappings.source",
       "description": "The source of the standardized variable.\n",
       "title": "Standard Mapping - Source",
@@ -212,6 +221,15 @@
       "type": "string"
     },
     {
+      "name": "relatedConcepts.url",
+      "description": "The url that links out to the published, standardized concept.\n\n[Autopopulated, if not filled]\n",
+      "title": "Related Concepts - Url",
+      "examples": [
+        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+      ],
+      "type": "string"
+    },
+    {
       "name": "relatedConcepts.type",
       "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n",
       "title": "Related concepts - Type",
@@ -221,15 +239,6 @@
       "name": "relatedConcepts.label",
       "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n\n[Autopopulated, if not filled]\n",
       "title": "Related Concepts - Label",
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts.url",
-      "description": "The url that links out to the published, standardized concept.\n\n[Autopopulated, if not filled]\n",
-      "title": "Related Concepts - Url",
-      "examples": [
-        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
-      ],
       "type": "string"
     },
     {
