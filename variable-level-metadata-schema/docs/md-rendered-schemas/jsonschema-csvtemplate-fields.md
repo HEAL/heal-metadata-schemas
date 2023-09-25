@@ -19,6 +19,8 @@ metadata object within the HEAL platform metadata service.
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
+Examples:
+
 ```json
 
     Demographics
@@ -61,6 +63,8 @@ to group variables.
 
 [Highly recommended]
 
+Examples:
+
 ```json
 
     My Variable
@@ -77,6 +81,8 @@ to group variables.
 question text (e.g., if a survey). 
 
 [Required]
+
+Examples:
 
 ```json
 
@@ -283,6 +289,8 @@ categorical variable, this would be a maxLength of 11.
 
 [Optional,if applicable]
 
+Examples:
+
 ```json
 
     1|2|3|4|5|6|7|8
@@ -329,6 +337,8 @@ abbreviations).
 
 [Optional,if applicable]
 
+Examples:
+
 ```json
 
     0=No|1=Yes
@@ -354,6 +364,8 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 
 [Optional, if applicable]
 
+Examples:
+
 ```json
 
     Missing|Skipped|No preference
@@ -371,6 +383,8 @@ a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
 
 [Optional, if applicable]
+
+Examples:
 
 ```json
 
@@ -408,6 +422,8 @@ readability of the field) that is not a standard false value. It can include one
 
 [Autopopulated, if not filled]
 
+Examples:
+
 ```json
 
     https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
@@ -417,6 +433,8 @@ readability of the field) that is not a standard false value. It can include one
 `standardsMappings.type` _(string)_
  The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.
 [Autopopulated, if not filled]
+
+Examples:
 
 ```json
 
@@ -439,6 +457,8 @@ readability of the field) that is not a standard false value. It can include one
 
 [Autopopulated, if not filled]
 
+Examples:
+
 ```json
 
     substance use
@@ -458,6 +478,8 @@ readability of the field) that is not a standard false value. It can include one
 `standardsMappings.source` _(string)_
  The source of the standardized variable.
 
+Examples:
+
 ```json
 
     TBD (will have controlled vocabulary)
@@ -472,6 +494,8 @@ readability of the field) that is not a standard false value. It can include one
  The url that links out to the published, standardized concept.
 
 [Autopopulated, if not filled]
+
+Examples:
 
 ```json
 
@@ -497,6 +521,8 @@ ontological information (eg., NCI thesaurus, bioportal etc)
  The source of the related concept.
 
 [Autopopulated, if not filled]
+
+Examples:
 
 ```json
 

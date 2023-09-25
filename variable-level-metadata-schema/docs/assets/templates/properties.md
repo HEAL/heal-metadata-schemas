@@ -42,6 +42,8 @@ _({{ item.type | default('of below') }}{{ ',required'  if itemname in schema.req
 {# #}
 {# #}
 {% if item.examples is defined %}
+Examples:
+
 {% for val in item.examples %}
 ```json
 

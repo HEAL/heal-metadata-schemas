@@ -25,6 +25,8 @@ metadata object within the HEAL platform metadata service.
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
+Examples:
+
 ```json
 
     Demographics
@@ -67,6 +69,8 @@ to group variables.
 
 [Highly recommended]
 
+Examples:
+
 ```json
 
     My Variable
@@ -83,6 +87,8 @@ to group variables.
 question text (e.g., if a survey). 
 
 [Required]
+
+Examples:
 
 ```json
 
@@ -294,6 +300,8 @@ Any of the following:
 
     [Optional,if applicable]
 
+    Examples:
+
     ```json
 
         [1, 2, 3, 4]
@@ -344,6 +352,8 @@ abbreviations).
 
 [Optional,if applicable]
 
+Examples:
+
 ```json
 
     {'0': 'No', '1': 'Yes'}
@@ -369,6 +379,8 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 
 [Highly recommended]
 
+Examples:
+
 ```json
 
     ['Missing', 'Skipped', 'No preference']
@@ -386,6 +398,8 @@ a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
 
 [Optional, if applicable]
+
+Examples:
 
 ```json
 
