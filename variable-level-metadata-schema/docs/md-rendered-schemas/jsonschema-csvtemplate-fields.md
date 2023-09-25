@@ -21,33 +21,33 @@ to group variables.
 
 Examples:
 
-```json
 
+ ```
     Demographics
 
  ```
-```json
 
+ ```
     PROMIS
 
  ```
-```json
 
+ ```
     Substance use
 
  ```
-```json
 
+ ```
     Medical History
 
  ```
-```json
 
+ ```
     Sleep questions
 
  ```
-```json
 
+ ```
     Physical activity
 
  ```
@@ -65,13 +65,13 @@ Examples:
 
 Examples:
 
-```json
 
+ ```
     My Variable
 
  ```
-```json
 
+ ```
     Gender identity
 
  ```
@@ -84,13 +84,13 @@ question text (e.g., if a survey).
 
 Examples:
 
-```json
 
+ ```
     The participant's age at the time of study enrollment
 
  ```
-```json
 
+ ```
     What is the highest grade or level of school you have completed or the highest degree you have received?
 
  ```
@@ -114,66 +114,66 @@ Definitions:
 -  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
 
 Possible values:
-```json
+    ```
 
-    number
+        number
 
- ```
-```json
+    ```
+    ```
 
-    integer
+        integer
 
- ```
-```json
+    ```
+    ```
 
-    string
+        string
 
- ```
-```json
+    ```
+    ```
 
-    any
+        any
 
- ```
-```json
+    ```
+    ```
 
-    boolean
+        boolean
 
- ```
-```json
+    ```
+    ```
 
-    date
+        date
 
- ```
-```json
+    ```
+    ```
 
-    datetime
+        datetime
 
- ```
-```json
+    ```
+    ```
 
-    time
+        time
 
- ```
-```json
+    ```
+    ```
 
-    year
+        year
 
- ```
-```json
+    ```
+    ```
 
-    yearmonth
+        yearmonth
 
- ```
-```json
+    ```
+    ```
 
-    duration
+        duration
 
- ```
-```json
+    ```
+    ```
 
-    geopoint
+        geopoint
 
- ```
+    ```
 
 
 `format` _(of below)_
@@ -188,90 +188,90 @@ Sources:
 - [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 
 Any of the following:
-- None _(of below)_
-     A format for a specialized type of string of:
+    - __String Formats__ _(of below)_
+         A format for a specialized type of string of:
 
-    - "`email` if valid emails (e.g., test@gmail.com)"
-    - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-    - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-    - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
+        - "`email` if valid emails (e.g., test@gmail.com)"
+        - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
+        - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
+        - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
 
-    Possible values:
-    ```json
+        Possible values:
+            ```
 
-        uri
+                uri
 
-     ```
-    ```json
+            ```
+            ```
 
-        email
+                email
 
-     ```
-    ```json
+            ```
+            ```
 
-        binary
+                binary
 
-     ```
-    ```json
+            ```
+            ```
 
-        uuid
+                uuid
 
-     ```
-
-
-- None _(string)_
-     A format for a date variable (`date`,`time`,`datetime`).  
-        **default**: An ISO8601 format string.
-        **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
-
-    **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-     which `MUST` follow the date formatting syntax of 
-     C / Python [strftime](http://strftime.org/) such as:
-
-    - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-    - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-    - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-    - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-    - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-    - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-    - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-    - "`%H:%M:%S` (for time, e.g., 10:30:45)"
-    - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-    - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+            ```
 
 
-- None _(string)_
-     The two types of formats for `geopoint` (describing a geographic point).
+    - __Date Formats__ _(string)_
+         A format for a date variable (`date`,`time`,`datetime`).  
+            **default**: An ISO8601 format string.
+            **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
 
-    - `array` (if 'lat,long' (e.g., 36.63,-90.20))
-    - `object` (if {'lat':36.63,'lon':-90.20})
+        **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+         which `MUST` follow the date formatting syntax of 
+         C / Python [strftime](http://strftime.org/) such as:
 
-    Possible values:
-    ```json
+        - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
+        - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
+        - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
+        - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
+        - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
+        - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
+        - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
+        - "`%H:%M:%S` (for time, e.g., 10:30:45)"
+        - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
+        - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
 
-        array
 
-     ```
-    ```json
+    - __Geopoint Format__ _(string)_
+         The two types of formats for `geopoint` (describing a geographic point).
 
-        object
+        - `array` (if 'lat,long' (e.g., 36.63,-90.20))
+        - `object` (if {'lat':36.63,'lon':-90.20})
 
-     ```
+        Possible values:
+            ```
+
+                array
+
+            ```
+            ```
+
+                object
+
+            ```
 
 
-- None _(string)_
-     The JSON object according to the geojson spec.
-    Possible values:
-    ```json
+    - __Geojson Formats__ _(string)_
+         The JSON object according to the geojson spec.
+        Possible values:
+            ```
 
-        topojson
+                topojson
 
-     ```
-    ```json
+            ```
+            ```
 
-        default
+                default
 
-     ```
+            ```
 
 
 
@@ -291,13 +291,13 @@ categorical variable, this would be a maxLength of 11.
 
 Examples:
 
-```json
 
+ ```
     1|2|3|4|5|6|7|8
 
  ```
-```json
 
+ ```
     White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
 
  ```
@@ -339,13 +339,13 @@ abbreviations).
 
 Examples:
 
-```json
 
+ ```
     0=No|1=Yes
 
  ```
-```json
 
+ ```
     HW=Hello world|GBW=Good bye world|HM=Hi,Mike
 
  ```
@@ -366,13 +366,13 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 
 Examples:
 
-```json
 
+ ```
     Missing|Skipped|No preference
 
  ```
-```json
 
+ ```
     Missing
 
  ```
@@ -386,23 +386,23 @@ readability of the field). It can include one or more values.
 
 Examples:
 
-```json
 
+ ```
     Required|REQUIRED
 
  ```
-```json
 
+ ```
     required|Yes|Y|Checked
 
  ```
-```json
 
+ ```
     Checked
 
  ```
-```json
 
+ ```
     Required
 
  ```
@@ -424,8 +424,8 @@ readability of the field) that is not a standard false value. It can include one
 
 Examples:
 
-```json
 
+ ```
     https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
 
  ```
@@ -436,18 +436,18 @@ Examples:
 
 Examples:
 
-```json
 
+ ```
     cde
 
  ```
-```json
 
+ ```
     ontology
 
  ```
-```json
 
+ ```
     reference_list
 
  ```
@@ -459,18 +459,18 @@ Examples:
 
 Examples:
 
-```json
 
+ ```
     substance use
 
  ```
-```json
 
+ ```
     chemical compound
 
  ```
-```json
 
+ ```
     promis
 
  ```
@@ -480,8 +480,8 @@ Examples:
 
 Examples:
 
-```json
 
+ ```
     TBD (will have controlled vocabulary)
 
  ```
@@ -497,8 +497,8 @@ Examples:
 
 Examples:
 
-```json
 
+ ```
     https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
 
  ```
@@ -524,8 +524,8 @@ ontological information (eg., NCI thesaurus, bioportal etc)
 
 Examples:
 
-```json
 
+ ```
     TBD (will have controlled vocabulary)
 
  ```

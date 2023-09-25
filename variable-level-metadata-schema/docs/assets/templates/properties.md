@@ -4,11 +4,11 @@
 {% if val is mapping %}
 - {{ render_property(None,val,schema) | indent }}
 {% else %}
-```json
+```
 
-    {{val}}
+    {{ val }}
 
- ```
+```
 {% endif %}
 {% endfor %}
 {# #}
@@ -23,21 +23,27 @@ _({{ item.type | default('of below') }}{{ ',required'  if itemname in schema.req
 {% endset %}
 {# #}
 {# #}
-{{ '`' if itemname }}{{ itemname }}{{ '`' if itemname }} {{ itemtype }} {{ item.description }}
+{% if itemname %}
+`{{ itemname }}` {{ itemtype }} {{ item.description }}
+{% elif item.title %}
+__{{ item.title }}__ {{ itemtype }} {{ item.description }}
+{% else %}
+{{ itemtype }} {{ item.description }}
+{% endif %}
 {# #}
 {# #}
 {% if item.enum is defined %}
-{{ render_type_item('Possible values',item.enum) }}
+{{ render_type_item('Possible values',item.enum) | indent}}
 {% endif %}
 {# #}
 {# #}
 {% if item.anyOf is defined %}
-{{ render_type_item('Any of the following',item.anyOf) }}
+{{ render_type_item('Any of the following',item.anyOf) | indent }}
 {% endif %}
 {# #}
 {# #}
 {% if item.oneOf is defined %}
-{{ render_type_item('One of the following',item.oneOf) }}
+{{ render_type_item('One of the following',item.oneOf) | indent}}
 {% endif %}
 {# #}
 {# #}
@@ -45,11 +51,23 @@ _({{ item.type | default('of below') }}{{ ',required'  if itemname in schema.req
 Examples:
 
 {% for val in item.examples %}
-```json
 
-    {{val}}
+ {% if val is string %}
+ ```
+    {{ val }}
 
  ```
+ {% elif val is mapping or val is sequence %}
+```json
+
+    {{ val }}
+
+ ```
+{% else %}
+```
+    {{ val }}
+```
+{% endif %}
 {% endfor %}
 {% endif %}
 {# #}
@@ -58,8 +76,7 @@ Examples:
 
 {% for propname,prop in item.properties.items() %}
 
-{% set header %}`{{ propname }}`{% endset %}
-{{ render_property(header,prop,schema) | indent(first=True) }}
+- {{ render_property(propname,prop,schema) | indent }}
 {% endfor %}
 {% endif %}
 {% endmacro %}
