@@ -8,8 +8,7 @@
 {% if itemname == 'data_dictionary' %}
 {{ item['items']['description'] }}
 #### Properties for each record
-{% set required %}{{ item['items']['required'] | list }}{% endset %}
-{{ required }}
+{% set schema %}{{ item['items'] }}{% endset %}
 {% for itemname,item in item['items']['properties'].items() %}
 {% include 'properties.md' %}
 {% endfor %}

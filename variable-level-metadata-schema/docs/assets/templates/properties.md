@@ -17,14 +17,13 @@
 {# #}
 {% endmacro %}
 {# This macro is called for all properties and types with nested dictionary objects like anyOf and oneOf #}
-{% macro render_property(itemtitle,item,schema) %}
-{{ required | list }}
+{% macro render_property(itemname,item,schema) %}
 {% set itemtype %}
-_({{ item.type | default('of below') }}{{ ',required' }})_
+_({{ item.type | default('of below') }}{{ ',required'  if itemname in schema.required }})_
 {% endset %}
 {# #}
 {# #}
-{{ itemtitle | trim}} {{ itemtype }} {{ item.description }}
+{{ '`' if itemname }}{{ itemname }}{{ '`' if itemname }} {{ itemtype }} {{ item.description }}
 {# #}
 {# #}
 {% if item.enum is defined %}
@@ -68,6 +67,4 @@ _({{ item.type | default('of below') }}{{ ',required' }})_
 {# THIS STARTS THE ACTUAL SCRIPT AND CALLS THE MACRO #}
 {# #}
 
-{% set header %}{{ header }}`{{ itemname }}`{% endset %}
-
-{{ render_property(header,item,schema) }}
+{{ render_property(itemname,item,schema) }}
