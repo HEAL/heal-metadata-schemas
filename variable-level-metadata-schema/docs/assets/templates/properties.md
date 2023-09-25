@@ -9,7 +9,7 @@
 
     {{ val }}
 
-```
+  ```
 {% endif %}
 {% endfor %}
 {# #}
@@ -34,17 +34,17 @@ __{{ item.title }}__ {{ itemtype }} {{ item.description }}
 {# #}
 {# #}
 {% if item.enum is defined %}
-{{ render_type_item('Possible values',item.enum) | indent}}
+{{ render_type_item('Possible values',item.enum)}}
 {% endif %}
 {# #}
 {# #}
 {% if item.anyOf is defined %}
-{{ render_type_item('Any of the following',item.anyOf) | indent }}
+{{ render_type_item('Any of the following',item.anyOf) }}
 {% endif %}
 {# #}
 {# #}
 {% if item.oneOf is defined %}
-{{ render_type_item('One of the following',item.oneOf) | indent}}
+{{ render_type_item('One of the following',item.oneOf) }}
 {% endif %}
 {# #}
 {# #}
@@ -54,20 +54,20 @@ Examples:
 {% for val in item.examples %}
 
  {% if val is string %}
- ```
+ - ```
     {{ val }}
 
- ```
+   ```
  {% elif val is mapping or val is sequence %}
-```json
+- ```json
 
     {{ val }}
 
- ```
+  ```
 {% else %}
-```
+- ```
     {{ val }}
-```
+  ```
 {% endif %}
 {% endfor %}
 {% endif %}

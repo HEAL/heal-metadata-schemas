@@ -22,35 +22,35 @@ to group variables.
 Examples:
 
 
- ```
+ - ```
     Demographics
 
- ```
+   ```
 
- ```
+ - ```
     PROMIS
 
- ```
+   ```
 
- ```
+ - ```
     Substance use
 
- ```
+   ```
 
- ```
+ - ```
     Medical History
 
- ```
+   ```
 
- ```
+ - ```
     Sleep questions
 
- ```
+   ```
 
- ```
+ - ```
     Physical activity
 
- ```
+   ```
 
 `name` _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
@@ -66,15 +66,15 @@ Examples:
 Examples:
 
 
- ```
+ - ```
     My Variable
 
- ```
+   ```
 
- ```
+ - ```
     Gender identity
 
- ```
+   ```
 
 `description` _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
@@ -85,15 +85,15 @@ question text (e.g., if a survey).
 Examples:
 
 
- ```
+ - ```
     The participant's age at the time of study enrollment
 
- ```
+   ```
 
- ```
+ - ```
     What is the highest grade or level of school you have completed or the highest degree you have received?
 
- ```
+   ```
 
 `type` _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
@@ -115,66 +115,66 @@ Definitions:
 
 Possible values:
 
-    - ```
+- ```
 
-        number
+    number
 
-    ```
-    - ```
+  ```
+- ```
 
-        integer
+    integer
 
-    ```
-    - ```
+  ```
+- ```
 
-        string
+    string
 
-    ```
-    - ```
+  ```
+- ```
 
-        any
+    any
 
-    ```
-    - ```
+  ```
+- ```
 
-        boolean
+    boolean
 
-    ```
-    - ```
+  ```
+- ```
 
-        date
+    date
 
-    ```
-    - ```
+  ```
+- ```
 
-        datetime
+    datetime
 
-    ```
-    - ```
+  ```
+- ```
 
-        time
+    time
 
-    ```
-    - ```
+  ```
+- ```
 
-        year
+    year
 
-    ```
-    - ```
+  ```
+- ```
 
-        yearmonth
+    yearmonth
 
-    ```
-    - ```
+  ```
+- ```
 
-        duration
+    duration
 
-    ```
-    - ```
+  ```
+- ```
 
-        geopoint
+    geopoint
 
-    ```
+  ```
 
 
 `format` _(of below)_
@@ -190,93 +190,93 @@ Sources:
 
 Any of the following:
 
-    - __String Formats__ _(of below)_
-         A format for a specialized type of string of:
+- __String Formats__ _(of below)_
+     A format for a specialized type of string of:
 
-        - "`email` if valid emails (e.g., test@gmail.com)"
-        - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-        - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-        - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
+    - "`email` if valid emails (e.g., test@gmail.com)"
+    - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
+    - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
+    - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
 
-        Possible values:
+    Possible values:
 
-            - ```
+    - ```
 
-                uri
+        uri
 
-            ```
-            - ```
+      ```
+    - ```
 
-                email
+        email
 
-            ```
-            - ```
+      ```
+    - ```
 
-                binary
+        binary
 
-            ```
-            - ```
+      ```
+    - ```
 
-                uuid
+        uuid
 
-            ```
-
-
-    - __Date Formats__ _(string)_
-         A format for a date variable (`date`,`time`,`datetime`).  
-            **default**: An ISO8601 format string.
-            **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
-
-        **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-         which `MUST` follow the date formatting syntax of 
-         C / Python [strftime](http://strftime.org/) such as:
-
-        - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-        - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-        - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-        - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-        - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-        - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-        - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-        - "`%H:%M:%S` (for time, e.g., 10:30:45)"
-        - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-        - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+      ```
 
 
-    - __Geopoint Format__ _(string)_
-         The two types of formats for `geopoint` (describing a geographic point).
+- __Date Formats__ _(string)_
+     A format for a date variable (`date`,`time`,`datetime`).  
+        **default**: An ISO8601 format string.
+        **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
 
-        - `array` (if 'lat,long' (e.g., 36.63,-90.20))
-        - `object` (if {'lat':36.63,'lon':-90.20})
+    **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+     which `MUST` follow the date formatting syntax of 
+     C / Python [strftime](http://strftime.org/) such as:
 
-        Possible values:
-
-            - ```
-
-                array
-
-            ```
-            - ```
-
-                object
-
-            ```
+    - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
+    - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
+    - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
+    - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
+    - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
+    - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
+    - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
+    - "`%H:%M:%S` (for time, e.g., 10:30:45)"
+    - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
+    - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
 
 
-    - __Geojson Formats__ _(string)_
-         The JSON object according to the geojson spec.
-        Possible values:
+- __Geopoint Format__ _(string)_
+     The two types of formats for `geopoint` (describing a geographic point).
 
-            - ```
+    - `array` (if 'lat,long' (e.g., 36.63,-90.20))
+    - `object` (if {'lat':36.63,'lon':-90.20})
 
-                topojson
+    Possible values:
 
-            ```
-            - ```
+    - ```
 
-                default
+        array
 
-            ```
+      ```
+    - ```
+
+        object
+
+      ```
+
+
+- __Geojson Formats__ _(string)_
+     The JSON object according to the geojson spec.
+    Possible values:
+
+    - ```
+
+        topojson
+
+      ```
+    - ```
+
+        default
+
+      ```
 
 
 
@@ -297,15 +297,15 @@ categorical variable, this would be a maxLength of 11.
 Examples:
 
 
- ```
+ - ```
     1|2|3|4|5|6|7|8
 
- ```
+   ```
 
- ```
+ - ```
     White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
 
- ```
+   ```
 
 `constraints.pattern` _(string)_
  A regular expression pattern the data MUST conform to.
@@ -345,15 +345,15 @@ abbreviations).
 Examples:
 
 
- ```
+ - ```
     0=No|1=Yes
 
- ```
+   ```
 
- ```
+ - ```
     HW=Hello world|GBW=Good bye world|HM=Hi,Mike
 
- ```
+   ```
 
 `ordered` _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
@@ -372,15 +372,15 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 Examples:
 
 
- ```
+ - ```
     Missing|Skipped|No preference
 
- ```
+   ```
 
- ```
+ - ```
     Missing
 
- ```
+   ```
 
 `trueValues` _(string)_
  For boolean (true) variable (as defined in type field), this field allows
@@ -392,25 +392,25 @@ readability of the field). It can include one or more values.
 Examples:
 
 
- ```
+ - ```
     Required|REQUIRED
 
- ```
+   ```
 
- ```
+ - ```
     required|Yes|Y|Checked
 
- ```
+   ```
 
- ```
+ - ```
     Checked
 
- ```
+   ```
 
- ```
+ - ```
     Required
 
- ```
+   ```
 
 `falseValues` _(string)_
  For boolean (false) variable (as defined in type field), this field allows
@@ -430,10 +430,10 @@ readability of the field) that is not a standard false value. It can include one
 Examples:
 
 
- ```
+ - ```
     https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
 
- ```
+   ```
 
 `standardsMappings.type` _(string)_
  The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.
@@ -442,20 +442,20 @@ Examples:
 Examples:
 
 
- ```
+ - ```
     cde
 
- ```
+   ```
 
- ```
+ - ```
     ontology
 
- ```
+   ```
 
- ```
+ - ```
     reference_list
 
- ```
+   ```
 
 `standardsMappings.label` _(string)_
  A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
@@ -465,20 +465,20 @@ Examples:
 Examples:
 
 
- ```
+ - ```
     substance use
 
- ```
+   ```
 
- ```
+ - ```
     chemical compound
 
- ```
+   ```
 
- ```
+ - ```
     promis
 
- ```
+   ```
 
 `standardsMappings.source` _(string)_
  The source of the standardized variable.
@@ -486,10 +486,10 @@ Examples:
 Examples:
 
 
- ```
+ - ```
     TBD (will have controlled vocabulary)
 
- ```
+   ```
 
 `standardsMappings.id` _(string)_
  The id locating the individual mapping within the given source.
@@ -503,10 +503,10 @@ Examples:
 Examples:
 
 
- ```
+ - ```
     https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
 
- ```
+   ```
 
 `relatedConcepts.type` _(string)_
  The **type** of mapping to a published set of concepts related to the given field such as 
@@ -530,10 +530,10 @@ ontological information (eg., NCI thesaurus, bioportal etc)
 Examples:
 
 
- ```
+ - ```
     TBD (will have controlled vocabulary)
 
- ```
+   ```
 
 `relatedConcepts.id` _(string)_
  The id locating the individual mapping within the given source.
