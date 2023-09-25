@@ -276,11 +276,22 @@ properties:
     items:
       type: object
       properties:
+        url:
+          title: Standards Mapping - Url
+          description: |
+            The url that links out to the published, standardized mapping.
+
+            [Autopopulated, if not filled]
+          type: string
+          format: uri
+          examples:
+            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
         type:
           title: Standards Mapping - Title
           description: |
             The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program.
             [Autopopulated, if not filled]
+
           examples:
           - cde
           - ontology
@@ -297,18 +308,6 @@ properties:
             - substance use
             - chemical compound
             - promis
-
-        url:
-          title: Standards Mapping - Url
-          description: |
-            The url that links out to the published, standardized mapping.
-
-            [Autopopulated, if not filled]
-          type: string
-          format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-
         source:
           title: Standard Mapping - Source 
           description: |
@@ -332,6 +331,16 @@ properties:
     items:
       type: object
       properties:
+        url:
+          title: Related Concepts - Url
+          description: |
+            The url that links out to the published, standardized concept.
+
+            [Autopopulated, if not filled]
+          type: string
+          format: uri
+          examples:
+            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
         type:
           title: Related concepts - Type
           description: |
