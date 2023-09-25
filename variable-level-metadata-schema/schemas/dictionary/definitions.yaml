@@ -1,71 +1,11 @@
-csvIntegerNames:
-  type: string 
-  enum:
-    - 'Integer'
-    - 'integer'
-    - 'INTEGER'
-    - 'Int'
-    - 'INT'
-    - 'int'
-csvNumberNames:
-  type: string 
-  enum:
-    - 'float'
-    - 'Float'
-    - 'FLOAT'
-    - 'NUM'
-    - 'Num'
-    - 'num'
-    - 'number'
-    - 'Number'
-    - 'NUMBER'
-csvStringNames:
-  type: string 
-  enum:
-    - 'text'
-    - 'TEXT'
-    - 'Text'
-    - 'string'
-    - 'STRING'
-    - 'String'
-    - 'CHAR'
-    - 'char'
-    - 'Char'
-csvBooleanTrueValues:
-  type: string 
-  enum:
-    - 'TRUE'
-    - 'True'
-    - 'true'
-    - '1'
-    - 'YES'
-    - 'yes'
-    - 'Yes'
-    - 'y'
-    - 'Y'
-    - 'T' 
-    - 't'
-csvBooleanFalseValues:
-  type: string 
-  enum:
-    - 'FALSE'
-    - 'false'
-    - 'False'
-    - '0'
-    - 'no'
-    - 'No'
-    - 'NO'
-    - 'N'
-    - 'n'
-    - 'f' 
-    - 'F'
-
 # for frictionless types and formats see:
 # https://specs.frictionlessdata.io/table-schema/#types-and-formats
 frictionlessTypes:
   type: string
   description: |
     A classification or category of a particular data element or property expected or allowed in the dataset.
+
+    Definitions:
 
     -  `number` (A numeric value with optional decimal places. (e.g., 3.14))
     -  `integer` (A whole number without decimal places. (e.g., 42))
