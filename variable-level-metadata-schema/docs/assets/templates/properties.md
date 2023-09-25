@@ -1,10 +1,11 @@
 {% macro render_type_item(itemtitle,item) %}
 {{ itemtitle }}:
+
 {% for val in item %}
 {% if val is mapping %}
 - {{ render_property(None,val,schema) | indent }}
 {% else %}
-```
+- ```
 
     {{ val }}
 

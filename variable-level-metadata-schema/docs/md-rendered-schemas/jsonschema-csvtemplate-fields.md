@@ -114,62 +114,63 @@ Definitions:
 -  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
 
 Possible values:
-    ```
+
+    - ```
 
         number
 
     ```
-    ```
+    - ```
 
         integer
 
     ```
-    ```
+    - ```
 
         string
 
     ```
-    ```
+    - ```
 
         any
 
     ```
-    ```
+    - ```
 
         boolean
 
     ```
-    ```
+    - ```
 
         date
 
     ```
-    ```
+    - ```
 
         datetime
 
     ```
-    ```
+    - ```
 
         time
 
     ```
-    ```
+    - ```
 
         year
 
     ```
-    ```
+    - ```
 
         yearmonth
 
     ```
-    ```
+    - ```
 
         duration
 
     ```
-    ```
+    - ```
 
         geopoint
 
@@ -188,6 +189,7 @@ Sources:
 - [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 
 Any of the following:
+
     - __String Formats__ _(of below)_
          A format for a specialized type of string of:
 
@@ -197,22 +199,23 @@ Any of the following:
         - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
 
         Possible values:
-            ```
+
+            - ```
 
                 uri
 
             ```
-            ```
+            - ```
 
                 email
 
             ```
-            ```
+            - ```
 
                 binary
 
             ```
-            ```
+            - ```
 
                 uuid
 
@@ -247,12 +250,13 @@ Any of the following:
         - `object` (if {'lat':36.63,'lon':-90.20})
 
         Possible values:
-            ```
+
+            - ```
 
                 array
 
             ```
-            ```
+            - ```
 
                 object
 
@@ -262,12 +266,13 @@ Any of the following:
     - __Geojson Formats__ _(string)_
          The JSON object according to the geojson spec.
         Possible values:
-            ```
+
+            - ```
 
                 topojson
 
             ```
-            ```
+            - ```
 
                 default
 
