@@ -26,6 +26,7 @@ properties:
     description: |
       The section, form, survey instrument, set of measures  or other broad category used 
       to group variables.
+    
     examples:
       - Demographics
       - PROMIS
@@ -49,7 +50,8 @@ properties:
       
       [Highly recommended]
     examples:
-    - My Variable (for name of my_variable)
+    - My Variable
+    - Gender identity
   description:
     type: string
     title: Variable Description
@@ -59,8 +61,8 @@ properties:
       
       [Required]
     examples:
-      - Definition
-      - Question text (if a survey)
+      - The participant's age at the time of study enrollment
+      - What is the highest grade or level of school you have completed or the highest degree you have received?
   type:
     title: Variable Type
     description: |
@@ -96,6 +98,9 @@ properties:
 
           [Optional,if applicable]
         type: array
+        examples:
+         - [1,2,3,4]
+         - ["White","Black or African American","American Indian or Alaska Native","Native Hawaiian or Other Pacific Islander","Asian","Some other race","Multiracial"]
       enumCsvSpec:
         title: Variable Possible Values
         description:  |
@@ -103,6 +108,9 @@ properties:
 
           [Optional,if applicable]
         $ref: "#/definitions/csvArray"
+        examples: 
+        - 1|2|3|4|5|6|7|8
+        - White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
       pattern:
         type: string
         title: Regular Expression Pattern
@@ -182,6 +190,11 @@ properties:
       A list of missing values specific to a variable.
 
       [Highly recommended]
+
+    examples:
+
+    - ["Missing","Skipped","No preference"]
+    - ["Missing"]
     type: array
   missingValuesCsvSpec:
     title: Missing Values
@@ -189,6 +202,11 @@ properties:
       A list of missing values specific to a variable.
 
       [Optional, if applicable]
+
+    examples:
+
+    - Missing|Skipped|No preference
+    - Missing
     $ref: "#/definitions/csvArray"
   trueValuesJsonSpec:
     title: Boolean True Value Labels
@@ -198,15 +216,14 @@ properties:
       readability of the field). It can include one or more values.
 
       [Optional, if applicable]
+
     type: array
     items:
       type: string
     examples:
-      - Required
-      - REQUIRED
-      - required
-      - 'Yes'
-      - Checked"
+    - ["required","Yes","Checked"]
+    - ["required"]
+
   trueValuesCsvSpec: 
     $ref: "#/definitions/csvArray"
     description: |
@@ -215,9 +232,10 @@ properties:
       readability of the field). It can include one or more values.
 
       [Optional, if applicable]
+      
     examples: 
-      - "Required|REQUIRED"
-      - "required|Yes|Y|Checked"
+      - Required|REQUIRED
+      - required|Yes|Y|Checked
       - Checked
       - Required
   falseValuesJsonSpec:
@@ -320,16 +338,6 @@ properties:
             ontological information (eg., NCI thesaurus, bioportal etc)
             
             [Autopopulated, if not filled]
-        url:
-          title: Related Concepts - Url
-          description: |
-            The url that links out to the published, standardized concept.
-
-            [Autopopulated, if not filled]
-          type: string
-          format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
         source:
           title: Related Concepts - Source 
           description: |
