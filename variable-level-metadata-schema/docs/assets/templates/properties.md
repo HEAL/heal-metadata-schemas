@@ -25,7 +25,7 @@ _({{ item.type | default('of below') }}{{ ',required'  if itemname in schema.req
 {# #}
 {# #}
 {% if itemname %}
-`{{ itemname }}` {{ itemtype }} {{ item.description }}
+**`{{ itemname }}`** {{ itemtype }} {{ item.description }}
 {% elif item.title %}
 __{{ item.title }}__ {{ itemtype }} {{ item.description }}
 {% else %}
@@ -54,20 +54,20 @@ Examples:
 {% for val in item.examples %}
 
  {% if val is string %}
- - ```
-    {{ val }}
+```
+  {{ val }}
 
-   ```
+```
  {% elif val is mapping or val is sequence %}
-- ```json
+```json
 
-    {{ val }}
+  {{ val }}
 
-  ```
+```
 {% else %}
-- ```
-    {{ val }}
-  ```
+```
+  {{ val }}
+```
 {% endif %}
 {% endfor %}
 {% endif %}
