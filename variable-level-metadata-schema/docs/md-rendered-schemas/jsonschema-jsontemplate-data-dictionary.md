@@ -11,97 +11,90 @@ This schema defines the variable level metadata for one data dictionary for a gi
 Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.
 
-> Note, only `name` and `description` are required.
->  Listed at the end of the description are suggested "priority" levels in brackets (e.g., [<priority>]):
-  1. [Required]: Needs to be filled out to be valid.
-  2. [Highly recommended]: Greatly help using the data dictionary but not required. 
-  3. [Optional, if applicable]: May only be applicable to certain fields.
-  4. [Autopopulated, if not filled]: These fields are intended to be autopopulated from other fields but can be filled out if desired.
-  5. [Experimental]: These fields are not currently used but are in development.
+!!! note "NOTE"
+
+  Only `name` and `description` properties are required. 
+  For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. 
+  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
+  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
 #### Properties for each record
 
-`module` _(string)_
+**`module`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
 Examples:
 
 
- - ```
-    Demographics
+```
+  Demographics
 
-   ```
+```
 
- - ```
-    PROMIS
+```
+  PROMIS
 
-   ```
+```
 
- - ```
-    Substance use
+```
+  Substance use
 
-   ```
+```
 
- - ```
-    Medical History
+```
+  Medical History
 
-   ```
+```
 
- - ```
-    Sleep questions
+```
+  Sleep questions
 
-   ```
+```
 
- - ```
-    Physical activity
+```
+  Physical activity
 
-   ```
+```
 
-`name` _(string,required)_
+**`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
-[Required]
 
-
-`title` _(string)_
+**`title`** _(string)_
  The human-readable title or label of the variable. 
-
-[Highly recommended]
 
 Examples:
 
 
- - ```
-    My Variable
+```
+  My Variable
 
-   ```
+```
 
- - ```
-    Gender identity
+```
+  Gender identity
 
-   ```
+```
 
-`description` _(string,required)_
+**`description`** _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
 question text (e.g., if a survey). 
 
-[Required]
-
 Examples:
 
 
- - ```
-    The participant's age at the time of study enrollment
+```
+  The participant's age at the time of study enrollment
 
-   ```
+```
 
- - ```
-    What is the highest grade or level of school you have completed or the highest degree you have received?
+```
+  What is the highest grade or level of school you have completed or the highest degree you have received?
 
-   ```
+```
 
-`type` _(string)_
+**`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Definitions:
@@ -183,168 +176,102 @@ Possible values:
   ```
 
 
-`format` _(of below)_
- Indicates the format of the type specified in the `type` property.
+**`format`** _(string)_
+ Indicates the format of the type specified in the `type` property. 
+Each format is dependent on the `type` specified. 
+For example: If `type` is "string", then see the [String formats](https://specs.frictionlessdata.io/table-schema/#string). 
+If `type` is "date", "datetime", or "time", default format is ISO8601 formatting for those respective types (see details on ISO8601 format for [Date](https://specs.frictionlessdata.io/table-schema/#date),
+[Datetime](https://specs.frictionlessdata.io/table-schema/#datetime), 
+or [Time](https://specs.frictionlessdata.io/table-schema/#time)) - If you want to specify a date-like variable using standard Python/C strptime syntax, see [here](#format-details-for-date-datetime-time-type-variables) for details. 
+See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) for more information about appropriate `format` values by variable `type`. 
 
-Each format is dependent on the `type` specified. For example:
-If `type` is "string", then see the String formats. 
-If `type` is one of the date-like formats, then see Date formats.
+[Additional information]
 
-Sources:
+Date Formats (date, datetime, time `type` variable):
 
-- [Frictionless standard formats associated with types](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
+A format for a date variable (`date`,`time`,`datetime`).  
+**default**: An ISO8601 format string.
+**any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
 
-Any of the following:
+**{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+which `MUST` follow the date formatting syntax of 
+C / Python [strftime](http://strftime.org/) such as:
 
-- __String Formats__ _(of below)_
-     A format for a specialized type of string of:
+- "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
+- "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
+- "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
+- "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
+- "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
+- "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
+- "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
+- "`%H:%M:%S` (for time, e.g., 10:30:45)"
+- "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
+- "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
 
-    - "`email` if valid emails (e.g., test@gmail.com)"
-    - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-    - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-    - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
+String formats:
 
-    Possible values:
-
-    - ```
-
-        uri
-
-      ```
-    - ```
-
-        email
-
-      ```
-    - ```
-
-        binary
-
-      ```
-    - ```
-
-        uuid
-
-      ```
+- "`email` if valid emails (e.g., test@gmail.com)"
+- "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
+- "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
+- "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
 
 
-- __Date Formats__ _(string)_
-     A format for a date variable (`date`,`time`,`datetime`).  
-        **default**: An ISO8601 format string.
-        **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
+Geopoint formats:
 
-    **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-     which `MUST` follow the date formatting syntax of 
-     C / Python [strftime](http://strftime.org/) such as:
+The two types of formats for `geopoint` (describing a geographic point).
 
-    - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-    - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-    - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-    - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-    - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-    - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-    - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-    - "`%H:%M:%S` (for time, e.g., 10:30:45)"
-    - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-    - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+- `array` (if 'lat,long' (e.g., 36.63,-90.20))
+- `object` (if {'lat':36.63,'lon':-90.20})
 
 
-- __Geopoint Format__ _(string)_
-     The two types of formats for `geopoint` (describing a geographic point).
-
-    - `array` (if 'lat,long' (e.g., 36.63,-90.20))
-    - `object` (if {'lat':36.63,'lon':-90.20})
-
-    Possible values:
-
-    - ```
-
-        array
-
-      ```
-    - ```
-
-        object
-
-      ```
-
-
-- __Geojson Formats__ _(string)_
-     The JSON object according to the geojson spec.
-    Possible values:
-
-    - ```
-
-        topojson
-
-      ```
-    - ```
-
-        default
-
-      ```
-
-
-
-
-`constraints` _(object)_
+**`constraints`** _(object)_
  
 
 
-- `maxLength` _(integer)_
+- **`maxLength`** _(integer)_
      Indicates the maximum length of an iterable (e.g., array, string, or
     object). For example, if 'Hello World' is the longest value of a
     categorical variable, this would be a maxLength of 11.
 
-    [Optional,if applicable]
 
 
-
-- `enum` _(array)_
+- **`enum`** _(array)_
      Constrains possible values to a set of values.
-
-    [Optional,if applicable]
 
     Examples:
 
 
-    - ```json
+    ```json
 
-        [1, 2, 3, 4]
+      [1, 2, 3, 4]
 
-      ```
+    ```
 
-    - ```json
+    ```json
 
-        ['White', 'Black or African American', 'American Indian or Alaska Native', 'Native Hawaiian or Other Pacific Islander', 'Asian', 'Some other race', 'Multiracial']
+      ['White', 'Black or African American', 'American Indian or Alaska Native', 'Native Hawaiian or Other Pacific Islander', 'Asian', 'Some other race', 'Multiracial']
 
-      ```
+    ```
 
 
-- `pattern` _(string)_
+- **`pattern`** _(string)_
      A regular expression pattern the data MUST conform to.
 
-    [Optional,if applicable]
 
 
-
-- `maximum` _(integer)_
+- **`maximum`** _(integer)_
      Specifies the maximum value of a field (e.g., maximum -- or most
     recent -- date, maximum integer etc). Note, this is different then
     maxLength property.
 
-    [Optional,if applicable]
 
 
-
-- `minimum` _(integer)_
+- **`minimum`** _(integer)_
      Specifies the minimum value of a field.
 
-    [Optional,if applicable]
 
 
-
-`encodings` _(object)_
+**`encodings`** _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -357,135 +284,123 @@ Additionally, as another use case, this field provides a way to
 store categoricals that are stored as  "short" labels (such as
 abbreviations).
 
-[Optional,if applicable]
-
 Examples:
 
 
-- ```json
+```json
 
-    {'0': 'No', '1': 'Yes'}
+  {'0': 'No', '1': 'Yes'}
 
-  ```
+```
 
-- ```json
+```json
 
-    {'HW': 'Hello world', 'GBW': 'Good bye world', 'HM': 'Hi, Mike'}
+  {'HW': 'Hello world', 'GBW': 'Good bye world', 'HM': 'Hi, Mike'}
 
-  ```
+```
 
-`ordered` _(boolean)_
+**`ordered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
 
-[Optional,if applicable]
 
-
-`missingValues` _(array)_
+**`missingValues`** _(array)_
  A list of missing values specific to a variable.
-
-[Highly recommended]
 
 Examples:
 
 
-- ```json
+```json
 
-    ['Missing', 'Skipped', 'No preference']
+  ['Missing', 'Skipped', 'No preference']
 
-  ```
+```
 
-- ```json
+```json
 
-    ['Missing']
+  ['Missing']
 
-  ```
+```
 
-`trueValues` _(array)_
+**`trueValues`** _(array)_
  For boolean (true) variable (as defined in type field), this field allows
 a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
 
-[Optional, if applicable]
-
 Examples:
 
 
-- ```json
+```json
 
-    ['required', 'Yes', 'Checked']
+  ['required', 'Yes', 'Checked']
 
-  ```
+```
 
-- ```json
+```json
 
-    ['required']
+  ['required']
 
-  ```
+```
 
-`falseValues` _(array)_
+**`falseValues`** _(array)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-`repo_link` _(string)_
+**`repo_link`** _(string)_
  A link to the variable as it exists on the home repository, if applicable
 
 
-`standardsMappings` _(array)_
+**`standardsMappings`** _(array)_
  A published set of standard variables such as the NIH Common Data Elements program.
-[Autopopulated, if not filled]
 
-`relatedConcepts` _(array)_
+**`relatedConcepts`** _(array)_
  Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
-[Autopopulated, if not filled]
 
-`univarStats` _(object)_
+**`univarStats`** _(object)_
  Univariate statistics inferred from the data about the given variable 
 
-[Experimental]
 
 
-
-- `median` _(number)_
+- **`median`** _(number)_
      
 
 
-- `mean` _(number)_
+- **`mean`** _(number)_
      
 
 
-- `std` _(number)_
+- **`std`** _(number)_
      
 
 
-- `min` _(number)_
+- **`min`** _(number)_
      
 
 
-- `max` _(number)_
+- **`max`** _(number)_
      
 
 
-- `mode` _(number)_
+- **`mode`** _(number)_
      
 
 
-- `count` _(integer)_
+- **`count`** _(integer)_
      
 
 
-- `twentyFifthPercentile` _(number)_
+- **`twentyFifthPercentile`** _(number)_
      
 
 
-- `seventyFifthPercentile` _(number)_
+- **`seventyFifthPercentile`** _(number)_
      
 
 
-- `categoricalMarginals` _(array)_
+- **`categoricalMarginals`** _(array)_
      
 

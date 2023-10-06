@@ -9,6 +9,7 @@
                 "title": null,
                 "description": null,
                 "type": null,
+                "format": null,
                 "constraints": {
                     "maxLength": null,
                     "enum": [],
