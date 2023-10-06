@@ -43,7 +43,10 @@ def test_valid_csv_data_dictionaries():
     for filepath in csvs:
         print("Testing:")
         print(str(filepath))
-        resource = frictionless.Resource(path=str(filepath),schema=csv_frictionless_schema_object)
+        detector = frictionless.checksDetector(schema_sync=True)
+        resource = frictionless.Resource(path=str(filepath),
+            schema=csv_frictionless_schema_object,
+            detector=detector)
         report = resource.validate()
 
         assert report.valid,f"# this example is invalid but is intended to be valid:\n\n {report.to_summary()}"
