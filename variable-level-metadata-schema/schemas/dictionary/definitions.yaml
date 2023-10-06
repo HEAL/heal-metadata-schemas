@@ -1,39 +1,16 @@
+csvArray:
+  type: string 
+  pattern: ^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$
+
+csvObject:
+  type: string 
+  pattern: ^(?:.*?=.*?(?:\||$))+$
+
+
 # for frictionless types and formats see:
 # https://specs.frictionlessdata.io/table-schema/#types-and-formats
-frictionlessTypes:
-  type: string
-  description: |
-    A classification or category of a particular data element or property expected or allowed in the dataset.
 
-    Definitions:
-
-    -  `number` (A numeric value with optional decimal places. (e.g., 3.14))
-    -  `integer` (A whole number without decimal places. (e.g., 42))
-    -  `string` (A sequence of characters. (e.g., \"test\"))
-    -  `any` (Any type of data is allowed. (e.g., true))
-    -  `boolean` (A binary value representing true or false. (e.g., true))
-    -  `date` (A specific calendar date. (e.g., \"2023-05-25\"))
-    -  `datetime` (A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\"))
-    -  `time` (A specific time of day. (e.g., \"10:30:00\"))
-    -  `year` (A specific year. (e.g., 2023)
-    -  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
-    -  `duration` (A length of time. (e.g., \"PT1H\")
-    -  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
-  enum:
-    - "number"
-    - "integer"
-    - "string"
-    - "any"
-    - "boolean"
-    - "date"
-    - "datetime"
-    - "time"
-    - "year"
-    - "yearmonth"
-    - "duration"
-    - "geopoint"
-
-
+# NOTE: The below was excluded from schema to simplify (10/6/2023) and formats is now just type string isntead of anyOf
 stringFormat:
   title: String Formats
   description: |
@@ -90,10 +67,3 @@ geopointFormat:
     - `object` (if {'lat':36.63,'lon':-90.20})
   enum: [array,object]
 
-csvArray:
-  type: string 
-  pattern: ^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$
-
-csvObject:
-  type: string 
-  pattern: ^(?:.*?=.*?(?:\||$))+$
