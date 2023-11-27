@@ -13,7 +13,6 @@ description: |
     `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
 type: object
-additionalProperties: true
 required:
   - name
   - description

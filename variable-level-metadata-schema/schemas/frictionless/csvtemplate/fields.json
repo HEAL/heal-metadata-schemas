@@ -56,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "time",
           "date",
-          "string",
+          "year",
+          "geopoint",
           "any",
           "boolean",
-          "year",
-          "integer",
           "yearmonth",
+          "string",
           "number",
-          "geopoint",
-          "datetime",
-          "duration"
+          "time",
+          "integer",
+          "duration",
+          "datetime"
         ]
       }
     },
