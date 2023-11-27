@@ -17,7 +17,7 @@ import json
 
 os.chdir(Path(__file__).parent)
 
-
+versions = json.loads(Path("../VERSIONS.json").read_text())
 # load yaml
 def load_yaml(filepath):
     with open(filepath) as f:
@@ -271,6 +271,7 @@ if __name__ == "__main__":
         (lambda _schema: _schema["fields"], None),        
         (flatten_schema, None),
         (to_frictionless, None),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     frictionlessfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
     Path("schemas/frictionless/csvtemplate/fields.json").write_text(
@@ -297,6 +298,7 @@ if __name__ == "__main__":
         (select_specs, {"specsuffix": "JsonSpec"}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["data-dictionary"], None),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
     Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(jsonfields, indent=4))

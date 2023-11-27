@@ -1,4 +1,5 @@
 {
+  "version": "0.1.0",
   "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n!!! note \"NOTE\"\n\n  Only `name` and `description` properties are required. \n  For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. \n  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
   "title": "HEAL Variable Level Metadata Fields",
   "fields": [
@@ -55,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "any",
-          "boolean",
-          "yearmonth",
-          "string",
           "number",
-          "time",
-          "year",
-          "duration",
           "datetime",
+          "date",
+          "string",
+          "any",
+          "year",
           "geopoint",
+          "time",
           "integer",
-          "date"
+          "yearmonth",
+          "duration",
+          "boolean"
         ]
       }
     },
