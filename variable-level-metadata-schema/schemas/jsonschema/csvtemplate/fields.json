@@ -10,7 +10,7 @@
         "description"
     ],
     "properties": {
-        "module": {
+        "section": {
             "type": "string",
             "title": "Module",
             "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",

@@ -4,7 +4,7 @@
   "title": "HEAL Variable Level Metadata Fields",
   "fields": [
     {
-      "name": "module",
+      "name": "section",
       "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
       "title": "Module",
       "examples": [
@@ -56,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "date",
           "time",
-          "number",
-          "any",
-          "duration",
+          "date",
           "string",
-          "datetime",
-          "yearmonth",
-          "geopoint",
-          "integer",
+          "any",
+          "boolean",
           "year",
-          "boolean"
+          "integer",
+          "yearmonth",
+          "number",
+          "geopoint",
+          "datetime",
+          "duration"
         ]
       }
     },

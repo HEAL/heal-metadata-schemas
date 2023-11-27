@@ -20,7 +20,7 @@ metadata object within the HEAL platform metadata service.
 
 #### Properties for each record
 
-**`module`** _(string)_
+**`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables.
 
