@@ -5,7 +5,7 @@
 {% for itemname,item in schema.properties.items() %}
 ### `{{ itemname }}` _({{ item.type }}{{ ',required' if itemname in schema.required }})_
 {{ item.description }}
-{% if itemname == 'data_dictionary' %}
+{% if itemname == 'fields' %}
 {{ item['items']['description'] }}
 #### Properties for each record
 {% set schema = item['items'] %}

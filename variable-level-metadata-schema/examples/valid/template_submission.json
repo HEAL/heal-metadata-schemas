@@ -1,7 +1,7 @@
 {
     "title": "Example VLMD",
     "description": "This is an example description",
-    "data_dictionary": [
+    "fields": [
         {
             "module": "Enrollment",
             "name": "participant_id",

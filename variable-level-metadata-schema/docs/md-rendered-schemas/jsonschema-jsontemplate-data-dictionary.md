@@ -6,7 +6,7 @@ This schema defines the variable level metadata for one data dictionary for a gi
 
 ### `description` _(string)_
 
-### `data_dictionary` _(array,required)_
+### `fields` _(array,required)_
 
 Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.

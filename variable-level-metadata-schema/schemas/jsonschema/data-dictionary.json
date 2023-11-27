@@ -7,7 +7,7 @@
     "type": "object",
     "required": [
         "title",
-        "data_dictionary"
+        "fields"
     ],
     "properties": {
         "title": {
@@ -16,7 +16,7 @@
         "description": {
             "type": "string"
         },
-        "data_dictionary": {
+        "fields": {
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-04/schema#",

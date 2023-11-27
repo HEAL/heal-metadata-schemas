@@ -6,13 +6,13 @@ description: This schema defines the variable level metadata for one data dictio
 type: object
 required:
 - title
-- data_dictionary
+- fields
 properties:
   title:
     type: string
   description:
     type: string
-  data_dictionary:
+  fields:
     type: array
     items:
       $ref: "#/fields"

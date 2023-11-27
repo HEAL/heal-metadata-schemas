@@ -2,7 +2,7 @@
     {
         "title": null,
         "description": null,
-        "data_dictionary": [
+        "fields": [
             {
                 "module": null,
                 "name": null,
