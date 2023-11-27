@@ -337,10 +337,6 @@ a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-**`repo_link`** _(string)_
- A link to the variable as it exists on the home repository, if applicable
-
-
 **`standardsMappings.url`** _(string)_
  The url that links out to the published, standardized mapping.
 

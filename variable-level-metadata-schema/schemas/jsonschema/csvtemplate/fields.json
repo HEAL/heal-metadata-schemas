@@ -142,11 +142,6 @@
             "type": "string",
             "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
         },
-        "repo_link": {
-            "type": "string",
-            "title": "Variable Repository Link",
-            "description": "A link to the variable as it exists on the home repository, if applicable\n"
-        },
         "standardsMappings.url": {
             "title": "Standards Mapping - Url",
             "description": "The url that links out to the published, standardized mapping.\n",

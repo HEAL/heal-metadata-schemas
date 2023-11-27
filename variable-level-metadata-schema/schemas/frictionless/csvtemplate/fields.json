@@ -56,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "duration",
+          "date",
+          "time",
           "number",
           "any",
-          "date",
-          "integer",
-          "boolean",
+          "duration",
           "string",
-          "geopoint",
-          "year",
-          "time",
           "datetime",
-          "yearmonth"
+          "yearmonth",
+          "geopoint",
+          "integer",
+          "year",
+          "boolean"
         ]
       }
     },
@@ -168,12 +168,6 @@
       "constraints": {
         "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
       }
-    },
-    {
-      "name": "repo_link",
-      "description": "A link to the variable as it exists on the home repository, if applicable\n",
-      "title": "Variable Repository Link",
-      "type": "string"
     },
     {
       "name": "standardsMappings.url",
