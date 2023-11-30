@@ -16,7 +16,7 @@ metadata object within the HEAL platform metadata service.
 
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
-to group variables.
+to group variables. Previously called "module."
 
 Examples:
 

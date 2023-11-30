@@ -31,8 +31,8 @@
                 "properties": {
                     "section": {
                         "type": "string",
-                        "title": "Module",
-                        "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
+                        "title": "Section",
+                        "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables. Previously called \"module.\"\n",
                         "examples": [
                             "Demographics",
                             "PROMIS",

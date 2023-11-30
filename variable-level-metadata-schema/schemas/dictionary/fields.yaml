@@ -19,10 +19,10 @@ required:
 properties:
   section: 
     type: string 
-    title: Module 
+    title: Section
     description: |
       The section, form, survey instrument, set of measures  or other broad category used 
-      to group variables.
+      to group variables. Previously called "module."
     
     examples:
       - Demographics

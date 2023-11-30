@@ -5,8 +5,8 @@
   "fields": [
     {
       "name": "section",
-      "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
-      "title": "Module",
+      "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables. Previously called \"module.\"\n",
+      "title": "Section",
       "examples": [
         "Demographics",
         "PROMIS",
@@ -56,17 +56,17 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "date",
-          "year",
-          "geopoint",
-          "any",
-          "boolean",
           "yearmonth",
+          "any",
+          "date",
           "string",
-          "number",
-          "time",
           "integer",
+          "geopoint",
           "duration",
+          "time",
+          "year",
+          "boolean",
+          "number",
           "datetime"
         ]
       }
