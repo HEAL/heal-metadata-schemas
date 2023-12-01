@@ -3,7 +3,7 @@
     "description": "This is an example description",
     "fields": [
         {
-            "module": "Enrollment",
+            "section": "Enrollment",
             "name": "participant_id",
             "title": "Participant Id",
             "description": "Unique identifier for participant",
@@ -13,7 +13,7 @@
             }
         },
         {
-            "module": "Demographics",
+            "section": "Demographics",
             "name": "race",
             "title": "Race",
             "description": "Self-reported race",
@@ -59,7 +59,7 @@
             ]
         },
         {
-            "module": "Demographics",
+            "section": "Demographics",
             "name": "age",
             "title": "Age",
             "description": "What is your age? (age at enrollment)",
@@ -70,7 +70,7 @@
             }
         },
         {
-            "module": "Demographics",
+            "section": "Demographics",
             "name": "hispanic",
             "title": "Hispanic, Latino, or Spanish Origin",
             "description": "Are you of Hispanic, Latino, or Spanish origin?",
@@ -86,7 +86,7 @@
             ]
         },
         {
-            "module": "Demographics",
+            "section": "Demographics",
             "name": "sex_at_birth",
             "title": "Sex at Birth",
             "description": "The self-reported sex of the participant/subject at birth",
@@ -107,7 +107,7 @@
             ]
         },
         {
-            "module": "Substance Use",
+            "section": "Substance Use",
             "name": "SU4",
             "title": "Heroin Days Used",
             "description": "During the past 30 days how many days did you use heroin (alone or mixed with other drugs)? ] [Write 0 days if no use]",
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "module": "Biomeasures",
+            "section": "Biomeasures",
             "name": "pulse_rate",
             "title": "Pulse Rate",
             "description": "Heart rate measured at systemic artery",
