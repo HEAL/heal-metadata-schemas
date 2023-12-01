@@ -12,6 +12,8 @@ properties:
     type: string
   description:
     type: string
+  version: # TODO: think about having a version text/message and id (akin to a git commit)
+    type: string
   fields:
     type: array
     items:
