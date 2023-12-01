@@ -56,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "yearmonth",
-          "any",
-          "date",
-          "string",
-          "integer",
           "geopoint",
-          "duration",
-          "time",
-          "year",
+          "any",
           "boolean",
           "number",
-          "datetime"
+          "year",
+          "string",
+          "date",
+          "time",
+          "integer",
+          "datetime",
+          "yearmonth",
+          "duration"
         ]
       }
     },
@@ -247,53 +247,9 @@
     },
     {
       "name": "relatedConcepts.id",
-      "description": "The id locating the individual mapping within the given source.\n",
+      "description": "The id locating the individual mapping within the given source.",
       "title": "Related Concepts - Id",
       "type": "string"
-    },
-    {
-      "name": "univarStats.median",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.mean",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.std",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.min",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.max",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.mode",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.count",
-      "type": "integer"
-    },
-    {
-      "name": "univarStats.twentyFifthPercentile",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.seventyFifthPercentile",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.categoricalMarginals.name",
-      "type": "string"
-    },
-    {
-      "name": "univarStats.categoricalMarginals.count",
-      "type": "integer"
     }
   ],
   "missingValues": [

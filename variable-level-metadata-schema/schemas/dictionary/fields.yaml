@@ -348,8 +348,6 @@ properties:
     title: Related Concepts
     description: Mappings to a published set of concepts related to the given field such as 
             ontological information (eg., NCI thesaurus, bioportal etc)
-      
-
     type: array
     items:
       type: object
@@ -387,37 +385,3 @@ properties:
           type: string
           description: |
             The id locating the individual mapping within the given source.
-  univarStats:
-    type: object
-    description: |
-      Univariate statistics inferred from the data about the given variable 
-      
-    properties:
-      median:
-        type: number
-      mean:
-        type: number
-      std:
-        type: number
-      min:
-        type: number
-      max:
-        type: number
-      mode:
-        type: number
-      count:
-        type: integer
-        minimum: 0
-      twentyFifthPercentile:
-        type: number
-      seventyFifthPercentile:
-        type: number
-      categoricalMarginals:
-        type: array
-        items:
-          type: object
-          properties:
-            name:
-              type: string
-            count:
-              type: integer

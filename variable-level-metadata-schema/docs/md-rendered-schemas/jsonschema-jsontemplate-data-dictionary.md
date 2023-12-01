@@ -6,6 +6,8 @@ This schema defines the variable level metadata for one data dictionary for a gi
 
 ### `description` _(string)_
 
+### `version` _(string)_
+
 ### `fields` _(array,required)_
 
 Variable level metadata individual fields integrated into the variable level
@@ -355,48 +357,3 @@ readability of the field) that is not a standard false value. It can include one
 
 **`relatedConcepts`** _(array)_
  Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
-
-**`univarStats`** _(object)_
- Univariate statistics inferred from the data about the given variable 
-
-
-
-- **`median`** _(number)_
-     
-
-
-- **`mean`** _(number)_
-     
-
-
-- **`std`** _(number)_
-     
-
-
-- **`min`** _(number)_
-     
-
-
-- **`max`** _(number)_
-     
-
-
-- **`mode`** _(number)_
-     
-
-
-- **`count`** _(integer)_
-     
-
-
-- **`twentyFifthPercentile`** _(number)_
-     
-
-
-- **`seventyFifthPercentile`** _(number)_
-     
-
-
-- **`categoricalMarginals`** _(array)_
-     
-

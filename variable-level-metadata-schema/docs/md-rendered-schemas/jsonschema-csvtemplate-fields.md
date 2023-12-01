@@ -439,37 +439,3 @@ Examples:
 
 **`relatedConcepts.id`** _(string)_
  The id locating the individual mapping within the given source.
-
-
-**`univarStats.median`** _(number)_
- 
-
-**`univarStats.mean`** _(number)_
- 
-
-**`univarStats.std`** _(number)_
- 
-
-**`univarStats.min`** _(number)_
- 
-
-**`univarStats.max`** _(number)_
- 
-
-**`univarStats.mode`** _(number)_
- 
-
-**`univarStats.count`** _(integer)_
- 
-
-**`univarStats.twentyFifthPercentile`** _(number)_
- 
-
-**`univarStats.seventyFifthPercentile`** _(number)_
- 
-
-**`univarStats.categoricalMarginals.name`** _(string)_
- 
-
-**`univarStats.categoricalMarginals.count`** _(integer)_
- 

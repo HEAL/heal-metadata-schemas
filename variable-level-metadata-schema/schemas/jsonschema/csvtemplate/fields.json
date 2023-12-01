@@ -213,41 +213,7 @@
         "relatedConcepts.id": {
             "title": "Related Concepts - Id",
             "type": "string",
-            "description": "The id locating the individual mapping within the given source.\n"
-        },
-        "univarStats.median": {
-            "type": "number"
-        },
-        "univarStats.mean": {
-            "type": "number"
-        },
-        "univarStats.std": {
-            "type": "number"
-        },
-        "univarStats.min": {
-            "type": "number"
-        },
-        "univarStats.max": {
-            "type": "number"
-        },
-        "univarStats.mode": {
-            "type": "number"
-        },
-        "univarStats.count": {
-            "type": "integer",
-            "minimum": 0
-        },
-        "univarStats.twentyFifthPercentile": {
-            "type": "number"
-        },
-        "univarStats.seventyFifthPercentile": {
-            "type": "number"
-        },
-        "univarStats.categoricalMarginals.name": {
-            "type": "string"
-        },
-        "univarStats.categoricalMarginals.count": {
-            "type": "integer"
+            "description": "The id locating the individual mapping within the given source."
         }
     }
 }

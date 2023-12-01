@@ -16,6 +16,9 @@
         "description": {
             "type": "string"
         },
+        "version": {
+            "type": "string"
+        },
         "fields": {
             "type": "array",
             "items": {
@@ -284,55 +287,7 @@
                                 "id": {
                                     "title": "Related Concepts - Id",
                                     "type": "string",
-                                    "description": "The id locating the individual mapping within the given source.\n"
-                                }
-                            }
-                        }
-                    },
-                    "univarStats": {
-                        "type": "object",
-                        "description": "Univariate statistics inferred from the data about the given variable \n",
-                        "properties": {
-                            "median": {
-                                "type": "number"
-                            },
-                            "mean": {
-                                "type": "number"
-                            },
-                            "std": {
-                                "type": "number"
-                            },
-                            "min": {
-                                "type": "number"
-                            },
-                            "max": {
-                                "type": "number"
-                            },
-                            "mode": {
-                                "type": "number"
-                            },
-                            "count": {
-                                "type": "integer",
-                                "minimum": 0
-                            },
-                            "twentyFifthPercentile": {
-                                "type": "number"
-                            },
-                            "seventyFifthPercentile": {
-                                "type": "number"
-                            },
-                            "categoricalMarginals": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "count": {
-                                            "type": "integer"
-                                        }
-                                    }
+                                    "description": "The id locating the individual mapping within the given source."
                                 }
                             }
                         }

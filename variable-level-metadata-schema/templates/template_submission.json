@@ -2,6 +2,7 @@
     {
         "title": null,
         "description": null,
+        "version": null,
         "fields": [
             {
                 "section": null,
@@ -41,24 +42,7 @@
                         "source": null,
                         "id": null
                     }
-                ],
-                "univarStats": {
-                    "median": null,
-                    "mean": null,
-                    "std": null,
-                    "min": null,
-                    "max": null,
-                    "mode": null,
-                    "count": null,
-                    "twentyFifthPercentile": null,
-                    "seventyFifthPercentile": null,
-                    "categoricalMarginals": [
-                        {
-                            "name": null,
-                            "count": null
-                        }
-                    ]
-                }
+                ]
             }
         ]
     }
