@@ -1,0 +1,9 @@
+
+#hidden libs and cache dirs
+.vscode
+.pytest_cache
+*/pytest_cache/
+*__pycache__
+
+# word docs
+*.docx
