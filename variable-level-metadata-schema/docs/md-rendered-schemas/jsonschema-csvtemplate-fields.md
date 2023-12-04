@@ -254,7 +254,7 @@ maxLength property.
  Specifies the minimum value of a field.
 
 
-**`encodings`** _(string)_
+**`enumLabels`** _(string)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -280,7 +280,7 @@ Examples:
 
 ```
 
-**`ordered`** _(boolean)_
+**`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree

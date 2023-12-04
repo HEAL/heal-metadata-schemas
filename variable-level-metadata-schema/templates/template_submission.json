@@ -18,8 +18,8 @@
                     "maximum": null,
                     "minimum": null
                 },
-                "encodings": {},
-                "ordered": null,
+                "enumLabels": {},
+                "enumOrdered": null,
                 "missingValues": [],
                 "trueValues": [
                     {}

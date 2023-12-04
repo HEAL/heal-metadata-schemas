@@ -273,7 +273,7 @@ The two types of formats for `geopoint` (describing a geographic point).
 
 
 
-**`encodings`** _(object)_
+**`enumLabels`** _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -301,7 +301,7 @@ Examples:
 
 ```
 
-**`ordered`** _(boolean)_
+**`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
