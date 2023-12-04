@@ -9,6 +9,7 @@
                 "title": null,
                 "description": null,
                 "type": null,
+                "format": null,
                 "constraints": {
                     "maxLength": null,
                     "enum": [],
@@ -26,18 +27,18 @@
                 "repo_link": null,
                 "standardsMappings": [
                     {
+                        "url": null,
                         "type": null,
                         "label": null,
-                        "url": null,
                         "source": null,
                         "id": null
                     }
                 ],
                 "relatedConcepts": [
                     {
+                        "url": null,
                         "type": null,
                         "label": null,
-                        "url": null,
                         "source": null,
                         "id": null
                     }

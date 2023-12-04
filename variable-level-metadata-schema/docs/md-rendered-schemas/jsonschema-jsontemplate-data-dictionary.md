@@ -1,4 +1,12 @@
-# HEAL Variable Level Metadata Fields
+# Variable Level Metadata (Data Dictionaries)
+
+This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries
+
+### `title` _(string,required)_
+
+### `description` _(string)_
+
+### `data_dictionary` _(array,required)_
 
 Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.
@@ -10,9 +18,7 @@ metadata object within the HEAL platform metadata service.
   For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
   `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
-
-## Properties
-
+#### Properties for each record
 
 **`module`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
@@ -218,43 +224,54 @@ The two types of formats for `geopoint` (describing a geographic point).
 - `object` (if {'lat':36.63,'lon':-90.20})
 
 
-**`constraints.maxLength`** _(integer)_
- Indicates the maximum length of an iterable (e.g., array, string, or
-object). For example, if 'Hello World' is the longest value of a
-categorical variable, this would be a maxLength of 11.
+**`constraints`** _(object)_
+ 
 
 
-**`constraints.enum`** _(string)_
- Constrains possible values to a set of values.
-
-Examples:
-
-
-```
-  1|2|3|4|5|6|7|8
-
-```
-
-```
-  White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
-
-```
-
-**`constraints.pattern`** _(string)_
- A regular expression pattern the data MUST conform to.
+- **`maxLength`** _(integer)_
+     Indicates the maximum length of an iterable (e.g., array, string, or
+    object). For example, if 'Hello World' is the longest value of a
+    categorical variable, this would be a maxLength of 11.
 
 
-**`constraints.maximum`** _(integer)_
- Specifies the maximum value of a field (e.g., maximum -- or most
-recent -- date, maximum integer etc). Note, this is different then
-maxLength property.
+
+- **`enum`** _(array)_
+     Constrains possible values to a set of values.
+
+    Examples:
 
 
-**`constraints.minimum`** _(integer)_
- Specifies the minimum value of a field.
+    ```json
+
+      [1, 2, 3, 4]
+
+    ```
+
+    ```json
+
+      ['White', 'Black or African American', 'American Indian or Alaska Native', 'Native Hawaiian or Other Pacific Islander', 'Asian', 'Some other race', 'Multiracial']
+
+    ```
 
 
-**`encodings`** _(string)_
+- **`pattern`** _(string)_
+     A regular expression pattern the data MUST conform to.
+
+
+
+- **`maximum`** _(integer)_
+     Specifies the maximum value of a field (e.g., maximum -- or most
+    recent -- date, maximum integer etc). Note, this is different then
+    maxLength property.
+
+
+
+- **`minimum`** _(integer)_
+     Specifies the minimum value of a field.
+
+
+
+**`encodings`** _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -270,13 +287,15 @@ abbreviations).
 Examples:
 
 
-```
-  0=No|1=Yes
+```json
+
+  {'0': 'No', '1': 'Yes'}
 
 ```
 
-```
-  HW=Hello world|GBW=Good bye world|HM=Hi,Mike
+```json
+
+  {'HW': 'Hello world', 'GBW': 'Good bye world', 'HM': 'Hi, Mike'}
 
 ```
 
@@ -287,23 +306,25 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
 
 
-**`missingValues`** _(string)_
+**`missingValues`** _(array)_
  A list of missing values specific to a variable.
 
 Examples:
 
 
-```
-  Missing|Skipped|No preference
+```json
+
+  ['Missing', 'Skipped', 'No preference']
 
 ```
 
-```
-  Missing
+```json
+
+  ['Missing']
 
 ```
 
-**`trueValues`** _(string)_
+**`trueValues`** _(array)_
  For boolean (true) variable (as defined in type field), this field allows
 a physical string representation to be cast as true (increasing
 readability of the field). It can include one or more values.
@@ -311,27 +332,19 @@ readability of the field). It can include one or more values.
 Examples:
 
 
-```
-  Required|REQUIRED
+```json
+
+  ['required', 'Yes', 'Checked']
 
 ```
 
-```
-  required|Yes|Y|Checked
+```json
+
+  ['required']
 
 ```
 
-```
-  Checked
-
-```
-
-```
-  Required
-
-```
-
-**`falseValues`** _(string)_
+**`falseValues`** _(array)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
@@ -341,139 +354,53 @@ readability of the field) that is not a standard false value. It can include one
  A link to the variable as it exists on the home repository, if applicable
 
 
-**`standardsMappings.url`** _(string)_
- The url that links out to the published, standardized mapping.
+**`standardsMappings`** _(array)_
+ A published set of standard variables such as the NIH Common Data Elements program.
 
-Examples:
+**`relatedConcepts`** _(array)_
+ Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
 
-
-```
-  https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-
-```
-
-**`standardsMappings.type`** _(string)_
- The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program
-
-Examples:
+**`univarStats`** _(object)_
+ Univariate statistics inferred from the data about the given variable 
 
 
-```
-  cde
 
-```
-
-```
-  ontology
-
-```
-
-```
-  reference_list
-
-```
-
-**`standardsMappings.label`** _(string)_
- A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
-
-Examples:
+- **`median`** _(number)_
+     
 
 
-```
-  substance use
-
-```
-
-```
-  chemical compound
-
-```
-
-```
-  promis
-
-```
-
-**`standardsMappings.source`** _(string)_
- The source of the standardized variable.
-
-Examples:
+- **`mean`** _(number)_
+     
 
 
-```
-  TBD (will have controlled vocabulary)
-
-```
-
-**`standardsMappings.id`** _(string)_
- The id locating the individual mapping within the given source.
+- **`std`** _(number)_
+     
 
 
-**`relatedConcepts.url`** _(string)_
- The url that links out to the published, standardized concept.
-
-Examples:
+- **`min`** _(number)_
+     
 
 
-```
-  https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-
-```
-
-**`relatedConcepts.type`** _(string)_
- The **type** of mapping to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
+- **`max`** _(number)_
+     
 
 
-**`relatedConcepts.label`** _(string)_
- A free text **label** of mapping to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
+- **`mode`** _(number)_
+     
 
 
-**`relatedConcepts.source`** _(string)_
- The source of the related concept.
-
-Examples:
+- **`count`** _(integer)_
+     
 
 
-```
-  TBD (will have controlled vocabulary)
-
-```
-
-**`relatedConcepts.id`** _(string)_
- The id locating the individual mapping within the given source.
+- **`twentyFifthPercentile`** _(number)_
+     
 
 
-**`univarStats.median`** _(number)_
- 
+- **`seventyFifthPercentile`** _(number)_
+     
 
-**`univarStats.mean`** _(number)_
- 
 
-**`univarStats.std`** _(number)_
- 
+- **`categoricalMarginals`** _(array)_
+     
 
-**`univarStats.min`** _(number)_
- 
-
-**`univarStats.max`** _(number)_
- 
-
-**`univarStats.mode`** _(number)_
- 
-
-**`univarStats.count`** _(integer)_
- 
-
-**`univarStats.twentyFifthPercentile`** _(number)_
- 
-
-**`univarStats.seventyFifthPercentile`** _(number)_
- 
-
-**`univarStats.categoricalMarginals.name`** _(string)_
- 
-
-**`univarStats.categoricalMarginals.count`** _(integer)_
- 
