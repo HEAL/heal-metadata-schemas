@@ -67,3 +67,152 @@ geopointFormat:
     - `object` (if {'lat':36.63,'lon':-90.20})
   enum: [array,object]
 
+
+fieldStandardsMappingObject:
+  description: |
+
+    A set of instrument and item references to standardized data elements designed to document
+    the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
+    and other standardized/common element sources to facilitate cross-study comparison and interoperability
+    of data. One can either map an individual data element or an instrument in which the field is 
+    a part of.
+    
+    __**All Fields Mapped (Both Instrument and Item)**__
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
+                "source": "heal-cde",
+                "title": "adult-demographics",
+                "id": <drupal id here>
+            },
+            "item": {
+                "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
+                "source": "CDISC",
+                "id": "C74457"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument Title of Form CDE File Mapped**__
+
+    In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "adult-demographics"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument ID of HEAL CDE Mapped**__
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "id": <drupal id here>
+            }
+        }
+    ]
+    ```
+
+    __**Other Non-HEAL CDE Use Cases**__
+
+    Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
+
+    ```json
+    "standardsMappings": [
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
+        }
+    ]
+    ```
+
+    __**Multiple CDE Mappings**__
+
+    Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "adult-demographics"
+            },
+            "item": {
+                "source": "CDISC",
+                "id": "C74457"
+            },
+        },
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
+        }
+    ]
+    ```
+
+  instrument:
+    type: object
+    title: Standard mapping - instrument
+    description: |
+      A standardized set of items which encompass 
+      a variable in this variable level metadata document (if at the root level or the document level) 
+      or the individual variable (if at the field level). 
+      
+
+      !!! note "NOTE"
+
+        If information is present at both the root and the field level, 
+        then the information at the field level would take precedence (i.e., it would cascade).
+
+    properties:
+      url:
+        type: string
+        format: uri
+      source:
+        type: string
+        enum: ["heal-cde"]
+      title:
+        type: string
+      id:
+        type: string
+
+  item:
+    type: object
+    title: Standard mapping - item
+    description: |
+      A standardized item (ie field, variable etc) mapped to this individual variable.
+    properties:
+      url:
+        title: Standards Mapping - Url
+        description: |
+          The url that links out to the published, standardized mapping.
+        type: string
+        format: uri
+        examples:
+          - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
+      source:
+        title: Standard Mapping - Source 
+        description: |
+          The source of the standardized variable.
+        type: string
+      id:
+        title: Standard Mapping - Id
+        type: string
+        description: |
+          The id locating the individual mapping within the given source.
+

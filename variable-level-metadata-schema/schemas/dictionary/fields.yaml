@@ -298,56 +298,12 @@ properties:
       readability of the field) that is not a standard false value. It can include one or more values.
     $ref: "#/definitions/csvArray"
   standardsMappings:
-    title: Standards Mappings
-    description: A published set of standard variables such as the NIH Common Data Elements program.
-    type: array
-    items:
-      type: object
-      properties:
-        url:
-          title: Standards Mapping - Url
-          description: |
-            The url that links out to the published, standardized mapping.
-          type: string
-          format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-        type:
-          title: Standards Mapping - Title
-          description: |
-            The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program
-
-          examples:
-          - cde
-          - ontology
-          - reference_list
-          type: string 
-        label:
-          title: Standards Mapping - Label
-          description: |
-            A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
-          
-          type: string
-          examples: 
-            - substance use
-            - chemical compound
-            - promis
-        source:
-          title: Standard Mapping - Source 
-          description: |
-            The source of the standardized variable.
-          type: string
-          examples:
-            - TBD (will have controlled vocabulary)
-        id:
-          title: Standard Mapping - Id
-          type: string
-          description: |
-            The id locating the individual mapping within the given source.
+    $ref: "#/definitions/fieldStandardsMappingObject"
   relatedConcepts:
     title: Related Concepts
-    description: Mappings to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
+    description: |
+      __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+      ontological information (eg., NCI thesaurus, bioportal etc)
     type: array
     items:
       type: object
@@ -358,8 +314,6 @@ properties:
             The url that links out to the published, standardized concept.
           type: string
           format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
         type:
           title: Related concepts - Type
           description: |
