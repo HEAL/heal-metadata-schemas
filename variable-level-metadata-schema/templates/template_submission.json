@@ -3,6 +3,16 @@
         "title": null,
         "description": null,
         "version": null,
+        "standardsMappings": [
+            {
+                "instrument": {
+                    "url": null,
+                    "source": null,
+                    "title": null,
+                    "id": null
+                }
+            }
+        ],
         "fields": [
             {
                 "section": null,
@@ -27,11 +37,17 @@
                 "falseValues": [],
                 "standardsMappings": [
                     {
-                        "url": null,
-                        "type": null,
-                        "label": null,
-                        "source": null,
-                        "id": null
+                        "instrument": {
+                            "url": null,
+                            "source": null,
+                            "title": null,
+                            "id": null
+                        },
+                        "item": {
+                            "url": null,
+                            "source": null,
+                            "id": null
+                        }
                     }
                 ],
                 "relatedConcepts": [

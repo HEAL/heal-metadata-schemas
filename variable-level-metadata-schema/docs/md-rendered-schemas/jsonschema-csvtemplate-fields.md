@@ -337,7 +337,27 @@ a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-**`standardsMappings.url`** _(string)_
+**`standardsMappings.instrument.url`** _(string)_
+ 
+
+**`standardsMappings.instrument.source`** _(string)_
+ 
+Possible values:
+
+- ```
+
+    heal-cde
+
+  ```
+
+
+**`standardsMappings.instrument.title`** _(string)_
+ 
+
+**`standardsMappings.instrument.id`** _(string)_
+ 
+
+**`standardsMappings.item.url`** _(string)_
  The url that links out to the published, standardized mapping.
 
 Examples:
@@ -348,73 +368,17 @@ Examples:
 
 ```
 
-**`standardsMappings.type`** _(string)_
- The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program
-
-Examples:
-
-
-```
-  cde
-
-```
-
-```
-  ontology
-
-```
-
-```
-  reference_list
-
-```
-
-**`standardsMappings.label`** _(string)_
- A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
-
-Examples:
-
-
-```
-  substance use
-
-```
-
-```
-  chemical compound
-
-```
-
-```
-  promis
-
-```
-
-**`standardsMappings.source`** _(string)_
+**`standardsMappings.item.source`** _(string)_
  The source of the standardized variable.
 
-Examples:
 
-
-```
-  TBD (will have controlled vocabulary)
-
-```
-
-**`standardsMappings.id`** _(string)_
+**`standardsMappings.item.id`** _(string)_
  The id locating the individual mapping within the given source.
 
 
 **`relatedConcepts.url`** _(string)_
  The url that links out to the published, standardized concept.
 
-Examples:
-
-
-```
-  https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-
-```
 
 **`relatedConcepts.type`** _(string)_
  The **type** of mapping to a published set of concepts related to the given field such as 

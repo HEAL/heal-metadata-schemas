@@ -298,7 +298,9 @@ properties:
       readability of the field) that is not a standard false value. It can include one or more values.
     $ref: "#/definitions/csvArray"
   standardsMappings:
-    $ref: "#/definitions/fieldStandardsMappingObject"
+    type: array
+    items:
+      $ref: "#/definitions/fieldStandardsMappingsItem"
   relatedConcepts:
     title: Related Concepts
     description: |

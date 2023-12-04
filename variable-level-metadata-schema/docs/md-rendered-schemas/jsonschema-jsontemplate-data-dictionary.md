@@ -8,6 +8,8 @@ This schema defines the variable level metadata for one data dictionary for a gi
 
 ### `version` _(string)_
 
+### `standardsMappings` _(array)_
+
 ### `fields` _(array,required)_
 
 Variable level metadata individual fields integrated into the variable level
@@ -353,7 +355,9 @@ readability of the field) that is not a standard false value. It can include one
 
 
 **`standardsMappings`** _(array)_
- A published set of standard variables such as the NIH Common Data Elements program.
+ 
 
 **`relatedConcepts`** _(array)_
- Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
+ __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+ontological information (eg., NCI thesaurus, bioportal etc)
+

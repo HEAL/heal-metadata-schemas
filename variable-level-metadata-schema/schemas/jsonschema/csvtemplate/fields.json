@@ -141,7 +141,23 @@
             "type": "string",
             "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
         },
-        "standardsMappings.url": {
+        "standardsMappings.instrument.url": {
+            "type": "string",
+            "format": "uri"
+        },
+        "standardsMappings.instrument.source": {
+            "type": "string",
+            "enum": [
+                "heal-cde"
+            ]
+        },
+        "standardsMappings.instrument.title": {
+            "type": "string"
+        },
+        "standardsMappings.instrument.id": {
+            "type": "string"
+        },
+        "standardsMappings.item.url": {
             "title": "Standards Mapping - Url",
             "description": "The url that links out to the published, standardized mapping.\n",
             "type": "string",
@@ -150,35 +166,12 @@
                 "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
             ]
         },
-        "standardsMappings.type": {
-            "title": "Standards Mapping - Title",
-            "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program\n",
-            "examples": [
-                "cde",
-                "ontology",
-                "reference_list"
-            ],
-            "type": "string"
-        },
-        "standardsMappings.label": {
-            "title": "Standards Mapping - Label",
-            "description": "A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\n",
-            "type": "string",
-            "examples": [
-                "substance use",
-                "chemical compound",
-                "promis"
-            ]
-        },
-        "standardsMappings.source": {
+        "standardsMappings.item.source": {
             "title": "Standard Mapping - Source",
             "description": "The source of the standardized variable.\n",
-            "type": "string",
-            "examples": [
-                "TBD (will have controlled vocabulary)"
-            ]
+            "type": "string"
         },
-        "standardsMappings.id": {
+        "standardsMappings.item.id": {
             "title": "Standard Mapping - Id",
             "type": "string",
             "description": "The id locating the individual mapping within the given source.\n"
@@ -187,10 +180,7 @@
             "title": "Related Concepts - Url",
             "description": "The url that links out to the published, standardized concept.\n",
             "type": "string",
-            "format": "uri",
-            "examples": [
-                "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
-            ]
+            "format": "uri"
         },
         "relatedConcepts.type": {
             "title": "Related concepts - Type",

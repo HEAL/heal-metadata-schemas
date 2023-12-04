@@ -67,8 +67,54 @@ geopointFormat:
     - `object` (if {'lat':36.63,'lon':-90.20})
   enum: [array,object]
 
+standardsMappingsInstrumentObject:
+    type: object
+    title: Standard mapping - instrument
+    description: |
+      A standardized set of items which encompass 
+      a variable in this variable level metadata document (if at the root level or the document level) 
+      or the individual variable (if at the field level). 
+      
 
-fieldStandardsMappingObject:
+      !!! note "NOTE"
+
+        If information is present at both the root and the field level, 
+        then the information at the field level would take precedence (i.e., it would cascade).
+
+    properties:
+      url:
+        type: string
+        format: uri
+      source:
+        type: string
+        enum: ["heal-cde"]
+      title:
+        type: string
+      id:
+        type: string
+
+rootStandardsMappingsItem:
+  type: object
+  description: |
+    A set of standardized instruments linked to all variables within the `fields` property (but see note).
+    
+    !!! note "NOTE"
+
+      If `standardsMappings` is present at both the root (this property) and within `fields`, 
+      then the `fields` `standardsMappings` property takes precedence.
+
+      Note, only instrument can be mapped to this property as opposed to the `fields` `standardsMappings`
+      This property has the same specification as the `fields` `standardsMappings` to make the cascading logic
+      easier to understand in the same way other standards implement cascading 
+      (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
+
+  properties:
+    instrument:
+      $ref: "#/definitions/standardsMappingsInstrumentObject"
+
+
+fieldStandardsMappingsItem:
+  type: object
   description: |
 
     A set of instrument and item references to standardized data elements designed to document
@@ -164,55 +210,33 @@ fieldStandardsMappingObject:
         }
     ]
     ```
+  properties:
+    instrument:
+      $ref: "#/definitions/standardsMappingsInstrumentObject"
 
-  instrument:
-    type: object
-    title: Standard mapping - instrument
-    description: |
-      A standardized set of items which encompass 
-      a variable in this variable level metadata document (if at the root level or the document level) 
-      or the individual variable (if at the field level). 
-      
 
-      !!! note "NOTE"
-
-        If information is present at both the root and the field level, 
-        then the information at the field level would take precedence (i.e., it would cascade).
-
-    properties:
-      url:
-        type: string
-        format: uri
-      source:
-        type: string
-        enum: ["heal-cde"]
-      title:
-        type: string
-      id:
-        type: string
-
-  item:
-    type: object
-    title: Standard mapping - item
-    description: |
-      A standardized item (ie field, variable etc) mapped to this individual variable.
-    properties:
-      url:
-        title: Standards Mapping - Url
-        description: |
-          The url that links out to the published, standardized mapping.
-        type: string
-        format: uri
-        examples:
-          - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-      source:
-        title: Standard Mapping - Source 
-        description: |
-          The source of the standardized variable.
-        type: string
-      id:
-        title: Standard Mapping - Id
-        type: string
-        description: |
-          The id locating the individual mapping within the given source.
+    item:
+      type: object
+      title: Standard mapping - item
+      description: |
+        A standardized item (ie field, variable etc) mapped to this individual variable.
+      properties:
+        url:
+          title: Standards Mapping - Url
+          description: |
+            The url that links out to the published, standardized mapping.
+          type: string
+          format: uri
+          examples:
+            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
+        source:
+          title: Standard Mapping - Source 
+          description: |
+            The source of the standardized variable.
+          type: string
+        id:
+          title: Standard Mapping - Id
+          type: string
+          description: |
+            The id locating the individual mapping within the given source.
 
