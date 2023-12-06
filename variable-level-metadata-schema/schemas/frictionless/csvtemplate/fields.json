@@ -56,18 +56,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "datetime",
           "geopoint",
-          "boolean",
-          "string",
-          "time",
-          "duration",
-          "yearmonth",
-          "date",
           "number",
-          "integer",
+          "datetime",
+          "yearmonth",
+          "boolean",
+          "date",
+          "any",
+          "duration",
           "year",
-          "any"
+          "integer",
+          "time",
+          "string"
         ]
       }
     },
@@ -170,11 +170,11 @@
       }
     },
     {
-      "name": "standardsMappings.instrument.url",
+      "name": "standardsMappings[0].instrument.url",
       "type": "string"
     },
     {
-      "name": "standardsMappings.instrument.source",
+      "name": "standardsMappings[0].instrument.source",
       "type": "string",
       "constraints": {
         "enum": [
@@ -183,15 +183,15 @@
       }
     },
     {
-      "name": "standardsMappings.instrument.title",
+      "name": "standardsMappings[0].instrument.title",
       "type": "string"
     },
     {
-      "name": "standardsMappings.instrument.id",
+      "name": "standardsMappings[0].instrument.id",
       "type": "string"
     },
     {
-      "name": "standardsMappings.item.url",
+      "name": "standardsMappings[0].item.url",
       "description": "The url that links out to the published, standardized mapping.\n",
       "title": "Standards Mapping - Url",
       "examples": [
@@ -200,37 +200,37 @@
       "type": "string"
     },
     {
-      "name": "standardsMappings.item.source",
+      "name": "standardsMappings[0].item.source",
       "description": "The source of the standardized variable.\n",
       "title": "Standard Mapping - Source",
       "type": "string"
     },
     {
-      "name": "standardsMappings.item.id",
+      "name": "standardsMappings[0].item.id",
       "description": "The id locating the individual mapping within the given source.\n",
       "title": "Standard Mapping - Id",
       "type": "string"
     },
     {
-      "name": "relatedConcepts.url",
+      "name": "relatedConcepts[0].url",
       "description": "The url that links out to the published, standardized concept.\n",
       "title": "Related Concepts - Url",
       "type": "string"
     },
     {
-      "name": "relatedConcepts.type",
+      "name": "relatedConcepts[0].type",
       "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
       "title": "Related concepts - Type",
       "type": "string"
     },
     {
-      "name": "relatedConcepts.label",
+      "name": "relatedConcepts[0].label",
       "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
       "title": "Related Concepts - Label",
       "type": "string"
     },
     {
-      "name": "relatedConcepts.source",
+      "name": "relatedConcepts[0].source",
       "description": "The source of the related concept.\n",
       "title": "Related Concepts - Source",
       "examples": [
@@ -239,7 +239,7 @@
       "type": "string"
     },
     {
-      "name": "relatedConcepts.id",
+      "name": "relatedConcepts[0].id",
       "description": "The id locating the individual mapping within the given source.",
       "title": "Related Concepts - Id",
       "type": "string"

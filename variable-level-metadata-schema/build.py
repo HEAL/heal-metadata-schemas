@@ -110,7 +110,7 @@ def resolve_refs(items, schema, parentkey=False):
     return schema_resolved
 
 
-def flatten_properties(properties, parentkey="", sep="."):
+def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
     """
     flatten schema properties
     """
@@ -130,7 +130,7 @@ def flatten_properties(properties, parentkey="", sep="."):
                 properties_flattened.update(newprops)
 
             elif items:
-                newprops = flatten_properties(items,parentkey=flattenedkey)
+                newprops = flatten_properties(items,parentkey=flattenedkey+itemsep)
                 properties_flattened.update(newprops)
             else:
                 properties_flattened[flattenedkey] = item

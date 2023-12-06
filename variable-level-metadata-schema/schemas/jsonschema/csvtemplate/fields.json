@@ -141,23 +141,23 @@
             "type": "string",
             "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
         },
-        "standardsMappings.instrument.url": {
+        "standardsMappings[0].instrument.url": {
             "type": "string",
             "format": "uri"
         },
-        "standardsMappings.instrument.source": {
+        "standardsMappings[0].instrument.source": {
             "type": "string",
             "enum": [
                 "heal-cde"
             ]
         },
-        "standardsMappings.instrument.title": {
+        "standardsMappings[0].instrument.title": {
             "type": "string"
         },
-        "standardsMappings.instrument.id": {
+        "standardsMappings[0].instrument.id": {
             "type": "string"
         },
-        "standardsMappings.item.url": {
+        "standardsMappings[0].item.url": {
             "title": "Standards Mapping - Url",
             "description": "The url that links out to the published, standardized mapping.\n",
             "type": "string",
@@ -166,33 +166,33 @@
                 "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
             ]
         },
-        "standardsMappings.item.source": {
+        "standardsMappings[0].item.source": {
             "title": "Standard Mapping - Source",
             "description": "The source of the standardized variable.\n",
             "type": "string"
         },
-        "standardsMappings.item.id": {
+        "standardsMappings[0].item.id": {
             "title": "Standard Mapping - Id",
             "type": "string",
             "description": "The id locating the individual mapping within the given source.\n"
         },
-        "relatedConcepts.url": {
+        "relatedConcepts[0].url": {
             "title": "Related Concepts - Url",
             "description": "The url that links out to the published, standardized concept.\n",
             "type": "string",
             "format": "uri"
         },
-        "relatedConcepts.type": {
+        "relatedConcepts[0].type": {
             "title": "Related concepts - Type",
             "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
             "type": "string"
         },
-        "relatedConcepts.label": {
+        "relatedConcepts[0].label": {
             "type": "string",
             "title": "Related Concepts - Label",
             "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n"
         },
-        "relatedConcepts.source": {
+        "relatedConcepts[0].source": {
             "title": "Related Concepts - Source",
             "description": "The source of the related concept.\n",
             "type": "string",
@@ -200,7 +200,7 @@
                 "TBD (will have controlled vocabulary)"
             ]
         },
-        "relatedConcepts.id": {
+        "relatedConcepts[0].id": {
             "title": "Related Concepts - Id",
             "type": "string",
             "description": "The id locating the individual mapping within the given source."

@@ -337,10 +337,10 @@ a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
 
-**`standardsMappings.instrument.url`** _(string)_
+**`standardsMappings[0].instrument.url`** _(string)_
  
 
-**`standardsMappings.instrument.source`** _(string)_
+**`standardsMappings[0].instrument.source`** _(string)_
  
 Possible values:
 
@@ -351,13 +351,13 @@ Possible values:
   ```
 
 
-**`standardsMappings.instrument.title`** _(string)_
+**`standardsMappings[0].instrument.title`** _(string)_
  
 
-**`standardsMappings.instrument.id`** _(string)_
+**`standardsMappings[0].instrument.id`** _(string)_
  
 
-**`standardsMappings.item.url`** _(string)_
+**`standardsMappings[0].item.url`** _(string)_
  The url that links out to the published, standardized mapping.
 
 Examples:
@@ -368,29 +368,29 @@ Examples:
 
 ```
 
-**`standardsMappings.item.source`** _(string)_
+**`standardsMappings[0].item.source`** _(string)_
  The source of the standardized variable.
 
 
-**`standardsMappings.item.id`** _(string)_
+**`standardsMappings[0].item.id`** _(string)_
  The id locating the individual mapping within the given source.
 
 
-**`relatedConcepts.url`** _(string)_
+**`relatedConcepts[0].url`** _(string)_
  The url that links out to the published, standardized concept.
 
 
-**`relatedConcepts.type`** _(string)_
+**`relatedConcepts[0].type`** _(string)_
  The **type** of mapping to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
 
 
-**`relatedConcepts.label`** _(string)_
+**`relatedConcepts[0].label`** _(string)_
  A free text **label** of mapping to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
 
 
-**`relatedConcepts.source`** _(string)_
+**`relatedConcepts[0].source`** _(string)_
  The source of the related concept.
 
 Examples:
@@ -401,5 +401,5 @@ Examples:
 
 ```
 
-**`relatedConcepts.id`** _(string)_
+**`relatedConcepts[0].id`** _(string)_
  The id locating the individual mapping within the given source.
