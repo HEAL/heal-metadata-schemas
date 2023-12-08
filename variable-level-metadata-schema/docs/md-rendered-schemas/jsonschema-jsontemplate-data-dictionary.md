@@ -9,6 +9,17 @@ This schema defines the variable level metadata for one data dictionary for a gi
 ### `version` _(string)_
 
 ### `standardsMappings` _(array)_
+A set of standardized instruments linked to all variables within the `fields` property (but see note).
+
+!!! note "NOTE"
+
+  If `standardsMappings` is present at both the root (this property) and within `fields`, 
+  then the `fields` `standardsMappings` property takes precedence.
+
+  Note, only instrument can be mapped to this property as opposed to the `fields` `standardsMappings`
+  This property has the same specification as the `fields` `standardsMappings` to make the cascading logic
+  easier to understand in the same way other standards implement cascading 
+  (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
 
 ### `fields` _(array,required)_
 
@@ -356,6 +367,100 @@ readability of the field) that is not a standard false value. It can include one
 
 **`standardsMappings`** _(array)_
  
+A set of instrument and item references to standardized data elements designed to document
+the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
+and other standardized/common element sources to facilitate cross-study comparison and interoperability
+of data. One can either map an individual data element or an instrument in which the field is 
+a part of.
+
+__**All Fields Mapped (Both Instrument and Item)**__
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
+            "source": "heal-cde",
+            "title": "adult-demographics",
+            "id": <drupal id here>
+        },
+        "item": {
+            "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
+            "source": "CDISC",
+            "id": "C74457"
+        }
+    }
+]
+```
+
+__**Only Instrument Title of Form CDE File Mapped**__
+
+In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "title": "adult-demographics"
+        }
+    }
+]
+```
+
+__**Only Instrument ID of HEAL CDE Mapped**__
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "id": <drupal id here>
+        }
+    }
+]
+```
+
+__**Other Non-HEAL CDE Use Cases**__
+
+Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
+
+```json
+"standardsMappings": [
+    {
+        "item": {
+            "source": "NLM",
+            "id": "Fakc6Jy2x"
+        }
+    }
+]
+```
+
+__**Multiple CDE Mappings**__
+
+Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "title": "adult-demographics"
+        },
+        "item": {
+            "source": "CDISC",
+            "id": "C74457"
+        },
+    },
+    {
+        "item": {
+            "source": "NLM",
+            "id": "Fakc6Jy2x"
+        }
+    }
+]
+```
+
 
 **`relatedConcepts`** _(array)_
  __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 

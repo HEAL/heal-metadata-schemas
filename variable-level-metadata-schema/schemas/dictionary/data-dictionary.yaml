@@ -15,9 +15,7 @@ properties:
   version: # TODO: think about having a version text/message and id (akin to a git commit)
     type: string
   standardsMappings:
-    type: array
-    items:
-      $ref: "#/definitions/rootStandardsMappingsItem"
+    $ref: "#/definitions/rootStandardsMappingsItem"
   fields:
     type: array
     items:
