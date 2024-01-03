@@ -1,14 +1,22 @@
-# Variable Level Metadata (Data Dictionaries)
+# Variable Level Metadata (Data Dictionaries) _version 0.2.0_
 
 This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries
 
-### `title` _(string,required)_
+## `title` _(string,required)_
 
-### `description` _(string)_
+## `description` _(string)_
 
-### `version` _(string)_
+## `schemaVersion` _(string)_
+The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
 
-### `standardsMappings` _(array)_
+NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+Rather, it is the
+version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+version.
+
+## `version` _(string)_
+The specified individual data dictionary instance version.
+## `standardsMappings` _(array)_
 A set of standardized instruments linked to all variables within the `fields` property (but see note).
 
 !!! note "NOTE"
@@ -21,19 +29,19 @@ A set of standardized instruments linked to all variables within the `fields` pr
   easier to understand in the same way other standards implement cascading 
   (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
 
-### `fields` _(array,required)_
+## `fields` _(array,required)_
 
 Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.
 
-!!! note "NOTE"
+!!! note "Highly encouraged"
 
   Only `name` and `description` properties are required. 
-  For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. 
+  For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
   For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
   `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
-#### Properties for each record
+### Properties for each `fields` record
 
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
@@ -53,39 +61,26 @@ Examples:
 ```
 
 ```
-  Substance use
-
-```
-
-```
   Medical History
-
-```
-
-```
-  Sleep questions
-
-```
-
-```
-  Physical activity
 
 ```
 
 **`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
-
-**`title`** _(string)_
- The human-readable title or label of the variable. 
-
 Examples:
 
 
 ```
-  My Variable
+  gender_id
 
 ```
+
+**`title`** _(string)_
+ The human-readable title or label of the variable.
+
+Examples:
+
 
 ```
   Gender identity
@@ -112,131 +107,13 @@ Examples:
 **`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
-Definitions:
-
--  `number` (A numeric value with optional decimal places. (e.g., 3.14))
--  `integer` (A whole number without decimal places. (e.g., 42))
--  `string` (A sequence of characters. (e.g., \"test\"))
--  `any` (Any type of data is allowed. (e.g., true))
--  `boolean` (A binary value representing true or false. (e.g., true))
--  `date` (A specific calendar date. (e.g., \"2023-05-25\"))
--  `datetime` (A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\"))
--  `time` (A specific time of day. (e.g., \"10:30:00\"))
--  `year` (A specific year. (e.g., 2023)
--  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
--  `duration` (A length of time. (e.g., \"PT1H\")
--  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
-
-Possible values:
-
-- ```
-
-    number
-
-  ```
-- ```
-
-    integer
-
-  ```
-- ```
-
-    string
-
-  ```
-- ```
-
-    any
-
-  ```
-- ```
-
-    boolean
-
-  ```
-- ```
-
-    date
-
-  ```
-- ```
-
-    datetime
-
-  ```
-- ```
-
-    time
-
-  ```
-- ```
-
-    year
-
-  ```
-- ```
-
-    yearmonth
-
-  ```
-- ```
-
-    duration
-
-  ```
-- ```
-
-    geopoint
-
-  ```
-
+Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
 
 **`format`** _(string)_
  Indicates the format of the type specified in the `type` property. 
 Each format is dependent on the `type` specified. 
-For example: If `type` is "string", then see the [String formats](https://specs.frictionlessdata.io/table-schema/#string). 
-If `type` is "date", "datetime", or "time", default format is ISO8601 formatting for those respective types (see details on ISO8601 format for [Date](https://specs.frictionlessdata.io/table-schema/#date),
-[Datetime](https://specs.frictionlessdata.io/table-schema/#datetime), 
-or [Time](https://specs.frictionlessdata.io/table-schema/#time)) - If you want to specify a date-like variable using standard Python/C strptime syntax, see [here](#format-details-for-date-datetime-time-type-variables) for details. 
-See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) for more information about appropriate `format` values by variable `type`. 
-
-[Additional information]
-
-Date Formats (date, datetime, time `type` variable):
-
-A format for a date variable (`date`,`time`,`datetime`).  
-**default**: An ISO8601 format string.
-**any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
-
-**{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-which `MUST` follow the date formatting syntax of 
-C / Python [strftime](http://strftime.org/) such as:
-
-- "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-- "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-- "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-- "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-- "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-- "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-- "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-- "`%H:%M:%S` (for time, e.g., 10:30:45)"
-- "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-- "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
-
-String formats:
-
-- "`email` if valid emails (e.g., test@gmail.com)"
-- "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-- "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-- "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
-
-
-Geopoint formats:
-
-The two types of formats for `geopoint` (describing a geographic point).
-
-- `array` (if 'lat,long' (e.g., 36.63,-90.20))
-- `object` (if {'lat':36.63,'lon':-90.20})
+See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
+for more information about appropriate `format` values by variable `type`.
 
 
 **`constraints`** _(object)_
@@ -364,6 +241,20 @@ Examples:
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
+Examples:
+
+
+```json
+
+  ['Not required', 'NOT REQUIRED']
+
+```
+
+```json
+
+  ['No']
+
+```
 
 **`standardsMappings`** _(array)_
  
@@ -415,7 +306,7 @@ __**Only Instrument ID of HEAL CDE Mapped**__
     {
         "instrument": {
             "source": "heal-cde",
-            "id": <drupal id here>
+            "id": \1020
         }
     }
 ]
@@ -465,4 +356,52 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 **`relatedConcepts`** _(array)_
  __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
+
+
+### Additional `fields` property information
+
+#### `type` enum definitions:
+
+-  `number` (A numeric value with optional decimal places. (e.g., 3.14))
+-  `integer` (A whole number without decimal places. (e.g., 42))
+-  `string` (A sequence of characters. (e.g., \"test\"))
+-  `any` (Any type of data is allowed. (e.g., true))
+-  `boolean` (A binary value representing true or false. (e.g., true))
+-  `date` (A specific calendar date. (e.g., \"2023-05-25\"))
+-  `datetime` (A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\"))
+-  `time` (A specific time of day. (e.g., \"10:30:00\"))
+-  `year` (A specific year. (e.g., 2023)
+-  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
+-  `duration` (A length of time. (e.g., \"PT1H\")
+-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
+
+#### `format` examples/definitions of patterns and possible values:
+
+Examples of date time pattern formats
+
+- "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
+- "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
+- "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
+- "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
+- "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
+- "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
+- "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
+- "`%H:%M:%S` (for time, e.g., 10:30:45)"
+- "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
+- "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+
+Examples of string formats
+
+- "`email` if valid emails (e.g., test@gmail.com)"
+- "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
+- "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
+- "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
+
+
+Examples of geopoint formats
+
+The two types of formats for `geopoint` (describing a geographic point).
+
+- `array` (if 'lat,long' (e.g., 36.63,-90.20))
+- `object` (if {'lat':36.63,'lon':-90.20})
 
