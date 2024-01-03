@@ -3,13 +3,12 @@ description: |
   Variable level metadata individual fields integrated into the variable level
   metadata object within the HEAL platform metadata service.
 
-  !!! note "NOTE"
+  !!! note "Highly encouraged"
 
     Only `name` and `description` properties are required. 
-    For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. 
+    For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
     For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
     `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
-
 type: object
 required:
   - name
@@ -95,6 +94,7 @@ properties:
       for more information about appropriate `format` values by variable `type`.
 
     additionalDescription: |
+      examples/definitions of patterns and possible values:
 
       Examples of date time pattern formats
 
