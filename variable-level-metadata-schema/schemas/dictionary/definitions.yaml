@@ -106,7 +106,7 @@ fieldStandardsMappingsItem:
         {
             "instrument": {
                 "source": "heal-cde",
-                "id": \1020
+                "id": "1020"
             }
         }
     ]
