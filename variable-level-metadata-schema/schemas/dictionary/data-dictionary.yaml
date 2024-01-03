@@ -12,8 +12,19 @@ properties:
     type: string
   description:
     type: string
+  schemaVersion:
+    type: string
+    description: |
+      The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+      
+      NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+      Rather, it is the
+      version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+      version.
+    pattern: \d+\.\d+\.\d+
   version: # TODO: think about having a version text/message and id (akin to a git commit)
     type: string
+    description: The specified individual data dictionary instance version.
   standardsMappings:
     $ref: "#/definitions/rootStandardsMappingsItem"
   fields:
