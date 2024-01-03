@@ -1,5 +1,3 @@
-"$schema": http://json-schema.org/draft-04/schema#
-"$id": vlmd-fields
 title: HEAL Variable Level Metadata Fields
 description: |
   Variable level metadata individual fields integrated into the variable level
@@ -266,9 +264,7 @@ properties:
       
     examples: 
       - Required|REQUIRED
-      - required|Yes|Y|Checked
-      - Checked
-      - Required
+      - "Yes"
   falseValuesJsonSpec:
     title: Boolean False Value Labels
     description: |
@@ -276,6 +272,9 @@ properties:
       a physical string representation to be cast as false (increasing
       readability of the field) that is not a standard false value. It can include one or more values.
     type: array
+    examples:
+    - ["Not required","NOT REQUIRED"]
+    - ["No"]
   falseValuesCsvSpec:
     title: Boolean False Value Labels
     description: |
@@ -283,6 +282,9 @@ properties:
       a physical string representation to be cast as false (increasing
       readability of the field) that is not a standard false value. It can include one or more values.
     $ref: "#/definitions/csvArray"
+    examples:
+    - Not required| NOT REQUIRED
+    - "No"
   standardsMappings:
     $ref: "#/definitions/fieldStandardsMappingsItem"
   relatedConcepts:
