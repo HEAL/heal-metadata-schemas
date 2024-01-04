@@ -1,8 +1,6 @@
 # Variable level metadata
 
-This metadata directory contains the specifications for variable level metadata submissions to the 
-HEAL platform in addition to variable level metadata templates in CSV format and the associated code
-converting this template to its validated json format.
+This metadata directory contains the specifications for variable level metadata documents. 
 
 
 ## Workflow
@@ -30,3 +28,9 @@ To contribute to the variable level metadata, please modify the `dictionary/*.ya
 ## Considerations
 
 Please use github issues for any additional considerations. See additional comments above.
+
+:::warning
+
+    This is a warning admonition.
+
+:::
