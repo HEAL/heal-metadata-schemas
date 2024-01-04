@@ -3,7 +3,8 @@
 This metadata directory contains the specifications for variable level metadata documents in the HEAL data ecosystem. 
 
 ## Schemas
-There are three categories of schemas important in this directory:
+
+❗ Look here for schema specifications.
 
 ### json data dictionary format specification
 1. `schemas/jsonschema/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
@@ -19,28 +20,68 @@ There are three categories of schemas important in this directory:
 3. `schemas/jsontemplate/fields.json`The "csv" json schema (ie csv template schema)
     - :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json schema template. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
 
-## Workflow
+## Document flow chart
 
-The `schemas/dictionary` directory contains a comprehensive json schema with fields for 
+```mermaid
 
+%%{init: {"flowchart": {"defaultRenderer": "elk","htmlLabels": false}} }%%
+flowchart TD
+    subgraph "/schemas"
+    subgraph dictionary[Dictionary YAML files]
 
+        defs["/dictionary/definitions.yaml"]
+        fields["/dictionary/fields.yaml"]
+        dd["/dictionary/data-dictionary.yaml"]
+    end
+
+    subgraph Schema specifications
+
+        jsonspec["/jsontemplate/data-dictionary.json"]
+        csvspec["/jsontemplate/csvtemplate/fields.json"]
+        csvtblspec["/frictionless/csvtemplate/fields.json"]
+    end
+    end
+
+    subgraph /docs
+        subgraph "Rendered schema documentation \n(html also available)"
+
+            csvmd["/docs/\nmd-rendered-schemas/\njsonschema-csvtemplate-fields.md"]
+            jsonmd["/docs/\nmd-rendered-schemas/\njsonschema-jsontemplate-data-dictionary.md"]
+
+        end
+    end
+
+    defs --> fields --> dd
+    defs --> dd
+
+    fields --> csvspec --> csvtblspec
+    dd --> jsonspec
+
+    csvspec --> csvmd
+    jsonspec --> jsonmd
+
+```
 
 ## Directories
 
 - `docs`: 
 See the rendered human readable schemas
 in a markdown format and an interactive html format.
-- `schemas/jsonschema`: contains the final and full specification.
-- `schemas/frictionless`: contains schemas following the frictionless schema specifications. `fields.json` contains the frictionless Table Schema descriptor that validates a tabular heal templated csv data dictionary. See [here](https://specs.frictionlessdata.io/table-schema/) for the specification. **NOTE: the `csvtemplate` is an intermediate format meant to be converted into the final `jsontemplate` format.
+- `schemas/jsonschema`: contains the final and full specification for schemas following json schema.
+- `schemas/frictionless`: contains schemas following the frictionless table schema specifications. See [here](https://specs.frictionlessdata.io/table-schema/) for the specification. 
 - `schemas/dictionary`: the yaml files used to generate json schemas and documentation with build.py. 
 - `templates`: empty templates in csv spreadsheet format and JSON format. 
 - `examples`: exapmles of filled out templates in csv spreadsheet format and JSON format.
- TO BE ADDED: for now, see https://github.com/norc-heal/healdata-utils/tree/main/tests/data/valid/output
 - `build.py`: This script compiles the yaml files and generates associated jsonschemas and frictionless schemas in addition to the human rendered schemas
 
 ## Contributing
 
 To contribute to the variable level metadata specification (and annotations/examples/documentation), please modify the `dictionary/*.yaml` files directly.
+
+1. Update the dictionary/*.yaml files
+2. Run `build.py` script
+3. Check output is correct (see above)
+4. When satisfied, push to github and ensure it passes validation (ie commit has ✔️ and not ❌)
 
 ❗ Please read the below conventions and principles before contributing and review the existing `dictionary` directory.
 
@@ -61,13 +102,45 @@ Given csv field values can only be scalar values with records separated by a new
     - if type `object` in `items`: flattened to the children property or properties
     - if type is a scalar (`string`,`integer`,`number`) in `items`,
      translated to type `string` with pattern `^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$` to indicate a string containing a pipe delimiter (i.e., a stringified array with a pipe delimiter)
+### `property` name conversion rules 
+To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the jsonpath representation where:
+
+1. type `object`
+
+    ```json
+
+    "constraints": {
+            "type": "object",
+            "properties": {
+                "maxLength": {
+                    "type": "integer"}
+        }
+    }
+    ```
+
+    flattens to:
+    ```json
+
+    "constraints.maxLength":{"type":"integer"}
+
+    ```
+2. type `array`
+
+    ```json
+
+    ```
+
+    flattens to:
+    ```json
+
+    ```
 
 ### Complex `type` restrictions 
 
-1. Currently, no complex types (`anyOf`,`oneOf`) and the `type` MUST be specified.
+1. Currently, no complex types (`anyOf`,`oneOf`) are supported and the `type` MUST be specified. This is to ensure coverage for all csv to json translation use cases.
 2. `enum` restrictions
     - following from (1), an `enum` must only contain values of the same type
-    - (at least currently) MUST contain only scalar types (`string`,`integer`,`number`)
+    - (at least currently) MUST contain only types supported by csv fields which include scalar types (`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
 
 
 ## Considerations
