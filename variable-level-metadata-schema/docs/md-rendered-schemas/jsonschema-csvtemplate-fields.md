@@ -25,6 +25,10 @@ Rather, it is the
 version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
 version.
 
+If generating a vlmd document as a csv file, include this version in 
+every row/record to indicate this is a schema level property 
+(not applicable for the json version as this property is already at the schema/root level)
+
 
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 

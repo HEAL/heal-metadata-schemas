@@ -18,7 +18,7 @@
         },
         "schemaVersion": {
             "type": "string",
-            "description": "The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) \n\nNOTE: This is NOT for versioning of each indiviual data dictionary instance. \nRather, it is the\nversion of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance\nversion.\n",
+            "description": "The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) \n\nNOTE: This is NOT for versioning of each indiviual data dictionary instance. \nRather, it is the\nversion of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance\nversion.\n\nIf generating a vlmd document as a csv file, include this version in \nevery row/record to indicate this is a schema level property \n(not applicable for the json version as this property is already at the schema/root level)\n",
             "pattern": "\\d+\\.\\d+\\.\\d+"
         },
         "version": {

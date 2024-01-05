@@ -16,6 +16,10 @@ Rather, it is the
 version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
 version.
 
+If generating a vlmd document as a csv file, include this version in 
+every row/record to indicate this is a schema level property 
+(not applicable for the json version as this property is already at the schema/root level)
+
 ## `version` _(string)_
 The specified individual data dictionary instance version.
 ## `standardsMappings` _(array)_
