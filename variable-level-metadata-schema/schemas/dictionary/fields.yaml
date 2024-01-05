@@ -136,6 +136,7 @@ properties:
           categorical variable, this would be a maxLength of 11.
 
       enum:
+        type: array
         title: Variable Possible Values
         description: |
           Constrains possible values to a set of values.
