@@ -154,7 +154,7 @@
         },
         "standardsMappings[0].instrument.url": {
             "title": "Url",
-            "description": "",
+            "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
             "type": "string",
             "format": "uri",
             "examples": [
@@ -163,12 +163,15 @@
         },
         "standardsMappings[0].instrument.source": {
             "type": "string",
+            "title": "Source",
+            "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
             "enum": [
                 "heal-cde"
             ]
         },
         "standardsMappings[0].instrument.title": {
             "type": "string",
+            "title": "Title",
             "examples": [
                 "Adult demographics",
                 "adult-demographics"
@@ -176,8 +179,10 @@
         },
         "standardsMappings[0].instrument.id": {
             "type": "string",
+            "title": "Identifier",
+            "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n",
             "examples": [
-                "1020"
+                "5141"
             ]
         },
         "standardsMappings[0].item.url": {

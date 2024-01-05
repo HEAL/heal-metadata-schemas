@@ -63,18 +63,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "string",
-          "year",
-          "yearmonth",
-          "date",
-          "datetime",
-          "integer",
           "boolean",
+          "any",
           "number",
+          "date",
+          "time",
+          "yearmonth",
           "duration",
           "geopoint",
-          "time",
-          "any"
+          "year",
+          "integer",
+          "datetime",
+          "string"
         ]
       }
     },
@@ -181,6 +181,7 @@
     },
     {
       "name": "standardsMappings[0].instrument.url",
+      "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
       "title": "Url",
       "examples": [
         "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx"
@@ -189,6 +190,8 @@
     },
     {
       "name": "standardsMappings[0].instrument.source",
+      "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
+      "title": "Source",
       "type": "string",
       "constraints": {
         "enum": [
@@ -198,6 +201,7 @@
     },
     {
       "name": "standardsMappings[0].instrument.title",
+      "title": "Title",
       "examples": [
         "Adult demographics",
         "adult-demographics"
@@ -206,8 +210,10 @@
     },
     {
       "name": "standardsMappings[0].instrument.id",
+      "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n",
+      "title": "Identifier",
       "examples": [
-        "1020"
+        "5141"
       ],
       "type": "string"
     },

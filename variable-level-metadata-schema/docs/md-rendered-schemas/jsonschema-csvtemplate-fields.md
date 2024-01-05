@@ -229,7 +229,10 @@ Examples:
 ```
 
 **`standardsMappings[0].instrument.url`** _(string)_
- 
+ A url (e.g., link, address) to a file or other resource containing the instrument, or
+a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+or the individual variable (if at the field level). 
+
 Examples:
 
 
@@ -239,7 +242,10 @@ Examples:
 ```
 
 **`standardsMappings[0].instrument.source`** _(string)_
- 
+ An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
+containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+or the individual variable (if at the field level). 
+
 Must be one of: `heal-cde`
 
 **`standardsMappings[0].instrument.title`** _(string)_
@@ -258,12 +264,14 @@ Examples:
 ```
 
 **`standardsMappings[0].instrument.id`** _(string)_
- 
+ A code or other string that identifies the instrument within the source.
+This should always be from the source's formal, standardized identification system 
+
 Examples:
 
 
 ```
-  1020
+  5141
 
 ```
 
