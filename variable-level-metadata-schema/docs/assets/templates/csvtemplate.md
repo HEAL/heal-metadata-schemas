@@ -1,15 +1,16 @@
 # {{ schema.title }} _version {{ schema.version }}_
 
+
 {{ schema.description }}
 
-## Properties
+## Properties (i.e., fields or variables)
 
 {% for itemname,item in schema.properties.items() %}
 {% include 'properties.md' %}
 {% endfor %}
 
 
-# End of schema - Additional Property information 
+## End of schema - Additional Property information 
 
 {% for itemname,item in schema['properties'].items() %}
 {% if 'additionalDescription' in item %}
