@@ -31,41 +31,9 @@ def load_all_yamls(directory="schemas/dictionary"):
     filepaths = Path(directory).glob("*.yaml")
     return {filepath.stem: load_yaml(filepath) for filepath in filepaths}
 
-
-def select_specs(schema, specsuffix="CsvSpec"):
-    """
-    select given specification type and remove other specification types.
-    These are denoted with the suffix <specsuffix> (eg encodingsCsvSpec) in property name
-
-    This function is useful when building multiple versions of schemas
-    conditional on the type of specificaiton (eg csv tabular data vs. json
-    for a workflow that may except csv that is translated into the json file.)
-
-    """
-    # loop through schema
-    schema_selected = {}
-    for key, item in schema.items():
-        if re.search(f"{specsuffix}$", key):
-            newkey = key.replace(specsuffix, "")
-            schema_selected[newkey] = item
-        elif re.search("Spec$", key):
-            pass
-        elif isinstance(item, MutableMapping):
-            schema_selected[key] = select_specs(item, specsuffix)
-        else:
-            schema_selected[key] = item
-    return schema_selected
-
-
-# resolve refs (and select type of schema spec)
-
-def get_ref(path,schema):
-    pass 
-
-# loop through all iterables in a dictionary 
-# if key = $ref --> get_ref
-
-
+def to_csv_spec(schema,*args,**kwargs):
+    # see the flatten_schema (and properties) function as it will use similar pattern
+    pass
 
 def resolve_refs(items, schema, parentkey=False):
     """
@@ -264,7 +232,7 @@ if __name__ == "__main__":
     # compile frictionless schema fields
     dictionary = load_all_yamls()
     csv_pipeline = [
-        (select_specs, {"specsuffix": "CsvSpec"}),
+        (to_csv_spec, None),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
@@ -281,7 +249,7 @@ if __name__ == "__main__":
 
     # compile json schema fields
     csv_pipeline = [
-        (select_specs, {"specsuffix": "CsvSpec"}),
+        (to_csv_spec, None),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
@@ -295,7 +263,6 @@ if __name__ == "__main__":
     json_pipeline = [
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
-        (select_specs, {"specsuffix": "JsonSpec"}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["data-dictionary"], None),
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
