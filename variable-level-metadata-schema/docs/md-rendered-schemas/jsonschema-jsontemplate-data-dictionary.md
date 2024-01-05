@@ -1,4 +1,6 @@
-# Variable Level Metadata (Data Dictionaries) _version 0.2.0_
+# Variable Level Metadata (Data Dictionaries) 
+
+_version 0.2.0_
 
 This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries
 
@@ -135,13 +137,13 @@ for more information about appropriate `format` values by variable `type`.
 
     ```json
 
-      [1, 2, 3, 4]
+      [1, 2, 3, 4, 5]
 
     ```
 
     ```json
 
-      ['White', 'Black or African American', 'American Indian or Alaska Native', 'Native Hawaiian or Other Pacific Islander', 'Asian', 'Some other race', 'Multiracial']
+      ['Poor', 'Fair', 'Good', 'Very good', 'Excellent']
 
     ```
 
@@ -176,12 +178,14 @@ Additionally, as another use case, this field provides a way to
 store categoricals that are stored as  "short" labels (such as
 abbreviations).
 
+This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
 Examples:
 
 
 ```json
 
-  {'0': 'No', '1': 'Yes'}
+  {'1': 'Poor', '2': 'Fair', '3': 'Good', '4': 'Very good', '5': 'Excellent'}
 
 ```
 
@@ -196,6 +200,8 @@ Examples:
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
+
+This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
 
 **`missingValues`** _(array)_

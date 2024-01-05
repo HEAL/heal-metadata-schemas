@@ -4,6 +4,14 @@
   "title": "HEAL Variable Level Metadata Fields",
   "fields": [
     {
+      "name": "schemaVersion",
+      "description": "The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) \n\nNOTE: This is NOT for versioning of each indiviual data dictionary instance. \nRather, it is the\nversion of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance\nversion.\n",
+      "type": "string",
+      "constraints": {
+        "pattern": "\\d+\\.\\d+\\.\\d+"
+      }
+    },
+    {
       "name": "section",
       "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables. Previously called \"module.\"\n",
       "title": "Section",
@@ -56,17 +64,17 @@
       "constraints": {
         "enum": [
           "integer",
-          "string",
-          "date",
-          "time",
-          "duration",
-          "datetime",
-          "yearmonth",
           "number",
-          "geopoint",
-          "year",
+          "string",
+          "duration",
+          "yearmonth",
           "boolean",
-          "any"
+          "time",
+          "year",
+          "geopoint",
+          "date",
+          "any",
+          "datetime"
         ]
       }
     },
@@ -87,8 +95,8 @@
       "description": "Constrains possible values to a set of values.\n",
       "title": "Variable Possible Values",
       "examples": [
-        "1|2|3|4|5|6|7|8",
-        "White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial"
+        "1|2|3|4|5",
+        "Poor|Fair|Good|Very good|Excellent"
       ],
       "type": "string",
       "constraints": {
@@ -115,11 +123,11 @@
     },
     {
       "name": "enumLabels",
-      "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n",
+      "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n\nThis field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)\n",
       "title": "Variable Value Encodings (i.e., mappings; value labels)",
       "examples": [
-        "0=No|1=Yes",
-        "HW=Hello world|GBW=Good bye world|HM=Hi,Mike"
+        "1=Poor|2=Fair|3=Good|4=Very good|5=Excellent",
+        "HW=Hello world|GBW=Good bye world|HM=Hi, Mike"
       ],
       "type": "string",
       "constraints": {
@@ -128,7 +136,7 @@
     },
     {
       "name": "enumOrdered",
-      "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n",
+      "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n\nThis field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)\n",
       "title": "An ordered variable",
       "type": "boolean"
     },
@@ -148,9 +156,10 @@
     {
       "name": "trueValues",
       "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n",
+      "title": "Boolean True Value Labels",
       "examples": [
-        "Required|REQUIRED",
-        "Yes"
+        "required|Yes|Checked",
+        "required"
       ],
       "type": "string",
       "constraints": {
@@ -162,7 +171,7 @@
       "description": "For boolean (false) variable (as defined in type field), this field allows\na physical string representation to be cast as false (increasing\nreadability of the field) that is not a standard false value. It can include one or more values.\n",
       "title": "Boolean False Value Labels",
       "examples": [
-        "Not required| NOT REQUIRED",
+        "Not required|NOT REQUIRED",
         "No"
       ],
       "type": "string",

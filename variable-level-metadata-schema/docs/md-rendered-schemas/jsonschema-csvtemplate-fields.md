@@ -1,4 +1,7 @@
-# HEAL Variable Level Metadata Fields _version _
+# HEAL Variable Level Metadata Fields 
+
+_version 0.2.0_
+
 
 Variable level metadata individual fields integrated into the variable level
 metadata object within the HEAL platform metadata service.
@@ -11,7 +14,16 @@ metadata object within the HEAL platform metadata service.
   `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
 
-## Properties
+## Properties (i.e., fields or variables)
+
+
+**`schemaVersion`** _(string)_
+ The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+
+NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+Rather, it is the
+version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+version.
 
 
 **`section`** _(string)_
@@ -100,12 +112,12 @@ Examples:
 
 
 ```
-  1|2|3|4|5|6|7|8
+  1|2|3|4|5
 
 ```
 
 ```
-  White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
+  Poor|Fair|Good|Very good|Excellent
 
 ```
 
@@ -136,16 +148,18 @@ Additionally, as another use case, this field provides a way to
 store categoricals that are stored as  "short" labels (such as
 abbreviations).
 
+This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
 Examples:
 
 
 ```
-  0=No|1=Yes
+  1=Poor|2=Fair|3=Good|4=Very good|5=Excellent
 
 ```
 
 ```
-  HW=Hello world|GBW=Good bye world|HM=Hi,Mike
+  HW=Hello world|GBW=Good bye world|HM=Hi, Mike
 
 ```
 
@@ -154,6 +168,8 @@ Examples:
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
+
+This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
 
 **`missingValues`** _(string)_
@@ -181,12 +197,12 @@ Examples:
 
 
 ```
-  Required|REQUIRED
+  required|Yes|Checked
 
 ```
 
 ```
-  Yes
+  required
 
 ```
 
@@ -199,7 +215,7 @@ Examples:
 
 
 ```
-  Not required| NOT REQUIRED
+  Not required|NOT REQUIRED
 
 ```
 
@@ -269,7 +285,7 @@ Examples:
  The id locating the individual mapping within the given source.
 
 
-# End of schema - Additional Property information 
+## End of schema - Additional Property information 
 
 ## `type` enum definitions:
 
