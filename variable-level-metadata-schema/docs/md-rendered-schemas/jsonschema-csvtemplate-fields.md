@@ -230,6 +230,13 @@ Examples:
 
 **`standardsMappings[0].instrument.url`** _(string)_
  
+Examples:
+
+
+```
+  https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx
+
+```
 
 **`standardsMappings[0].instrument.source`** _(string)_
  
@@ -237,28 +244,63 @@ Must be one of: `heal-cde`
 
 **`standardsMappings[0].instrument.title`** _(string)_
  
+Examples:
+
+
+```
+  Adult demographics
+
+```
+
+```
+  adult-demographics
+
+```
 
 **`standardsMappings[0].instrument.id`** _(string)_
  
+Examples:
+
+
+```
+  1020
+
+```
 
 **`standardsMappings[0].item.url`** _(string)_
- The url that links out to the published, standardized mapping.
+ The url that links out to the published, standardized mapping of a variable (e.g., common data element)
 
 Examples:
 
 
 ```
-  https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
+  https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE
 
 ```
 
 **`standardsMappings[0].item.source`** _(string)_
- The source of the standardized variable.
+ The source of the standardized variable. Note, this property is required if 
+an id is specified.
 
+Examples:
+
+
+```
+  CDISC
+
+```
 
 **`standardsMappings[0].item.id`** _(string)_
- The id locating the individual mapping within the given source.
+ The id locating the individual mapping within the given source. Note, the `standardsMapping[\d+].source` property is required if 
+this property is specified.
 
+Examples:
+
+
+```
+  C74457
+
+```
 
 **`relatedConcepts[0].url`** _(string)_
  The url that links out to the published, standardized concept.

@@ -63,18 +63,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "time",
-          "date",
-          "geopoint",
+          "string",
           "year",
+          "yearmonth",
+          "date",
           "datetime",
           "integer",
-          "number",
-          "string",
-          "duration",
-          "any",
           "boolean",
-          "yearmonth"
+          "number",
+          "duration",
+          "geopoint",
+          "time",
+          "any"
         ]
       }
     },
@@ -181,6 +181,10 @@
     },
     {
       "name": "standardsMappings[0].instrument.url",
+      "title": "Url",
+      "examples": [
+        "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx"
+      ],
       "type": "string"
     },
     {
@@ -194,31 +198,44 @@
     },
     {
       "name": "standardsMappings[0].instrument.title",
+      "examples": [
+        "Adult demographics",
+        "adult-demographics"
+      ],
       "type": "string"
     },
     {
       "name": "standardsMappings[0].instrument.id",
+      "examples": [
+        "1020"
+      ],
       "type": "string"
     },
     {
       "name": "standardsMappings[0].item.url",
-      "description": "The url that links out to the published, standardized mapping.\n",
+      "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
       "title": "Standards Mapping - Url",
       "examples": [
-        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+        "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE"
       ],
       "type": "string"
     },
     {
       "name": "standardsMappings[0].item.source",
-      "description": "The source of the standardized variable.\n",
+      "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
       "title": "Standard Mapping - Source",
+      "examples": [
+        "CDISC"
+      ],
       "type": "string"
     },
     {
       "name": "standardsMappings[0].item.id",
-      "description": "The id locating the individual mapping within the given source.\n",
+      "description": "The id locating the individual mapping within the given source. Note, the `standardsMapping[\\d+].source` property is required if \nthis property is specified.\n",
       "title": "Standard Mapping - Id",
+      "examples": [
+        "C74457"
+      ],
       "type": "string"
     },
     {

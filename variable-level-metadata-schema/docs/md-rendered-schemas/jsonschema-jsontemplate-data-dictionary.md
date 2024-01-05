@@ -283,7 +283,7 @@ __**All Fields Mapped (Both Instrument and Item)**__
             "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
             "source": "heal-cde",
             "title": "adult-demographics",
-            "id": <drupal id here>
+            "id": "1020"
         },
         "item": {
             "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
@@ -303,7 +303,7 @@ In this scenario, especially as CDE variables do not have associated CDISC ids l
     {
         "instrument": {
             "source": "heal-cde",
-            "title": "adult-demographics"
+            "title": "Adult demographics"
         }
     }
 ]
@@ -346,7 +346,7 @@ Two separate records. If desired, multiple standard mappings can be entered, say
     {
         "instrument": {
             "source": "heal-cde",
-            "title": "adult-demographics"
+            "title": "Adult demographics"
         },
         "item": {
             "source": "CDISC",
