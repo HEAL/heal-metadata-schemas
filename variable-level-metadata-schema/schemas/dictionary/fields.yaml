@@ -140,6 +140,9 @@ properties:
         title: Variable Possible Values
         description: |
           Constrains possible values to a set of values.
+        examples:
+        - [1,2,3,4,5]
+        - ["Poor","Fair","Good","Very good","Excellent"]
       pattern:
         type: string
         title: Regular Expression Pattern
@@ -175,9 +178,11 @@ properties:
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
 
+      This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
     type: object
     examples: 
-      - {"0":"No","1":"Yes"}
+      - {"1":"Poor","2":"Fair","3":"Good","4":"Very good","5":"Excellent"}
       - {"HW":"Hello world","GBW":"Good bye world","HM":"Hi, Mike"}
   enumOrdered:
     title: An ordered variable
@@ -187,12 +192,13 @@ properties:
       necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
       < Neutral < Agree).
 
+      This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
     type: boolean
   missingValues:
     title: Missing Values
     description: |
       A list of missing values specific to a variable.
-
 
     examples:
 
