@@ -1,4 +1,6 @@
-# {{ schema.title }} _version {{ schema.version }}_
+# {{ schema.title }} 
+
+_version {{ schema.version }}_
 
 
 {{ schema.description }}
