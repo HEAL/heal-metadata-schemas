@@ -160,9 +160,11 @@ To facilitate the mapping of json spec property names to csv property names,  th
 ### Complex `type` restrictions 
 
 1. Currently, no complex types (`anyOf`,`oneOf`) are supported and the `type` MUST be specified. This is to ensure coverage for all csv to json translation use cases.
+    - Each json specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`), an `array`, or an `object`
+    - Each csv specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`)
 2. `enum` restrictions
     - following from (1), an `enum` must only contain values of the same type
-    - (at least currently) MUST contain only types supported by csv fields which include scalar types (`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
+    - (at least currently) MUST contain only types supported by csv fields which include scalar types (e.g., `boolean`,`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
 
 
 ## Considerations
