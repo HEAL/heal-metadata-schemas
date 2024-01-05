@@ -127,12 +127,34 @@ To facilitate the mapping of json spec property names to csv property names,  th
 2. type `array`
 
     ```json
+    { "..more props..":"...",
+    "standardsMappings": {
+    "type": "array",
+    "items": {
+    "type": "object",
+    "properties": {
+        "instrument": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "..more props..":"..."}
+        },
+        "..more props..":"..."}
+    }}}
 
     ```
-
     flattens to:
+    
     ```json
-
+        { "..more props..":"...",
+        "standardsMappings[0].instrument.url": {
+                "type": "string",
+                "format": "uri"
+            }
+        }
     ```
 
 ### Complex `type` restrictions 
