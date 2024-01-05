@@ -182,6 +182,11 @@ This provides a way to specify root level properties within vlmd csv documents f
 1. specifying the schema version that represents the vlmd document (`schemaVersion`)
 2. specifying other data dictionary level properties such as `standardsMappings[0].instrument`
 
+### csv and json vlmd document file naming
+
+File names for json and csv translations of a vlmd document SHOULD
+have the same stem name (eg `my-heal-dd.csv` and `my-heal-dd.json`)
+
 ## Considerations
 
 Please use github issues for any additional considerations. See additional comments above.
