@@ -166,6 +166,14 @@ To facilitate the mapping of json spec property names to csv property names,  th
     - following from (1), an `enum` must only contain values of the same type
     - (at least currently) MUST contain only types supported by csv fields which include scalar types (e.g., `boolean`,`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
 
+### csv to json cascading
+
+- If the same value/instance of a property exists at the field level for ALL records (only one unique value) AND this same property is specified in the root level of json specification (after translation of above csv to json property rules), then this unique value will be added to the json root level property BEFORE the translated json document is validated.  
+
+This provides a way to specify root level properties within vlmd csv documents for a few use cases:
+
+1. specifying the schema version that represents the vlmd document (`schemaVersion`)
+2. specifying other data dictionary level properties such as `standardsMappings[0].instrument`
 
 ## Considerations
 

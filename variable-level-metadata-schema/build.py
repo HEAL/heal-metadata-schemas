@@ -73,7 +73,7 @@ def resolve_refs(items, schema, parentkey=False):
 
     return schema_resolved
 
-def to_csv_properties(schema):
+def to_csv_properties(schema,**additional_props):
     """
     translate complex types (eg arrays and objects) to stringified representations
     """
@@ -106,8 +106,9 @@ def to_csv_properties(schema):
         
         csv_schema["properties"][key] = newitem
     
+    # add additional properties at the beginning of the schema properties object
+    csv_schema["properties"] = {**additional_props,**csv_schema["properties"]}
 
-    
     return csv_schema
 
 def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
@@ -263,13 +264,26 @@ def generate_template(schema):
 if __name__ == "__main__":
     # compile frictionless schema fields
     dictionary = load_all_yamls()
+
+    # compile json schema fields
+    json_pipeline = [
+        # recursive fxn so need to grab items from overall dictionary for json paths
+        (resolve_refs, {"schema": dictionary}),
+        # no longer need the definitons as they have been resolved
+        (lambda _schema: _schema["data-dictionary"], None),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
+    ]
+    json_data_dictionary = reduce(run_pipeline_step, json_pipeline, dictionary)
+    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(json_data_dictionary, indent=4))
+
+    schema_version_prop = {"schemaVersion":json_data_dictionary["properties"]["schemaVersion"]}
     csv_pipeline = [
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),        
         (flatten_schema, None),
-        (to_csv_properties,None),
+        (to_csv_properties,schema_version_prop),
         (to_frictionless, None),
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
@@ -286,23 +300,11 @@ if __name__ == "__main__":
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),  
         (flatten_schema, None),
-        (to_csv_properties,None),
+        (to_csv_properties,schema_version_prop),
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
     Path("schemas/jsonschema/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
-
-    # compile json schema fields
-    json_pipeline = [
-        # recursive fxn so need to grab items from overall dictionary for json paths
-        (resolve_refs, {"schema": dictionary}),
-        # no longer need the definitons as they have been resolved
-        (lambda _schema: _schema["data-dictionary"], None),
-        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
-    ]
-    jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
-    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(jsonfields, indent=4))
-
 
     # generate json schema versions of field schemas for documentation 
 
@@ -317,14 +319,14 @@ if __name__ == "__main__":
         item=csvfields,
         schema=csvfields,
         templatefile="csvtemplate.md")
-    jsonfields_md = render_markdown(
-        item=jsonfields,
-        schema=jsonfields,
+    json_dd_md = render_markdown(
+        item=json_data_dictionary,
+        schema=json_data_dictionary,
         templatefile="jsontemplate.md"
     )
     Path("docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md").write_text(csvfields_md)
-    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(jsonfields_md)
+    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(json_dd_md)
 
     # generate templates
-    Path("templates/template_submission.json").write_text(json.dumps([generate_template(jsonfields)],indent=4))
+    Path("templates/template_submission.json").write_text(json.dumps([generate_template(json_data_dictionary)],indent=4))
     Path("templates/template_submission.csv").write_text(",".join((generate_template(csvfields)).keys()))
