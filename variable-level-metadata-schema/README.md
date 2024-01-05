@@ -9,8 +9,11 @@ This metadata directory contains the specifications for variable level metadata 
 ### json data dictionary format specification
 1. `schemas/jsonschema/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
     - Intended to specify the data dictionary representation of json objects available in the HEAL platform metadata-service.
+    - See here for the markdown rendered version --> [`docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md`](docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md)
 
 ### csv field format specifications
+- See here for the markdown rendered version --> [`docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md`](docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md)
+
 
 2. `schemas/frictionless/fields.json` Table schema (previously known as "frictionless") standard specification
     - This json file is intended to represent csv data dictionary documents following the [Table Schema specification](https://specs.frictionlessdata.io/table-schema/).
@@ -103,10 +106,11 @@ Given csv field values can only be scalar values with records separated by a new
     - if type is a scalar (`string`,`integer`,`number`) in `items`,
      translated to type `string` with pattern `^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$` to indicate a string containing a pipe delimiter (i.e., a stringified array with a pipe delimiter)
 ### `property` name conversion rules 
-To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the jsonpath representation where:
+To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the [jsonpath](https://datatracker.ietf.org/doc/id/draft-goessner-dispatch-jsonpath-00.html) representation where:
 
 1. type `object`
 
+    The json spec type object property below:
     ```json
 
     "constraints": {
@@ -118,13 +122,16 @@ To facilitate the mapping of json spec property names to csv property names,  th
     }
     ```
 
-    flattens to:
+    translates to the csv stringified type object:
+
     ```json
 
     "constraints.maxLength":{"type":"integer"}
 
     ```
 2. type `array`
+
+    The json spec type array property below: 
 
     ```json
     { "..more props..":"...",
@@ -146,7 +153,7 @@ To facilitate the mapping of json spec property names to csv property names,  th
     }}}
 
     ```
-    flattens to:
+    translates to the csv stringified type array property:
     
     ```json
         { "..more props..":"...",
