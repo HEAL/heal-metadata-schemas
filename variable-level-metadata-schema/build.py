@@ -31,10 +31,6 @@ def load_all_yamls(directory="schemas/dictionary"):
     filepaths = Path(directory).glob("*.yaml")
     return {filepath.stem: load_yaml(filepath) for filepath in filepaths}
 
-def to_csv_spec(schema,*args,**kwargs):
-    # see the flatten_schema (and properties) function as it will use similar pattern
-    pass
-
 def resolve_refs(items, schema, parentkey=False):
     """
     resolve pseudo-json references
@@ -77,6 +73,42 @@ def resolve_refs(items, schema, parentkey=False):
 
     return schema_resolved
 
+def to_csv_properties(schema):
+    """
+    translate complex types (eg arrays and objects) to stringified representations
+    """
+    csv_schema = dict(schema)
+    csv_schema["properties"] = {}
+    properties = schema["properties"]
+    for key, item in properties.items():
+        typename = item.get("type")
+        newitem = dict(item)
+        if typename == "array":
+            newitem["type"] = "string"
+            newitem["pattern"] = "^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$"
+
+            if item.get("examples"):
+                newitem["examples"] = ["|".join(str(_e) for _e in e) for e in item["examples"]]
+        elif typename == "object":
+            newitem["type"] = "string"
+            newitem["pattern"] = "^(?:.*?=.*?(?:\||$))+$"
+
+            if item.get("examples"):
+                newitem["examples"] = [
+                    "|".join([f"{key}={val}" for key,val in e.items()])
+                     for e in item["examples"]
+                ]
+        elif typename in ["string","integer","number","boolean"]:
+            newitem = dict(item)
+        else:
+            raise Exception("To convert to csv, the flattened property needs to be",
+                "of type array,object,boolean,string, integer, or number")
+        
+        csv_schema["properties"][key] = newitem
+    
+
+    
+    return csv_schema
 
 def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
     """
@@ -232,12 +264,12 @@ if __name__ == "__main__":
     # compile frictionless schema fields
     dictionary = load_all_yamls()
     csv_pipeline = [
-        (to_csv_spec, None),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),        
         (flatten_schema, None),
+        (to_csv_properties,None),
         (to_frictionless, None),
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
@@ -249,12 +281,13 @@ if __name__ == "__main__":
 
     # compile json schema fields
     csv_pipeline = [
-        (to_csv_spec, None),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),  
         (flatten_schema, None),
+        (to_csv_properties,None),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
     Path("schemas/jsonschema/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
