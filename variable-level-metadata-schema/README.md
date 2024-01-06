@@ -173,19 +173,29 @@ To facilitate the mapping of json spec property names to csv property names,  th
     - following from (1), an `enum` must only contain values of the same type
     - (at least currently) MUST contain only types supported by csv fields which include scalar types (e.g., `boolean`,`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
 
-### csv to json cascading
+### csv to json and json to csv translations
 
-- If the same value/instance of a property exists at the field level for ALL records (only one unique value) AND this same property is specified in the root level of json specification (after translation of above csv to json property rules), then this unique value will be added to the json root level property BEFORE the translated json document is validated.  
+There are two rules for conversion from json to csv (or csv to json) specs:
 
-This provides a way to specify root level properties within vlmd csv documents for a few use cases:
+1. __csv spec field-level property and json spec root-level property match__: If  -- in the json schema spec version --  a property is specified at the root-level AND this same property is specified in the field level of the json spec schema
+    - csv to json: If the same value/instance of a property exists at the field level for ALL records (only one unique value but no missing values) then this unique value -- when translated to the json spec version -- will be moved to the root level data dictionary
+    - json to csv: All root level properties will be moved to individual field properties BUT field level properties that exist take precedence.
+
+More concretely, this provides a way to specify root level properties within vlmd csv documents for a few use cases but can generalize to other future additional property matches:
 
 1. specifying the schema version that represents the vlmd document (`schemaVersion`)
 2. specifying other data dictionary level properties such as `standardsMappings[0].instrument`
 
+### root and field property cascading pattern
+Akin to the above json to csv, more generally:
+
+All root level properties will be applied to individual fields IF this same field level property is not specified (i.e., field-level takes precedence). This strategy can be seen in the [data package standard (but with missingValues)](https://specs.frictionlessdata.io/patterns/#missing-values-per-field)
+
+
 ### csv and json vlmd document file naming
 
 File names for json and csv translations of a vlmd document SHOULD
-have the same stem name (eg `my-heal-dd.csv` and `my-heal-dd.json`)
+have the same stem name with corresponding "csv" and "json" suffixes (eg `my-heal-dd.csv` and `my-heal-dd.json`)
 
 ## Considerations
 
