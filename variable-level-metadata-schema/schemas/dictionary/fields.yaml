@@ -14,6 +14,8 @@ required:
   - name
   - description
 properties:
+  schemaVersion:
+    $ref: "#/definitions/schemaVersion"
   section: 
     type: string 
     title: Section
