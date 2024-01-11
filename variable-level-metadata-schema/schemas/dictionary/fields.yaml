@@ -129,6 +129,13 @@ properties:
   constraints:
     type: object
     properties:
+      required:
+        type: boolean
+        title: Required variable
+        description: |
+          If this variable is marked as true, then this variable's value must be present
+          (ie not missing; see missingValues). If marked as false or not present, then the 
+          variable CAN be missing.
       maxLength:
         type: integer
         title: Maximum Length
