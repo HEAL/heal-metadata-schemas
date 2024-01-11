@@ -29,6 +29,18 @@ If generating a vlmd document as a csv file, include this version in
 every row/record to indicate this is a schema level property 
 (not applicable for the json version as this property is already at the schema/root level)
 
+Examples:
+
+
+```
+  1.0.0
+
+```
+
+```
+  0.2.0
+
+```
 
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
@@ -101,6 +113,12 @@ Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `dateti
 Each format is dependent on the `type` specified. 
 See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
 for more information about appropriate `format` values by variable `type`.
+
+
+**`constraints.required`** _(boolean)_
+ If this variable is marked as true, then this variable's value must be present
+(ie not missing; see missingValues). If marked as false or not present, then the 
+variable CAN be missing.
 
 
 **`constraints.maxLength`** _(integer)_

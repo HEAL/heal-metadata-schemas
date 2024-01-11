@@ -11,7 +11,11 @@
         "schemaVersion": {
             "type": "string",
             "description": "The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) \n\nNOTE: This is NOT for versioning of each indiviual data dictionary instance. \nRather, it is the\nversion of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance\nversion.\n\nIf generating a vlmd document as a csv file, include this version in \nevery row/record to indicate this is a schema level property \n(not applicable for the json version as this property is already at the schema/root level)\n",
-            "pattern": "\\d+\\.\\d+\\.\\d+"
+            "pattern": "\\d+\\.\\d+\\.\\d+",
+            "examples": [
+                "1.0.0",
+                "0.2.0"
+            ]
         },
         "section": {
             "type": "string",
@@ -73,6 +77,11 @@
             "type": "string",
             "description": "Indicates the format of the type specified in the `type` property. \nEach format is dependent on the `type` specified. \nSee [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) \nfor more information about appropriate `format` values by variable `type`.\n",
             "additionalDescription": "examples/definitions of patterns and possible values:\n\nExamples of date time pattern formats\n\n- \"`%Y-%m-%d` (for date, e.g., 2023-05-25)\"\n- \"`%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n- \"`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\"\n- \"`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\"\n- \"`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\"\n- \"`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\"\n- \"`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\"\n- \"`%H:%M:%S` (for time, e.g., 10:30:45)\"\n- \"`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\"\n- \"`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\"\n\nExamples of string formats\n\n- \"`email` if valid emails (e.g., test@gmail.com)\"\n- \"`uri` if valid uri addresses (e.g., https://example.com/resource123)\"\n- \"`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)\"\n- \"`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)\"\n\n\nExamples of geopoint formats\n\nThe two types of formats for `geopoint` (describing a geographic point).\n\n- `array` (if 'lat,long' (e.g., 36.63,-90.20))\n- `object` (if {'lat':36.63,'lon':-90.20})\n"
+        },
+        "constraints.required": {
+            "type": "boolean",
+            "title": "Required variable",
+            "description": "If this variable is marked as true, then this variable's value must be present\n(ie not missing; see missingValues). If marked as false or not present, then the \nvariable CAN be missing.\n"
         },
         "constraints.maxLength": {
             "type": "integer",

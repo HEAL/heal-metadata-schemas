@@ -16,6 +16,7 @@
         ],
         "fields": [
             {
+                "schemaVersion": null,
                 "section": null,
                 "name": null,
                 "title": null,
@@ -23,6 +24,7 @@
                 "type": null,
                 "format": null,
                 "constraints": {
+                    "required": null,
                     "maxLength": null,
                     "enum": [],
                     "pattern": null,
