@@ -2,7 +2,7 @@
 
 _version 0.2.0_
 
-This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries
+This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries.
 
 ## `title` _(string,required)_
 
@@ -37,8 +37,7 @@ A set of standardized instruments linked to all variables within the `fields` pr
 
 ## `fields` _(array,required)_
 
-Variable level metadata individual fields integrated into the variable level
-metadata object within the HEAL platform metadata service.
+
 
 !!! note "Highly encouraged"
 

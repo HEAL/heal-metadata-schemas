@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "vlmd",
     "title": "Variable Level Metadata (Data Dictionaries)",
-    "description": "This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries",
+    "description": "This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries.",
     "type": "object",
     "required": [
         "title",
@@ -82,7 +82,7 @@
             "type": "array",
             "items": {
                 "title": "HEAL Variable Level Metadata Fields",
-                "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n!!! note \"Highly encouraged\"\n\n  Only `name` and `description` properties are required. \n  For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. \n  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
+                "description": "\n\n!!! note \"Highly encouraged\"\n\n  Only `name` and `description` properties are required. \n  For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. \n  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
                 "type": "object",
                 "required": [
                     "name",

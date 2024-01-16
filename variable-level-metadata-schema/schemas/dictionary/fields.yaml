@@ -1,8 +1,7 @@
 title: HEAL Variable Level Metadata Fields
 description: |
-  Variable level metadata individual fields integrated into the variable level
-  metadata object within the HEAL platform metadata service.
-
+  
+  
   !!! note "Highly encouraged"
 
     Only `name` and `description` properties are required. 
