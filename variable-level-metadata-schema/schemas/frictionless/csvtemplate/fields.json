@@ -67,18 +67,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "geopoint",
-          "year",
+          "string",
+          "any",
+          "duration",
+          "integer",
+          "datetime",
+          "time",
           "boolean",
           "yearmonth",
-          "any",
-          "date",
-          "time",
-          "duration",
-          "datetime",
-          "integer",
           "number",
-          "string"
+          "year",
+          "date",
+          "geopoint"
         ]
       }
     },
@@ -230,7 +230,7 @@
     {
       "name": "standardsMappings[0].item.url",
       "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
-      "title": "Standards Mapping - Url",
+      "title": "Standards mappings - Url",
       "examples": [
         "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE"
       ],
@@ -239,7 +239,7 @@
     {
       "name": "standardsMappings[0].item.source",
       "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
-      "title": "Standard Mapping - Source",
+      "title": "Standards mappings - Source",
       "examples": [
         "CDISC"
       ],
@@ -247,8 +247,8 @@
     },
     {
       "name": "standardsMappings[0].item.id",
-      "description": "The id locating the individual mapping within the given source. Note, the `standardsMapping[\\d+].source` property is required if \nthis property is specified.\n",
-      "title": "Standard Mapping - Id",
+      "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
+      "title": "Standards Mappings - Id",
       "examples": [
         "C74457"
       ],

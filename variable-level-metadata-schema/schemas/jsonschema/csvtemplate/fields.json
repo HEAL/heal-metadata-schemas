@@ -76,7 +76,7 @@
             "title": "Variable Format",
             "type": "string",
             "description": "Indicates the format of the type specified in the `type` property. \nEach format is dependent on the `type` specified. \nSee [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) \nfor more information about appropriate `format` values by variable `type`.\n",
-            "additionalDescription": "examples/definitions of patterns and possible values:\n\nExamples of date time pattern formats\n\n- \"`%Y-%m-%d` (for date, e.g., 2023-05-25)\"\n- \"`%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n- \"`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\"\n- \"`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\"\n- \"`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\"\n- \"`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\"\n- \"`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\"\n- \"`%H:%M:%S` (for time, e.g., 10:30:45)\"\n- \"`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\"\n- \"`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\"\n\nExamples of string formats\n\n- \"`email` if valid emails (e.g., test@gmail.com)\"\n- \"`uri` if valid uri addresses (e.g., https://example.com/resource123)\"\n- \"`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)\"\n- \"`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)\"\n\n\nExamples of geopoint formats\n\nThe two types of formats for `geopoint` (describing a geographic point).\n\n- `array` (if 'lat,long' (e.g., 36.63,-90.20))\n- `object` (if {'lat':36.63,'lon':-90.20})\n"
+            "additionalDescription": "examples/definitions of patterns and possible values:\n\nExamples of date time pattern formats\n\n- `%Y-%m-%d` (for date, e.g., 2023-05-25)\n- `%Y%-%d` (for date, e.g., 20230525) for date without dashes\n- `%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\n- `%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\n- `%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\n- `%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\n- `%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\n- `%H:%M:%S` (for time, e.g., 10:30:45)\n- `%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\n- `%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\n\nExamples of string formats\n\n- `email` if valid emails (e.g., test@gmail.com)\n- `uri` if valid uri addresses (e.g., https://example.com/resource123)\n- `binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)\n- `uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)\n\n\nExamples of geopoint formats\n\nThe two types of formats for `geopoint` (describing a geographic point).\n\n- `array` (if 'lat,long' (e.g., 36.63,-90.20))\n- `object` (if {'lat':36.63,'lon':-90.20})\n"
         },
         "constraints.required": {
             "type": "boolean",
@@ -195,7 +195,7 @@
             ]
         },
         "standardsMappings[0].item.url": {
-            "title": "Standards Mapping - Url",
+            "title": "Standards mappings - Url",
             "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
             "type": "string",
             "format": "uri",
@@ -204,7 +204,7 @@
             ]
         },
         "standardsMappings[0].item.source": {
-            "title": "Standard Mapping - Source",
+            "title": "Standards mappings - Source",
             "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
             "examples": [
                 "CDISC"
@@ -212,9 +212,9 @@
             "type": "string"
         },
         "standardsMappings[0].item.id": {
-            "title": "Standard Mapping - Id",
+            "title": "Standards Mappings - Id",
             "type": "string",
-            "description": "The id locating the individual mapping within the given source. Note, the `standardsMapping[\\d+].source` property is required if \nthis property is specified.\n",
+            "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
             "examples": [
                 "C74457"
             ]
