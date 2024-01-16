@@ -1,7 +1,7 @@
 title: HEAL Variable Level Metadata Fields
 description: |
   
-  
+
   !!! note "Highly encouraged"
 
     Only `name` and `description` properties are required. 
@@ -238,43 +238,3 @@ properties:
     - ["No"]
   standardsMappings:
     $ref: "#/definitions/fieldStandardsMappingsItem"
-  relatedConcepts:
-    title: Related Concepts
-    description: |
-      __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
-      ontological information (eg., NCI thesaurus, bioportal etc)
-    type: array
-    items:
-      type: object
-      properties:
-        url:
-          title: Related Concepts - Url
-          description: |
-            The url that links out to the published, standardized concept.
-          type: string
-          format: uri
-        type:
-          title: Related concepts - Type
-          description: |
-            The **type** of mapping to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
-          type: string 
-        label:
-          type: string
-          title: Related Concepts - Label
-          description: |
-            A free text **label** of mapping to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
-          
-        source:
-          title: Related Concepts - Source 
-          description: |
-            The source of the related concept.
-          type: string
-          examples:
-            - TBD (will have controlled vocabulary)
-        id:
-          title: Related Concepts - Id
-          type: string
-          description: |
-            The id locating the individual mapping within the given source.
