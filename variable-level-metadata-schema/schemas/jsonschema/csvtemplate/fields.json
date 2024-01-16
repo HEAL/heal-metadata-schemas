@@ -218,35 +218,6 @@
             "examples": [
                 "C74457"
             ]
-        },
-        "relatedConcepts[0].url": {
-            "title": "Related Concepts - Url",
-            "description": "The url that links out to the published, standardized concept.\n",
-            "type": "string",
-            "format": "uri"
-        },
-        "relatedConcepts[0].type": {
-            "title": "Related concepts - Type",
-            "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
-            "type": "string"
-        },
-        "relatedConcepts[0].label": {
-            "type": "string",
-            "title": "Related Concepts - Label",
-            "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n"
-        },
-        "relatedConcepts[0].source": {
-            "title": "Related Concepts - Source",
-            "description": "The source of the related concept.\n",
-            "type": "string",
-            "examples": [
-                "TBD (will have controlled vocabulary)"
-            ]
-        },
-        "relatedConcepts[0].id": {
-            "title": "Related Concepts - Id",
-            "type": "string",
-            "description": "The id locating the individual mapping within the given source."
         }
     }
 }

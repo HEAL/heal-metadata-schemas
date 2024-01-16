@@ -394,11 +394,6 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 ```
 
 
-**`relatedConcepts`** _(array)_
- __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
-
-
 ### Additional `fields` property information
 
 #### `type` enum definitions:

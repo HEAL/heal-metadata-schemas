@@ -67,17 +67,17 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "geopoint",
-          "date",
-          "integer",
-          "boolean",
-          "duration",
-          "datetime",
-          "number",
-          "string",
           "time",
+          "geopoint",
           "any",
+          "date",
+          "datetime",
           "year",
+          "number",
+          "integer",
+          "duration",
+          "boolean",
+          "string",
           "yearmonth"
         ]
       }
@@ -252,39 +252,6 @@
       "examples": [
         "C74457"
       ],
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts[0].url",
-      "description": "The url that links out to the published, standardized concept.\n",
-      "title": "Related Concepts - Url",
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts[0].type",
-      "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
-      "title": "Related concepts - Type",
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts[0].label",
-      "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
-      "title": "Related Concepts - Label",
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts[0].source",
-      "description": "The source of the related concept.\n",
-      "title": "Related Concepts - Source",
-      "examples": [
-        "TBD (will have controlled vocabulary)"
-      ],
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts[0].id",
-      "description": "The id locating the individual mapping within the given source.",
-      "title": "Related Concepts - Id",
       "type": "string"
     }
   ],

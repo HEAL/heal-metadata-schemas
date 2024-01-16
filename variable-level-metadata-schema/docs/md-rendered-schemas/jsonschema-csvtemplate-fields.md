@@ -335,34 +335,6 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].url`** _(string)_
- The url that links out to the published, standardized concept.
-
-
-**`relatedConcepts[0].type`** _(string)_
- The **type** of mapping to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
-
-
-**`relatedConcepts[0].label`** _(string)_
- A free text **label** of mapping to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
-
-
-**`relatedConcepts[0].source`** _(string)_
- The source of the related concept.
-
-Examples:
-
-
-```
-  TBD (will have controlled vocabulary)
-
-```
-
-**`relatedConcepts[0].id`** _(string)_
- The id locating the individual mapping within the given source.
-
 
 ## End of schema - Additional Property information 
 
