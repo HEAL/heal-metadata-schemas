@@ -14,10 +14,10 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 
 !!! note "Highly encouraged"
 
-  Only `name` and `description` properties are required. 
-  For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
-  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
-  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
+  - Only `name` and `description` properties are required. 
+  - For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
+  - For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
+  - `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 
 
 ## Properties (i.e., fields or variables)
