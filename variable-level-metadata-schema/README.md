@@ -27,32 +27,30 @@ This metadata directory contains the specifications for variable level metadata 
 
 ```mermaid
 
-%%{init: {"flowchart": {"defaultRenderer": "elk","htmlLabels": false}} }%%
-flowchart TD
-    subgraph "/schemas"
-    subgraph dictionary[Dictionary YAML files]
+    %%{init: {"flowchart": {"defaultRenderer": "elk","htmlLabels": false}} }%%
 
-        defs["/dictionary/definitions.yaml"]
-        fields["/dictionary/fields.yaml"]
-        dd["/dictionary/data-dictionary.yaml"]
-    end
+    flowchart TD
 
-    subgraph Schema specifications
+        subgraph dictionary[Dictionary YAML files]
 
-        jsonspec["/jsontemplate/data-dictionary.json"]
-        csvspec["/jsontemplate/csvtemplate/fields.json"]
-        csvtblspec["/frictionless/csvtemplate/fields.json"]
-    end
-    end
+            defs["schemas/dictionary/definitions.yaml"]
+            fields["schemas/dictionary/fields.yaml"]
+            dd["schemas/dictionary/data-dictionary.yaml"]
+        end
 
-    subgraph /docs
+        subgraph Schema specifications
+
+            jsonspec["schema/jsontemplate/data-dictionary.json"]
+            csvspec["schema/jsontemplate/csvtemplate/fields.json"]
+            csvtblspec["schema/frictionless/csvtemplate/fields.json"]
+        end
+
         subgraph "Rendered schema documentation \n(html also available)"
 
             csvmd["/docs/\nmd-rendered-schemas/\njsonschema-csvtemplate-fields.md"]
             jsonmd["/docs/\nmd-rendered-schemas/\njsonschema-jsontemplate-data-dictionary.md"]
 
         end
-    end
 
     defs --> fields --> dd
     defs --> dd
@@ -186,7 +184,7 @@ More concretely, this provides a way to specify root level properties within vlm
 1. specifying the schema version that represents the vlmd document (`schemaVersion`)
 2. specifying other data dictionary level properties such as `standardsMappings[0].instrument`
 
-### root and field property cascading pattern
+### root ("data dictionary level") and field property cascading pattern
 Akin to the above json to csv, more generally:
 
 All root level properties will be applied to individual fields IF this same field level property is not specified (i.e., field-level takes precedence). This strategy can be seen in the [data package standard (but with missingValues)](https://specs.frictionlessdata.io/patterns/#missing-values-per-field)
