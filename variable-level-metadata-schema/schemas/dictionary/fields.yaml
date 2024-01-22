@@ -221,8 +221,6 @@ properties:
       readability of the field). It can include one or more values.
 
     type: array
-    items:
-      type: string
     examples:
     - ["required","Yes","Checked"]
     - ["required"]
