@@ -238,3 +238,11 @@ properties:
     - ["No"]
   standardsMappings:
     $ref: "#/definitions/fieldStandardsMappingsItem"
+
+
+propertyNames:
+  enum:
+  - custom
+  description: | 
+    Additional properties for compatibility with other standards or common properties that are not included a core field property. 
+    Note, custom is included as this is the

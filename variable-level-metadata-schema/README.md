@@ -198,3 +198,19 @@ have the same stem name with corresponding "csv" and "json" suffixes (eg `my-hea
 ## Considerations
 
 Please use github issues for any additional considerations. See additional comments above.
+
+
+## Additional table-level (root) and field-level properties
+
+Some table-level or field-level properties in other standards (or custom properties in specific use cases) do not map onto 
+a core HEAL property. To allow these properties to be included, we list these property names under `propertyNames`.
+
+ ❗ For study or use case specific names, it is recommended to put the property under a `custom` namespace (e.g., `"custom":{"myvarname"})`. Adding additional properties here are for well established standards and/or property names used in practice.
+
+ ☝️ The use of [`propertyNames`](https://json-schema.org/draft-07/json-schema-validation#rfc.section.6.5.8) was used to:
+ 
+ 1. allow inclusion and minimal validation of these extra properties (ie of only the existence of property names) without making any assumptions about corresponding property types. 
+ 2. It also provides a clear distinction between "core" properties and "extra" properties.
+
+ One consideration, however, is that `propertyNames` was introduced in json schema draft-6.
+

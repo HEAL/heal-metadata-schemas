@@ -24,3 +24,14 @@ properties:
     type: array
     items:
       $ref: "#/fields"
+
+
+propertyNames:
+  description: | 
+        Additional properties for compatibility with other standards at the "table" , or root, but not included in the core `properties` set:
+
+        [Frictionless Data package table schema standard)](https://specs.frictionlessdata.io/table-schema): `missingValues`|`primaryKey`|`foreignKeys`
+  enum:
+    - missingValues
+    - primaryKey
+    - foreignKeys
