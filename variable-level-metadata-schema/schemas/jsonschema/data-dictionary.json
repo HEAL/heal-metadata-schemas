@@ -362,8 +362,22 @@
                             }
                         }
                     }
+                },
+                "propertyNames": {
+                    "enum": [
+                        "custom"
+                    ],
+                    "description": "Additional properties for compatibility with other standards or common properties that are not included a core field property. \nNote, custom is included as this is the"
                 }
             }
         }
+    },
+    "propertyNames": {
+        "description": "Additional properties for compatibility with other standards at the \"table\" , or root, but not included in the core `properties` set:\n\n[Frictionless Data package table schema standard)](https://specs.frictionlessdata.io/table-schema): `missingValues`|`primaryKey`|`foreignKeys`\n",
+        "enum": [
+            "missingValues",
+            "primaryKey",
+            "foreignKeys"
+        ]
     }
 }
