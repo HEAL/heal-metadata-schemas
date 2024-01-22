@@ -375,6 +375,7 @@
             "schemaVersion",
             "version",
             "standardsMappings",
+            "fields",
             "custom",
             "missingValues",
             "primaryKey",
