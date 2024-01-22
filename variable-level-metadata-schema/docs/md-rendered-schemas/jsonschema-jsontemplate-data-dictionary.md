@@ -394,6 +394,9 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 ```
 
 
+**`custom`** _(object)_
+ Additional properties not included a core field property. 
+
 ### Additional `fields` property information
 
 #### `type` enum definitions:

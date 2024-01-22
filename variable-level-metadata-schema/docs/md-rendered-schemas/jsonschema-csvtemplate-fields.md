@@ -335,6 +335,9 @@ Examples:
 
 ```
 
+**`custom`** _(string)_
+ Additional properties not included a core field property. 
+
 
 ## End of schema - Additional Property information 
 

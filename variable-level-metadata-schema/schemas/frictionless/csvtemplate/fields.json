@@ -67,18 +67,18 @@
       "type": "string",
       "constraints": {
         "enum": [
+          "yearmonth",
+          "number",
+          "geopoint",
+          "any",
+          "date",
+          "year",
+          "duration",
           "time",
           "datetime",
-          "duration",
-          "geopoint",
-          "number",
-          "integer",
           "string",
-          "any",
-          "yearmonth",
-          "year",
-          "boolean",
-          "date"
+          "integer",
+          "boolean"
         ]
       }
     },
@@ -253,6 +253,14 @@
         "C74457"
       ],
       "type": "string"
+    },
+    {
+      "name": "custom",
+      "description": "Additional properties not included a core field property. ",
+      "type": "string",
+      "constraints": {
+        "pattern": "^(?:.*?=.*?(?:\\||$))+$"
+      }
     }
   ],
   "missingValues": [

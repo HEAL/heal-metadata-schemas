@@ -142,9 +142,6 @@
             "title": "Boolean True Value Labels",
             "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n",
             "type": "string",
-            "items": {
-                "type": "string"
-            },
             "examples": [
                 "required|Yes|Checked",
                 "required"
@@ -218,12 +215,11 @@
             "examples": [
                 "C74457"
             ]
+        },
+        "custom": {
+            "type": "string",
+            "description": "Additional properties not included a core field property. ",
+            "pattern": "^(?:.*?=.*?(?:\\||$))+$"
         }
-    },
-    "propertyNames": {
-        "enum": [
-            "custom"
-        ],
-        "description": "Additional properties for compatibility with other standards or common properties that are not included a core field property. \nNote, custom is included as this is the"
     }
 }

@@ -34,9 +34,7 @@
                 "enumLabels": {},
                 "enumOrdered": null,
                 "missingValues": [],
-                "trueValues": [
-                    {}
-                ],
+                "trueValues": [],
                 "falseValues": [],
                 "standardsMappings": [
                     {
@@ -52,7 +50,8 @@
                             "id": null
                         }
                     }
-                ]
+                ],
+                "custom": {}
             }
         ]
     }
