@@ -38,6 +38,7 @@ propertyNames:
     - schemaVersion
     - version
     - standardsMappings
+    - fields
     # custom properties
     - custom
     # custom properties but a part of standards
