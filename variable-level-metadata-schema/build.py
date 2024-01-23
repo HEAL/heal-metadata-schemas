@@ -24,8 +24,6 @@ def load_yaml(filepath):
         yamlfile = yaml.safe_load(f)
 
     return yamlfile
-
-test = load_yaml("schemas/dictionary/definitions.yaml")
 # load all yamls
 def load_all_yamls(directory="schemas/dictionary"):
     filepaths = Path(directory).glob("*.yaml")

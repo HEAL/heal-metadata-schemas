@@ -90,7 +90,7 @@ rootStandardsMappingsItem:
     properties:
       type: object
       instrument:
-        $ref: "#/definitions/standardsMappingsInstrumentObject"
+        $ref: "#/_definitions/standardsMappingsInstrumentObject"
 
 
 fieldStandardsMappingsItem:
@@ -194,7 +194,7 @@ fieldStandardsMappingsItem:
     type: object
     properties:
       instrument:
-        $ref: "#/definitions/standardsMappingsInstrumentObject"
+        $ref: "#/_definitions/standardsMappingsInstrumentObject"
 
 
       item:

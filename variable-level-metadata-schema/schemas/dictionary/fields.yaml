@@ -14,7 +14,7 @@ required:
   - description
 properties:
   schemaVersion:
-    $ref: "#/definitions/schemaVersion"
+    $ref: "#/_definitions/schemaVersion"
   section: 
     type: string 
     title: Section
@@ -235,7 +235,7 @@ properties:
     - ["Not required","NOT REQUIRED"]
     - ["No"]
   standardsMappings:
-    $ref: "#/definitions/fieldStandardsMappingsItem"
+    $ref: "#/_definitions/fieldStandardsMappingsItem"
   custom:
     type: object
     description: |

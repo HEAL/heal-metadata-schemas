@@ -13,13 +13,13 @@ properties:
   description:
     type: string
   schemaVersion:
-    $ref: "#/definitions/schemaVersion"
+    $ref: "#/_definitions/schemaVersion"
 
   version: # TODO: think about having a version text/message and id (akin to a git commit)
     type: string
     description: The specified individual data dictionary instance version.
   standardsMappings:
-    $ref: "#/definitions/rootStandardsMappingsItem"
+    $ref: "#/_definitions/rootStandardsMappingsItem"
   custom:
     type: object
     description: |
@@ -32,7 +32,7 @@ propertyNames:
   description: | 
         To allow additional properties for compatibility with other standards at the "table" , or root, but not included in the core `properties` set:
 
-        [Frictionless Data package table schema standard)](https://specs.frictionlessdata.io/table-schema): `missingValues`|`primaryKey`|`foreignKeys`
+        [Frictionless Data package table schema standard](https://specs.frictionlessdata.io/table-schema): `missingValues`|`primaryKey`|`foreignKeys`
   enum:
     # core properties
     - title
