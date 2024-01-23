@@ -35,6 +35,9 @@ A set of standardized instruments linked to all variables within the `fields` pr
   easier to understand in the same way other standards implement cascading 
   (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
 
+## `custom` _(object)_
+Additional properties not included as a core property. 
+
 ## `fields` _(array,required)_
 
 
@@ -395,7 +398,7 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 
 
 **`custom`** _(object)_
- Additional properties not included a core field property. 
+ Additional properties not included a core property. 
 
 ### Additional `fields` property information
 

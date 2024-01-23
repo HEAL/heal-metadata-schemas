@@ -67,18 +67,18 @@
       "type": "string",
       "constraints": {
         "enum": [
-          "string",
-          "integer",
-          "time",
-          "any",
           "yearmonth",
-          "datetime",
-          "year",
           "boolean",
-          "number",
           "geopoint",
           "date",
-          "duration"
+          "number",
+          "year",
+          "any",
+          "datetime",
+          "duration",
+          "integer",
+          "string",
+          "time"
         ]
       }
     },
@@ -256,7 +256,7 @@
     },
     {
       "name": "custom",
-      "description": "Additional properties not included a core field property. ",
+      "description": "Additional properties not included a core property. ",
       "type": "string",
       "constraints": {
         "pattern": "^(?:.*?=.*?(?:\\||$))+$"

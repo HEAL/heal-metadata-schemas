@@ -78,6 +78,10 @@
                 }
             }
         },
+        "custom": {
+            "type": "object",
+            "description": "Additional properties not included as a core property. \n"
+        },
         "fields": {
             "type": "array",
             "items": {
@@ -361,7 +365,7 @@
                     },
                     "custom": {
                         "type": "object",
-                        "description": "Additional properties not included a core field property. "
+                        "description": "Additional properties not included a core property. "
                     }
                 }
             }
