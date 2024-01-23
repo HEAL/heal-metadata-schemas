@@ -20,12 +20,14 @@ properties:
     description: The specified individual data dictionary instance version.
   standardsMappings:
     $ref: "#/definitions/rootStandardsMappingsItem"
+  custom:
+    type: object
+    description: |
+      Additional properties not included as a core property. 
   fields:
     type: array
     items:
       $ref: "#/fields"
-
-
 propertyNames:
   description: | 
         To allow additional properties for compatibility with other standards at the "table" , or root, but not included in the core `properties` set:

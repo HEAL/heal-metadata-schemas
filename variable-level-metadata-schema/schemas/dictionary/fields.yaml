@@ -239,4 +239,4 @@ properties:
   custom:
     type: object
     description: |
-      Additional properties not included a core field property. 
+      Additional properties not included a core property. 
