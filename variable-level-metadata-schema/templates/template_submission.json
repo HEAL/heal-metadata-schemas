@@ -37,6 +37,15 @@
                 "missingValues": [],
                 "trueValues": [],
                 "falseValues": [],
+                "custom": {},
+                "relatedConcepts": [
+                    {
+                        "url": null,
+                        "title": null,
+                        "source": null,
+                        "id": null
+                    }
+                ],
                 "standardsMappings": [
                     {
                         "instrument": {
@@ -51,8 +60,7 @@
                             "id": null
                         }
                     }
-                ],
-                "custom": {}
+                ]
             }
         ]
     }

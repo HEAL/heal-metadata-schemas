@@ -300,6 +300,15 @@ Examples:
 
 ```
 
+**`custom`** _(object)_
+ Additional properties not included a core property. 
+
+
+**`relatedConcepts`** _(array)_
+ __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+ontological information (eg., NCI thesaurus, bioportal etc)
+
+
 **`standardsMappings`** _(array)_
  
 A set of instrument and item references to standardized data elements designed to document
@@ -396,9 +405,6 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 ]
 ```
 
-
-**`custom`** _(object)_
- Additional properties not included a core property. 
 
 ### Additional `fields` property information
 
