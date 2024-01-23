@@ -73,7 +73,8 @@ in a markdown format and an interactive html format.
 - `schemas/dictionary`: the yaml files used to generate json schemas and documentation with build.py. 
 - `templates`: empty templates in csv spreadsheet format and JSON format. 
 - `examples`: exapmles of filled out templates in csv spreadsheet format and JSON format.
-- `build.py`: This script compiles the yaml files and generates associated jsonschemas and frictionless schemas in addition to the human rendered schemas
+- `build.py`: This script compiles the yaml files and generates associated  schemas in addition to the human rendered schema
+ documentation.
 
 ## Contributing
 
@@ -87,7 +88,7 @@ To contribute to the variable level metadata specification (and annotations/exam
 ❗ Please read the below conventions and principles before contributing and review the existing `dictionary` directory.
 
 
-## Conventions, principles, and rules
+## Conventions, principles, and rules for annotations and csv <> json translation
 
 ### Annotation/documentation properties
 1. `description`: SHOULD be created as markdown syntax without any headers as headers are applied in the templates.
@@ -167,9 +168,6 @@ To facilitate the mapping of json spec property names to csv property names,  th
 1. Currently, no complex types (`anyOf`,`oneOf`) are supported and the `type` MUST be specified. This is to ensure coverage for all csv to json translation use cases.
     - Each json specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`), an `array`, or an `object`
     - Each csv specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`)
-2. `enum` restrictions
-    - following from (1), an `enum` must only contain values of the same type
-    - (at least currently) MUST contain only types supported by csv fields which include scalar types (e.g., `boolean`,`string`,`integer`,`number`) in addition to type `object` as this has a stringified representation (see above).
 
 ### csv to json and json to csv translations
 
@@ -192,13 +190,8 @@ All root level properties will be applied to individual fields IF this same fiel
 
 ### csv and json vlmd document file naming
 
-File names for json and csv translations of a vlmd document SHOULD
+File names for json and csv translations of a vlmd document are suggested to
 have the same stem name with corresponding "csv" and "json" suffixes (eg `my-heal-dd.csv` and `my-heal-dd.json`)
-
-## Considerations
-
-Please use github issues for any additional considerations. See additional comments above.
-
 
 ## Additional table-level (root) and field-level properties
 
@@ -214,3 +207,6 @@ a core HEAL property. To allow these properties to be included, we list these pr
 
  One consideration, however, is that `propertyNames` was introduced in json schema draft-6.
 
+## Considerations
+
+Please use github issues for any additional considerations. See additional comments above.
