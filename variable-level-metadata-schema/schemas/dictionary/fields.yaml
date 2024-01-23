@@ -234,9 +234,11 @@ properties:
     examples:
     - ["Not required","NOT REQUIRED"]
     - ["No"]
-  standardsMappings:
-    $ref: "#/_definitions/fieldStandardsMappingsItem"
   custom:
     type: object
     description: |
       Additional properties not included a core property. 
+  relatedConcepts:
+    $ref: "#/_definitions/relatedConcepts"
+  standardsMappings:
+    $ref: "#/_definitions/fieldStandardsMappingsItem"

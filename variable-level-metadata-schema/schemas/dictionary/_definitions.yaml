@@ -229,3 +229,58 @@ fieldStandardsMappingsItem:
             examples:
             - "C74457"
 
+relatedConcepts:
+  title: Related Concepts
+  description: |
+    __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+    ontological information (eg., NCI thesaurus, bioportal etc)
+  type: array
+  items:
+    type: object
+    properties:
+      url:
+        title: Related Concepts - Url
+        description: |
+          The url that links out to the published, related concept. 
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        format: uri
+        examples:
+        - https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
+        - http://purl.bioontology.org/ontology/RXNORM/3304
+
+      title:
+        title: Related concepts - Type
+        description: |
+          A human-readable title (ie label) to a concept related to the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        examples:
+        - Heroin Molecular Structure
+        - Heroin Ontology
+      source:
+        title: Related Concepts - Source 
+        description: |
+          The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        examples:
+          - CHEBI
+          - RXNORM
+      id:
+        title: Related Concepts - Id
+        type: string
+        description: |
+          The id locating the individual concept within the source of the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        examples:
+        - "27808"
+        - "3304"
