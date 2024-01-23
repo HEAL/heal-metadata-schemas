@@ -256,82 +256,6 @@ Examples:
  Additional properties not included a core property. 
 
 
-**`relatedConcepts[0].url`** _(string)_
- The url that links out to the published, related concept. 
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-Examples:
-
-
-```
-  https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
-
-```
-
-```
-  http://purl.bioontology.org/ontology/RXNORM/3304
-
-```
-
-**`relatedConcepts[0].title`** _(string)_
- A human-readable title (ie label) to a concept related to the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-Examples:
-
-
-```
-  Heroin Molecular Structure
-
-```
-
-```
-  Heroin Ontology
-
-```
-
-**`relatedConcepts[0].source`** _(string)_
- The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-Examples:
-
-
-```
-  CHEBI
-
-```
-
-```
-  RXNORM
-
-```
-
-**`relatedConcepts[0].id`** _(string)_
- The id locating the individual concept within the source of the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-Examples:
-
-
-```
-  27808
-
-```
-
-```
-  3304
-
-```
-
 **`standardsMappings[0].instrument.url`** _(string)_
  A url (e.g., link, address) to a file or other resource containing the instrument, or
 a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
@@ -412,6 +336,82 @@ Examples:
 
 ```
   C74457
+
+```
+
+**`relatedConcepts[0].url`** _(string)_
+ The url that links out to the published, related concept. 
+The listed examples could both be attached to any variable related to, for example, heroin use.
+
+> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+Examples:
+
+
+```
+  https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
+
+```
+
+```
+  http://purl.bioontology.org/ontology/RXNORM/3304
+
+```
+
+**`relatedConcepts[0].title`** _(string)_
+ A human-readable title (ie label) to a concept related to the given field.
+The listed examples could both be attached to any variable related to, for example, heroin use.
+
+> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+Examples:
+
+
+```
+  Heroin Molecular Structure
+
+```
+
+```
+  Heroin Ontology
+
+```
+
+**`relatedConcepts[0].source`** _(string)_
+ The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
+The listed examples could both be attached to any variable related to, for example, heroin use.
+
+> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+Examples:
+
+
+```
+  CHEBI
+
+```
+
+```
+  RXNORM
+
+```
+
+**`relatedConcepts[0].id`** _(string)_
+ The id locating the individual concept within the source of the given field.
+The listed examples could both be attached to any variable related to, for example, heroin use.
+
+> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+Examples:
+
+
+```
+  27808
+
+```
+
+```
+  3304
 
 ```
 

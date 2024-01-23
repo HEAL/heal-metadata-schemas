@@ -163,43 +163,6 @@
             "description": "Additional properties not included a core property. \n",
             "pattern": "^(?:.*?=.*?(?:\\||$))+$"
         },
-        "relatedConcepts[0].url": {
-            "title": "Related Concepts - Url",
-            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-            "type": "string",
-            "format": "uri",
-            "examples": [
-                "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808",
-                "http://purl.bioontology.org/ontology/RXNORM/3304"
-            ]
-        },
-        "relatedConcepts[0].title": {
-            "title": "Related concepts - Type",
-            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-            "type": "string",
-            "examples": [
-                "Heroin Molecular Structure",
-                "Heroin Ontology"
-            ]
-        },
-        "relatedConcepts[0].source": {
-            "title": "Related Concepts - Source",
-            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-            "type": "string",
-            "examples": [
-                "CHEBI",
-                "RXNORM"
-            ]
-        },
-        "relatedConcepts[0].id": {
-            "title": "Related Concepts - Id",
-            "type": "string",
-            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-            "examples": [
-                "27808",
-                "3304"
-            ]
-        },
         "standardsMappings[0].instrument.url": {
             "title": "Url",
             "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
@@ -256,6 +219,43 @@
             "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
             "examples": [
                 "C74457"
+            ]
+        },
+        "relatedConcepts[0].url": {
+            "title": "Related Concepts - Url",
+            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "type": "string",
+            "format": "uri",
+            "examples": [
+                "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808",
+                "http://purl.bioontology.org/ontology/RXNORM/3304"
+            ]
+        },
+        "relatedConcepts[0].title": {
+            "title": "Related concepts - Type",
+            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "type": "string",
+            "examples": [
+                "Heroin Molecular Structure",
+                "Heroin Ontology"
+            ]
+        },
+        "relatedConcepts[0].source": {
+            "title": "Related Concepts - Source",
+            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "type": "string",
+            "examples": [
+                "CHEBI",
+                "RXNORM"
+            ]
+        },
+        "relatedConcepts[0].id": {
+            "title": "Related Concepts - Id",
+            "type": "string",
+            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "examples": [
+                "27808",
+                "3304"
             ]
         }
     }

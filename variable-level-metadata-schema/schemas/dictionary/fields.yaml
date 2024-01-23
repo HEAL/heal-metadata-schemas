@@ -238,7 +238,7 @@ properties:
     type: object
     description: |
       Additional properties not included a core property. 
-  relatedConcepts:
-    $ref: "#/_definitions/relatedConcepts"
   standardsMappings:
     $ref: "#/_definitions/fieldStandardsMappingsItem"
+  relatedConcepts:
+    $ref: "#/_definitions/relatedConcepts"

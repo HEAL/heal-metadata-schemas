@@ -286,53 +286,6 @@
                         "type": "object",
                         "description": "Additional properties not included a core property. \n"
                     },
-                    "relatedConcepts": {
-                        "title": "Related Concepts",
-                        "description": "__**[Under development]**__ Mappings to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "url": {
-                                    "title": "Related Concepts - Url",
-                                    "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-                                    "type": "string",
-                                    "format": "uri",
-                                    "examples": [
-                                        "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808",
-                                        "http://purl.bioontology.org/ontology/RXNORM/3304"
-                                    ]
-                                },
-                                "title": {
-                                    "title": "Related concepts - Type",
-                                    "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-                                    "type": "string",
-                                    "examples": [
-                                        "Heroin Molecular Structure",
-                                        "Heroin Ontology"
-                                    ]
-                                },
-                                "source": {
-                                    "title": "Related Concepts - Source",
-                                    "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-                                    "type": "string",
-                                    "examples": [
-                                        "CHEBI",
-                                        "RXNORM"
-                                    ]
-                                },
-                                "id": {
-                                    "title": "Related Concepts - Id",
-                                    "type": "string",
-                                    "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
-                                    "examples": [
-                                        "27808",
-                                        "3304"
-                                    ]
-                                }
-                            }
-                        }
-                    },
                     "standardsMappings": {
                         "type": "array",
                         "description": "\nA set of instrument and item references to standardized data elements designed to document\nthe [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)\nand other standardized/common element sources to facilitate cross-study comparison and interoperability\nof data. One can either map an individual data element or an instrument in which the field is \na part of.\n\n__**All Fields Mapped (Both Instrument and Item)**__\n\n```json\n\"standardsMappings\": [\n    {\n        \"instrument\": {\n            \"url\": \"https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx\",\n            \"source\": \"heal-cde\",\n            \"title\": \"adult-demographics\",\n            \"id\": \"5141\"\n        },\n        \"item\": {\n            \"url\": \"https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE\",\n            \"source\": \"CDISC\",\n            \"id\": \"C74457\"\n        }\n    }\n]\n```\n\n__**Only Instrument Title of Form CDE File Mapped**__\n\nIn this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.\n\n```json\n\"standardsMappings\": [\n    {\n        \"instrument\": {\n            \"source\": \"heal-cde\",\n            \"title\": \"Adult demographics\"\n        }\n    }\n]\n```\n\n__**Only Instrument ID of HEAL CDE Mapped**__\n\n```json\n\"standardsMappings\": [\n    {\n        \"instrument\": {\n            \"source\": \"heal-cde\",\n            \"id\": \"5141\"\n        }\n    }\n]\n```\n\n__**Other Non-HEAL CDE Use Cases**__\n\nOnly item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the \"Identifier\" section. Similar to the above, they could also just enter the \"url\".\n\n```json\n\"standardsMappings\": [\n    {\n        \"item\": {\n            \"source\": \"NLM\",\n            \"id\": \"Fakc6Jy2x\"\n        }\n    }\n]\n```\n\n__**Multiple CDE Mappings**__\n\nTwo separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.\n\n```json\n\"standardsMappings\": [\n    {\n        \"instrument\": {\n            \"source\": \"heal-cde\",\n            \"title\": \"Adult demographics\"\n        },\n        \"item\": {\n            \"source\": \"CDISC\",\n            \"id\": \"C74457\"\n        },\n    },\n    {\n        \"item\": {\n            \"source\": \"NLM\",\n            \"id\": \"Fakc6Jy2x\"\n        }\n    }\n]\n```\n",
@@ -410,6 +363,53 @@
                                             ]
                                         }
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "relatedConcepts": {
+                        "title": "Related Concepts",
+                        "description": "__**[Under development]**__ Mappings to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "title": "Related Concepts - Url",
+                                    "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "type": "string",
+                                    "format": "uri",
+                                    "examples": [
+                                        "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808",
+                                        "http://purl.bioontology.org/ontology/RXNORM/3304"
+                                    ]
+                                },
+                                "title": {
+                                    "title": "Related concepts - Type",
+                                    "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "type": "string",
+                                    "examples": [
+                                        "Heroin Molecular Structure",
+                                        "Heroin Ontology"
+                                    ]
+                                },
+                                "source": {
+                                    "title": "Related Concepts - Source",
+                                    "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "type": "string",
+                                    "examples": [
+                                        "CHEBI",
+                                        "RXNORM"
+                                    ]
+                                },
+                                "id": {
+                                    "title": "Related Concepts - Id",
+                                    "type": "string",
+                                    "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "examples": [
+                                        "27808",
+                                        "3304"
+                                    ]
                                 }
                             }
                         }
