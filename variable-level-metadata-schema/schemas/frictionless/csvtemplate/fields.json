@@ -1,19 +1,28 @@
 {
-  "version": "0.1.0",
-  "description": "Variable level metadata individual fields integrated into the variable level\nmetadata object within the HEAL platform metadata service.\n\n!!! note \"NOTE\"\n\n  Only `name` and `description` properties are required. \n  For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. \n  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
+  "version": "0.2.0",
+  "description": "\n\n!!! note \"Highly encouraged\"\n\n  - Only `name` and `description` properties are required. \n  - For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. \n  - For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  - `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
   "title": "HEAL Variable Level Metadata Fields",
   "fields": [
     {
-      "name": "module",
-      "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables.\n",
-      "title": "Module",
+      "name": "schemaVersion",
+      "description": "The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) \n\nNOTE: This is NOT for versioning of each indiviual data dictionary instance. \nRather, it is the\nversion of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance\nversion.\n\nIf generating a vlmd document as a csv file, include this version in \nevery row/record to indicate this is a schema level property \n(not applicable for the json version as this property is already at the schema/root level)\n",
+      "examples": [
+        "1.0.0",
+        "0.2.0"
+      ],
+      "type": "string",
+      "constraints": {
+        "pattern": "\\d+\\.\\d+\\.\\d+"
+      }
+    },
+    {
+      "name": "section",
+      "description": "The section, form, survey instrument, set of measures  or other broad category used \nto group variables. Previously called \"module.\"\n",
+      "title": "Section",
       "examples": [
         "Demographics",
         "PROMIS",
-        "Substance use",
-        "Medical History",
-        "Sleep questions",
-        "Physical activity"
+        "Medical History"
       ],
       "type": "string"
     },
@@ -21,6 +30,9 @@
       "name": "name",
       "description": "The name of a variable (i.e., field) as it appears in the data. \n",
       "title": "Variable Name",
+      "examples": [
+        "gender_id"
+      ],
       "type": "string",
       "constraints": {
         "required": true
@@ -28,10 +40,9 @@
     },
     {
       "name": "title",
-      "description": "The human-readable title or label of the variable. \n",
+      "description": "The human-readable title or label of the variable.\n",
       "title": "Variable Label (ie Title)",
       "examples": [
-        "My Variable",
         "Gender identity"
       ],
       "type": "string"
@@ -51,31 +62,37 @@
     },
     {
       "name": "type",
-      "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n\nDefinitions:\n\n-  `number` (A numeric value with optional decimal places. (e.g., 3.14))\n-  `integer` (A whole number without decimal places. (e.g., 42))\n-  `string` (A sequence of characters. (e.g., \\\"test\\\"))\n-  `any` (Any type of data is allowed. (e.g., true))\n-  `boolean` (A binary value representing true or false. (e.g., true))\n-  `date` (A specific calendar date. (e.g., \\\"2023-05-25\\\"))\n-  `datetime` (A specific date and time, including timezone information. (e.g., \\\"2023-05-25T10:30:00Z\\\"))\n-  `time` (A specific time of day. (e.g., \\\"10:30:00\\\"))\n-  `year` (A specific year. (e.g., 2023)\n-  `yearmonth` (A specific year and month. (e.g., \\\"2023-05\\\"))\n-  `duration` (A length of time. (e.g., \\\"PT1H\\\")\n-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))\n",
+      "description": "A classification or category of a particular data element or property expected or allowed in the dataset.\n",
       "title": "Variable Type",
       "type": "string",
       "constraints": {
         "enum": [
+          "time",
           "number",
+          "geopoint",
+          "any",
+          "yearmonth",
+          "year",
           "datetime",
           "date",
-          "string",
-          "any",
-          "year",
-          "geopoint",
-          "time",
           "integer",
-          "yearmonth",
           "duration",
-          "boolean"
+          "boolean",
+          "string"
         ]
       }
     },
     {
       "name": "format",
-      "description": "Indicates the format of the type specified in the `type` property. \nEach format is dependent on the `type` specified. \nFor example: If `type` is \"string\", then see the [String formats](https://specs.frictionlessdata.io/table-schema/#string). \nIf `type` is \"date\", \"datetime\", or \"time\", default format is ISO8601 formatting for those respective types (see details on ISO8601 format for [Date](https://specs.frictionlessdata.io/table-schema/#date),\n[Datetime](https://specs.frictionlessdata.io/table-schema/#datetime), \nor [Time](https://specs.frictionlessdata.io/table-schema/#time)) - If you want to specify a date-like variable using standard Python/C strptime syntax, see [here](#format-details-for-date-datetime-time-type-variables) for details. \nSee [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) for more information about appropriate `format` values by variable `type`. \n\n[Additional information]\n\nDate Formats (date, datetime, time `type` variable):\n\nA format for a date variable (`date`,`time`,`datetime`).  \n**default**: An ISO8601 format string.\n**any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.\n\n**{PATTERN}**: The value can be parsed according to `{PATTERN}`,\nwhich `MUST` follow the date formatting syntax of \nC / Python [strftime](http://strftime.org/) such as:\n\n- \"`%Y-%m-%d` (for date, e.g., 2023-05-25)\"\n- \"`%Y%-%d` (for date, e.g., 20230525) for date without dashes\"\n- \"`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)\"\n- \"`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)\"\n- \"`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)\"\n- \"`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)\"\n- \"`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)\"\n- \"`%H:%M:%S` (for time, e.g., 10:30:45)\"\n- \"`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)\"\n- \"`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)\"\n\nString formats:\n\n- \"`email` if valid emails (e.g., test@gmail.com)\"\n- \"`uri` if valid uri addresses (e.g., https://example.com/resource123)\"\n- \"`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)\"\n- \"`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)\"\n\n\nGeopoint formats:\n\nThe two types of formats for `geopoint` (describing a geographic point).\n\n- `array` (if 'lat,long' (e.g., 36.63,-90.20))\n- `object` (if {'lat':36.63,'lon':-90.20})\n",
+      "description": "Indicates the format of the type specified in the `type` property. \nEach format is dependent on the `type` specified. \nSee [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) \nfor more information about appropriate `format` values by variable `type`.\n",
       "title": "Variable Format",
       "type": "string"
+    },
+    {
+      "name": "constraints.required",
+      "description": "If this variable is marked as true, then this variable's value must be present\n(ie not missing; see missingValues). If marked as false or not present, then the \nvariable CAN be missing.\n",
+      "title": "Required variable",
+      "type": "boolean"
     },
     {
       "name": "constraints.maxLength",
@@ -88,8 +105,8 @@
       "description": "Constrains possible values to a set of values.\n",
       "title": "Variable Possible Values",
       "examples": [
-        "1|2|3|4|5|6|7|8",
-        "White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial"
+        "1|2|3|4|5",
+        "Poor|Fair|Good|Very good|Excellent"
       ],
       "type": "string",
       "constraints": {
@@ -115,12 +132,12 @@
       "type": "integer"
     },
     {
-      "name": "encodings",
-      "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n",
+      "name": "enumLabels",
+      "description": "Variable value encodings provide a way to further annotate any value within a any variable type,\nmaking values easier to understand. \n\n\nMany analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms\nonly support numerical values. Encodings (and mappings) allow categorical values to be stored as\nnumerical values.\n\nAdditionally, as another use case, this field provides a way to\nstore categoricals that are stored as  \"short\" labels (such as\nabbreviations).\n\nThis field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)\n",
       "title": "Variable Value Encodings (i.e., mappings; value labels)",
       "examples": [
-        "0=No|1=Yes",
-        "HW=Hello world|GBW=Good bye world|HM=Hi,Mike"
+        "1=Poor|2=Fair|3=Good|4=Very good|5=Excellent",
+        "HW=Hello world|GBW=Good bye world|HM=Hi, Mike"
       ],
       "type": "string",
       "constraints": {
@@ -128,8 +145,8 @@
       }
     },
     {
-      "name": "ordered",
-      "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n",
+      "name": "enumOrdered",
+      "description": "Indicates whether a categorical variable is ordered. This variable  is\nrelevant for variables that have an ordered relationship but not\nnecessarily  a numerical relationship (e.g., Strongly disagree < Disagree\n< Neutral < Agree).\n\nThis field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)\n",
       "title": "An ordered variable",
       "type": "boolean"
     },
@@ -149,11 +166,10 @@
     {
       "name": "trueValues",
       "description": "For boolean (true) variable (as defined in type field), this field allows\na physical string representation to be cast as true (increasing\nreadability of the field). It can include one or more values.\n",
+      "title": "Boolean True Value Labels",
       "examples": [
-        "Required|REQUIRED",
-        "required|Yes|Y|Checked",
-        "Checked",
-        "Required"
+        "required|Yes|Checked",
+        "required"
       ],
       "type": "string",
       "constraints": {
@@ -164,142 +180,127 @@
       "name": "falseValues",
       "description": "For boolean (false) variable (as defined in type field), this field allows\na physical string representation to be cast as false (increasing\nreadability of the field) that is not a standard false value. It can include one or more values.\n",
       "title": "Boolean False Value Labels",
+      "examples": [
+        "Not required|NOT REQUIRED",
+        "No"
+      ],
       "type": "string",
       "constraints": {
         "pattern": "^(?:[^|]+\\||[^|]*)(?:[^|]*\\|)*[^|]*$"
       }
     },
     {
-      "name": "repo_link",
-      "description": "A link to the variable as it exists on the home repository, if applicable\n",
-      "title": "Variable Repository Link",
-      "type": "string"
+      "name": "custom",
+      "description": "Additional properties not included a core property. \n",
+      "type": "string",
+      "constraints": {
+        "pattern": "^(?:.*?=.*?(?:\\||$))+$"
+      }
     },
     {
-      "name": "standardsMappings.url",
-      "description": "The url that links out to the published, standardized mapping.\n",
-      "title": "Standards Mapping - Url",
+      "name": "standardsMappings[0].instrument.url",
+      "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
+      "title": "Url",
       "examples": [
-        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+        "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx"
       ],
       "type": "string"
     },
     {
-      "name": "standardsMappings.type",
-      "description": "The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program\n",
-      "title": "Standards Mapping - Title",
+      "name": "standardsMappings[0].instrument.source",
+      "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
+      "title": "Source",
+      "type": "string",
+      "constraints": {
+        "enum": [
+          "heal-cde"
+        ]
+      }
+    },
+    {
+      "name": "standardsMappings[0].instrument.title",
+      "title": "Title",
       "examples": [
-        "cde",
-        "ontology",
-        "reference_list"
+        "Adult demographics",
+        "adult-demographics"
       ],
       "type": "string"
     },
     {
-      "name": "standardsMappings.label",
-      "description": "A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.\n",
-      "title": "Standards Mapping - Label",
+      "name": "standardsMappings[0].instrument.id",
+      "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n",
+      "title": "Identifier",
       "examples": [
-        "substance use",
-        "chemical compound",
-        "promis"
+        "5141"
       ],
       "type": "string"
     },
     {
-      "name": "standardsMappings.source",
-      "description": "The source of the standardized variable.\n",
-      "title": "Standard Mapping - Source",
+      "name": "standardsMappings[0].item.url",
+      "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
+      "title": "Standards mappings - Url",
       "examples": [
-        "TBD (will have controlled vocabulary)"
+        "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE"
       ],
       "type": "string"
     },
     {
-      "name": "standardsMappings.id",
-      "description": "The id locating the individual mapping within the given source.\n",
-      "title": "Standard Mapping - Id",
+      "name": "standardsMappings[0].item.source",
+      "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
+      "title": "Standards mappings - Source",
+      "examples": [
+        "CDISC"
+      ],
       "type": "string"
     },
     {
-      "name": "relatedConcepts.url",
-      "description": "The url that links out to the published, standardized concept.\n",
+      "name": "standardsMappings[0].item.id",
+      "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
+      "title": "Standards Mappings - Id",
+      "examples": [
+        "C74457"
+      ],
+      "type": "string"
+    },
+    {
+      "name": "relatedConcepts[0].url",
+      "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
       "title": "Related Concepts - Url",
       "examples": [
-        "https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI"
+        "https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808",
+        "http://purl.bioontology.org/ontology/RXNORM/3304"
       ],
       "type": "string"
     },
     {
-      "name": "relatedConcepts.type",
-      "description": "The **type** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
+      "name": "relatedConcepts[0].title",
+      "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
       "title": "Related concepts - Type",
+      "examples": [
+        "Heroin Molecular Structure",
+        "Heroin Ontology"
+      ],
       "type": "string"
     },
     {
-      "name": "relatedConcepts.label",
-      "description": "A free text **label** of mapping to a published set of concepts related to the given field such as \nontological information (eg., NCI thesaurus, bioportal etc)\n",
-      "title": "Related Concepts - Label",
-      "type": "string"
-    },
-    {
-      "name": "relatedConcepts.source",
-      "description": "The source of the related concept.\n",
+      "name": "relatedConcepts[0].source",
+      "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
       "title": "Related Concepts - Source",
       "examples": [
-        "TBD (will have controlled vocabulary)"
+        "CHEBI",
+        "RXNORM"
       ],
       "type": "string"
     },
     {
-      "name": "relatedConcepts.id",
-      "description": "The id locating the individual mapping within the given source.\n",
+      "name": "relatedConcepts[0].id",
+      "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
       "title": "Related Concepts - Id",
+      "examples": [
+        "27808",
+        "3304"
+      ],
       "type": "string"
-    },
-    {
-      "name": "univarStats.median",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.mean",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.std",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.min",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.max",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.mode",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.count",
-      "type": "integer"
-    },
-    {
-      "name": "univarStats.twentyFifthPercentile",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.seventyFifthPercentile",
-      "type": "number"
-    },
-    {
-      "name": "univarStats.categoricalMarginals.name",
-      "type": "string"
-    },
-    {
-      "name": "univarStats.categoricalMarginals.count",
-      "type": "integer"
     }
   ],
   "missingValues": [

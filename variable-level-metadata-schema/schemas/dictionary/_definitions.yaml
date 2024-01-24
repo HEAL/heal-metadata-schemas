@@ -1,0 +1,286 @@
+csvArray:
+  type: string 
+  pattern: ^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$
+
+csvObject:
+  type: string 
+  pattern: ^(?:.*?=.*?(?:\||$))+$
+
+schemaVersion:
+  type: string
+  description: |
+    The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+    
+    NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+    Rather, it is the
+    version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+    version.
+
+    If generating a vlmd document as a csv file, include this version in 
+    every row/record to indicate this is a schema level property 
+    (not applicable for the json version as this property is already at the schema/root level)
+  pattern: \d+\.\d+\.\d+
+  examples:
+  - "1.0.0"
+  - "0.2.0"
+standardsMappingsInstrumentObject:
+    type: object
+    title: Standard mapping - instrument
+    description: |
+      A standardized set of items which encompass 
+      a variable in this variable level metadata document (if at the root level or the document level) 
+      or the individual variable (if at the field level). 
+      
+
+      !!! note "NOTE"
+
+        If information is present at both the root and the field level, 
+        then the information at the field level would take precedence (i.e., it would cascade).
+
+    properties:
+      url:
+        title: Url
+        description: | 
+          A url (e.g., link, address) to a file or other resource containing the instrument, or
+          a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+          or the individual variable (if at the field level). 
+        type: string
+        format: uri
+        examples: 
+        - "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx"
+      source:
+        type: string
+        title: Source
+        description: |
+          An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
+          containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+          or the individual variable (if at the field level). 
+        enum: ["heal-cde"]
+      title:
+        type: string
+        title: Title
+        examples: 
+        - Adult demographics
+        - adult-demographics
+      id:
+        type: string
+        title: Identifier
+        description: |
+          A code or other string that identifies the instrument within the source.
+          This should always be from the source's formal, standardized identification system 
+
+        examples:
+        - "5141"
+
+rootStandardsMappingsItem:
+  type: array
+  description: |
+    A set of standardized instruments linked to all variables within the `fields` property (but see note).
+    
+    !!! note "NOTE"
+
+      If `standardsMappings` is present at both the root (this property) and within `fields`, 
+      then the `fields` `standardsMappings` property takes precedence.
+
+      Note, only instrument can be mapped to this property as opposed to the `fields` `standardsMappings`
+      This property has the same specification as the `fields` `standardsMappings` to make the cascading logic
+      easier to understand in the same way other standards implement cascading 
+      (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
+  items:
+    properties:
+      type: object
+      instrument:
+        $ref: "#/_definitions/standardsMappingsInstrumentObject"
+
+
+fieldStandardsMappingsItem:
+  type: array
+  description: |
+
+    A set of instrument and item references to standardized data elements designed to document
+    the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
+    and other standardized/common element sources to facilitate cross-study comparison and interoperability
+    of data. One can either map an individual data element or an instrument in which the field is 
+    a part of.
+    
+    __**All Fields Mapped (Both Instrument and Item)**__
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
+                "source": "heal-cde",
+                "title": "adult-demographics",
+                "id": "5141"
+            },
+            "item": {
+                "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
+                "source": "CDISC",
+                "id": "C74457"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument Title of Form CDE File Mapped**__
+
+    In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "Adult demographics"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument ID of HEAL CDE Mapped**__
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "id": "5141"
+            }
+        }
+    ]
+    ```
+
+    __**Other Non-HEAL CDE Use Cases**__
+
+    Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
+
+    ```json
+    "standardsMappings": [
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
+        }
+    ]
+    ```
+
+    __**Multiple CDE Mappings**__
+
+    Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "Adult demographics"
+            },
+            "item": {
+                "source": "CDISC",
+                "id": "C74457"
+            },
+        },
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
+        }
+    ]
+    ```
+  items:
+    type: object
+    properties:
+      instrument:
+        $ref: "#/_definitions/standardsMappingsInstrumentObject"
+
+
+      item:
+        type: object
+        title: Standards mappings - Item
+        description: |
+          A standardized item (ie field, variable etc) mapped to this individual variable.
+        properties:
+          url:
+            title: Standards mappings - Url
+            description: |
+              The url that links out to the published, standardized mapping of a variable (e.g., common data element)
+            type: string
+            format: uri
+            examples:
+              - "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE"
+          source:
+            title: Standards mappings - Source 
+            description: |
+              The source of the standardized variable. Note, this property is required if 
+              an id is specified.
+            examples:
+            - "CDISC"
+            type: string
+          id:
+            title: Standards Mappings - Id
+            type: string
+            description: |
+              The id locating the individual mapping within the given source. 
+              Note, the `standardsMappings[0].source` property is required if 
+              this property is specified.
+            examples:
+            - "C74457"
+
+relatedConcepts:
+  title: Related Concepts
+  description: |
+    __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+    ontological information (eg., NCI thesaurus, bioportal etc)
+  type: array
+  items:
+    type: object
+    properties:
+      url:
+        title: Related Concepts - Url
+        description: |
+          The url that links out to the published, related concept. 
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        format: uri
+        examples:
+        - https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
+        - http://purl.bioontology.org/ontology/RXNORM/3304
+
+      title:
+        title: Related concepts - Type
+        description: |
+          A human-readable title (ie label) to a concept related to the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        examples:
+        - Heroin Molecular Structure
+        - Heroin Ontology
+      source:
+        title: Related Concepts - Source 
+        description: |
+          The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        type: string
+        examples:
+          - CHEBI
+          - RXNORM
+      id:
+        title: Related Concepts - Id
+        type: string
+        description: |
+          The id locating the individual concept within the source of the given field.
+          The listed examples could both be attached to any variable related to, for example, heroin use.
+
+          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+        examples:
+        - "27808"
+        - "3304"

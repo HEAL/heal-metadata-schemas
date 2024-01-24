@@ -1,52 +1,46 @@
-"$schema": http://json-schema.org/draft-04/schema#
-"$id": vlmd-fields
 title: HEAL Variable Level Metadata Fields
 description: |
-  Variable level metadata individual fields integrated into the variable level
-  metadata object within the HEAL platform metadata service.
+  
 
-  !!! note "NOTE"
+  !!! note "Highly encouraged"
 
-    Only `name` and `description` properties are required. 
-    For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. 
-    For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
-    `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
-
+    - Only `name` and `description` properties are required. 
+    - For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
+    - For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
+    - `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
 type: object
-additionalProperties: true
 required:
   - name
   - description
 properties:
-  module: 
+  schemaVersion:
+    $ref: "#/_definitions/schemaVersion"
+  section: 
     type: string 
-    title: Module 
+    title: Section
     description: |
       The section, form, survey instrument, set of measures  or other broad category used 
-      to group variables.
+      to group variables. Previously called "module."
     
     examples:
       - Demographics
       - PROMIS
-      - Substance use
       - Medical History
-      - Sleep questions
-      - Physical activity
 
   name:
     type: string
     title: Variable Name
     description: |
       The name of a variable (i.e., field) as it appears in the data. 
+    examples:
+      - gender_id
       
   title:
     type: string
     title: Variable Label (ie Title)
     description: |
-      The human-readable title or label of the variable. 
-      
-    examples:
-    - My Variable
+      The human-readable title or label of the variable.
+    examples: 
     - Gender identity
   description:
     type: string
@@ -63,8 +57,8 @@ properties:
     type: string
     description: |
       A classification or category of a particular data element or property expected or allowed in the dataset.
-
-      Definitions:
+    additionalDescription: |
+      enum definitions:
 
       -  `number` (A numeric value with optional decimal places. (e.g., 3.14))
       -  `integer` (A whole number without decimal places. (e.g., 42))
@@ -97,44 +91,34 @@ properties:
     description: |
       Indicates the format of the type specified in the `type` property. 
       Each format is dependent on the `type` specified. 
-      For example: If `type` is "string", then see the [String formats](https://specs.frictionlessdata.io/table-schema/#string). 
-      If `type` is "date", "datetime", or "time", default format is ISO8601 formatting for those respective types (see details on ISO8601 format for [Date](https://specs.frictionlessdata.io/table-schema/#date),
-      [Datetime](https://specs.frictionlessdata.io/table-schema/#datetime), 
-      or [Time](https://specs.frictionlessdata.io/table-schema/#time)) - If you want to specify a date-like variable using standard Python/C strptime syntax, see [here](#format-details-for-date-datetime-time-type-variables) for details. 
-      See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) for more information about appropriate `format` values by variable `type`. 
+      See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
+      for more information about appropriate `format` values by variable `type`.
 
-      [Additional information]
+    additionalDescription: |
+      examples/definitions of patterns and possible values:
 
-      Date Formats (date, datetime, time `type` variable):
-      
-      A format for a date variable (`date`,`time`,`datetime`).  
-      **default**: An ISO8601 format string.
-      **any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
+      Examples of date time pattern formats
 
-      **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-      which `MUST` follow the date formatting syntax of 
-      C / Python [strftime](http://strftime.org/) such as:
+      - `%Y-%m-%d` (for date, e.g., 2023-05-25)
+      - `%Y%-%d` (for date, e.g., 20230525) for date without dashes
+      - `%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)
+      - `%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)
+      - `%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)
+      - `%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)
+      - `%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)
+      - `%H:%M:%S` (for time, e.g., 10:30:45)
+      - `%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)
+      - `%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)
 
-      - "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-      - "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-      - "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-      - "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-      - "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-      - "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-      - "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-      - "`%H:%M:%S` (for time, e.g., 10:30:45)"
-      - "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-      - "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
+      Examples of string formats
 
-      String formats:
-
-      - "`email` if valid emails (e.g., test@gmail.com)"
-      - "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-      - "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-      - "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
+      - `email` if valid emails (e.g., test@gmail.com)
+      - `uri` if valid uri addresses (e.g., https://example.com/resource123)
+      - `binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)
+      - `uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)
 
 
-      Geopoint formats:
+      Examples of geopoint formats
 
       The two types of formats for `geopoint` (describing a geographic point).
 
@@ -144,6 +128,13 @@ properties:
   constraints:
     type: object
     properties:
+      required:
+        type: boolean
+        title: Required variable
+        description: |
+          If this variable is marked as true, then this variable's value must be present
+          (ie not missing; see missingValues). If marked as false or not present, then the 
+          variable CAN be missing.
       maxLength:
         type: integer
         title: Maximum Length
@@ -152,24 +143,14 @@ properties:
           object). For example, if 'Hello World' is the longest value of a
           categorical variable, this would be a maxLength of 11.
 
-      enumJsonSpec:
+      enum:
+        type: array
         title: Variable Possible Values
         description: |
           Constrains possible values to a set of values.
-
-        type: array
         examples:
-         - [1,2,3,4]
-         - ["White","Black or African American","American Indian or Alaska Native","Native Hawaiian or Other Pacific Islander","Asian","Some other race","Multiracial"]
-      enumCsvSpec:
-        title: Variable Possible Values
-        description:  |
-          Constrains possible values to a set of values.
-
-        $ref: "#/definitions/csvArray"
-        examples: 
-        - 1|2|3|4|5|6|7|8
-        - White|Black or African American|American Indian or Alaska Native|Native Hawaiian or Other Pacific Islander|Asian|Some other race|Multiracial
+        - [1,2,3,4,5]
+        - ["Poor","Fair","Good","Very good","Excellent"]
       pattern:
         type: string
         title: Regular Expression Pattern
@@ -190,7 +171,7 @@ properties:
         description: |
           Specifies the minimum value of a field.
 
-  encodingsJsonSpec:
+  enumLabels:
     title: 'Variable Value Encodings (i.e., mappings; value labels)'
     description: |
       Variable value encodings provide a way to further annotate any value within a any variable type,
@@ -204,31 +185,14 @@ properties:
       Additionally, as another use case, this field provides a way to
       store categoricals that are stored as  "short" labels (such as
       abbreviations).
+
+      This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
     type: object
     examples: 
-      - {"0":"No","1":"Yes"}
+      - {"1":"Poor","2":"Fair","3":"Good","4":"Very good","5":"Excellent"}
       - {"HW":"Hello world","GBW":"Good bye world","HM":"Hi, Mike"}
-  encodingsCsvSpec:
-    title: 'Variable Value Encodings (i.e., mappings; value labels)'
-    description: |
-      Variable value encodings provide a way to further annotate any value within a any variable type,
-      making values easier to understand. 
-
-      
-      Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
-      only support numerical values. Encodings (and mappings) allow categorical values to be stored as
-      numerical values.
-      
-      Additionally, as another use case, this field provides a way to
-      store categoricals that are stored as  "short" labels (such as
-      abbreviations).
-
-    $ref: "#/definitions/csvObject"
-    examples:
-      - '0=No|1=Yes'
-      - 'HW=Hello world|GBW=Good bye world|HM=Hi,Mike'  
-  ordered:
+  enumOrdered:
     title: An ordered variable
     description: |
       Indicates whether a categorical variable is ordered. This variable  is
@@ -236,29 +200,20 @@ properties:
       necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
       < Neutral < Agree).
 
+      This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
     type: boolean
-  missingValuesJsonSpec:
+  missingValues:
     title: Missing Values
     description: |
       A list of missing values specific to a variable.
-
 
     examples:
 
     - ["Missing","Skipped","No preference"]
     - ["Missing"]
     type: array
-  missingValuesCsvSpec:
-    title: Missing Values
-    description: |
-      A list of missing values specific to a variable.
-
-    examples:
-
-    - Missing|Skipped|No preference
-    - Missing
-    $ref: "#/definitions/csvArray"
-  trueValuesJsonSpec:
+  trueValues:
     title: Boolean True Value Labels
     description: |
       For boolean (true) variable (as defined in type field), this field allows
@@ -266,164 +221,24 @@ properties:
       readability of the field). It can include one or more values.
 
     type: array
-    items:
-      type: string
     examples:
     - ["required","Yes","Checked"]
     - ["required"]
-
-  trueValuesCsvSpec: 
-    $ref: "#/definitions/csvArray"
-    description: |
-      For boolean (true) variable (as defined in type field), this field allows
-      a physical string representation to be cast as true (increasing
-      readability of the field). It can include one or more values.
-      
-    examples: 
-      - Required|REQUIRED
-      - required|Yes|Y|Checked
-      - Checked
-      - Required
-  falseValuesJsonSpec:
+  falseValues:
     title: Boolean False Value Labels
     description: |
       For boolean (false) variable (as defined in type field), this field allows
       a physical string representation to be cast as false (increasing
       readability of the field) that is not a standard false value. It can include one or more values.
     type: array
-  falseValuesCsvSpec:
-    title: Boolean False Value Labels
-    description: |
-      For boolean (false) variable (as defined in type field), this field allows
-      a physical string representation to be cast as false (increasing
-      readability of the field) that is not a standard false value. It can include one or more values.
-    $ref: "#/definitions/csvArray"
-  repo_link:
-    type: string
-    title: Variable Repository Link
-    description: |
-      A link to the variable as it exists on the home repository, if applicable
-  standardsMappings:
-    title: Standards Mappings
-    description: A published set of standard variables such as the NIH Common Data Elements program.
-    type: array
-    items:
-      type: object
-      properties:
-        url:
-          title: Standards Mapping - Url
-          description: |
-            The url that links out to the published, standardized mapping.
-          type: string
-          format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-        type:
-          title: Standards Mapping - Title
-          description: |
-            The **type** of mapping linked to a published set of standard variables such as the NIH Common Data Elements program
-
-          examples:
-          - cde
-          - ontology
-          - reference_list
-          type: string 
-        label:
-          title: Standards Mapping - Label
-          description: |
-            A free text **label** of a mapping indicating a mapping(s) to a published set of standard variables such as the NIH Common Data Elements program.
-          
-          type: string
-          examples: 
-            - substance use
-            - chemical compound
-            - promis
-        source:
-          title: Standard Mapping - Source 
-          description: |
-            The source of the standardized variable.
-          type: string
-          examples:
-            - TBD (will have controlled vocabulary)
-        id:
-          title: Standard Mapping - Id
-          type: string
-          description: |
-            The id locating the individual mapping within the given source.
-  relatedConcepts:
-    title: Related Concepts
-    description: Mappings to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
-      
-
-    type: array
-    items:
-      type: object
-      properties:
-        url:
-          title: Related Concepts - Url
-          description: |
-            The url that links out to the published, standardized concept.
-          type: string
-          format: uri
-          examples:
-            - https://cde.nlm.nih.gov/deView?tinyId=XyuSGdTTI
-        type:
-          title: Related concepts - Type
-          description: |
-            The **type** of mapping to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
-          type: string 
-        label:
-          type: string
-          title: Related Concepts - Label
-          description: |
-            A free text **label** of mapping to a published set of concepts related to the given field such as 
-            ontological information (eg., NCI thesaurus, bioportal etc)
-          
-        source:
-          title: Related Concepts - Source 
-          description: |
-            The source of the related concept.
-          type: string
-          examples:
-            - TBD (will have controlled vocabulary)
-        id:
-          title: Related Concepts - Id
-          type: string
-          description: |
-            The id locating the individual mapping within the given source.
-  univarStats:
+    examples:
+    - ["Not required","NOT REQUIRED"]
+    - ["No"]
+  custom:
     type: object
     description: |
-      Univariate statistics inferred from the data about the given variable 
-      
-    properties:
-      median:
-        type: number
-      mean:
-        type: number
-      std:
-        type: number
-      min:
-        type: number
-      max:
-        type: number
-      mode:
-        type: number
-      count:
-        type: integer
-        minimum: 0
-      twentyFifthPercentile:
-        type: number
-      seventyFifthPercentile:
-        type: number
-      categoricalMarginals:
-        type: array
-        items:
-          type: object
-          properties:
-            name:
-              type: string
-            count:
-              type: integer
+      Additional properties not included a core property. 
+  standardsMappings:
+    $ref: "#/_definitions/fieldStandardsMappingsItem"
+  relatedConcepts:
+    $ref: "#/_definitions/relatedConcepts"

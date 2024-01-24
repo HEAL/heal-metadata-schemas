@@ -1,28 +1,84 @@
-# Variable Level Metadata (Data Dictionaries)
+# Variable Level Metadata (Data Dictionaries) 
 
-This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries
+_version 0.2.0_
 
-### `title` _(string,required)_
+This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries.
 
-### `description` _(string)_
+## `title` _(string,required)_
 
-### `data_dictionary` _(array,required)_
+## `description` _(string)_
 
-Variable level metadata individual fields integrated into the variable level
-metadata object within the HEAL platform metadata service.
+## `schemaVersion` _(string)_
+The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+
+NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+Rather, it is the
+version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+version.
+
+If generating a vlmd document as a csv file, include this version in 
+every row/record to indicate this is a schema level property 
+(not applicable for the json version as this property is already at the schema/root level)
+
+## `version` _(string)_
+The specified individual data dictionary instance version.
+## `standardsMappings` _(array)_
+A set of standardized instruments linked to all variables within the `fields` property (but see note).
 
 !!! note "NOTE"
 
-  Only `name` and `description` properties are required. 
-  For categorical variables, `constraints.enum` and `encodings` (where applicable) properties are highly encouraged. 
-  For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
-  `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
+  If `standardsMappings` is present at both the root (this property) and within `fields`, 
+  then the `fields` `standardsMappings` property takes precedence.
 
-#### Properties for each record
+  Note, only instrument can be mapped to this property as opposed to the `fields` `standardsMappings`
+  This property has the same specification as the `fields` `standardsMappings` to make the cascading logic
+  easier to understand in the same way other standards implement cascading 
+  (e.g., `missingValues` in the [frictionless specification](https://specs.frictionlessdata.io/patterns/#missing-values-per-field))
 
-**`module`** _(string)_
+## `custom` _(object)_
+Additional properties not included as a core property. 
+
+## `fields` _(array,required)_
+
+
+
+!!! note "Highly encouraged"
+
+  - Only `name` and `description` properties are required. 
+  - For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. 
+  - For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.
+  - `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)
+
+### Properties for each `fields` record
+
+**`schemaVersion`** _(string)_
+ The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+
+NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+Rather, it is the
+version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+version.
+
+If generating a vlmd document as a csv file, include this version in 
+every row/record to indicate this is a schema level property 
+(not applicable for the json version as this property is already at the schema/root level)
+
+Examples:
+
+
+```
+  1.0.0
+
+```
+
+```
+  0.2.0
+
+```
+
+**`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
-to group variables.
+to group variables. Previously called "module."
 
 Examples:
 
@@ -38,39 +94,26 @@ Examples:
 ```
 
 ```
-  Substance use
-
-```
-
-```
   Medical History
-
-```
-
-```
-  Sleep questions
-
-```
-
-```
-  Physical activity
 
 ```
 
 **`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
-
-**`title`** _(string)_
- The human-readable title or label of the variable. 
-
 Examples:
 
 
 ```
-  My Variable
+  gender_id
 
 ```
+
+**`title`** _(string)_
+ The human-readable title or label of the variable.
+
+Examples:
+
 
 ```
   Gender identity
@@ -97,135 +140,24 @@ Examples:
 **`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
-Definitions:
-
--  `number` (A numeric value with optional decimal places. (e.g., 3.14))
--  `integer` (A whole number without decimal places. (e.g., 42))
--  `string` (A sequence of characters. (e.g., \"test\"))
--  `any` (Any type of data is allowed. (e.g., true))
--  `boolean` (A binary value representing true or false. (e.g., true))
--  `date` (A specific calendar date. (e.g., \"2023-05-25\"))
--  `datetime` (A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\"))
--  `time` (A specific time of day. (e.g., \"10:30:00\"))
--  `year` (A specific year. (e.g., 2023)
--  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
--  `duration` (A length of time. (e.g., \"PT1H\")
--  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
-
-Possible values:
-
-- ```
-
-    number
-
-  ```
-- ```
-
-    integer
-
-  ```
-- ```
-
-    string
-
-  ```
-- ```
-
-    any
-
-  ```
-- ```
-
-    boolean
-
-  ```
-- ```
-
-    date
-
-  ```
-- ```
-
-    datetime
-
-  ```
-- ```
-
-    time
-
-  ```
-- ```
-
-    year
-
-  ```
-- ```
-
-    yearmonth
-
-  ```
-- ```
-
-    duration
-
-  ```
-- ```
-
-    geopoint
-
-  ```
-
+Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
 
 **`format`** _(string)_
  Indicates the format of the type specified in the `type` property. 
 Each format is dependent on the `type` specified. 
-For example: If `type` is "string", then see the [String formats](https://specs.frictionlessdata.io/table-schema/#string). 
-If `type` is "date", "datetime", or "time", default format is ISO8601 formatting for those respective types (see details on ISO8601 format for [Date](https://specs.frictionlessdata.io/table-schema/#date),
-[Datetime](https://specs.frictionlessdata.io/table-schema/#datetime), 
-or [Time](https://specs.frictionlessdata.io/table-schema/#time)) - If you want to specify a date-like variable using standard Python/C strptime syntax, see [here](#format-details-for-date-datetime-time-type-variables) for details. 
-See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) for more information about appropriate `format` values by variable `type`. 
-
-[Additional information]
-
-Date Formats (date, datetime, time `type` variable):
-
-A format for a date variable (`date`,`time`,`datetime`).  
-**default**: An ISO8601 format string.
-**any**: Any parsable representation of a date/time/datetime. The implementing library can attempt to parse the datetime via a range of strategies.
-
-**{PATTERN}**: The value can be parsed according to `{PATTERN}`,
-which `MUST` follow the date formatting syntax of 
-C / Python [strftime](http://strftime.org/) such as:
-
-- "`%Y-%m-%d` (for date, e.g., 2023-05-25)"
-- "`%Y%-%d` (for date, e.g., 20230525) for date without dashes"
-- "`%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)"
-- "`%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)"
-- "`%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)"
-- "`%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)"
-- "`%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)"
-- "`%H:%M:%S` (for time, e.g., 10:30:45)"
-- "`%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)"
-- "`%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)"
-
-String formats:
-
-- "`email` if valid emails (e.g., test@gmail.com)"
-- "`uri` if valid uri addresses (e.g., https://example.com/resource123)"
-- "`binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)"
-- "`uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)"
-
-
-Geopoint formats:
-
-The two types of formats for `geopoint` (describing a geographic point).
-
-- `array` (if 'lat,long' (e.g., 36.63,-90.20))
-- `object` (if {'lat':36.63,'lon':-90.20})
+See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
+for more information about appropriate `format` values by variable `type`.
 
 
 **`constraints`** _(object)_
  
+
+
+- **`required`** _(boolean)_
+     If this variable is marked as true, then this variable's value must be present
+    (ie not missing; see missingValues). If marked as false or not present, then the 
+    variable CAN be missing.
+
 
 
 - **`maxLength`** _(integer)_
@@ -243,13 +175,13 @@ The two types of formats for `geopoint` (describing a geographic point).
 
     ```json
 
-      [1, 2, 3, 4]
+      [1, 2, 3, 4, 5]
 
     ```
 
     ```json
 
-      ['White', 'Black or African American', 'American Indian or Alaska Native', 'Native Hawaiian or Other Pacific Islander', 'Asian', 'Some other race', 'Multiracial']
+      ['Poor', 'Fair', 'Good', 'Very good', 'Excellent']
 
     ```
 
@@ -271,7 +203,7 @@ The two types of formats for `geopoint` (describing a geographic point).
 
 
 
-**`encodings`** _(object)_
+**`enumLabels`** _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
 
@@ -284,12 +216,14 @@ Additionally, as another use case, this field provides a way to
 store categoricals that are stored as  "short" labels (such as
 abbreviations).
 
+This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
 Examples:
 
 
 ```json
 
-  {'0': 'No', '1': 'Yes'}
+  {'1': 'Poor', '2': 'Fair', '3': 'Good', '4': 'Very good', '5': 'Excellent'}
 
 ```
 
@@ -299,11 +233,13 @@ Examples:
 
 ```
 
-**`ordered`** _(boolean)_
+**`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
 necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
+
+This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
 
 **`missingValues`** _(array)_
@@ -349,58 +285,171 @@ Examples:
 a physical string representation to be cast as false (increasing
 readability of the field) that is not a standard false value. It can include one or more values.
 
+Examples:
 
-**`repo_link`** _(string)_
- A link to the variable as it exists on the home repository, if applicable
+
+```json
+
+  ['Not required', 'NOT REQUIRED']
+
+```
+
+```json
+
+  ['No']
+
+```
+
+**`custom`** _(object)_
+ Additional properties not included a core property. 
 
 
 **`standardsMappings`** _(array)_
- A published set of standard variables such as the NIH Common Data Elements program.
+ 
+A set of instrument and item references to standardized data elements designed to document
+the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
+and other standardized/common element sources to facilitate cross-study comparison and interoperability
+of data. One can either map an individual data element or an instrument in which the field is 
+a part of.
+
+__**All Fields Mapped (Both Instrument and Item)**__
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
+            "source": "heal-cde",
+            "title": "adult-demographics",
+            "id": "5141"
+        },
+        "item": {
+            "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
+            "source": "CDISC",
+            "id": "C74457"
+        }
+    }
+]
+```
+
+__**Only Instrument Title of Form CDE File Mapped**__
+
+In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "title": "Adult demographics"
+        }
+    }
+]
+```
+
+__**Only Instrument ID of HEAL CDE Mapped**__
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "id": "5141"
+        }
+    }
+]
+```
+
+__**Other Non-HEAL CDE Use Cases**__
+
+Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
+
+```json
+"standardsMappings": [
+    {
+        "item": {
+            "source": "NLM",
+            "id": "Fakc6Jy2x"
+        }
+    }
+]
+```
+
+__**Multiple CDE Mappings**__
+
+Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
+
+```json
+"standardsMappings": [
+    {
+        "instrument": {
+            "source": "heal-cde",
+            "title": "Adult demographics"
+        },
+        "item": {
+            "source": "CDISC",
+            "id": "C74457"
+        },
+    },
+    {
+        "item": {
+            "source": "NLM",
+            "id": "Fakc6Jy2x"
+        }
+    }
+]
+```
+
 
 **`relatedConcepts`** _(array)_
- Mappings to a published set of concepts related to the given field such as ontological information (eg., NCI thesaurus, bioportal etc)
-
-**`univarStats`** _(object)_
- Univariate statistics inferred from the data about the given variable 
+ __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+ontological information (eg., NCI thesaurus, bioportal etc)
 
 
+### Additional `fields` property information
 
-- **`median`** _(number)_
-     
+#### `type` enum definitions:
+
+-  `number` (A numeric value with optional decimal places. (e.g., 3.14))
+-  `integer` (A whole number without decimal places. (e.g., 42))
+-  `string` (A sequence of characters. (e.g., \"test\"))
+-  `any` (Any type of data is allowed. (e.g., true))
+-  `boolean` (A binary value representing true or false. (e.g., true))
+-  `date` (A specific calendar date. (e.g., \"2023-05-25\"))
+-  `datetime` (A specific date and time, including timezone information. (e.g., \"2023-05-25T10:30:00Z\"))
+-  `time` (A specific time of day. (e.g., \"10:30:00\"))
+-  `year` (A specific year. (e.g., 2023)
+-  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
+-  `duration` (A length of time. (e.g., \"PT1H\")
+-  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
+
+#### `format` examples/definitions of patterns and possible values:
+
+Examples of date time pattern formats
+
+- `%Y-%m-%d` (for date, e.g., 2023-05-25)
+- `%Y%-%d` (for date, e.g., 20230525) for date without dashes
+- `%Y-%m-%dT%H:%M:%S` (for datetime, e.g., 2023-05-25T10:30:45)
+- `%Y-%m-%dT%H:%M:%SZ` (for datetime with UTC timezone, e.g., 2023-05-25T10:30:45Z)
+- `%Y-%m-%dT%H:%M:%S%z` (for datetime with timezone offset, e.g., 2023-05-25T10:30:45+0300)
+- `%Y-%m-%dT%H:%M` (for datetime without seconds, e.g., 2023-05-25T10:30)
+- `%Y-%m-%dT%H` (for datetime without minutes and seconds, e.g., 2023-05-25T10)
+- `%H:%M:%S` (for time, e.g., 10:30:45)
+- `%H:%M:%SZ` (for time with UTC timezone, e.g., 10:30:45Z)
+- `%H:%M:%S%z` (for time with timezone offset, e.g., 10:30:45+0300)
+
+Examples of string formats
+
+- `email` if valid emails (e.g., test@gmail.com)
+- `uri` if valid uri addresses (e.g., https://example.com/resource123)
+- `binary` if a base64 binary encoded string (e.g., authentication token like aGVsbG8gd29ybGQ=)
+- `uuid` if a universal unique identifier also known as a guid (eg., f47ac10b-58cc-4372-a567-0e02b2c3d479)
 
 
-- **`mean`** _(number)_
-     
+Examples of geopoint formats
 
+The two types of formats for `geopoint` (describing a geographic point).
 
-- **`std`** _(number)_
-     
-
-
-- **`min`** _(number)_
-     
-
-
-- **`max`** _(number)_
-     
-
-
-- **`mode`** _(number)_
-     
-
-
-- **`count`** _(integer)_
-     
-
-
-- **`twentyFifthPercentile`** _(number)_
-     
-
-
-- **`seventyFifthPercentile`** _(number)_
-     
-
-
-- **`categoricalMarginals`** _(array)_
-     
+- `array` (if 'lat,long' (e.g., 36.63,-90.20))
+- `object` (if {'lat':36.63,'lon':-90.20})
 

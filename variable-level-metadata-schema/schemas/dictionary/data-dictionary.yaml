@@ -2,17 +2,48 @@
 "$id": vlmd
 title: Variable Level Metadata (Data Dictionaries)
 description: This schema defines the variable level metadata for one data dictionary
-  for a given study.Note a given study can have multiple data dictionaries
+  for a given study.Note a given study can have multiple data dictionaries.
 type: object
 required:
 - title
-- data_dictionary
+- fields
 properties:
   title:
     type: string
   description:
     type: string
-  data_dictionary:
+  schemaVersion:
+    $ref: "#/_definitions/schemaVersion"
+
+  version: # TODO: think about having a version text/message and id (akin to a git commit)
+    type: string
+    description: The specified individual data dictionary instance version.
+  standardsMappings:
+    $ref: "#/_definitions/rootStandardsMappingsItem"
+  custom:
+    type: object
+    description: |
+      Additional properties not included as a core property. 
+  fields:
     type: array
     items:
       $ref: "#/fields"
+propertyNames:
+  description: | 
+        To allow additional properties for compatibility with other standards at the "table" , or root, but not included in the core `properties` set:
+
+        [Frictionless Data package table schema standard](https://specs.frictionlessdata.io/table-schema): `missingValues`|`primaryKey`|`foreignKeys`
+  enum:
+    # core properties
+    - title
+    - description
+    - schemaVersion
+    - version
+    - standardsMappings
+    - fields
+    # custom properties
+    - custom
+    # custom properties but a part of standards
+    - missingValues
+    - primaryKey
+    - foreignKeys

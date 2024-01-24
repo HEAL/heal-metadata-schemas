@@ -34,7 +34,7 @@ __{{ item.title }}__ {{ itemtype }} {{ item.description }}
 {# #}
 {# #}
 {% if item.enum is defined %}
-{{ render_type_item('Possible values',item.enum)}}
+Must be one of: {{ "`" + "`, `".join(item.enum) + "`" }}
 {% endif %}
 {# #}
 {# #}

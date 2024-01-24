@@ -24,48 +24,10 @@ def load_yaml(filepath):
         yamlfile = yaml.safe_load(f)
 
     return yamlfile
-
-test = load_yaml("schemas/dictionary/definitions.yaml")
 # load all yamls
 def load_all_yamls(directory="schemas/dictionary"):
     filepaths = Path(directory).glob("*.yaml")
     return {filepath.stem: load_yaml(filepath) for filepath in filepaths}
-
-
-def select_specs(schema, specsuffix="CsvSpec"):
-    """
-    select given specification type and remove other specification types.
-    These are denoted with the suffix <specsuffix> (eg encodingsCsvSpec) in property name
-
-    This function is useful when building multiple versions of schemas
-    conditional on the type of specificaiton (eg csv tabular data vs. json
-    for a workflow that may except csv that is translated into the json file.)
-
-    """
-    # loop through schema
-    schema_selected = {}
-    for key, item in schema.items():
-        if re.search(f"{specsuffix}$", key):
-            newkey = key.replace(specsuffix, "")
-            schema_selected[newkey] = item
-        elif re.search("Spec$", key):
-            pass
-        elif isinstance(item, MutableMapping):
-            schema_selected[key] = select_specs(item, specsuffix)
-        else:
-            schema_selected[key] = item
-    return schema_selected
-
-
-# resolve refs (and select type of schema spec)
-
-def get_ref(path,schema):
-    pass 
-
-# loop through all iterables in a dictionary 
-# if key = $ref --> get_ref
-
-
 
 def resolve_refs(items, schema, parentkey=False):
     """
@@ -109,8 +71,45 @@ def resolve_refs(items, schema, parentkey=False):
 
     return schema_resolved
 
+def to_csv_properties(schema,**additional_props):
+    """
+    translate complex types (eg arrays and objects) to stringified representations
+    """
+    csv_schema = dict(schema)
+    csv_schema["properties"] = {}
+    properties = schema["properties"]
+    for key, item in properties.items():
+        typename = item.get("type")
+        newitem = dict(item)
+        if typename == "array":
+            newitem["type"] = "string"
+            newitem["pattern"] = "^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$"
 
-def flatten_properties(properties, parentkey="", sep="."):
+            if item.get("examples"):
+                newitem["examples"] = ["|".join(str(_e) for _e in e) for e in item["examples"]]
+        elif typename == "object":
+            newitem["type"] = "string"
+            newitem["pattern"] = "^(?:.*?=.*?(?:\||$))+$"
+
+            if item.get("examples"):
+                newitem["examples"] = [
+                    "|".join([f"{key}={val}" for key,val in e.items()])
+                     for e in item["examples"]
+                ]
+        elif typename in ["string","integer","number","boolean"]:
+            newitem = dict(item)
+        else:
+            raise Exception("To convert to csv, the flattened property needs to be",
+                "of type array,object,boolean,string, integer, or number")
+        
+        csv_schema["properties"][key] = newitem
+    
+    # add additional properties at the beginning of the schema properties object
+    csv_schema["properties"] = {**additional_props,**csv_schema["properties"]}
+
+    return csv_schema
+
+def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
     """
     flatten schema properties
     """
@@ -130,7 +129,7 @@ def flatten_properties(properties, parentkey="", sep="."):
                 properties_flattened.update(newprops)
 
             elif items:
-                newprops = flatten_properties(items,parentkey=flattenedkey)
+                newprops = flatten_properties(items,parentkey=flattenedkey+itemsep)
                 properties_flattened.update(newprops)
             else:
                 properties_flattened[flattenedkey] = item
@@ -263,13 +262,26 @@ def generate_template(schema):
 if __name__ == "__main__":
     # compile frictionless schema fields
     dictionary = load_all_yamls()
+
+    # compile json schema fields
+    json_pipeline = [
+        # recursive fxn so need to grab items from overall dictionary for json paths
+        (resolve_refs, {"schema": dictionary}),
+        # no longer need the definitons as they have been resolved
+        (lambda _schema: _schema["data-dictionary"], None),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
+    ]
+    json_data_dictionary = reduce(run_pipeline_step, json_pipeline, dictionary)
+    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(json_data_dictionary, indent=4))
+
+    schema_version_prop = {"schemaVersion":json_data_dictionary["properties"]["schemaVersion"]}
     csv_pipeline = [
-        (select_specs, {"specsuffix": "CsvSpec"}),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),        
         (flatten_schema, None),
+        (to_csv_properties,schema_version_prop),
         (to_frictionless, None),
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
@@ -281,28 +293,16 @@ if __name__ == "__main__":
 
     # compile json schema fields
     csv_pipeline = [
-        (select_specs, {"specsuffix": "CsvSpec"}),
         # recursive fxn so need to grab items from overall dictionary for json paths
         (resolve_refs, {"schema": dictionary}),
         # no longer need the definitons as they have been resolved
         (lambda _schema: _schema["fields"], None),  
         (flatten_schema, None),
+        (to_csv_properties,schema_version_prop),
+        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
     Path("schemas/jsonschema/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
-
-    # compile json schema fields
-    json_pipeline = [
-        # recursive fxn so need to grab items from overall dictionary for json paths
-        (resolve_refs, {"schema": dictionary}),
-        (select_specs, {"specsuffix": "JsonSpec"}),
-        # no longer need the definitons as they have been resolved
-        (lambda _schema: _schema["data-dictionary"], None),
-        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
-    ]
-    jsonfields = reduce(run_pipeline_step, json_pipeline, dictionary)
-    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(jsonfields, indent=4))
-
 
     # generate json schema versions of field schemas for documentation 
 
@@ -317,14 +317,14 @@ if __name__ == "__main__":
         item=csvfields,
         schema=csvfields,
         templatefile="csvtemplate.md")
-    jsonfields_md = render_markdown(
-        item=jsonfields,
-        schema=jsonfields,
+    json_dd_md = render_markdown(
+        item=json_data_dictionary,
+        schema=json_data_dictionary,
         templatefile="jsontemplate.md"
     )
     Path("docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md").write_text(csvfields_md)
-    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(jsonfields_md)
+    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(json_dd_md)
 
     # generate templates
-    Path("templates/template_submission.json").write_text(json.dumps([generate_template(jsonfields)],indent=4))
+    Path("templates/template_submission.json").write_text(json.dumps([generate_template(json_data_dictionary)],indent=4))
     Path("templates/template_submission.csv").write_text(",".join((generate_template(csvfields)).keys()))
