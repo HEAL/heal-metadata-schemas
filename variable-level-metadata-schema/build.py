@@ -11,7 +11,6 @@ import copy
 from collections.abc import MutableMapping, MutableSequence, MutableSet,Sequence
 from functools import reduce
 import jsonschema
-from json_schema_for_humans.generate import generate_from_filename
 import jinja2 
 import json
 
@@ -109,7 +108,7 @@ def to_csv_properties(schema,**additional_props):
 
     return csv_schema
 
-def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
+def flatten_properties(properties, parentkey="", sep=".",itemsep="[\d+]"):
     """
     flatten schema properties
     """
@@ -141,75 +140,31 @@ def flatten_properties(properties, parentkey="", sep=".",itemsep="[0]"):
 
 def flatten_schema(schema):
     schema_flattened = dict(schema)
-    properties = schema.get("properties")
-    if properties:
-        schema_flattened["properties"] = flatten_properties(properties)
+    if "properties" in schema:
+        properties = schema_flattened.pop("properties")
+        schema_flattened["properties"] = flatten_properties(properties,itemsep="[\d+]")
+        schema_flattened["patternProperties"] = {}
+        for propname in list(schema_flattened["properties"].keys()):
+            if "[\d+]" in propname:
+                var0 = propname.replace("[\d+]","[0]")
+                var1 = propname.replace("[\d+]","[1]")
+                var2 = propname.replace("[\d+]","[2]")
+                pattern_property_note = (
+                    "\n\n"
+                    "!!! note 'Specifying a max of one value per variable:'\n\n"
+                    "\tThen column header/name should be `{0}`\n\n"
+                    "!!! note 'Specifying multiple values'\n\n"
+                        "\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)"
+                        "\tFor example, in addition to the column `{0}`:\n"
+                        "\tIf you have __two__ of these variables:\n\tAdd another column called `{1}`.\n"
+                        "\tIf you have __three__ of these variables:\n\tAdd two columns called `{1}` "
+                            "and `{2}`.\n"
+                ).format(var0,var1,var2)
+                pattern_prop = schema_flattened["properties"].pop(propname)
+                pattern_prop["description"] = pattern_prop.get("description","") + pattern_property_note
+                schema_flattened["patternProperties"]["^"+propname+"$"] = pattern_prop
+
     return schema_flattened
-
-def _to_frictionless_field(propname, prop, schema):
-    get_anyof = lambda propname: [
-        _prop.get(propname) for _prop in prop.get("oneOf", [])
-    ]
-
-    # anyof is convenient way to reference multiple enum lists of same type
-    anyof = {
-        "type": [t for t in get_anyof("type") if t],
-        "enum": [val for enumlist in get_anyof("enum") for val in enumlist],
-    }
-    jsonfields = {
-        "name": propname,
-        "description": prop.get("description"),
-        "title": prop.get("title"),
-        "examples": prop.get("examples"),
-        "type": list(set(anyof.get("type", []) + [p for p in [prop.get("type")] if p])),
-        "enum": list(set(anyof.get("enum", []) + prop.get("enum", []))),
-        "pattern": prop.get("pattern"),
-    }
-    # add required
-    if propname in schema.get("required", []):
-        jsonfields["required"] = True
-
-    constraintfields = ["enum", "pattern", "required"]
-    targetfield = {}
-
-    for propname, prop in jsonfields.items():
-        if propname == "type":
-            targetfield[propname] = prop[0] if len(prop) == 1 else "any"
-        elif propname in constraintfields and prop:
-            if targetfield.get("constraints"):
-                targetfield["constraints"][propname] = prop
-            else:
-                targetfield["constraints"] = {propname: prop}
-        elif prop:
-            targetfield[propname] = prop
-
-    return targetfield
-
-
-def to_frictionless(schema):
-    assert schema["type"] == "object"
-    assert "properties" in schema
-
-    frictionless_schema = {}
-
-    # schema level annotations
-    for propname in ["description", "title", "name", "examples"]:
-        if schema.get(propname):
-            frictionless_schema[propname] = schema[propname]
-
-    # get fields subschema
-    fields = schema["properties"]
-    frictionless_fields = []
-    for name, field in fields.items():
-        assert isinstance(field, MutableMapping), "all field properties must be jsons"
-        frictionless_fields.append(_to_frictionless_field(name, field, schema))
-
-    frictionless_schema["fields"] = frictionless_fields
-    frictionless_schema["missingValues"] = [
-        ""
-    ]  # TODO: have a way to specify if anyOf is a missing val
-    return frictionless_schema
-
 
 def run_pipeline_step(input, step):
     """function for input into the reduce functool
@@ -229,6 +184,7 @@ def run_pipeline_step(input, step):
         raise Exception("Step must be at least of length 1")
 
 def render_markdown(item,schema,templatefile):
+
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader("docs/assets/templates"),
         trim_blocks=True,
@@ -242,6 +198,7 @@ def render_markdown(item,schema,templatefile):
 
 def generate_template(schema):
     template = {}
+
     if 'properties' in schema:
         for prop, prop_schema in schema['properties'].items():
             if 'type' in prop_schema:
@@ -258,7 +215,7 @@ def generate_template(schema):
                 ref_schema = get_referenced_schema(prop_schema['$ref'])
                 template[prop] = generate_template(ref_schema)
     return template
-
+    
 if __name__ == "__main__":
     # compile frictionless schema fields
     dictionary = load_all_yamls()
@@ -272,25 +229,9 @@ if __name__ == "__main__":
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     json_data_dictionary = reduce(run_pipeline_step, json_pipeline, dictionary)
-    Path("schemas/jsonschema/data-dictionary.json").write_text(json.dumps(json_data_dictionary, indent=4))
+    Path("schemas/data-dictionary.json").write_text(json.dumps(json_data_dictionary, indent=4))
 
     schema_version_prop = {"schemaVersion":json_data_dictionary["properties"]["schemaVersion"]}
-    csv_pipeline = [
-        # recursive fxn so need to grab items from overall dictionary for json paths
-        (resolve_refs, {"schema": dictionary}),
-        # no longer need the definitons as they have been resolved
-        (lambda _schema: _schema["fields"], None),        
-        (flatten_schema, None),
-        (to_csv_properties,schema_version_prop),
-        (to_frictionless, None),
-        (lambda _schema: {"version":versions["vlmd"],**_schema},None)
-    ]
-    frictionlessfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
-    Path("schemas/frictionless/csvtemplate/fields.json").write_text(
-        json.dumps(frictionlessfields, indent=2)
-    )
-    
-
     # compile json schema fields
     csv_pipeline = [
         # recursive fxn so need to grab items from overall dictionary for json paths
@@ -302,15 +243,7 @@ if __name__ == "__main__":
         (lambda _schema: {"version":versions["vlmd"],**_schema},None)
     ]
     csvfields = reduce(run_pipeline_step, csv_pipeline, dictionary)
-    Path("schemas/jsonschema/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
-
-    # generate json schema versions of field schemas for documentation 
-
-    # generate html using the json-schema for human library
-    generate_from_filename("schemas/jsonschema/csvtemplate/fields.json",
-        "docs/html-rendered-schemas/jsonschema-csvtemplate-fields.html")
-    generate_from_filename("schemas/jsonschema/data-dictionary.json",
-        "docs/html-rendered-schemas/jsonschema-jsontemplate-data-dictionary.html")
+    Path("schemas/csvtemplate/fields.json").write_text(json.dumps(csvfields, indent=4))
 
     # render and write markdown versions
     csvfields_md = render_markdown(
@@ -322,8 +255,8 @@ if __name__ == "__main__":
         schema=json_data_dictionary,
         templatefile="jsontemplate.md"
     )
-    Path("docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md").write_text(csvfields_md)
-    Path("docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md").write_text(json_dd_md)
+    Path("docs/csvtemplate-fields.md").write_text(csvfields_md)
+    Path("docs/jsontemplate-data-dictionary.md").write_text(json_dd_md)
 
     # generate templates
     Path("templates/template_submission.json").write_text(json.dumps([generate_template(json_data_dictionary)],indent=4))
