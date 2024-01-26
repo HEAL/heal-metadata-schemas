@@ -198,7 +198,17 @@ def render_markdown(item,schema,templatefile):
 
 def generate_template(schema):
     template = {}
-
+    schema = dict(schema)
+    if 'patternProperties' in schema:
+        schema["properties"] = schema.get("properties",{})
+        for patternname,prop in schema["patternProperties"].items():
+            propname = (
+                patternname
+                .replace("^","")
+                .replace("$","")
+                .replace("[\d+]","[0]")
+            )
+            schema["properties"][propname] = prop
     if 'properties' in schema:
         for prop, prop_schema in schema['properties'].items():
             if 'type' in prop_schema:
