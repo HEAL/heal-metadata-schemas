@@ -162,68 +162,71 @@
             "type": "string",
             "description": "Additional properties not included a core property. \n",
             "pattern": "^(?:.*?=.*?(?:\\||$))+$"
-        },
-        "standardsMappings[0].instrument.url": {
+        }
+    },
+    "patternProperties": {
+        "^standardsMappings[\\d+].instrument.url$": {
             "title": "Url",
-            "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
+            "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].instrument.url`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].instrument.url`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].instrument.url`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].instrument.url` and `standardsMappings[2].instrument.url`.\n",
             "type": "string",
             "format": "uri",
             "examples": [
                 "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx"
             ]
         },
-        "standardsMappings[0].instrument.source": {
+        "^standardsMappings[\\d+].instrument.source$": {
             "type": "string",
             "title": "Source",
-            "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
+            "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].instrument.source`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].instrument.source`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].instrument.source`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].instrument.source` and `standardsMappings[2].instrument.source`.\n",
             "enum": [
                 "heal-cde"
             ]
         },
-        "standardsMappings[0].instrument.title": {
+        "^standardsMappings[\\d+].instrument.title$": {
             "type": "string",
             "title": "Title",
             "examples": [
                 "Adult demographics",
                 "adult-demographics"
-            ]
+            ],
+            "description": "\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].instrument.title`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].instrument.title`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].instrument.title`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].instrument.title` and `standardsMappings[2].instrument.title`.\n"
         },
-        "standardsMappings[0].instrument.id": {
+        "^standardsMappings[\\d+].instrument.id$": {
             "type": "string",
             "title": "Identifier",
-            "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n",
+            "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].instrument.id`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].instrument.id`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].instrument.id`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].instrument.id` and `standardsMappings[2].instrument.id`.\n",
             "examples": [
                 "5141"
             ]
         },
-        "standardsMappings[0].item.url": {
+        "^standardsMappings[\\d+].item.url$": {
             "title": "Standards mappings - Url",
-            "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
+            "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].item.url`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].item.url`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].item.url`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].item.url` and `standardsMappings[2].item.url`.\n",
             "type": "string",
             "format": "uri",
             "examples": [
                 "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE"
             ]
         },
-        "standardsMappings[0].item.source": {
+        "^standardsMappings[\\d+].item.source$": {
             "title": "Standards mappings - Source",
-            "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
+            "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].item.source`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].item.source`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].item.source`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].item.source` and `standardsMappings[2].item.source`.\n",
             "examples": [
                 "CDISC"
             ],
             "type": "string"
         },
-        "standardsMappings[0].item.id": {
+        "^standardsMappings[\\d+].item.id$": {
             "title": "Standards Mappings - Id",
             "type": "string",
-            "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
+            "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `standardsMappings[0].item.id`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `standardsMappings[0].item.id`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `standardsMappings[1].item.id`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `standardsMappings[1].item.id` and `standardsMappings[2].item.id`.\n",
             "examples": [
                 "C74457"
             ]
         },
-        "relatedConcepts[0].url": {
+        "^relatedConcepts[\\d+].url$": {
             "title": "Related Concepts - Url",
-            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `relatedConcepts[0].url`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `relatedConcepts[0].url`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `relatedConcepts[1].url`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `relatedConcepts[1].url` and `relatedConcepts[2].url`.\n",
             "type": "string",
             "format": "uri",
             "examples": [
@@ -231,28 +234,28 @@
                 "http://purl.bioontology.org/ontology/RXNORM/3304"
             ]
         },
-        "relatedConcepts[0].title": {
+        "^relatedConcepts[\\d+].title$": {
             "title": "Related concepts - Type",
-            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `relatedConcepts[0].title`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `relatedConcepts[0].title`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `relatedConcepts[1].title`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `relatedConcepts[1].title` and `relatedConcepts[2].title`.\n",
             "type": "string",
             "examples": [
                 "Heroin Molecular Structure",
                 "Heroin Ontology"
             ]
         },
-        "relatedConcepts[0].source": {
+        "^relatedConcepts[\\d+].source$": {
             "title": "Related Concepts - Source",
-            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `relatedConcepts[0].source`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `relatedConcepts[0].source`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `relatedConcepts[1].source`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `relatedConcepts[1].source` and `relatedConcepts[2].source`.\n",
             "type": "string",
             "examples": [
                 "CHEBI",
                 "RXNORM"
             ]
         },
-        "relatedConcepts[0].id": {
+        "^relatedConcepts[\\d+].id$": {
             "title": "Related Concepts - Id",
             "type": "string",
-            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\n!!! note 'Specifying a max of one value per variable:'\n\n\tThen column header/name should be `relatedConcepts[0].id`\n\n!!! note 'Specifying multiple values'\n\n\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)\tFor example, in addition to the column `relatedConcepts[0].id`:\n\tIf you have __two__ of these variables:\n\tAdd another column called `relatedConcepts[1].id`.\n\tIf you have __three__ of these variables:\n\tAdd two columns called `relatedConcepts[1].id` and `relatedConcepts[2].id`.\n",
             "examples": [
                 "27808",
                 "3304"

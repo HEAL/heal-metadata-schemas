@@ -256,10 +256,24 @@ Examples:
  Additional properties not included a core property. 
 
 
-**`standardsMappings[0].instrument.url`** _(string)_
+
+**`standardsMappings[\d+].instrument.url`** _(string)_
  A url (e.g., link, address) to a file or other resource containing the instrument, or
 a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].instrument.url`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].instrument.url`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].instrument.url`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].instrument.url` and `standardsMappings[2].instrument.url`.
 
 Examples:
 
@@ -269,15 +283,41 @@ Examples:
 
 ```
 
-**`standardsMappings[0].instrument.source`** _(string)_
+**`standardsMappings[\d+].instrument.source`** _(string)_
  An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
 containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
 
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].instrument.source`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].instrument.source`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].instrument.source`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].instrument.source` and `standardsMappings[2].instrument.source`.
+
 Must be one of: `heal-cde`
 
-**`standardsMappings[0].instrument.title`** _(string)_
+**`standardsMappings[\d+].instrument.title`** _(string)_
  
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].instrument.title`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].instrument.title`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].instrument.title`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].instrument.title` and `standardsMappings[2].instrument.title`.
+
 Examples:
 
 
@@ -291,9 +331,22 @@ Examples:
 
 ```
 
-**`standardsMappings[0].instrument.id`** _(string)_
+**`standardsMappings[\d+].instrument.id`** _(string)_
  A code or other string that identifies the instrument within the source.
 This should always be from the source's formal, standardized identification system 
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].instrument.id`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].instrument.id`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].instrument.id`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].instrument.id` and `standardsMappings[2].instrument.id`.
 
 Examples:
 
@@ -303,8 +356,21 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.url`** _(string)_
+**`standardsMappings[\d+].item.url`** _(string)_
  The url that links out to the published, standardized mapping of a variable (e.g., common data element)
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].item.url`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].item.url`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].item.url`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].item.url` and `standardsMappings[2].item.url`.
 
 Examples:
 
@@ -314,9 +380,22 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.source`** _(string)_
+**`standardsMappings[\d+].item.source`** _(string)_
  The source of the standardized variable. Note, this property is required if 
 an id is specified.
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].item.source`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].item.source`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].item.source`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].item.source` and `standardsMappings[2].item.source`.
 
 Examples:
 
@@ -326,10 +405,23 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.id`** _(string)_
+**`standardsMappings[\d+].item.id`** _(string)_
  The id locating the individual mapping within the given source. 
 Note, the `standardsMappings[0].source` property is required if 
 this property is specified.
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `standardsMappings[0].item.id`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `standardsMappings[0].item.id`:
+	If you have __two__ of these variables:
+	Add another column called `standardsMappings[1].item.id`.
+	If you have __three__ of these variables:
+	Add two columns called `standardsMappings[1].item.id` and `standardsMappings[2].item.id`.
 
 Examples:
 
@@ -339,11 +431,24 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].url`** _(string)_
+**`relatedConcepts[\d+].url`** _(string)_
  The url that links out to the published, related concept. 
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `relatedConcepts[0].url`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `relatedConcepts[0].url`:
+	If you have __two__ of these variables:
+	Add another column called `relatedConcepts[1].url`.
+	If you have __three__ of these variables:
+	Add two columns called `relatedConcepts[1].url` and `relatedConcepts[2].url`.
 
 Examples:
 
@@ -358,11 +463,24 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].title`** _(string)_
+**`relatedConcepts[\d+].title`** _(string)_
  A human-readable title (ie label) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `relatedConcepts[0].title`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `relatedConcepts[0].title`:
+	If you have __two__ of these variables:
+	Add another column called `relatedConcepts[1].title`.
+	If you have __three__ of these variables:
+	Add two columns called `relatedConcepts[1].title` and `relatedConcepts[2].title`.
 
 Examples:
 
@@ -377,11 +495,24 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].source`** _(string)_
+**`relatedConcepts[\d+].source`** _(string)_
  The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `relatedConcepts[0].source`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `relatedConcepts[0].source`:
+	If you have __two__ of these variables:
+	Add another column called `relatedConcepts[1].source`.
+	If you have __three__ of these variables:
+	Add two columns called `relatedConcepts[1].source` and `relatedConcepts[2].source`.
 
 Examples:
 
@@ -396,11 +527,24 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].id`** _(string)_
+**`relatedConcepts[\d+].id`** _(string)_
  The id locating the individual concept within the source of the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+!!! note 'Specifying a max of one value per variable:'
+
+	Then column header/name should be `relatedConcepts[0].id`
+
+!!! note 'Specifying multiple values'
+
+	If specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)	For example, in addition to the column `relatedConcepts[0].id`:
+	If you have __two__ of these variables:
+	Add another column called `relatedConcepts[1].id`.
+	If you have __three__ of these variables:
+	Add two columns called `relatedConcepts[1].id` and `relatedConcepts[2].id`.
 
 Examples:
 
@@ -414,7 +558,6 @@ Examples:
   3304
 
 ```
-
 
 ## End of schema - Additional Property information 
 
