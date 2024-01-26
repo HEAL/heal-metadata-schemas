@@ -7,26 +7,24 @@ This metadata directory contains the specifications for variable level metadata 
 ❗ Look here for schema specifications.
 
 ### json data dictionary format specification
-1. `schemas/jsonschema/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
+1. `schemas/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
     - Intended to specify the data dictionary representation of json objects available in the HEAL platform metadata-service.
     - See here for the markdown rendered version --> [`docs/jsontemplate-data-dictionary.md`](docs/jsontemplate-data-dictionary.md)
 
 ### csv field format specifications
-- See here for the markdown rendered version --> [`docs/jsontemplate-data-dictionary.md`](docs/csvtemplate-fields.md)
+- See here for the markdown rendered version --> [`docs/csvtemplate-fields.md`](docs/csvtemplate-fields.md)
 
 
     - Csv version is intended to make data dictionary creation and discovery available in a more familiar/human readable format,
     - The representation of data dictionary field values in a csv file. It's used to facilitate documentation of data dictionary csv 
     files in addition to input validation. 
 
-3. `schemas/fields.json`The "csv" json schema (ie csv template schema)
+3. `schemas/csvtemplate/fields.json`The "csv" json schema (ie csv template schema)
     - :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json schema template. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
 
 ## Document flow chart
 
 ```mermaid
-
-    %%{init: {"flowchart": {"defaultRenderer": "elk","htmlLabels": false}} }%%
 
     flowchart TD
 
@@ -66,8 +64,8 @@ This metadata directory contains the specifications for variable level metadata 
 - `docs`: 
 See the rendered human readable schemas
 in a markdown format and an interactive html format.
-- `schemas/jsonschema`: contains the final and full specification for schemas following json schema. 
-- `schemas/dictionary`: the yaml files used to generate json schemas and documentation with build.py. 
+- `schemas/*.json`: contains the final and full specification for schemas following json schema. 
+- `schemas/dictionary/*.yaml`: the yaml files used to generate json schemas and documentation with build.py. 
 - `templates`: empty templates in csv spreadsheet format and JSON format. 
 - `examples`: exapmles of filled out templates in csv spreadsheet format and JSON format.
 - `build.py`: This script compiles the yaml files and generates associated  schemas in addition to the human rendered schema
@@ -101,8 +99,8 @@ Given csv field values can only be scalar values with records separated by a new
     - if type `object` in `items`: flattened to the children property or properties
     - if type is a scalar (`string`,`integer`,`number`) in `items`,
      translated to type `string` with pattern `^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$` to indicate a string containing a pipe delimiter (i.e., a stringified array with a pipe delimiter)
-### `property` name conversion rules 
-To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the [jsonpath](https://datatracker.ietf.org/doc/id/draft-goessner-dispatch-jsonpath-00.html) representation where:
+### `property` name conversion rules (ie Representing nested arrays and objects in csv documents)
+To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the [jsonpath](https://datatracker.ietf.org/doc/id/draft-goessner-dispatch-jsonpath-00.html) representation as a `patternProperty`:
 
 1. type `object`
 
@@ -161,12 +159,6 @@ To facilitate the mapping of json spec property names to csv property names,  th
             }
         }
     ```
-
-### Representing nested arrays and objects in csv documents:
-
-
-
-
 
 ### Complex `type` restrictions 
 
