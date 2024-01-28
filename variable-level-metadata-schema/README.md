@@ -7,20 +7,24 @@ This metadata directory contains the specifications for variable level metadata 
 ❗ Look here for schema specifications.
 
 ### json data dictionary format specification
+
 1. `schemas/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
     - Intended to specify the data dictionary representation of json objects available in the HEAL platform metadata-service.
     - See here for the markdown rendered version --> [`docs/jsontemplate-data-dictionary.md`](docs/jsontemplate-data-dictionary.md)
 
 ### csv field format specifications
+
+2. `schemas/csvtemplate/fields.json`: The "csv" json schema (ie csv template schema)
+
 - See here for the markdown rendered version --> [`docs/csvtemplate-fields.md`](docs/csvtemplate-fields.md)
 
 
-    - Csv version is intended to make data dictionary creation and discovery available in a more familiar/human readable format,
-    - The representation of data dictionary field values in a csv file. It's used to facilitate documentation of data dictionary csv 
-    files in addition to input validation. 
+- Csv version is intended to make data dictionary creation and discovery available in a more familiar/human readable format,
+- The representation of data dictionary field values in a csv file. It's used to facilitate documentation of data dictionary csv 
+files in addition to input validation. 
 
-3. `schemas/csvtemplate/fields.json`The "csv" json schema (ie csv template schema)
-    - :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json schema template. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
+- :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json data dictionary. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
+    
 
 ## Document flow chart
 
@@ -203,9 +207,6 @@ a core HEAL property. To allow these properties to be included, we list these pr
  2. It also provides a clear distinction between "core" properties and "extra" properties.
 
  One consideration, however, is that `propertyNames` was introduced in json schema draft-6.
-
-
-
 
 
 ## Considerations
