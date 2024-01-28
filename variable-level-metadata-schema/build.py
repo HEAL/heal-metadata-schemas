@@ -151,14 +151,14 @@ def flatten_schema(schema):
                 var2 = propname.replace("[\d+]","[2]")
                 pattern_property_note = (
                     "\n\n"
-                    "!!! note 'Specifying a max of one value per variable:'\n\n"
-                    "\tThen column header/name should be `{0}`\n\n"
-                    "!!! note 'Specifying multiple values'\n\n"
-                        "\tIf specifying multiple values for this variable, then add to the digit in brackets (`[0]` --> `[1]` --> `[n]`)"
-                        "\tFor example, in addition to the column `{0}`:\n"
-                        "\tIf you have __two__ of these variables:\n\tAdd another column called `{1}`.\n"
-                        "\tIf you have __three__ of these variables:\n\tAdd two columns called `{1}` "
-                            "and `{2}`.\n"
+                    "!!! note 'NOTE'\n\n"
+                        "\tThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
+                        "\tFor 1 value, you will have the columns: "
+                        "`{0}`\n"
+                        # "\tFor 2 values, you will have the columns: "
+                        # "`{0},`{1}`\n"
+                        "\tFor 3 values, you will have the columns:"
+                        "`{0},`{1}, `{2}`\n\n"
                 ).format(var0,var1,var2)
                 pattern_prop = schema_flattened["properties"].pop(propname)
                 pattern_prop["description"] = pattern_prop.get("description","") + pattern_property_note
