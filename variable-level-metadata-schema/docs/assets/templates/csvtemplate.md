@@ -16,11 +16,16 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 
 {% for itemname,item in schema.properties.items() %}
 {% include 'properties.md' %}
+
+------
+
 {% endfor %}
 
 {% for itemname,item in schema.patternProperties.items() %}
 {% set itemname = itemname.replace("^","").replace("$","") %}
 {% include 'properties.md' %}
+
+------
 {% endfor %}
 
 ## End of schema - Additional Property information 

@@ -12,7 +12,11 @@ _version {{ schema.version }}_
 ### Properties for each `fields` record
 {% set schema = item['items'] %}
 {% for itemname,item in item['items']['properties'].items() %}
+
 {% include 'properties.md' %}
+
+------
+
 {% endfor %}
 {% endif %}
 {% endfor %}

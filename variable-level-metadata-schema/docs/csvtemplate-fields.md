@@ -48,6 +48,9 @@ Examples:
 
 ```
 
+------
+
+
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables. Previously called "module."
@@ -70,6 +73,9 @@ Examples:
 
 ```
 
+------
+
+
 **`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
@@ -81,6 +87,9 @@ Examples:
 
 ```
 
+------
+
+
 **`title`** _(string)_
  The human-readable title or label of the variable.
 
@@ -91,6 +100,9 @@ Examples:
   Gender identity
 
 ```
+
+------
+
 
 **`description`** _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
@@ -109,10 +121,16 @@ Examples:
 
 ```
 
+------
+
+
 **`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
+
+------
+
 
 **`format`** _(string)_
  Indicates the format of the type specified in the `type` property. 
@@ -121,16 +139,25 @@ See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 for more information about appropriate `format` values by variable `type`.
 
 
+------
+
+
 **`constraints.required`** _(boolean)_
  If this variable is marked as true, then this variable's value must be present
 (ie not missing; see missingValues). If marked as false or not present, then the 
 variable CAN be missing.
 
 
+------
+
+
 **`constraints.maxLength`** _(integer)_
  Indicates the maximum length of an iterable (e.g., array, string, or
 object). For example, if 'Hello World' is the longest value of a
 categorical variable, this would be a maxLength of 11.
+
+
+------
 
 
 **`constraints.enum`** _(string)_
@@ -149,8 +176,14 @@ Examples:
 
 ```
 
+------
+
+
 **`constraints.pattern`** _(string)_
  A regular expression pattern the data MUST conform to.
+
+
+------
 
 
 **`constraints.maximum`** _(integer)_
@@ -159,8 +192,14 @@ recent -- date, maximum integer etc). Note, this is different then
 maxLength property.
 
 
+------
+
+
 **`constraints.minimum`** _(integer)_
  Specifies the minimum value of a field.
+
+
+------
 
 
 **`enumLabels`** _(string)_
@@ -191,6 +230,9 @@ Examples:
 
 ```
 
+------
+
+
 **`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
@@ -198,6 +240,9 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
 
 This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
+
+------
 
 
 **`missingValues`** _(string)_
@@ -215,6 +260,9 @@ Examples:
   Missing
 
 ```
+
+------
+
 
 **`trueValues`** _(string)_
  For boolean (true) variable (as defined in type field), this field allows
@@ -234,6 +282,9 @@ Examples:
 
 ```
 
+------
+
+
 **`falseValues`** _(string)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
@@ -252,8 +303,14 @@ Examples:
 
 ```
 
+------
+
+
 **`custom`** _(string)_
  Additional properties not included a core property. 
+
+
+------
 
 
 
@@ -282,6 +339,8 @@ Examples:
 
 ```
 
+------
+
 **`standardsMappings[\d+].instrument.source`** _(string)_
  An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
 containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
@@ -300,6 +359,8 @@ For 3 values, you will have the field (column) names:
 
 
 Must be one of: `heal-cde`
+
+------
 
 **`standardsMappings[\d+].instrument.title`** _(string)_
  
@@ -328,6 +389,8 @@ Examples:
 
 ```
 
+------
+
 **`standardsMappings[\d+].instrument.id`** _(string)_
  A code or other string that identifies the instrument within the source.
 This should always be from the source's formal, standardized identification system 
@@ -352,6 +415,8 @@ Examples:
 
 ```
 
+------
+
 **`standardsMappings[\d+].item.url`** _(string)_
  The url that links out to the published, standardized mapping of a variable (e.g., common data element)
 
@@ -374,6 +439,8 @@ Examples:
   https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE
 
 ```
+
+------
 
 **`standardsMappings[\d+].item.source`** _(string)_
  The source of the standardized variable. Note, this property is required if 
@@ -399,6 +466,8 @@ Examples:
 
 ```
 
+------
+
 **`standardsMappings[\d+].item.id`** _(string)_
  The id locating the individual mapping within the given source. 
 Note, the `standardsMappings[0].source` property is required if 
@@ -423,6 +492,8 @@ Examples:
   C74457
 
 ```
+
+------
 
 **`relatedConcepts[\d+].url`** _(string)_
  The url that links out to the published, related concept. 
@@ -455,6 +526,8 @@ Examples:
 
 ```
 
+------
+
 **`relatedConcepts[\d+].title`** _(string)_
  A human-readable title (ie label) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
@@ -485,6 +558,8 @@ Examples:
   Heroin Ontology
 
 ```
+
+------
 
 **`relatedConcepts[\d+].source`** _(string)_
  The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
@@ -517,6 +592,8 @@ Examples:
 
 ```
 
+------
+
 **`relatedConcepts[\d+].id`** _(string)_
  The id locating the individual concept within the source of the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
@@ -547,6 +624,8 @@ Examples:
   3304
 
 ```
+
+------
 
 ## End of schema - Additional Property information 
 
