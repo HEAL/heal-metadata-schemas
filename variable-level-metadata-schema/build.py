@@ -152,13 +152,13 @@ def flatten_schema(schema):
                 pattern_property_note = (
                     "\n\n"
                     "Specifying field names:\n\n"
-                        "\tThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
-                        "\tFor 1 value, you will have the columns: "
-                        "`{0}`\n"
-                        # "\tFor 2 values, you will have the columns: "
-                        # "`{0},`{1}`\n"
-                        "\tFor 3 values, you will have the columns:"
-                        "`{0},`{1}, `{2}`\n\n"
+                    "This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
+                    "For 1 value, you will have the field (column) names:\n"
+                    "`{0}`\n\n"
+                    # "\tFor 2 values, you will have the columns: "
+                    # "`{0},`{1}`\n"
+                    "For 3 values, you will have the field (column) names:\n"
+                    "`{0}`\t`{1}`\t`{2}`\n\n"
                 ).format(var0,var1,var2)
                 pattern_prop = schema_flattened["properties"].pop(propname)
                 pattern_prop["description"] = pattern_prop.get("description","") + pattern_property_note

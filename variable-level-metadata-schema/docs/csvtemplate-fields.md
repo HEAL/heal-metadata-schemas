@@ -263,12 +263,15 @@ a set of items which encompass a variable in this variable level metadata docume
 or the individual variable (if at the field level). 
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].instrument.url`
-	For 3 values, you will have the columns:`standardsMappings[0].instrument.url,`standardsMappings[1].instrument.url, `standardsMappings[2].instrument.url`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.url`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.url`	`standardsMappings[1].instrument.url`	`standardsMappings[2].instrument.url`
 
 
 Examples:
@@ -285,12 +288,15 @@ containing the instrument, or a set of items which encompass a variable in this 
 or the individual variable (if at the field level). 
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].instrument.source`
-	For 3 values, you will have the columns:`standardsMappings[0].instrument.source,`standardsMappings[1].instrument.source, `standardsMappings[2].instrument.source`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.source`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.source`	`standardsMappings[1].instrument.source`	`standardsMappings[2].instrument.source`
 
 
 Must be one of: `heal-cde`
@@ -298,12 +304,15 @@ Must be one of: `heal-cde`
 **`standardsMappings[\d+].instrument.title`** _(string)_
  
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].instrument.title`
-	For 3 values, you will have the columns:`standardsMappings[0].instrument.title,`standardsMappings[1].instrument.title, `standardsMappings[2].instrument.title`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.title`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.title`	`standardsMappings[1].instrument.title`	`standardsMappings[2].instrument.title`
 
 
 Examples:
@@ -324,12 +333,15 @@ Examples:
 This should always be from the source's formal, standardized identification system 
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].instrument.id`
-	For 3 values, you will have the columns:`standardsMappings[0].instrument.id,`standardsMappings[1].instrument.id, `standardsMappings[2].instrument.id`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.id`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.id`	`standardsMappings[1].instrument.id`	`standardsMappings[2].instrument.id`
 
 
 Examples:
@@ -344,12 +356,15 @@ Examples:
  The url that links out to the published, standardized mapping of a variable (e.g., common data element)
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].item.url`
-	For 3 values, you will have the columns:`standardsMappings[0].item.url,`standardsMappings[1].item.url, `standardsMappings[2].item.url`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.url`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.url`	`standardsMappings[1].item.url`	`standardsMappings[2].item.url`
 
 
 Examples:
@@ -365,12 +380,15 @@ Examples:
 an id is specified.
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].item.source`
-	For 3 values, you will have the columns:`standardsMappings[0].item.source,`standardsMappings[1].item.source, `standardsMappings[2].item.source`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.source`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.source`	`standardsMappings[1].item.source`	`standardsMappings[2].item.source`
 
 
 Examples:
@@ -387,12 +405,15 @@ Note, the `standardsMappings[0].source` property is required if
 this property is specified.
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `standardsMappings[0].item.id`
-	For 3 values, you will have the columns:`standardsMappings[0].item.id,`standardsMappings[1].item.id, `standardsMappings[2].item.id`
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.id`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.id`	`standardsMappings[1].item.id`	`standardsMappings[2].item.id`
 
 
 Examples:
@@ -410,12 +431,15 @@ The listed examples could both be attached to any variable related to, for examp
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `relatedConcepts[0].url`
-	For 3 values, you will have the columns:`relatedConcepts[0].url,`relatedConcepts[1].url, `relatedConcepts[2].url`
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].url`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].url`	`relatedConcepts[1].url`	`relatedConcepts[2].url`
 
 
 Examples:
@@ -438,12 +462,15 @@ The listed examples could both be attached to any variable related to, for examp
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `relatedConcepts[0].title`
-	For 3 values, you will have the columns:`relatedConcepts[0].title,`relatedConcepts[1].title, `relatedConcepts[2].title`
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].title`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].title`	`relatedConcepts[1].title`	`relatedConcepts[2].title`
 
 
 Examples:
@@ -466,12 +493,15 @@ The listed examples could both be attached to any variable related to, for examp
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `relatedConcepts[0].source`
-	For 3 values, you will have the columns:`relatedConcepts[0].source,`relatedConcepts[1].source, `relatedConcepts[2].source`
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].source`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].source`	`relatedConcepts[1].source`	`relatedConcepts[2].source`
 
 
 Examples:
@@ -494,12 +524,15 @@ The listed examples could both be attached to any variable related to, for examp
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
 
-!!! note 'NOTE'
+Specifying field names:
 
-	This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
 
-	For 1 value, you will have the columns: `relatedConcepts[0].id`
-	For 3 values, you will have the columns:`relatedConcepts[0].id,`relatedConcepts[1].id, `relatedConcepts[2].id`
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].id`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].id`	`relatedConcepts[1].id`	`relatedConcepts[2].id`
 
 
 Examples:
