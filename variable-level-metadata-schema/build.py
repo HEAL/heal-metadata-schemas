@@ -151,7 +151,7 @@ def flatten_schema(schema):
                 var2 = propname.replace("[\d+]","[2]")
                 pattern_property_note = (
                     "\n\n"
-                    "!!! note 'NOTE'\n\n"
+                    "Specifying field names:\n\n"
                         "\tThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
                         "\tFor 1 value, you will have the columns: "
                         "`{0}`\n"
