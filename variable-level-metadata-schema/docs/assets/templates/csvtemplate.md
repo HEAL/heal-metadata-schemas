@@ -22,7 +22,7 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 {% endfor %}
 
 {% for itemname,item in schema.patternProperties.items() %}
-{% set itemname = itemname.replace("^","").replace("$","") %}
+{% set itemname = itemname.replace("^","").replace("$","").replace("\[\d+\]","[`number`]") %}
 {% include 'properties.md' %}
 
 ------

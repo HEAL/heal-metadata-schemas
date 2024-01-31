@@ -314,7 +314,7 @@ Examples:
 
 
 
-**`standardsMappings[\d+].instrument.url`** _(string)_
+**`standardsMappings[`number`].instrument.url`** _(string)_
  A url (e.g., link, address) to a file or other resource containing the instrument, or
 a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
@@ -341,7 +341,7 @@ Examples:
 
 ------
 
-**`standardsMappings[\d+].instrument.source`** _(string)_
+**`standardsMappings[`number`].instrument.source`** _(string)_
  An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
 containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
@@ -362,7 +362,7 @@ Must be one of: `heal-cde`
 
 ------
 
-**`standardsMappings[\d+].instrument.title`** _(string)_
+**`standardsMappings[`number`].instrument.title`** _(string)_
  
 
 Specifying field names:
@@ -391,7 +391,7 @@ Examples:
 
 ------
 
-**`standardsMappings[\d+].instrument.id`** _(string)_
+**`standardsMappings[`number`].instrument.id`** _(string)_
  A code or other string that identifies the instrument within the source.
 This should always be from the source's formal, standardized identification system 
 
@@ -417,7 +417,7 @@ Examples:
 
 ------
 
-**`standardsMappings[\d+].item.url`** _(string)_
+**`standardsMappings[`number`].item.url`** _(string)_
  The url that links out to the published, standardized mapping of a variable (e.g., common data element)
 
 
@@ -442,7 +442,7 @@ Examples:
 
 ------
 
-**`standardsMappings[\d+].item.source`** _(string)_
+**`standardsMappings[`number`].item.source`** _(string)_
  The source of the standardized variable. Note, this property is required if 
 an id is specified.
 
@@ -468,7 +468,7 @@ Examples:
 
 ------
 
-**`standardsMappings[\d+].item.id`** _(string)_
+**`standardsMappings[`number`].item.id`** _(string)_
  The id locating the individual mapping within the given source. 
 Note, the `standardsMappings[0].source` property is required if 
 this property is specified.
@@ -495,7 +495,7 @@ Examples:
 
 ------
 
-**`relatedConcepts[\d+].url`** _(string)_
+**`relatedConcepts[`number`].url`** _(string)_
  The url that links out to the published, related concept. 
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
@@ -528,7 +528,7 @@ Examples:
 
 ------
 
-**`relatedConcepts[\d+].title`** _(string)_
+**`relatedConcepts[`number`].title`** _(string)_
  A human-readable title (ie label) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
@@ -561,7 +561,7 @@ Examples:
 
 ------
 
-**`relatedConcepts[\d+].source`** _(string)_
+**`relatedConcepts[`number`].source`** _(string)_
  The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
@@ -594,7 +594,7 @@ Examples:
 
 ------
 
-**`relatedConcepts[\d+].id`** _(string)_
+**`relatedConcepts[`number`].id`** _(string)_
  The id locating the individual concept within the source of the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 

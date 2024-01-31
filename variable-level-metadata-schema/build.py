@@ -108,7 +108,7 @@ def to_csv_properties(schema,**additional_props):
 
     return csv_schema
 
-def flatten_properties(properties, parentkey="", sep=".",itemsep="[\d+]"):
+def flatten_properties(properties, parentkey="", sep=".",itemsep="\[\d+\]"):
     """
     flatten schema properties
     """
@@ -142,13 +142,14 @@ def flatten_schema(schema):
     schema_flattened = dict(schema)
     if "properties" in schema:
         properties = schema_flattened.pop("properties")
-        schema_flattened["properties"] = flatten_properties(properties,itemsep="[\d+]")
+        item_sep = "\[\d+\]"
+        schema_flattened["properties"] = flatten_properties(properties,itemsep=item_sep)
         schema_flattened["patternProperties"] = {}
         for propname in list(schema_flattened["properties"].keys()):
-            if "[\d+]" in propname:
-                var0 = propname.replace("[\d+]","[0]")
-                var1 = propname.replace("[\d+]","[1]")
-                var2 = propname.replace("[\d+]","[2]")
+            if item_sep in propname:
+                var0 = propname.replace(item_sep,"[0]")
+                var1 = propname.replace(item_sep,"[1]")
+                var2 = propname.replace(item_sep,"[2]")
                 pattern_property_note = (
                     "\n\n"
                     "Specifying field names:\n\n"
@@ -206,7 +207,7 @@ def generate_template(schema):
                 patternname
                 .replace("^","")
                 .replace("$","")
-                .replace("[\d+]","[0]")
+                .replace("\[\d+\]","[0]")
             )
             schema["properties"][propname] = prop
     if 'properties' in schema:
