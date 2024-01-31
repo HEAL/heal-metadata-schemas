@@ -1,6 +1,6 @@
 # Variable Level Metadata (Data Dictionaries) 
 
-_version 0.2.0_
+_version 0.3.0_
 
 This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries.
 
@@ -51,6 +51,7 @@ Additional properties not included as a core property.
 
 ### Properties for each `fields` record
 
+
 **`schemaVersion`** _(string)_
  The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
 
@@ -76,6 +77,10 @@ Examples:
 
 ```
 
+------
+
+
+
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables. Previously called "module."
@@ -98,6 +103,10 @@ Examples:
 
 ```
 
+------
+
+
+
 **`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
@@ -109,6 +118,10 @@ Examples:
 
 ```
 
+------
+
+
+
 **`title`** _(string)_
  The human-readable title or label of the variable.
 
@@ -119,6 +132,10 @@ Examples:
   Gender identity
 
 ```
+
+------
+
+
 
 **`description`** _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
@@ -137,16 +154,28 @@ Examples:
 
 ```
 
+------
+
+
+
 **`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
+
+------
+
+
 
 **`format`** _(string)_
  Indicates the format of the type specified in the `type` property. 
 Each format is dependent on the `type` specified. 
 See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
 for more information about appropriate `format` values by variable `type`.
+
+
+------
+
 
 
 **`constraints`** _(object)_
@@ -203,6 +232,10 @@ for more information about appropriate `format` values by variable `type`.
 
 
 
+------
+
+
+
 **`enumLabels`** _(object)_
  Variable value encodings provide a way to further annotate any value within a any variable type,
 making values easier to understand. 
@@ -233,6 +266,10 @@ Examples:
 
 ```
 
+------
+
+
+
 **`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
@@ -240,6 +277,10 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
 
 This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
+
+------
+
 
 
 **`missingValues`** _(array)_
@@ -259,6 +300,10 @@ Examples:
   ['Missing']
 
 ```
+
+------
+
+
 
 **`trueValues`** _(array)_
  For boolean (true) variable (as defined in type field), this field allows
@@ -280,6 +325,10 @@ Examples:
 
 ```
 
+------
+
+
+
 **`falseValues`** _(array)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
@@ -300,8 +349,16 @@ Examples:
 
 ```
 
+------
+
+
+
 **`custom`** _(object)_
  Additional properties not included a core property. 
+
+
+------
+
 
 
 **`standardsMappings`** _(array)_
@@ -401,9 +458,16 @@ Two separate records. If desired, multiple standard mappings can be entered, say
 ```
 
 
+------
+
+
+
 **`relatedConcepts`** _(array)_
  __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
 ontological information (eg., NCI thesaurus, bioportal etc)
+
+
+------
 
 
 ### Additional `fields` property information

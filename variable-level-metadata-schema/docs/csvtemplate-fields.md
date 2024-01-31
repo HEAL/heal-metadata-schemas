@@ -1,6 +1,6 @@
 # HEAL Variable Level Metadata Fields 
 
-_version 0.2.0_
+_version 0.3.0_
 
 <!-- Below annotation is specific for folks filling out the csv template
 and so is put here rather than in the actual schema annotations.
@@ -48,6 +48,9 @@ Examples:
 
 ```
 
+------
+
+
 **`section`** _(string)_
  The section, form, survey instrument, set of measures  or other broad category used 
 to group variables. Previously called "module."
@@ -70,6 +73,9 @@ Examples:
 
 ```
 
+------
+
+
 **`name`** _(string,required)_
  The name of a variable (i.e., field) as it appears in the data. 
 
@@ -81,6 +87,9 @@ Examples:
 
 ```
 
+------
+
+
 **`title`** _(string)_
  The human-readable title or label of the variable.
 
@@ -91,6 +100,9 @@ Examples:
   Gender identity
 
 ```
+
+------
+
 
 **`description`** _(string,required)_
  An extended description of the variable. This could be the definition of a variable or the 
@@ -109,10 +121,16 @@ Examples:
 
 ```
 
+------
+
+
 **`type`** _(string)_
  A classification or category of a particular data element or property expected or allowed in the dataset.
 
 Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
+
+------
+
 
 **`format`** _(string)_
  Indicates the format of the type specified in the `type` property. 
@@ -121,16 +139,25 @@ See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats)
 for more information about appropriate `format` values by variable `type`.
 
 
+------
+
+
 **`constraints.required`** _(boolean)_
  If this variable is marked as true, then this variable's value must be present
 (ie not missing; see missingValues). If marked as false or not present, then the 
 variable CAN be missing.
 
 
+------
+
+
 **`constraints.maxLength`** _(integer)_
  Indicates the maximum length of an iterable (e.g., array, string, or
 object). For example, if 'Hello World' is the longest value of a
 categorical variable, this would be a maxLength of 11.
+
+
+------
 
 
 **`constraints.enum`** _(string)_
@@ -149,8 +176,14 @@ Examples:
 
 ```
 
+------
+
+
 **`constraints.pattern`** _(string)_
  A regular expression pattern the data MUST conform to.
+
+
+------
 
 
 **`constraints.maximum`** _(integer)_
@@ -159,8 +192,14 @@ recent -- date, maximum integer etc). Note, this is different then
 maxLength property.
 
 
+------
+
+
 **`constraints.minimum`** _(integer)_
  Specifies the minimum value of a field.
+
+
+------
 
 
 **`enumLabels`** _(string)_
@@ -191,6 +230,9 @@ Examples:
 
 ```
 
+------
+
+
 **`enumOrdered`** _(boolean)_
  Indicates whether a categorical variable is ordered. This variable  is
 relevant for variables that have an ordered relationship but not
@@ -198,6 +240,9 @@ necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
 < Neutral < Agree).
 
 This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+
+
+------
 
 
 **`missingValues`** _(string)_
@@ -215,6 +260,9 @@ Examples:
   Missing
 
 ```
+
+------
+
 
 **`trueValues`** _(string)_
  For boolean (true) variable (as defined in type field), this field allows
@@ -234,6 +282,9 @@ Examples:
 
 ```
 
+------
+
+
 **`falseValues`** _(string)_
  For boolean (false) variable (as defined in type field), this field allows
 a physical string representation to be cast as false (increasing
@@ -252,14 +303,33 @@ Examples:
 
 ```
 
+------
+
+
 **`custom`** _(string)_
  Additional properties not included a core property. 
 
 
-**`standardsMappings[0].instrument.url`** _(string)_
+------
+
+
+
+**`standardsMappings[`number`].instrument.url`** _(string)_
  A url (e.g., link, address) to a file or other resource containing the instrument, or
 a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.url`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.url`	`standardsMappings[1].instrument.url`	`standardsMappings[2].instrument.url`
+
 
 Examples:
 
@@ -269,15 +339,43 @@ Examples:
 
 ```
 
-**`standardsMappings[0].instrument.source`** _(string)_
+------
+
+**`standardsMappings[`number`].instrument.source`** _(string)_
  An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
 containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
 or the individual variable (if at the field level). 
 
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.source`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.source`	`standardsMappings[1].instrument.source`	`standardsMappings[2].instrument.source`
+
+
 Must be one of: `heal-cde`
 
-**`standardsMappings[0].instrument.title`** _(string)_
+------
+
+**`standardsMappings[`number`].instrument.title`** _(string)_
  
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.title`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.title`	`standardsMappings[1].instrument.title`	`standardsMappings[2].instrument.title`
+
+
 Examples:
 
 
@@ -291,9 +389,23 @@ Examples:
 
 ```
 
-**`standardsMappings[0].instrument.id`** _(string)_
+------
+
+**`standardsMappings[`number`].instrument.id`** _(string)_
  A code or other string that identifies the instrument within the source.
 This should always be from the source's formal, standardized identification system 
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].instrument.id`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].instrument.id`	`standardsMappings[1].instrument.id`	`standardsMappings[2].instrument.id`
+
 
 Examples:
 
@@ -303,8 +415,22 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.url`** _(string)_
+------
+
+**`standardsMappings[`number`].item.url`** _(string)_
  The url that links out to the published, standardized mapping of a variable (e.g., common data element)
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.url`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.url`	`standardsMappings[1].item.url`	`standardsMappings[2].item.url`
+
 
 Examples:
 
@@ -314,9 +440,23 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.source`** _(string)_
+------
+
+**`standardsMappings[`number`].item.source`** _(string)_
  The source of the standardized variable. Note, this property is required if 
 an id is specified.
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.source`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.source`	`standardsMappings[1].item.source`	`standardsMappings[2].item.source`
+
 
 Examples:
 
@@ -326,10 +466,24 @@ Examples:
 
 ```
 
-**`standardsMappings[0].item.id`** _(string)_
+------
+
+**`standardsMappings[`number`].item.id`** _(string)_
  The id locating the individual mapping within the given source. 
 Note, the `standardsMappings[0].source` property is required if 
 this property is specified.
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`standardsMappings[0].item.id`
+
+For 3 values, you will have the field (column) names:
+`standardsMappings[0].item.id`	`standardsMappings[1].item.id`	`standardsMappings[2].item.id`
+
 
 Examples:
 
@@ -339,11 +493,25 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].url`** _(string)_
+------
+
+**`relatedConcepts[`number`].url`** _(string)_
  The url that links out to the published, related concept. 
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].url`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].url`	`relatedConcepts[1].url`	`relatedConcepts[2].url`
+
 
 Examples:
 
@@ -358,11 +526,25 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].title`** _(string)_
+------
+
+**`relatedConcepts[`number`].title`** _(string)_
  A human-readable title (ie label) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].title`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].title`	`relatedConcepts[1].title`	`relatedConcepts[2].title`
+
 
 Examples:
 
@@ -377,11 +559,25 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].source`** _(string)_
+------
+
+**`relatedConcepts[`number`].source`** _(string)_
  The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].source`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].source`	`relatedConcepts[1].source`	`relatedConcepts[2].source`
+
 
 Examples:
 
@@ -396,11 +592,25 @@ Examples:
 
 ```
 
-**`relatedConcepts[0].id`** _(string)_
+------
+
+**`relatedConcepts[`number`].id`** _(string)_
  The id locating the individual concept within the source of the given field.
 The listed examples could both be attached to any variable related to, for example, heroin use.
 
 > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
+
+
+Specifying field names:
+
+This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+
+For 1 value, you will have the field (column) names:
+`relatedConcepts[0].id`
+
+For 3 values, you will have the field (column) names:
+`relatedConcepts[0].id`	`relatedConcepts[1].id`	`relatedConcepts[2].id`
+
 
 Examples:
 
@@ -415,6 +625,7 @@ Examples:
 
 ```
 
+------
 
 ## End of schema - Additional Property information 
 

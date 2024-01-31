@@ -7,27 +7,28 @@ This metadata directory contains the specifications for variable level metadata 
 ❗ Look here for schema specifications.
 
 ### json data dictionary format specification
-1. `schemas/jsonschema/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
+
+1. `schemas/data-dictionary.json`: The "json" json data dictionary schema (ie json template schema)
     - Intended to specify the data dictionary representation of json objects available in the HEAL platform metadata-service.
-    - See here for the markdown rendered version --> [`docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md`](docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md)
+    - See here for the markdown rendered version --> [`docs/jsontemplate-data-dictionary.md`](docs/jsontemplate-data-dictionary.md)
 
 ### csv field format specifications
-- See here for the markdown rendered version --> [`docs/md-rendered-schemas/jsonschema-jsontemplate-data-dictionary.md`](docs/md-rendered-schemas/jsonschema-csvtemplate-fields.md)
+
+2. `schemas/csvtemplate/fields.json`: The "csv" json schema (ie csv template schema)
+
+- See here for the markdown rendered version --> [`docs/csvtemplate-fields.md`](docs/csvtemplate-fields.md)
 
 
-2. `schemas/frictionless/fields.json` Table schema (previously known as "frictionless") standard specification
-    - This json file is intended to represent csv data dictionary documents following the [Table Schema specification](https://specs.frictionlessdata.io/table-schema/).
-    - Csv version is intended to make data dictionary creation and discovery available in a more familiar/human readable format,
-    - The representation of data dictionary field values in a csv file. It's used to facilitate documentation of data dictionary csv 
-    files in addition to input validation. 
-3. `schemas/jsontemplate/fields.json`The "csv" json schema (ie csv template schema)
-    - :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json schema template. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
+- Csv version is intended to make data dictionary creation and discovery available in a more familiar/human readable format,
+- The representation of data dictionary field values in a csv file. It's used to facilitate documentation of data dictionary csv 
+files in addition to input validation. 
+
+- :warning: The "csv" json schema is intended to be an intermediate specification used for documentation and in translation workflows to the json data dictionary. As fully specifying a tabular file (for example missing value specification) is out of scope here (see the table schema representation in (2))
+    
 
 ## Document flow chart
 
 ```mermaid
-
-    %%{init: {"flowchart": {"defaultRenderer": "elk","htmlLabels": false}} }%%
 
     flowchart TD
 
@@ -40,22 +41,21 @@ This metadata directory contains the specifications for variable level metadata 
 
         subgraph Schema specifications
 
-            jsonspec["schema/jsontemplate/data-dictionary.json"]
-            csvspec["schema/jsontemplate/csvtemplate/fields.json"]
-            csvtblspec["schema/frictionless/csvtemplate/fields.json"]
+            jsonspec["schema/data-dictionary.json"]
+            csvspec["schema/csvtemplate/fields.json"]
         end
 
-        subgraph "Rendered schema documentation \n(html also available)"
+        subgraph "Rendered schema documentation"
 
-            csvmd["/docs/\nmd-rendered-schemas/\njsonschema-csvtemplate-fields.md"]
-            jsonmd["/docs/\nmd-rendered-schemas/\njsonschema-jsontemplate-data-dictionary.md"]
+            csvmd["/docs/csvtemplate-fields.md"]
+            jsonmd["/docs/jsontemplate-data-dictionary.md"]
 
         end
 
     defs --> fields --> dd
     defs --> dd
 
-    fields --> csvspec --> csvtblspec
+    fields --> csvspec
     dd --> jsonspec
 
     csvspec --> csvmd
@@ -68,9 +68,8 @@ This metadata directory contains the specifications for variable level metadata 
 - `docs`: 
 See the rendered human readable schemas
 in a markdown format and an interactive html format.
-- `schemas/jsonschema`: contains the final and full specification for schemas following json schema.
-- `schemas/frictionless`: contains schemas following the frictionless table schema specifications. See [here](https://specs.frictionlessdata.io/table-schema/) for the specification. 
-- `schemas/dictionary`: the yaml files used to generate json schemas and documentation with build.py. 
+- `schemas/*.json`: contains the final and full specification for schemas following json schema. 
+- `schemas/dictionary/*.yaml`: the yaml files used to generate json schemas and documentation with build.py. 
 - `templates`: empty templates in csv spreadsheet format and JSON format. 
 - `examples`: exapmles of filled out templates in csv spreadsheet format and JSON format.
 - `build.py`: This script compiles the yaml files and generates associated  schemas in addition to the human rendered schema
@@ -104,8 +103,8 @@ Given csv field values can only be scalar values with records separated by a new
     - if type `object` in `items`: flattened to the children property or properties
     - if type is a scalar (`string`,`integer`,`number`) in `items`,
      translated to type `string` with pattern `^(?:[^|]+\||[^|]*)(?:[^|]*\|)*[^|]*$` to indicate a string containing a pipe delimiter (i.e., a stringified array with a pipe delimiter)
-### `property` name conversion rules 
-To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the [jsonpath](https://datatracker.ietf.org/doc/id/draft-goessner-dispatch-jsonpath-00.html) representation where:
+### `property` name conversion rules (ie Representing nested arrays and objects in csv documents)
+To facilitate the mapping of json spec property names to csv property names,  the resulting flattened `property` names from the flattened properties should correspond to the [jsonpath](https://datatracker.ietf.org/doc/id/draft-goessner-dispatch-jsonpath-00.html) representation as a `patternProperty`:
 
 1. type `object`
 
@@ -152,13 +151,15 @@ To facilitate the mapping of json spec property names to csv property names,  th
     }}}
 
     ```
-    translates to the csv stringified type array property:
+    translates to the csv stringified type array `patternProperty`:
     
     ```json
         { "..more props..":"...",
-        "standardsMappings[0].instrument.url": {
-                "type": "string",
-                "format": "uri"
+        "patternProperties":{
+            "^standardsMappings[\\d+].instrument.url$": {
+                    "type": "string",
+                    "format": "uri"
+                }
             }
         }
     ```
@@ -167,7 +168,7 @@ To facilitate the mapping of json spec property names to csv property names,  th
 
 1. Currently, no complex types (`anyOf`,`oneOf`) are supported and the `type` MUST be specified. This is to ensure coverage for all csv to json translation use cases.
     - Each json specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`), an `array`, or an `object`
-    - Each csv specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`)
+    - Each csv specification schema property type must be a scalar (e.g., `boolean`,`string`,`integer`,`number`) but see note on stringified arrays and objects.
 
 ### csv to json and json to csv translations
 
@@ -206,6 +207,7 @@ a core HEAL property. To allow these properties to be included, we list these pr
  2. It also provides a clear distinction between "core" properties and "extra" properties.
 
  One consideration, however, is that `propertyNames` was introduced in json schema draft-6.
+
 
 ## Considerations
 

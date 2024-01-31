@@ -1,18 +1,16 @@
 import jsonschema
-import frictionless
-import petl as etl
 from pathlib import Path
 import os
 import json
+import pandas as pd
 
 VLMD_PATH = "variable-level-metadata-schema"
-CSV_FRICTIONLESS_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/frictionless/csvtemplate/fields.json"
-JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/jsonschema/data-dictionary.json"
+CSV_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/csvtemplate/fields.json"
+JSON_SCHEMA_PATH = Path(VLMD_PATH)/"schemas/data-dictionary.json"
 VLMD_EXAMPLE_PATH = Path(VLMD_PATH)/"examples"
 
-json_schema_object = json.loads(JSON_SCHEMA_PATH.read_text())
-csv_frictionless_schema_object = frictionless.Schema.from_descriptor(CSV_FRICTIONLESS_SCHEMA_PATH)
-
+json_schema = json.loads(JSON_SCHEMA_PATH.read_text())
+csv_schema = {"type":"array","items":json.loads(CSV_SCHEMA_PATH.read_text())}
 
 def validate_against_jsonschema(json_object,schema):
     print(os.listdir())
@@ -34,33 +32,34 @@ def validate_against_jsonschema(json_object,schema):
 
     return {"valid":is_valid,"errors":report}
 
-# frictionless schemas --> if csv file
-# json schemas --> if json file
+def to_summary(filepath:Path):
+    print("Testing:")
+    print(str(filepath))
+    if filepath.suffix == ".json":
+        instance = json.loads(filepath.read_text())
+        schema = json_schema
+    elif filepath.suffix == ".csv":
+        instance_w_missing = pd.read_csv(filepath).convert_dtypes().to_dict(orient="records")
+        instance = [
+            {colname:value for colname,value in row.items() if pd.notna(value)}
+             for row in instance_w_missing
+        ]
+        schema = csv_schema
+    report = validate_against_jsonschema(instance, schema=schema)
+    return report
 
 def test_valid_csv_data_dictionaries():
     csvs = Path(VLMD_EXAMPLE_PATH).glob("valid/*.csv")
     csvreports = []
     for filepath in csvs:
-        print("Testing:")
-        print(str(filepath))
-        detector = frictionless.Detector(schema_sync=True)
-        resource = frictionless.Resource(path=str(filepath),
-            schema=csv_frictionless_schema_object,
-            detector=detector)
-        report = resource.validate()
-
-        assert report.valid,f"# this example is invalid but is intended to be valid:\n\n {report.to_summary()}"
+        report = to_summary(filepath)
+        assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {json.dumps(report['errors'],indent=2)}"
 
 def test_valid_json_data_dictionaries():
     jsons = Path(VLMD_EXAMPLE_PATH).glob("valid/*.json")
     jsonreports = []
     for filepath in jsons:
-        print("Testing:")
-        print(str(filepath))
-        json_object = json.loads(filepath.read_text())
-        report = validate_against_jsonschema(json_object, schema=json_schema_object)
-        # report to etl to pretty print
-        report_summary = str(etl.fromdicts(report["errors"]))
+        report = to_summary(filepath)
         assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {str(filepath)}\n\n{report_summary}"
 
 
@@ -68,19 +67,13 @@ def test_invalid_csv_data_dictionaries():
     csvs = Path(VLMD_EXAMPLE_PATH).glob("invalid/*.csv")
     csvreports = []
     for filepath in csvs:
-        resource = frictionless.Resource(path=str(filepath),schema=csv_frictionless_schema_object)
-        report = resource.validate()
-        print("Testing:")
-        print(str(filepath))
-        assert not report.valid,f"{str(filepath)} should be an example of an INVALID csv file but is valid." 
+        report = to_summary(filepath)
+        assert not report["valid"],f"{str(filepath)} should be an example of an INVALID csv file but is valid." 
 
 def test_invalid_json_data_dictionaries():
     jsons = Path(VLMD_EXAMPLE_PATH).glob("invalid/*.json")
     jsonreports = []
     for filepath in jsons:
-        json_object = json.loads(filepath.read_text())
-        report = validate_against_jsonschema(json_object, schema=json_schema_object)
-        print("Testing:")
-        print(str(filepath))
+        report = to_summary(filepath)
         assert not report["valid"],f"{str(filepath)} should be an example of an INVALID json file but is valid." 
  

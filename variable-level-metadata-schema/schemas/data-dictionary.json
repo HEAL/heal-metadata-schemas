@@ -1,5 +1,5 @@
 {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "vlmd",
     "title": "Variable Level Metadata (Data Dictionaries)",
