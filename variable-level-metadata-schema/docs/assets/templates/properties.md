@@ -87,4 +87,4 @@ Examples:
 {# THIS STARTS THE ACTUAL SCRIPT AND CALLS THE MACRO #}
 {# #}
 
-{{ render_property(itemname,item,schema) }}
+- {{ render_property(itemname,item,schema) | indent  }}
