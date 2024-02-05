@@ -344,8 +344,6 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
      The url that links out to the published, related concept. 
     The listed examples could both be attached to any variable related to, for example, heroin use.
 
-    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
     Examples:
 
 
@@ -362,8 +360,6 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 - **`relatedConcepts[0].title`** _(string)_
      A human-readable title (ie label) to a concept related to the given field.
     The listed examples could both be attached to any variable related to, for example, heroin use.
-
-    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
     Examples:
 
@@ -382,8 +378,6 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
      The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
     The listed examples could both be attached to any variable related to, for example, heroin use.
 
-    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
     Examples:
 
 
@@ -400,8 +394,6 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 - **`relatedConcepts[0].id`** _(string)_
      The id locating the individual concept within the source of the given field.
     The listed examples could both be attached to any variable related to, for example, heroin use.
-
-    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
     Examples:
 

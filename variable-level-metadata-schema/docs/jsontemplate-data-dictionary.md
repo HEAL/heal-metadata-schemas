@@ -52,419 +52,419 @@ Additional properties not included as a core property.
 ### Properties for each `fields` record
 
 
-**`schemaVersion`** _(string)_
- The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+- **`schemaVersion`** _(string)_
+     The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
 
-NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
-Rather, it is the
-version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
-version.
+    NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+    Rather, it is the
+    version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+    version.
 
-If generating a vlmd document as a csv file, include this version in 
-every row/record to indicate this is a schema level property 
-(not applicable for the json version as this property is already at the schema/root level)
+    If generating a vlmd document as a csv file, include this version in 
+    every row/record to indicate this is a schema level property 
+    (not applicable for the json version as this property is already at the schema/root level)
 
-Examples:
-
-
-```
-  1.0.0
-
-```
-
-```
-  0.2.0
-
-```
-
-------
+    Examples:
 
 
+    ```
+      1.0.0
 
-**`section`** _(string)_
- The section, form, survey instrument, set of measures  or other broad category used 
-to group variables. Previously called "module."
+    ```
 
-Examples:
+    ```
+      0.2.0
 
-
-```
-  Demographics
-
-```
-
-```
-  PROMIS
-
-```
-
-```
-  Medical History
-
-```
+    ```
 
 ------
 
 
 
-**`name`** _(string,required)_
- The name of a variable (i.e., field) as it appears in the data. 
+- **`section`** _(string)_
+     The section, form, survey instrument, set of measures  or other broad category used 
+    to group variables. Previously called "module."
 
-Examples:
-
-
-```
-  gender_id
-
-```
-
-------
+    Examples:
 
 
+    ```
+      Demographics
 
-**`title`** _(string)_
- The human-readable title or label of the variable.
+    ```
 
-Examples:
+    ```
+      PROMIS
 
+    ```
 
-```
-  Gender identity
+    ```
+      Medical History
 
-```
+    ```
 
 ------
 
 
 
-**`description`** _(string,required)_
- An extended description of the variable. This could be the definition of a variable or the 
-question text (e.g., if a survey). 
+- **`name`** _(string,required)_
+     The name of a variable (i.e., field) as it appears in the data. 
 
-Examples:
+    Examples:
 
 
-```
-  The participant's age at the time of study enrollment
+    ```
+      gender_id
 
-```
-
-```
-  What is the highest grade or level of school you have completed or the highest degree you have received?
-
-```
+    ```
 
 ------
 
 
 
-**`type`** _(string)_
- A classification or category of a particular data element or property expected or allowed in the dataset.
+- **`title`** _(string)_
+     The human-readable title or label of the variable.
 
-Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
-
-------
+    Examples:
 
 
+    ```
+      Gender identity
 
-**`format`** _(string)_
- Indicates the format of the type specified in the `type` property. 
-Each format is dependent on the `type` specified. 
-See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
-for more information about appropriate `format` values by variable `type`.
-
+    ```
 
 ------
 
 
 
-**`constraints`** _(object)_
- 
+- **`description`** _(string,required)_
+     An extended description of the variable. This could be the definition of a variable or the 
+    question text (e.g., if a survey). 
+
+    Examples:
 
 
-- **`required`** _(boolean)_
-     If this variable is marked as true, then this variable's value must be present
-    (ie not missing; see missingValues). If marked as false or not present, then the 
-    variable CAN be missing.
+    ```
+      The participant's age at the time of study enrollment
+
+    ```
+
+    ```
+      What is the highest grade or level of school you have completed or the highest degree you have received?
+
+    ```
+
+------
 
 
 
-- **`maxLength`** _(integer)_
-     Indicates the maximum length of an iterable (e.g., array, string, or
-    object). For example, if 'Hello World' is the longest value of a
-    categorical variable, this would be a maxLength of 11.
+- **`type`** _(string)_
+     A classification or category of a particular data element or property expected or allowed in the dataset.
+
+    Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
+
+------
 
 
 
-- **`enum`** _(array)_
-     Constrains possible values to a set of values.
+- **`format`** _(string)_
+     Indicates the format of the type specified in the `type` property. 
+    Each format is dependent on the `type` specified. 
+    See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
+    for more information about appropriate `format` values by variable `type`.
+
+
+------
+
+
+
+- **`constraints`** _(object)_
+     
+
+
+    - **`required`** _(boolean)_
+         If this variable is marked as true, then this variable's value must be present
+        (ie not missing; see missingValues). If marked as false or not present, then the 
+        variable CAN be missing.
+
+
+
+    - **`maxLength`** _(integer)_
+         Indicates the maximum length of an iterable (e.g., array, string, or
+        object). For example, if 'Hello World' is the longest value of a
+        categorical variable, this would be a maxLength of 11.
+
+
+
+    - **`enum`** _(array)_
+         Constrains possible values to a set of values.
+
+        Examples:
+
+
+        ```json
+
+          [1, 2, 3, 4, 5]
+
+        ```
+
+        ```json
+
+          ['Poor', 'Fair', 'Good', 'Very good', 'Excellent']
+
+        ```
+
+
+    - **`pattern`** _(string)_
+         A regular expression pattern the data MUST conform to.
+
+
+
+    - **`maximum`** _(integer)_
+         Specifies the maximum value of a field (e.g., maximum -- or most
+        recent -- date, maximum integer etc). Note, this is different then
+        maxLength property.
+
+
+
+    - **`minimum`** _(integer)_
+         Specifies the minimum value of a field.
+
+
+
+------
+
+
+
+- **`enumLabels`** _(object)_
+     Variable value encodings provide a way to further annotate any value within a any variable type,
+    making values easier to understand. 
+
+
+    Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
+    only support numerical values. Encodings (and mappings) allow categorical values to be stored as
+    numerical values.
+
+    Additionally, as another use case, this field provides a way to
+    store categoricals that are stored as  "short" labels (such as
+    abbreviations).
+
+    This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
     Examples:
 
 
     ```json
 
-      [1, 2, 3, 4, 5]
+      {'1': 'Poor', '2': 'Fair', '3': 'Good', '4': 'Very good', '5': 'Excellent'}
 
     ```
 
     ```json
 
-      ['Poor', 'Fair', 'Good', 'Very good', 'Excellent']
+      {'HW': 'Hello world', 'GBW': 'Good bye world', 'HM': 'Hi, Mike'}
 
     ```
 
-
-- **`pattern`** _(string)_
-     A regular expression pattern the data MUST conform to.
+------
 
 
 
-- **`maximum`** _(integer)_
-     Specifies the maximum value of a field (e.g., maximum -- or most
-    recent -- date, maximum integer etc). Note, this is different then
-    maxLength property.
+- **`enumOrdered`** _(boolean)_
+     Indicates whether a categorical variable is ordered. This variable  is
+    relevant for variables that have an ordered relationship but not
+    necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
+    < Neutral < Agree).
 
-
-
-- **`minimum`** _(integer)_
-     Specifies the minimum value of a field.
-
+    This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
 
 ------
 
 
 
-**`enumLabels`** _(object)_
- Variable value encodings provide a way to further annotate any value within a any variable type,
-making values easier to understand. 
+- **`missingValues`** _(array)_
+     A list of missing values specific to a variable.
+
+    Examples:
 
 
-Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
-only support numerical values. Encodings (and mappings) allow categorical values to be stored as
-numerical values.
+    ```json
 
-Additionally, as another use case, this field provides a way to
-store categoricals that are stored as  "short" labels (such as
-abbreviations).
+      ['Missing', 'Skipped', 'No preference']
 
-This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
+    ```
 
-Examples:
+    ```json
 
+      ['Missing']
 
-```json
-
-  {'1': 'Poor', '2': 'Fair', '3': 'Good', '4': 'Very good', '5': 'Excellent'}
-
-```
-
-```json
-
-  {'HW': 'Hello world', 'GBW': 'Good bye world', 'HM': 'Hi, Mike'}
-
-```
+    ```
 
 ------
 
 
 
-**`enumOrdered`** _(boolean)_
- Indicates whether a categorical variable is ordered. This variable  is
-relevant for variables that have an ordered relationship but not
-necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
-< Neutral < Agree).
+- **`trueValues`** _(array)_
+     For boolean (true) variable (as defined in type field), this field allows
+    a physical string representation to be cast as true (increasing
+    readability of the field). It can include one or more values.
 
-This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
-
-
-------
+    Examples:
 
 
+    ```json
 
-**`missingValues`** _(array)_
- A list of missing values specific to a variable.
+      ['required', 'Yes', 'Checked']
 
-Examples:
+    ```
 
+    ```json
 
-```json
+      ['required']
 
-  ['Missing', 'Skipped', 'No preference']
-
-```
-
-```json
-
-  ['Missing']
-
-```
+    ```
 
 ------
 
 
 
-**`trueValues`** _(array)_
- For boolean (true) variable (as defined in type field), this field allows
-a physical string representation to be cast as true (increasing
-readability of the field). It can include one or more values.
+- **`falseValues`** _(array)_
+     For boolean (false) variable (as defined in type field), this field allows
+    a physical string representation to be cast as false (increasing
+    readability of the field) that is not a standard false value. It can include one or more values.
 
-Examples:
-
-
-```json
-
-  ['required', 'Yes', 'Checked']
-
-```
-
-```json
-
-  ['required']
-
-```
-
-------
+    Examples:
 
 
+    ```json
 
-**`falseValues`** _(array)_
- For boolean (false) variable (as defined in type field), this field allows
-a physical string representation to be cast as false (increasing
-readability of the field) that is not a standard false value. It can include one or more values.
+      ['Not required', 'NOT REQUIRED']
 
-Examples:
+    ```
 
+    ```json
 
-```json
+      ['No']
 
-  ['Not required', 'NOT REQUIRED']
-
-```
-
-```json
-
-  ['No']
-
-```
+    ```
 
 ------
 
 
 
-**`custom`** _(object)_
- Additional properties not included a core property. 
+- **`custom`** _(object)_
+     Additional properties not included a core property. 
 
 
 ------
 
 
 
-**`standardsMappings`** _(array)_
- 
-A set of instrument and item references to standardized data elements designed to document
-the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
-and other standardized/common element sources to facilitate cross-study comparison and interoperability
-of data. One can either map an individual data element or an instrument in which the field is 
-a part of.
+- **`standardsMappings`** _(array)_
+     
+    A set of instrument and item references to standardized data elements designed to document
+    the [HEAL common data elements program](https://heal.nih.gov/data/common-data-elements)
+    and other standardized/common element sources to facilitate cross-study comparison and interoperability
+    of data. One can either map an individual data element or an instrument in which the field is 
+    a part of.
 
-__**All Fields Mapped (Both Instrument and Item)**__
+    __**All Fields Mapped (Both Instrument and Item)**__
 
-```json
-"standardsMappings": [
-    {
-        "instrument": {
-            "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
-            "source": "heal-cde",
-            "title": "adult-demographics",
-            "id": "5141"
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "url": "https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx",
+                "source": "heal-cde",
+                "title": "adult-demographics",
+                "id": "5141"
+            },
+            "item": {
+                "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
+                "source": "CDISC",
+                "id": "C74457"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument Title of Form CDE File Mapped**__
+
+    In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "Adult demographics"
+            }
+        }
+    ]
+    ```
+
+    __**Only Instrument ID of HEAL CDE Mapped**__
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "id": "5141"
+            }
+        }
+    ]
+    ```
+
+    __**Other Non-HEAL CDE Use Cases**__
+
+    Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
+
+    ```json
+    "standardsMappings": [
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
+        }
+    ]
+    ```
+
+    __**Multiple CDE Mappings**__
+
+    Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
+
+    ```json
+    "standardsMappings": [
+        {
+            "instrument": {
+                "source": "heal-cde",
+                "title": "Adult demographics"
+            },
+            "item": {
+                "source": "CDISC",
+                "id": "C74457"
+            },
         },
-        "item": {
-            "url": "https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE",
-            "source": "CDISC",
-            "id": "C74457"
+        {
+            "item": {
+                "source": "NLM",
+                "id": "Fakc6Jy2x"
+            }
         }
-    }
-]
-```
-
-__**Only Instrument Title of Form CDE File Mapped**__
-
-In this scenario, especially as CDE variables do not have associated CDISC ids listed, only instrument information is given.
-
-```json
-"standardsMappings": [
-    {
-        "instrument": {
-            "source": "heal-cde",
-            "title": "Adult demographics"
-        }
-    }
-]
-```
-
-__**Only Instrument ID of HEAL CDE Mapped**__
-
-```json
-"standardsMappings": [
-    {
-        "instrument": {
-            "source": "heal-cde",
-            "id": "5141"
-        }
-    }
-]
-```
-
-__**Other Non-HEAL CDE Use Cases**__
-
-Only item matched (for example if found in the NIH (not HEAL) CDE repository). Folks would enter the information in the "Identifier" section. Similar to the above, they could also just enter the "url".
-
-```json
-"standardsMappings": [
-    {
-        "item": {
-            "source": "NLM",
-            "id": "Fakc6Jy2x"
-        }
-    }
-]
-```
-
-__**Multiple CDE Mappings**__
-
-Two separate records. If desired, multiple standard mappings can be entered, say from the NIH HEAL CDE repo and the NIH CDE lookup (NLM) by way of two separate records in the list.
-
-```json
-"standardsMappings": [
-    {
-        "instrument": {
-            "source": "heal-cde",
-            "title": "Adult demographics"
-        },
-        "item": {
-            "source": "CDISC",
-            "id": "C74457"
-        },
-    },
-    {
-        "item": {
-            "source": "NLM",
-            "id": "Fakc6Jy2x"
-        }
-    }
-]
-```
+    ]
+    ```
 
 
 ------
 
 
 
-**`relatedConcepts`** _(array)_
- __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
-ontological information (eg., NCI thesaurus, bioportal etc)
+- **`relatedConcepts`** _(array)_
+     __**[Under development]**__ Mappings to a published set of concepts related to the given field such as 
+    ontological information (eg., NCI thesaurus, bioportal etc)
 
 
 ------

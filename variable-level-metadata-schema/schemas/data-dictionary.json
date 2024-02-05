@@ -376,7 +376,7 @@
                             "properties": {
                                 "url": {
                                     "title": "Related Concepts - Url",
-                                    "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
                                     "type": "string",
                                     "format": "uri",
                                     "examples": [
@@ -386,7 +386,7 @@
                                 },
                                 "title": {
                                     "title": "Related concepts - Type",
-                                    "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
                                     "type": "string",
                                     "examples": [
                                         "Heroin Molecular Structure",
@@ -395,7 +395,7 @@
                                 },
                                 "source": {
                                     "title": "Related Concepts - Source",
-                                    "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
                                     "type": "string",
                                     "examples": [
                                         "CHEBI",
@@ -405,7 +405,7 @@
                                 "id": {
                                     "title": "Related Concepts - Id",
                                     "type": "string",
-                                    "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n",
+                                    "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
                                     "examples": [
                                         "27808",
                                         "3304"

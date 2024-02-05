@@ -167,7 +167,7 @@
     "patternProperties": {
         "^standardsMappings\\[\\d+\\].instrument.url$": {
             "title": "Url",
-            "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].instrument.url`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].instrument.url`\t`standardsMappings[1].instrument.url`\t`standardsMappings[2].instrument.url`\n\n",
+            "description": "A url (e.g., link, address) to a file or other resource containing the instrument, or\na set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
             "type": "string",
             "format": "uri",
             "examples": [
@@ -177,7 +177,7 @@
         "^standardsMappings\\[\\d+\\].instrument.source$": {
             "type": "string",
             "title": "Source",
-            "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].instrument.source`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].instrument.source`\t`standardsMappings[1].instrument.source`\t`standardsMappings[2].instrument.source`\n\n",
+            "description": "An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)\ncontaining the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) \nor the individual variable (if at the field level). \n",
             "enum": [
                 "heal-cde"
             ]
@@ -189,19 +189,19 @@
                 "Adult demographics",
                 "adult-demographics"
             ],
-            "description": "\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].instrument.title`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].instrument.title`\t`standardsMappings[1].instrument.title`\t`standardsMappings[2].instrument.title`\n\n"
+            "description": ""
         },
         "^standardsMappings\\[\\d+\\].instrument.id$": {
             "type": "string",
             "title": "Identifier",
-            "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].instrument.id`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].instrument.id`\t`standardsMappings[1].instrument.id`\t`standardsMappings[2].instrument.id`\n\n",
+            "description": "A code or other string that identifies the instrument within the source.\nThis should always be from the source's formal, standardized identification system \n",
             "examples": [
                 "5141"
             ]
         },
         "^standardsMappings\\[\\d+\\].item.url$": {
             "title": "Standards mappings - Url",
-            "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].item.url`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].item.url`\t`standardsMappings[1].item.url`\t`standardsMappings[2].item.url`\n\n",
+            "description": "The url that links out to the published, standardized mapping of a variable (e.g., common data element)\n",
             "type": "string",
             "format": "uri",
             "examples": [
@@ -210,7 +210,7 @@
         },
         "^standardsMappings\\[\\d+\\].item.source$": {
             "title": "Standards mappings - Source",
-            "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].item.source`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].item.source`\t`standardsMappings[1].item.source`\t`standardsMappings[2].item.source`\n\n",
+            "description": "The source of the standardized variable. Note, this property is required if \nan id is specified.\n",
             "examples": [
                 "CDISC"
             ],
@@ -219,14 +219,14 @@
         "^standardsMappings\\[\\d+\\].item.id$": {
             "title": "Standards Mappings - Id",
             "type": "string",
-            "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`standardsMappings[0].item.id`\n\nFor 3 values, you will have the field (column) names:\n`standardsMappings[0].item.id`\t`standardsMappings[1].item.id`\t`standardsMappings[2].item.id`\n\n",
+            "description": "The id locating the individual mapping within the given source. \nNote, the `standardsMappings[0].source` property is required if \nthis property is specified.\n",
             "examples": [
                 "C74457"
             ]
         },
         "^relatedConcepts\\[\\d+\\].url$": {
             "title": "Related Concepts - Url",
-            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`relatedConcepts[0].url`\n\nFor 3 values, you will have the field (column) names:\n`relatedConcepts[0].url`\t`relatedConcepts[1].url`\t`relatedConcepts[2].url`\n\n",
+            "description": "The url that links out to the published, related concept. \nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
             "type": "string",
             "format": "uri",
             "examples": [
@@ -236,7 +236,7 @@
         },
         "^relatedConcepts\\[\\d+\\].title$": {
             "title": "Related concepts - Type",
-            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`relatedConcepts[0].title`\n\nFor 3 values, you will have the field (column) names:\n`relatedConcepts[0].title`\t`relatedConcepts[1].title`\t`relatedConcepts[2].title`\n\n",
+            "description": "A human-readable title (ie label) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
             "type": "string",
             "examples": [
                 "Heroin Molecular Structure",
@@ -245,7 +245,7 @@
         },
         "^relatedConcepts\\[\\d+\\].source$": {
             "title": "Related Concepts - Source",
-            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`relatedConcepts[0].source`\n\nFor 3 values, you will have the field (column) names:\n`relatedConcepts[0].source`\t`relatedConcepts[1].source`\t`relatedConcepts[2].source`\n\n",
+            "description": "The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
             "type": "string",
             "examples": [
                 "CHEBI",
@@ -255,7 +255,7 @@
         "^relatedConcepts\\[\\d+\\].id$": {
             "title": "Related Concepts - Id",
             "type": "string",
-            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n\n> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_\n\n\nSpecifying field names:\n\nThis field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\nFor 1 value, you will have the field (column) names:\n`relatedConcepts[0].id`\n\nFor 3 values, you will have the field (column) names:\n`relatedConcepts[0].id`\t`relatedConcepts[1].id`\t`relatedConcepts[2].id`\n\n",
+            "description": "The id locating the individual concept within the source of the given field.\nThe listed examples could both be attached to any variable related to, for example, heroin use.\n",
             "examples": [
                 "27808",
                 "3304"
