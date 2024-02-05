@@ -33,9 +33,10 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 
 ## `standardsMappings` and `relatedConcepts` 
 
-Add more than one value by adding another column with an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+If you want to add more than one value,adding anoth column with a name containing an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
 
 Examples:
+
 -  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
     | -- | -- | 
     | My first instrument | My second instrument |
