@@ -23,609 +23,398 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 ## Properties (i.e., fields or variables)
 
 
-**`schemaVersion`** _(string)_
- The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
+- **`schemaVersion`** _(string)_
+     The version of the schema used in agreed upon convention of major.minor.path (e.g., 1.0.2) 
 
-NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
-Rather, it is the
-version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
-version.
+    NOTE: This is NOT for versioning of each indiviual data dictionary instance. 
+    Rather, it is the
+    version of THIS schema document. See `version` property (below) if specifying the individual data dictionary instance
+    version.
 
-If generating a vlmd document as a csv file, include this version in 
-every row/record to indicate this is a schema level property 
-(not applicable for the json version as this property is already at the schema/root level)
+    If generating a vlmd document as a csv file, include this version in 
+    every row/record to indicate this is a schema level property 
+    (not applicable for the json version as this property is already at the schema/root level)
 
-Examples:
+    Examples:
 
 
-```
-  1.0.0
+    ```
+      1.0.0
 
-```
+    ```
 
-```
-  0.2.0
+    ```
+      0.2.0
 
-```
+    ```
 
-------
+- **`section`** _(string)_
+     The section, form, survey instrument, set of measures  or other broad category used 
+    to group variables. Previously called "module."
 
+    Examples:
 
-**`section`** _(string)_
- The section, form, survey instrument, set of measures  or other broad category used 
-to group variables. Previously called "module."
 
-Examples:
+    ```
+      Demographics
 
+    ```
 
-```
-  Demographics
+    ```
+      PROMIS
 
-```
+    ```
 
-```
-  PROMIS
+    ```
+      Medical History
 
-```
+    ```
 
-```
-  Medical History
+- **`name`** _(string,required)_
+     The name of a variable (i.e., field) as it appears in the data. 
 
-```
+    Examples:
 
-------
 
+    ```
+      gender_id
 
-**`name`** _(string,required)_
- The name of a variable (i.e., field) as it appears in the data. 
+    ```
 
-Examples:
+- **`title`** _(string)_
+     The human-readable title or label of the variable.
 
+    Examples:
 
-```
-  gender_id
 
-```
+    ```
+      Gender identity
 
-------
+    ```
 
+- **`description`** _(string,required)_
+     An extended description of the variable. This could be the definition of a variable or the 
+    question text (e.g., if a survey). 
 
-**`title`** _(string)_
- The human-readable title or label of the variable.
+    Examples:
 
-Examples:
 
+    ```
+      The participant's age at the time of study enrollment
 
-```
-  Gender identity
+    ```
 
-```
+    ```
+      What is the highest grade or level of school you have completed or the highest degree you have received?
 
-------
+    ```
 
+- **`type`** _(string)_
+     A classification or category of a particular data element or property expected or allowed in the dataset.
 
-**`description`** _(string,required)_
- An extended description of the variable. This could be the definition of a variable or the 
-question text (e.g., if a survey). 
+    Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
 
-Examples:
+- **`format`** _(string)_
+     Indicates the format of the type specified in the `type` property. 
+    Each format is dependent on the `type` specified. 
+    See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
+    for more information about appropriate `format` values by variable `type`.
 
 
-```
-  The participant's age at the time of study enrollment
+- **`constraints.required`** _(boolean)_
+     If this variable is marked as true, then this variable's value must be present
+    (ie not missing; see missingValues). If marked as false or not present, then the 
+    variable CAN be missing.
 
-```
 
-```
-  What is the highest grade or level of school you have completed or the highest degree you have received?
+- **`constraints.maxLength`** _(integer)_
+     Indicates the maximum length of an iterable (e.g., array, string, or
+    object). For example, if 'Hello World' is the longest value of a
+    categorical variable, this would be a maxLength of 11.
 
-```
 
-------
+- **`constraints.enum`** _(string)_
+     Constrains possible values to a set of values.
 
+    Examples:
 
-**`type`** _(string)_
- A classification or category of a particular data element or property expected or allowed in the dataset.
 
-Must be one of: `number`, `integer`, `string`, `any`, `boolean`, `date`, `datetime`, `time`, `year`, `yearmonth`, `duration`, `geopoint`
+    ```
+      1|2|3|4|5
 
-------
+    ```
 
+    ```
+      Poor|Fair|Good|Very good|Excellent
 
-**`format`** _(string)_
- Indicates the format of the type specified in the `type` property. 
-Each format is dependent on the `type` specified. 
-See [here](https://specs.frictionlessdata.io/table-schema/#types-and-formats) 
-for more information about appropriate `format` values by variable `type`.
+    ```
 
+- **`constraints.pattern`** _(string)_
+     A regular expression pattern the data MUST conform to.
 
-------
 
+- **`constraints.maximum`** _(integer)_
+     Specifies the maximum value of a field (e.g., maximum -- or most
+    recent -- date, maximum integer etc). Note, this is different then
+    maxLength property.
 
-**`constraints.required`** _(boolean)_
- If this variable is marked as true, then this variable's value must be present
-(ie not missing; see missingValues). If marked as false or not present, then the 
-variable CAN be missing.
 
+- **`constraints.minimum`** _(integer)_
+     Specifies the minimum value of a field.
 
-------
 
+- **`enumLabels`** _(string)_
+     Variable value encodings provide a way to further annotate any value within a any variable type,
+    making values easier to understand. 
 
-**`constraints.maxLength`** _(integer)_
- Indicates the maximum length of an iterable (e.g., array, string, or
-object). For example, if 'Hello World' is the longest value of a
-categorical variable, this would be a maxLength of 11.
 
+    Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
+    only support numerical values. Encodings (and mappings) allow categorical values to be stored as
+    numerical values.
 
-------
+    Additionally, as another use case, this field provides a way to
+    store categoricals that are stored as  "short" labels (such as
+    abbreviations).
 
+    This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
-**`constraints.enum`** _(string)_
- Constrains possible values to a set of values.
+    Examples:
 
-Examples:
 
+    ```
+      1=Poor|2=Fair|3=Good|4=Very good|5=Excellent
 
-```
-  1|2|3|4|5
+    ```
 
-```
+    ```
+      HW=Hello world|GBW=Good bye world|HM=Hi, Mike
 
-```
-  Poor|Fair|Good|Very good|Excellent
+    ```
 
-```
+- **`enumOrdered`** _(boolean)_
+     Indicates whether a categorical variable is ordered. This variable  is
+    relevant for variables that have an ordered relationship but not
+    necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
+    < Neutral < Agree).
 
-------
+    This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
 
-**`constraints.pattern`** _(string)_
- A regular expression pattern the data MUST conform to.
+- **`missingValues`** _(string)_
+     A list of missing values specific to a variable.
 
+    Examples:
 
-------
 
+    ```
+      Missing|Skipped|No preference
 
-**`constraints.maximum`** _(integer)_
- Specifies the maximum value of a field (e.g., maximum -- or most
-recent -- date, maximum integer etc). Note, this is different then
-maxLength property.
+    ```
 
+    ```
+      Missing
 
-------
+    ```
 
+- **`trueValues`** _(string)_
+     For boolean (true) variable (as defined in type field), this field allows
+    a physical string representation to be cast as true (increasing
+    readability of the field). It can include one or more values.
 
-**`constraints.minimum`** _(integer)_
- Specifies the minimum value of a field.
+    Examples:
 
 
-------
+    ```
+      required|Yes|Checked
 
+    ```
 
-**`enumLabels`** _(string)_
- Variable value encodings provide a way to further annotate any value within a any variable type,
-making values easier to understand. 
+    ```
+      required
 
+    ```
 
-Many analytic software programs (e.g., SPSS,Stata, and SAS) use numerical encodings and some algorithms
-only support numerical values. Encodings (and mappings) allow categorical values to be stored as
-numerical values.
+- **`falseValues`** _(string)_
+     For boolean (false) variable (as defined in type field), this field allows
+    a physical string representation to be cast as false (increasing
+    readability of the field) that is not a standard false value. It can include one or more values.
 
-Additionally, as another use case, this field provides a way to
-store categoricals that are stored as  "short" labels (such as
-abbreviations).
+    Examples:
 
-This field is intended to follow [this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
-Examples:
+    ```
+      Not required|NOT REQUIRED
 
+    ```
 
-```
-  1=Poor|2=Fair|3=Good|4=Very good|5=Excellent
+    ```
+      No
 
-```
+    ```
 
-```
-  HW=Hello world|GBW=Good bye world|HM=Hi, Mike
+- **`custom`** _(string)_
+     Additional properties not included a core property. 
 
-```
 
-------
 
+- **`standardsMappings[0].instrument.url`** _(string)_
+     A url (e.g., link, address) to a file or other resource containing the instrument, or
+    a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+    or the individual variable (if at the field level). 
 
-**`enumOrdered`** _(boolean)_
- Indicates whether a categorical variable is ordered. This variable  is
-relevant for variables that have an ordered relationship but not
-necessarily  a numerical relationship (e.g., Strongly disagree < Disagree
-< Neutral < Agree).
+    Examples:
 
-This field is intended to follow the ordering aspect of this [this pattern][this pattern](https://specs.frictionlessdata.io/patterns/#table-schema-enum-labels-and-ordering)
 
+    ```
+      https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx
 
-------
+    ```
 
+- **`standardsMappings[0].instrument.source`** _(string)_
+     An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
+    containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
+    or the individual variable (if at the field level). 
 
-**`missingValues`** _(string)_
- A list of missing values specific to a variable.
+    Must be one of: `heal-cde`
 
-Examples:
+- **`standardsMappings[0].instrument.title`** _(string)_
+     
+    Examples:
 
 
-```
-  Missing|Skipped|No preference
+    ```
+      Adult demographics
 
-```
+    ```
 
-```
-  Missing
+    ```
+      adult-demographics
 
-```
+    ```
 
-------
+- **`standardsMappings[0].instrument.id`** _(string)_
+     A code or other string that identifies the instrument within the source.
+    This should always be from the source's formal, standardized identification system 
 
+    Examples:
 
-**`trueValues`** _(string)_
- For boolean (true) variable (as defined in type field), this field allows
-a physical string representation to be cast as true (increasing
-readability of the field). It can include one or more values.
 
-Examples:
+    ```
+      5141
 
+    ```
 
-```
-  required|Yes|Checked
+- **`standardsMappings[0].item.url`** _(string)_
+     The url that links out to the published, standardized mapping of a variable (e.g., common data element)
 
-```
+    Examples:
 
-```
-  required
 
-```
+    ```
+      https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE
 
-------
+    ```
 
+- **`standardsMappings[0].item.source`** _(string)_
+     The source of the standardized variable. Note, this property is required if 
+    an id is specified.
 
-**`falseValues`** _(string)_
- For boolean (false) variable (as defined in type field), this field allows
-a physical string representation to be cast as false (increasing
-readability of the field) that is not a standard false value. It can include one or more values.
+    Examples:
 
-Examples:
 
+    ```
+      CDISC
 
-```
-  Not required|NOT REQUIRED
+    ```
 
-```
+- **`standardsMappings[0].item.id`** _(string)_
+     The id locating the individual mapping within the given source. 
+    Note, the `standardsMappings[0].source` property is required if 
+    this property is specified.
 
-```
-  No
+    Examples:
 
-```
 
-------
+    ```
+      C74457
 
+    ```
 
-**`custom`** _(string)_
- Additional properties not included a core property. 
+- **`relatedConcepts[0].url`** _(string)_
+     The url that links out to the published, related concept. 
+    The listed examples could both be attached to any variable related to, for example, heroin use.
 
+    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
-------
+    Examples:
 
 
+    ```
+      https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
 
-**`standardsMappings[`number`].instrument.url`** _(string)_
- A url (e.g., link, address) to a file or other resource containing the instrument, or
-a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
-or the individual variable (if at the field level). 
+    ```
 
+    ```
+      http://purl.bioontology.org/ontology/RXNORM/3304
 
-Specifying field names:
+    ```
 
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+- **`relatedConcepts[0].title`** _(string)_
+     A human-readable title (ie label) to a concept related to the given field.
+    The listed examples could both be attached to any variable related to, for example, heroin use.
 
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].instrument.url`
+    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].instrument.url`	`standardsMappings[1].instrument.url`	`standardsMappings[2].instrument.url`
+    Examples:
 
 
-Examples:
+    ```
+      Heroin Molecular Structure
 
+    ```
 
-```
-  https://www.heal.nih.gov/files/CDEs/2023-05/adult-demographics-cdes.xlsx
+    ```
+      Heroin Ontology
 
-```
+    ```
 
-------
+- **`relatedConcepts[0].source`** _(string)_
+     The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
+    The listed examples could both be attached to any variable related to, for example, heroin use.
 
-**`standardsMappings[`number`].instrument.source`** _(string)_
- An abbreviated name/acronym from a controlled vocabulary referencing the resource (e.g., program or repository)
-containing the instrument, or a set of items which encompass a variable in this variable level metadata document (if at the root level or the document level) 
-or the individual variable (if at the field level). 
+    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
+    Examples:
 
-Specifying field names:
 
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+    ```
+      CHEBI
 
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].instrument.source`
+    ```
 
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].instrument.source`	`standardsMappings[1].instrument.source`	`standardsMappings[2].instrument.source`
+    ```
+      RXNORM
 
+    ```
 
-Must be one of: `heal-cde`
+- **`relatedConcepts[0].id`** _(string)_
+     The id locating the individual concept within the source of the given field.
+    The listed examples could both be attached to any variable related to, for example, heroin use.
 
-------
+    > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
 
-**`standardsMappings[`number`].instrument.title`** _(string)_
- 
+    Examples:
 
-Specifying field names:
 
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
+    ```
+      27808
 
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].instrument.title`
+    ```
 
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].instrument.title`	`standardsMappings[1].instrument.title`	`standardsMappings[2].instrument.title`
+    ```
+      3304
 
-
-Examples:
-
-
-```
-  Adult demographics
-
-```
-
-```
-  adult-demographics
-
-```
-
-------
-
-**`standardsMappings[`number`].instrument.id`** _(string)_
- A code or other string that identifies the instrument within the source.
-This should always be from the source's formal, standardized identification system 
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].instrument.id`
-
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].instrument.id`	`standardsMappings[1].instrument.id`	`standardsMappings[2].instrument.id`
-
-
-Examples:
-
-
-```
-  5141
-
-```
-
-------
-
-**`standardsMappings[`number`].item.url`** _(string)_
- The url that links out to the published, standardized mapping of a variable (e.g., common data element)
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].item.url`
-
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].item.url`	`standardsMappings[1].item.url`	`standardsMappings[2].item.url`
-
-
-Examples:
-
-
-```
-  https://evs.nci.nih.gov/ftp1/CDISC/SDTM/SDTM%20Terminology.html#CL.C74457.RACE
-
-```
-
-------
-
-**`standardsMappings[`number`].item.source`** _(string)_
- The source of the standardized variable. Note, this property is required if 
-an id is specified.
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].item.source`
-
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].item.source`	`standardsMappings[1].item.source`	`standardsMappings[2].item.source`
-
-
-Examples:
-
-
-```
-  CDISC
-
-```
-
-------
-
-**`standardsMappings[`number`].item.id`** _(string)_
- The id locating the individual mapping within the given source. 
-Note, the `standardsMappings[0].source` property is required if 
-this property is specified.
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`standardsMappings[0].item.id`
-
-For 3 values, you will have the field (column) names:
-`standardsMappings[0].item.id`	`standardsMappings[1].item.id`	`standardsMappings[2].item.id`
-
-
-Examples:
-
-
-```
-  C74457
-
-```
-
-------
-
-**`relatedConcepts[`number`].url`** _(string)_
- The url that links out to the published, related concept. 
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`relatedConcepts[0].url`
-
-For 3 values, you will have the field (column) names:
-`relatedConcepts[0].url`	`relatedConcepts[1].url`	`relatedConcepts[2].url`
-
-
-Examples:
-
-
-```
-  https://www.ebi.ac.uk/chebi/chebiOntology.do?chebiId=CHEBI:27808
-
-```
-
-```
-  http://purl.bioontology.org/ontology/RXNORM/3304
-
-```
-
-------
-
-**`relatedConcepts[`number`].title`** _(string)_
- A human-readable title (ie label) to a concept related to the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`relatedConcepts[0].title`
-
-For 3 values, you will have the field (column) names:
-`relatedConcepts[0].title`	`relatedConcepts[1].title`	`relatedConcepts[2].title`
-
-
-Examples:
-
-
-```
-  Heroin Molecular Structure
-
-```
-
-```
-  Heroin Ontology
-
-```
-
-------
-
-**`relatedConcepts[`number`].source`** _(string)_
- The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`relatedConcepts[0].source`
-
-For 3 values, you will have the field (column) names:
-`relatedConcepts[0].source`	`relatedConcepts[1].source`	`relatedConcepts[2].source`
-
-
-Examples:
-
-
-```
-  CHEBI
-
-```
-
-```
-  RXNORM
-
-```
-
-------
-
-**`relatedConcepts[`number`].id`** _(string)_
- The id locating the individual concept within the source of the given field.
-The listed examples could both be attached to any variable related to, for example, heroin use.
-
-> :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
-
-
-Specifying field names:
-
-This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)
-
-For 1 value, you will have the field (column) names:
-`relatedConcepts[0].id`
-
-For 3 values, you will have the field (column) names:
-`relatedConcepts[0].id`	`relatedConcepts[1].id`	`relatedConcepts[2].id`
-
-
-Examples:
-
-
-```
-  27808
-
-```
-
-```
-  3304
-
-```
-
-------
+    ```
 
 ## End of schema - Additional Property information 
 
@@ -643,6 +432,19 @@ Examples:
 -  `yearmonth` (A specific year and month. (e.g., \"2023-05\"))
 -  `duration` (A length of time. (e.g., \"PT1H\")
 -  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
+
+
+## `standardsMappings` and `relatedConcepts` 
+
+Add more than one value by adding another column with an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+
+Examples:
+-  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
+    | -- | -- | 
+    | My first instrument | My second instrument |
+-  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
+    |---|---|--|
+    | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
 
 ## `format` examples/definitions of patterns and possible values:
 
@@ -673,4 +475,17 @@ The two types of formats for `geopoint` (describing a geographic point).
 
 - `array` (if 'lat,long' (e.g., 36.63,-90.20))
 - `object` (if {'lat':36.63,'lon':-90.20})
+
+
+## `standardsMappings` and `relatedConcepts` 
+
+Add more than one value by adding another column with an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+
+Examples:
+-  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
+    | -- | -- | 
+    | My first instrument | My second instrument |
+-  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
+    |---|---|--|
+    | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
 
