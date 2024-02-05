@@ -460,13 +460,14 @@ The two types of formats for `geopoint` (describing a geographic point).
 
 Examples:
 
-A table with 3 of the same variables:
+_A table with 2 columns (fields) of the same variables:_
 
 |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
 | -- | -- | 
 | My first instrument | My second instrument |
 
-A table with 3 of the same variables:
+_A table with 3 columns (fields)  of the same variables:_
+
 |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
 |---|---|--|
 | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
