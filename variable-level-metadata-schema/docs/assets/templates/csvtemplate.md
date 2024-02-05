@@ -15,17 +15,12 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 ## Properties (i.e., fields or variables)
 
 {% for itemname,item in schema.properties.items() %}
-{% include 'properties.md' %}
-
-------
-
+    {% include 'properties.md' %}
 {% endfor %}
 
 {% for itemname,item in schema.patternProperties.items() %}
-{% set itemname = itemname.replace("^","").replace("$","").replace("\[\d+\]","[`number`]") %}
-{% include 'properties.md' %}
-
-------
+    {% set itemname = itemname.replace("^","").replace("$","").replace("\[\d+\]","[0]") %}
+    {% include 'properties.md' %}
 {% endfor %}
 
 ## End of schema - Additional Property information 
@@ -33,5 +28,18 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 {% for itemname,item in schema['properties'].items() %}
 {% if 'additionalDescription' in item %}
 ## `{{ itemname }}` {{ item.additionalDescription }}
+
+## `standardsMappings` and `relatedConcepts` 
+
+Add more than one value by adding another column with an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+
+Examples:
+-  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
+    | -- | -- | 
+    | My first instrument | My second instrument |
+-  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
+    |---|---|--|
+    | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
+
 {% endif %}
 {% endfor %}
