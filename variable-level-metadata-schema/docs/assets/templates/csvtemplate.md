@@ -28,6 +28,8 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 {% for itemname,item in schema['properties'].items() %}
 {% if 'additionalDescription' in item %}
 ## `{{ itemname }}` {{ item.additionalDescription }}
+{% endif %}
+{% endfor %}
 
 ## `standardsMappings` and `relatedConcepts` 
 
@@ -41,5 +43,3 @@ Examples:
     |---|---|--|
     | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
 
-{% endif %}
-{% endfor %}

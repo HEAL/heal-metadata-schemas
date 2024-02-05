@@ -425,19 +425,6 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 -  `duration` (A length of time. (e.g., \"PT1H\")
 -  `geopoint` (A pair of latitude and longitude coordinates. (e.g., [51.5074, -0.1278]))
 
-
-## `standardsMappings` and `relatedConcepts` 
-
-Add more than one value by adding another column with an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
-
-Examples:
--  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
-    | -- | -- | 
-    | My first instrument | My second instrument |
--  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
-    |---|---|--|
-    | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
-
 ## `format` examples/definitions of patterns and possible values:
 
 Examples of date time pattern formats
@@ -480,4 +467,3 @@ Examples:
 -  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
     |---|---|--|
     | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
-
