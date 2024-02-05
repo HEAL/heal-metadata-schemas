@@ -27,20 +27,22 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 
 {% for itemname,item in schema['properties'].items() %}
 {% if 'additionalDescription' in item %}
-## `{{ itemname }}` {{ item.additionalDescription }}
+- `{{ itemname }}` {{ item.additionalDescription }}
 {% endif %}
 {% endfor %}
 
-## `standardsMappings` and `relatedConcepts` 
-
-If you want to add more than one value,adding anoth column with a name containing an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+- `standardsMappings` and `relatedConcepts`: If you want to add more than one value,adding anoth column with a name containing an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
 
 Examples:
 
--  |`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
-    | -- | -- | 
-    | My first instrument | My second instrument |
--  |`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
-    |---|---|--|
-    | fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
+A table with 3 of the same variables:
+
+|`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
+| -- | -- | 
+| My first instrument | My second instrument |
+
+A table with 3 of the same variables:
+|`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
+|---|---|--|
+| fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
 
