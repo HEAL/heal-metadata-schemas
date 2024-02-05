@@ -1,6 +1,6 @@
 # HEAL Variable Level Metadata Fields 
 
-_version 0.3.0_
+_version 0.3.1_
 
 <!-- Below annotation is specific for folks filling out the csv template
 and so is put here rather than in the actual schema annotations.

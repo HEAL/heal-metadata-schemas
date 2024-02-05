@@ -1,5 +1,5 @@
 {
-    "version": "0.3.0",
+    "version": "0.3.1",
     "title": "HEAL Variable Level Metadata Fields",
     "description": "\n\n!!! note \"Highly encouraged\"\n\n  - Only `name` and `description` properties are required. \n  - For categorical variables, `constraints.enum` and `enumLabels` (where applicable) properties are highly encouraged. \n  - For studies using HEAL or other common data elements (CDEs), `standardsMappings` information is highly encouraged.\n  - `type` and `format` properties may be particularly useful for some variable types (e.g. date-like variables)\n",
     "type": "object",
