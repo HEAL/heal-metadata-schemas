@@ -147,20 +147,22 @@ def flatten_schema(schema):
         schema_flattened["patternProperties"] = {}
         for propname in list(schema_flattened["properties"].keys()):
             if item_sep in propname:
-                var0 = propname.replace(item_sep,"[0]")
-                var1 = propname.replace(item_sep,"[1]")
-                var2 = propname.replace(item_sep,"[2]")
-                pattern_property_note = (
-                    "\n\n"
-                    "Specifying field names:\n\n"
-                    "This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
-                    "For 1 value, you will have the field (column) names:\n"
-                    "`{0}`\n\n"
-                    # "\tFor 2 values, you will have the columns: "
-                    # "`{0},`{1}`\n"
-                    "For 3 values, you will have the field (column) names:\n"
-                    "`{0}`\t`{1}`\t`{2}`\n\n"
-                ).format(var0,var1,var2)
+                # TODO: put on table level for csv schema
+                # var0 = propname.replace(item_sep,"[0]")
+                # var1 = propname.replace(item_sep,"[1]")
+                # var2 = propname.replace(item_sep,"[2]")
+                # pattern_property_note = (
+                #     "\n\n"
+                #     "Specifying field names:\n\n"
+                #     "This field can have 1 or more columns using the digit index number in brackets (`[0]` --> `[1]` --> `[n]`)\n\n"
+                #     "For 1 value, you will have the field (column) names:\n"
+                #     "`{0}`\n\n"
+                #     # "\tFor 2 values, you will have the columns: "
+                #     # "`{0},`{1}`\n"
+                #     "For 3 values, you will have the field (column) names:\n"
+                #     "`{0}`\t`{1}`\t`{2}`\n\n"
+                # ).format(var0,var1,var2)
+                pattern_property_note = ""
                 pattern_prop = schema_flattened["properties"].pop(propname)
                 pattern_prop["description"] = pattern_prop.get("description","") + pattern_property_note
                 schema_flattened["patternProperties"]["^"+propname+"$"] = pattern_prop

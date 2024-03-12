@@ -15,23 +15,35 @@ The aim of this HEAL metadata piece is to track and provide basic information ab
 ## Properties (i.e., fields or variables)
 
 {% for itemname,item in schema.properties.items() %}
-{% include 'properties.md' %}
-
-------
-
+    {% include 'properties.md' %}
 {% endfor %}
 
 {% for itemname,item in schema.patternProperties.items() %}
-{% set itemname = itemname.replace("^","").replace("$","").replace("\[\d+\]","[`number`]") %}
-{% include 'properties.md' %}
-
-------
+    {% set itemname = itemname.replace("^","").replace("$","").replace("\[\d+\]","[0]") %}
+    {% include 'properties.md' %}
 {% endfor %}
 
 ## End of schema - Additional Property information 
 
 {% for itemname,item in schema['properties'].items() %}
 {% if 'additionalDescription' in item %}
-## `{{ itemname }}` {{ item.additionalDescription }}
+- `{{ itemname }}` {{ item.additionalDescription }}
 {% endif %}
 {% endfor %}
+
+- `standardsMappings` and `relatedConcepts`: If you want to add more than one value,adding anoth column with a name containing an added digit in brackets (`[0]` --> `[1]`--> `[n]`). 
+
+Examples:
+
+_A table with 2 columns (fields) of the same variables:_
+
+|`standardsMappings[0].instrument.title` | `standardsMappings[1].instrument.title`|
+| -- | -- | 
+| My first instrument | My second instrument |
+
+_A table with 3 columns (fields)  of the same variables:_
+
+|`relatedConcepts[0].url` | `relatedConcepts[1].url` | `relatedConcepts[2].url`|
+|---|---|--|
+| fakehttp://my-first-concept-url.org | fakehttp://my-second-concept-url.org | fakehttp://my-third-concept-url.org |
+

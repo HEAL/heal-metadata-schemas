@@ -244,7 +244,6 @@ relatedConcepts:
           The url that links out to the published, related concept. 
           The listed examples could both be attached to any variable related to, for example, heroin use.
 
-          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
         type: string
         format: uri
         examples:
@@ -257,7 +256,6 @@ relatedConcepts:
           A human-readable title (ie label) to a concept related to the given field.
           The listed examples could both be attached to any variable related to, for example, heroin use.
 
-          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
         type: string
         examples:
         - Heroin Molecular Structure
@@ -268,7 +266,6 @@ relatedConcepts:
           The source (e.g., a dictionary or vocabulary set) to a concept related to the given field.
           The listed examples could both be attached to any variable related to, for example, heroin use.
 
-          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
         type: string
         examples:
           - CHEBI
@@ -280,7 +277,6 @@ relatedConcepts:
           The id locating the individual concept within the source of the given field.
           The listed examples could both be attached to any variable related to, for example, heroin use.
 
-          > :point_up: if you are looking for mapping field values to common data elements or a set of standards, see `standardsMappings`_
         examples:
         - "27808"
         - "3304"
