@@ -35,7 +35,7 @@
         "alternative_study_name": {
           "description": "Study nickname, alternative title, abbreviation, or acronym (e.g. many people shorten the name of the HEAL Adolescent Brain Cognitive Development study to ABCD)",
           "type": "string",
-          "label": "Study Nickname or Alternative Title"
+          "label": "Alternative Study Title or Name"
         },
         "alternative_study_description": {
           "description": "An alternative description of or abstract for the study. - Generally, for studies with an NIH appl id, if this field is filled out, the text will be searchable on the Platform, but the NIH appl id abstract text will be the study description displayed for the study in the Platform study table entry.",
@@ -101,9 +101,9 @@
           "label": "CEDAR Study-level Metadata Template Instance ID"
         },
         "other_study_websites": {
-          "description": "any other websites officially associated with this study that provide additional information about the study",
+          "description": "Other websites officially associated with this study that provide additional information about the study",
           "type": "array",
-          "label": "Other Study Websites",
+          "label": "Other Study-Associated Websites",
           "items": {
             "type": "string",
             "$ref": "#/definitions/saneUrl"
@@ -390,7 +390,8 @@
         },
         "produce_other": {
           "description": "Indicate whether or not the study will produce shareable products other than data",
-          "type": "boolean"
+          "type": "boolean",
+          "label": "Will study produce shareable products other than data?"
         }
       }
     },
@@ -563,6 +564,125 @@
         } 
       }
     },
+    "human_subject_applicability": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "gender_applicability": {
+          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to.",
+          "type": "array",
+          "label": "Do the results of your study have special applicability for humans of specific gender identity(s)? If so, mark all gender identity(s) for which the results of your study have special applicability.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Female",
+              "Transgender woman/trans woman/male-to-female (MTF)",
+              "Male",
+              "Transgender man/trans man/female-to-male (FTM)",
+              "Genderqueer/gender nonconforming/neither exclusively male nor female",
+              "Other"
+            ]
+          }
+        },
+        "sexual_identity_applicability": {
+          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to.",
+          "type": "array",
+          "label": "Do the results of your study have special applicability for humans of specific sexual identity(s)? If so, mark all sexual identity(s) for which the results of your study have special applicability.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Heterosexual",
+              "Homosexual (gay/lesbian)",
+              "Bisexual",
+              "Asexual",
+              "Other"
+              ]
+          }
+        },
+        "biological_sex_applicability": {
+          "description": "Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to.",
+          "type": "array",
+          "label": "Do the results of your study have special applicability for humans of specific biological sex(s)? If so, mark all biological sex(s) for which the results of your study have special applicability.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Ambiguous",
+              "Female",
+              "Male"
+              ]
+          }
+        },
+        "age_applicability": {
+          "description": "Considering the study in a translational context, to humans of which age or developmental stage are the study results intended to apply and/or likely to generalize to",
+          "type": "array",
+          "label": "Do the results of your study have special applicability for humans of specific age/developmental stage(s)? If so, mark all age/developmental stage(s) for which the results of your study have special applicability.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Fetus",
+              "Infant, newborn (Birth to 1 month)",
+              "Infant (1 to 23 months)",
+              "Child, preschool (2 to 5 years)",
+              "Child (6 to 12 years)",
+              "Adolescent (13 to 18 years)",
+              "Adult (19 to 44 years)",
+              "Middle aged adult (45 to 64 years)",
+              "Aged adult (65 to 79 years)",
+              "Aged, 80 and over (80 years and over)"
+              ]
+          }
+        },
+        "irb_vulnerability_conditions_applicability": {
+          "description": "Considering the study in a translational context, which special IRB human vulnerability conditions are the study results intended to address or apply to?",
+          "type": "array",
+          "label": "Do the results of your study have special applicability for humans of specific vulnerability condition(s)? If so, mark all special vulnerability condition(s) for which the results of your study have special applicability.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Pregnant women",
+              "Human fetuses",
+              "Neonates",
+              "Prisoners",
+              "Children",
+              "Individuals with physical disabilities",
+              "Individuals with mental disabilities or cognitive impairments",
+              "Economically disadvantaged",
+              "Socially disadvantaged",
+              "Terminally ill or very sick",
+              "Racial or ethnic minorities",
+              "Institutionalized persons (for example, persons in correctional facilities, nursing homes or mental health facilities)"
+              ]
+          }
+        },
+        "geographic_applicability": {
+          "description": "For studies with human subjects, from which geographic location(s) are subjects recruited. If subjects are recruited in the US nationally, choose only US - national. If subject are recruited in the US only in specific state(s), choose US - Specific States, then please also select the abbreviation of each of the specific states from which subjects are recruited. If subjects are recruited in the US from specific county(ies) within specific state(s), please choose US - Specific States and US - Specific Counties, and choose the abbreviation of each specific state from which subjects are recruited",
+          "type": "array",
+          "label": "Human Subject Studies: Where do human subjects of the study reside or obtain care during the course of the study - To humans in which geographical locations do the study results apply?",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Non US",
+              "US - National",
+              "US - Specific States",
+              "US - Specific Counties",
+              "AK","AL","AR","AZ",
+              "CA","CO","CT","DE",
+              "FL","GA","HI","IA",
+              "ID","IL","IN","KS",
+              "KY","LA","MA","MD",
+              "ME","MI","MN","MO",
+              "MS","MT","NC","ND",
+              "NE","NH","NJ","NM",
+              "NV","NY","OH","OK",
+              "OR","PA","RI","SC",
+              "SD","TN","TX","UT",
+              "VA","VT","WA","WI",
+              "WV","WY"
+              ]
+          }
+        }
+      }
+    },  
     "human_treatment_applicability": {
       "type": "object",
       "required": [],
@@ -588,7 +708,7 @@
         "treatment_mode": {
           "description": "Is the treatment, intervention, or solution that my study is relevant to meant to prevent the occurrance of a condition (e.g. development of a non-opioid drug for pain to prevent opioid exposure and addiction, case management and MAT for pregnant women to prevent in utero exposure to opioids, safe needle exchange center to prevent spread of blood borne diseases among people using heroin), treat an occurrance of a condition (e.g. naloxone to treat opioid overdose, physical therapy to treat existing pain from a back injury) , and/or is it a harm reduction mechanism (e.g. safe needle exchange reduces harm associated with heroin addiction/use, decriminalization of heroin possession or use reduces the harm associated with heroin addiction/use)",
           "type": "array",
-          "label": "Treatment Mode - Preventive, Therapeutic, Harm Reduction",
+          "label": "Treatment Mode",
           "items": {
             "type": "string",
             "enum": [
@@ -758,125 +878,6 @@
         
       }
     },
-    "human_subject_applicability": {
-      "type": "object",
-      "required": [],
-      "properties": {
-        "gender_applicability": {
-          "description": "Considering the study in a translational context, to humans of which gender identity(ies) are the study results intended to apply and/or likely to generalize to.",
-          "type": "array",
-          "label": "To humans of which gender identity(ies) do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Female",
-              "Female-to-male transsexual",
-              "Intersexed",
-              "Male",
-              "Male-to-female transsexual",
-              "Other"
-            ]
-          }
-        },
-        "sexual_identity_applicability": {
-          "description": "Considering the study in a translational context, to humans of which sexual identity(ies) are the study results intended to apply and/or likely to generalize to.",
-          "type": "array",
-          "label": "To humans of which sexual identity(ies) do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Heterosexual",
-              "Homosexual (gay/lesbian)",
-              "Bisexual",
-              "Asexual",
-              "Other"
-              ]
-          }
-        },
-        "biological_sex_applicability": {
-          "description": "Considering the study in a translational context, to humans of which biological sexes are the study results intended to apply and/or likely to generalize to.",
-          "type": "array",
-          "label": "To humans of which biological sexes do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Ambiguous",
-              "Female",
-              "Male"
-              ]
-          }
-        },
-        "age_applicability": {
-          "description": "Considering the study in a translational context, to humans of which age or developmental stage are the study results intended to apply and/or likely to generalize to",
-          "type": "array",
-          "label": "To humans of which age/developmental stage do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Fetus",
-              "Infant, newborn (Birth to 1 month)",
-              "Infant (1 to 23 months)",
-              "Child, preschool (2 to 5 years)",
-              "Child (6 to 12 years)",
-              "Adolescent (13 to 18 years)",
-              "Adult (19 to 44 years)",
-              "Middle aged adult (45 to 64 years)",
-              "Aged adult (65 to 79 years)",
-              "Aged, 80 and over (80 years and over)"
-              ]
-          }
-        },
-        "irb_vulnerability_conditions_applicability": {
-          "description": "Considering the study in a translational context, which special IRB human vulnerability conditions are the study results intended to address or apply to?",
-          "type": "array",
-          "label": "To humans in which special vulnerability categories do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Pregnant women",
-              "Human fetuses",
-              "Neonates",
-              "Prisoners",
-              "Children",
-              "Individuals with physical disabilities",
-              "Individuals with mental disabilities or cognitive impairments",
-              "Economically disadvantaged",
-              "Socially disadvantaged",
-              "Terminally ill or very sick",
-              "Racial or ethnic minorities",
-              "Institutionalized persons (for example, persons in correctional facilities, nursing homes or mental health facilities)"
-              ]
-          }
-        },
-        "geographic_applicability": {
-          "description": "For studies with human subjects, from which geographic location(s) are subjects recruited. If subjects are recruited in the US nationally, choose only US - national. If subject are recruited in the US only in specific state(s), choose US - Specific States, then please also select the abbreviation of each of the specific states from which subjects are recruited. If subjects are recruited in the US from specific county(ies) within specific state(s), please choose US - Specific States and US - Specific Counties, and choose the abbreviation of each specific state from which subjects are recruited",
-          "type": "array",
-          "label": "To humans of which age/developmental stage do study results apply?",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Non US",
-              "US - National",
-              "US - Specific States",
-              "US - Specific Counties",
-              "AK","AL","AR","AZ",
-              "CA","CO","CT","DE",
-              "FL","GA","HI","IA",
-              "ID","IL","IN","KS",
-              "KY","LA","MA","MD",
-              "ME","MI","MN","MO",
-              "MS","MT","NC","ND",
-              "NE","NH","NJ","NM",
-              "NV","NY","OH","OK",
-              "OR","PA","RI","SC",
-              "SD","TN","TX","UT",
-              "VA","VT","WA","WI",
-              "WV","WY"
-              ]
-          }
-        }
-      }
-    },  
     "data": {
       "type": "object",
       "required": [],
@@ -912,7 +913,7 @@
         "data_type": {
           "description": "What is the type of the data the study will produce/collect. Choose as many as apply",
           "type": "array",
-          "label": "Type of Data",
+          "label": "Data Type",
           "items": {
             "type": "string",
             "enum": [
