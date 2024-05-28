@@ -12,6 +12,7 @@ type: object
 required:
   - name
   - description
+additionalProperties: false
 properties:
   schemaVersion:
     $ref: "#/_definitions/schemaVersion"
