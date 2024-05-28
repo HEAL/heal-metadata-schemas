@@ -139,6 +139,13 @@ def flatten_properties(properties, parentkey="", sep=".",itemsep="\[\d+\]"):
     return properties_flattened
 
 def flatten_schema(schema):
+    """ 
+    Flatten a schema of type object with properties. 
+    
+    If a regular expression indicating a list index exists, puts this
+    under `patternProperties`
+    
+    """ 
     schema_flattened = dict(schema)
     if "properties" in schema:
         properties = schema_flattened.pop("properties")
