@@ -7,6 +7,7 @@ type: object
 required:
 - title
 - fields
+additionalProperties: false
 properties:
   title:
     type: string
@@ -47,3 +48,4 @@ propertyNames:
     - missingValues
     - primaryKey
     - foreignKeys
+

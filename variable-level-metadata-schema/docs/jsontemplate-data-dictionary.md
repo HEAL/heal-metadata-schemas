@@ -1,6 +1,6 @@
 # Variable Level Metadata (Data Dictionaries) 
 
-_version 0.3.1_
+_version 0.3.2_
 
 This schema defines the variable level metadata for one data dictionary for a given study.Note a given study can have multiple data dictionaries.
 

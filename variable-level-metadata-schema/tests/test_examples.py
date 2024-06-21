@@ -60,7 +60,7 @@ def test_valid_json_data_dictionaries():
     jsonreports = []
     for filepath in jsons:
         report = to_summary(filepath)
-        assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {str(filepath)}\n\n{report_summary}"
+        assert report["valid"],f"# this example is invalid but is intended to be valid:\n\n {json.dumps(report['errors'],indent=2)}"
 
 
 def test_invalid_csv_data_dictionaries():
