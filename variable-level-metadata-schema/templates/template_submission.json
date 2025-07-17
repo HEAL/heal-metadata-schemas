@@ -1,67 +1,65 @@
-[
-    {
-        "title": null,
-        "description": null,
-        "schemaVersion": null,
-        "version": null,
-        "standardsMappings": [
-            {
-                "instrument": {
-                    "url": null,
-                    "source": null,
-                    "title": null,
-                    "id": null
+{
+    "title": "Title",
+    "description": "description",
+    "schemaVersion": "1.3.0",
+    "version": "1.3.0",
+    "standardsMappings": [
+        {
+            "instrument": {
+                "url": "https://example.com/instrument",
+                "source": "heal-cde",
+                "title": "Instrument Title",
+                "id": "Instrument ID"
+            }
+        }
+    ],
+    "custom": {},
+    "fields": [
+        {
+            "schemaVersion": "1.3.0",
+            "section": "Demographics",
+            "name": "name",
+            "title": "Title",
+            "description": "description",
+            "type": "number",
+            "format": "format",
+            "constraints": {
+                "required": false,
+                "maxLength": 4,
+                "enum": [],
+                "pattern": "pattern",
+                "maximum": 5,
+                "minimum": 1
+            },
+            "enumLabels": {},
+            "enumOrdered": false,
+            "missingValues": [],
+            "trueValues": [],
+            "falseValues": [],
+            "custom": {},
+            "standardsMappings": [
+                {
+                    "instrument": {
+                        "url": "https://example.com/instrument",
+                        "source": "heal-cde",
+                        "title": "Instrument Title",
+                        "id": "Instrument ID"
+                    },
+                    "item": {
+                        "url": "https://example.com/item",
+                        "source": "heal-cde",
+                        "id": "Item ID"
+                    }
                 }
-            }
-        ],
-        "custom": {},
-        "fields": [
-            {
-                "schemaVersion": null,
-                "section": null,
-                "name": null,
-                "title": null,
-                "description": null,
-                "type": null,
-                "format": null,
-                "constraints": {
-                    "required": null,
-                    "maxLength": null,
-                    "enum": [],
-                    "pattern": null,
-                    "maximum": null,
-                    "minimum": null
-                },
-                "enumLabels": {},
-                "enumOrdered": null,
-                "missingValues": [],
-                "trueValues": [],
-                "falseValues": [],
-                "custom": {},
-                "standardsMappings": [
-                    {
-                        "instrument": {
-                            "url": null,
-                            "source": null,
-                            "title": null,
-                            "id": null
-                        },
-                        "item": {
-                            "url": null,
-                            "source": null,
-                            "id": null
-                        }
-                    }
-                ],
-                "relatedConcepts": [
-                    {
-                        "url": null,
-                        "title": null,
-                        "source": null,
-                        "id": null
-                    }
-                ]
-            }
-        ]
-    }
-]
+            ],
+            "relatedConcepts": [
+                {
+                    "url": "https://example.com/related-concept",
+                    "title": "Related Concept Title",
+                    "source": "heal-cde",
+                    "id": "Related Concept ID"
+                }
+            ]
+        }
+    ]
+}
